@@ -49,13 +49,13 @@ jobs:
         rustc -Vv
         mdbook --version
     - name: Spellcheck
-      run: bash ci/spellcheck.sh list
+      run: bash docs/ci/spellcheck.sh list
     - name: Lint for local file paths
       run: |
         mdbook build docs
         cargo run --bin lfp docs/src
     - name: Validate references
-      run: bash ci/validate.sh
+      run: bash docs/ci/validate.sh
     - name: Check for broken links
       run: |
         curl -sSLo linkcheck.sh \
