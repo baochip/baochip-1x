@@ -54,7 +54,7 @@ jobs:
       run: |
         mdbook build docs
         cd docs
-        cargo run --bin lfp docs/src
+        cargo run --bin lfp src
     - name: Validate references
       run: bash docs/ci/validate.sh
     - name: Check for broken links
