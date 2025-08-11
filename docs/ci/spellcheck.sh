@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd docs
+
 aspell --version
 
 # Checks project Markdown files for spelling mistakes.
