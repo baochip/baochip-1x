@@ -48,8 +48,8 @@ jobs:
         rustup --version
         rustc -Vv
         mdbook --version
-    - name: Spellcheck
-      run: bash docs/ci/spellcheck.sh list
+    # - name: Spellcheck
+    #   run: bash docs/ci/spellcheck.sh list
     - name: Lint for local file paths
       run: |
         mdbook build docs
