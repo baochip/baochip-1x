@@ -1,0 +1,38 @@
+*~
+/build/*
+__pycache__/
+/.Xil/*
+/.idea/*
+*.d
+*.o
+pycharm.env
+*.bin
+*.elf
+*.jou
+*.log
+*.map
+*.lst
+run/
+target/
+/venv/*
+/test/
+/env/
+
+# Spinal build directories
+VexRiscv/project/
+VexRiscv/target/
+VexRiscv/.bloop/
+VexRiscv/.bsp/
+VexRiscv/.idea/
+VexRiscv/.metals/
+VexRiscv/.vscode/
+
+.metals/
+.env
+.vscode/
+
+# code listings
+listings/
+
+# files under review for checking into github
+rtl/

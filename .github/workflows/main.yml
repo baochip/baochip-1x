@@ -1,0 +1,70 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Update rustup
+      run: rustup self update
+    - name: Install Rust
+      run: |
+        rustup set profile minimal
+        rustup toolchain install 1.54 -c rust-docs
+        rustup default 1.54
+    - name: Install mdbook
+      run: |
+        mkdir bin
+        curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.5/mdbook-v0.4.5-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=bin
+        echo "$(pwd)/bin" >> ${GITHUB_PATH}
+    - name: Report versions
+      run: |
+        rustup --version
+        rustc -Vv
+        mdbook --version
+    - name: Run tests
+      run: mdbook test docs
+  lint:
+    name: Build, run lints, and deploy
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Update rustup
+      run: rustup self update
+    - name: Install Rust
+      run: |
+        rustup set profile minimal
+        rustup toolchain install nightly -c rust-docs
+        rustup override set nightly
+    - name: Install mdbook
+      run: |
+        mkdir bin
+        curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.5/mdbook-v0.4.5-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=bin
+        echo "$(pwd)/bin" >> ${GITHUB_PATH}
+    - name: Report versions
+      run: |
+        rustup --version
+        rustc -Vv
+        mdbook --version
+    - name: Spellcheck
+      run: bash ci/spellcheck.sh list
+    - name: Lint for local file paths
+      run: |
+        mdbook build docs
+        cargo run --bin lfp docs/src
+    - name: Validate references
+      run: bash ci/validate.sh
+    - name: Check for broken links
+      run: |
+        curl -sSLo linkcheck.sh \
+          https://raw.githubusercontent.com/rust-lang/rust/master/src/tools/linkchecker/linkcheck.sh
+        # Cannot use --all here because of the generated redirect pages aren't available.
+        sh linkcheck.sh docs/book
+    - name: Deploy Book
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./docs/book
