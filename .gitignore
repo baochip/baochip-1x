@@ -33,3 +33,6 @@ VexRiscv/.vscode/
 
 # disassembly of binary objects
 listings/
+
+# This is just for the maintainer's internal use
+todo.md
