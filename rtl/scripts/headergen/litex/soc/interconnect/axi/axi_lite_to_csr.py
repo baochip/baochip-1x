@@ -1,0 +1,54 @@
+# (c) Copyright 2024 CrossBar, Inc.
+#
+# SPDX-FileCopyrightText: 2024 CrossBar, Inc.
+# SPDX-License-Identifier: CERN-OHL-W-2.0
+#
+# This documentation and source code is licensed under the CERN Open Hardware
+# License Version 2 – Weakly Reciprocal (http://ohwr.org/cernohl; the
+# “License”). Your use of any source code herein is governed by the License.
+#
+# You may redistribute and modify this documentation under the terms of the
+# License. This documentation and source code is distributed WITHOUT ANY EXPRESS
+# OR IMPLIED WARRANTY, MERCHANTABILITY, SATISFACTORY QUALITY OR FITNESS FOR A
+# PARTICULAR PURPOSE. Please see the License for the specific language governing
+# permissions and limitations under the License.
+
+#
+# This file is part of LiteX.
+#
+# Copyright (c) 2018-2022 Florent Kermarrec <florent@enjoy-digital.fr>
+# Copyright (c) 2020 Antmicro <www.antmicro.com>
+# SPDX-License-Identifier: BSD-2-Clause
+
+"""AXI4-Full/Lite support for LiteX"""
+
+from migen import *
+
+from litex.build.generic_platform import *
+
+from litex.soc.interconnect.axi.axi_common import *
+from litex.soc.interconnect.axi.axi_lite import *
+
+# AXI-Lite to CSR ----------------------------------------------------------------------------------
+
+class AXILite2CSR(Module):
+    def __init__(self, axi_lite=None, bus_csr=None, register=False):
+        # TODO: unused register argument
+        if axi_lite is None:
+            axi_lite = AXILiteInterface()
+        if bus_csr is None:
+            bus_csr = csr_bus.Interface()
+
+        self.axi_lite = axi_lite
+        self.csr      = bus_csr
+
+        fsm, comb = axi_lite_to_simple(
+            axi_lite   = self.axi_lite,
+            port_adr   = self.csr.adr,
+            port_dat_r = self.csr.dat_r,
+            port_dat_w = self.csr.dat_w,
+            port_we    = self.csr.we,
+            port_re    = self.csr.re,
+        )
+        self.submodules.fsm = fsm
+        self.comb += comb
