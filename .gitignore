@@ -31,8 +31,5 @@ VexRiscv/.vscode/
 .env
 .vscode/
 
-# code listings
+# disassembly of binary objects
 listings/
-
-# files under review for checking into github
-rtl/
