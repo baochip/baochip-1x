@@ -1,0 +1,13 @@
+[package]
+name = "svd2utra"
+version = "0.1.23"
+authors = ["Sean Cross <sean@xobs.io>", "bunnie <bunnie@kosagi.com>"]
+description = "SVD to UTRA library generator"
+edition = "2018"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/betrusted-io/xous-core/"
+homepage = "https://betrusted.io/xous-book/"
+
+# Dependency versions enforced by Cargo.lock.
+[dependencies]
+quick-xml = "0.28.1"

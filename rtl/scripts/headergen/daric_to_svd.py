@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-# (c) Copyright 2024 CrossBar, Inc.
+# (c) Copyright 2025 Baochip, Inc.
 #
-# SPDX-FileCopyrightText: 2024 CrossBar, Inc.
+# SPDX-FileCopyrightText: 2025 Baochip, Inc.
 # SPDX-License-Identifier: BSD-2-Clause
-#
-# This file may have been modified and is redistributed by CrossBar, Inc.
 #
 # You may redistribute and modify this documentation under the terms of the
 # License. This documentation and source code is distributed WITHOUT ANY EXPRESS
@@ -12,8 +10,6 @@
 # PARTICULAR PURPOSE. Please see the License for the specific language governing
 # permissions and limitations under the License.
 
-#
-# This file is Copyright (c) 2022 Cramium Labs, Inc.
 #
 # Incorporates CSR, header, and SVD generators from LiteX with the following copyrights:
 #
@@ -31,6 +27,8 @@
 # This file is Copyright (c) 2018 William D. Jones <thor0505@comcast.net>
 # This file is Copyright (c) 2020 Piotr Esden-Tempski <piotr@esden.net>
 # This file is Copyright (c) 2022 Franck Jullien <franck.jullien@collshade.fr>
+# This file is Copyright (c) 2022 Cramium Labs, Inc.
+# This file is Copyright (c) 2025 Baochip, Inc.
 #
 # SPDX-License-Identifier: BSD-2-Clause
 
@@ -59,6 +57,7 @@ import ast
 import operator as op
 import pprint
 from math import log2
+import shutil
 
 URL_PREFIX='file:///F:/code/cram-nto/'
 # SVD patch for PL230 DMA
@@ -1183,10 +1182,10 @@ Indices and tables
             region.print_region(outfile, base_dir, note_pulses)
 
     # Copy over wavedrom javascript and configuration files
-    with open(Path(os.path.dirname(__file__)) / Path("litex/soc/doc/static/WaveDrom.js"), "r") as wd_in:
+    with open(Path(os.path.dirname(__file__)) / Path("WaveDrom.js"), "r") as wd_in:
         with open(base_dir + "/_static/WaveDrom.js", "w") as wd_out:
             wd_out.write(wd_in.read())
-    with open(Path(os.path.dirname(__file__)) / Path("litex/soc/doc/static/default.js"), "r") as wd_in:
+    with open(Path(os.path.dirname(__file__)) / Path("default.js"), "r") as wd_in:
         with open(base_dir + "/_static/default.js", "w") as wd_out:
             wd_out.write(wd_in.read())
 
@@ -2018,7 +2017,7 @@ def process_pulp(doc_soc, pulp_reg_files, schema, path, top_regions):
             for inc in includes:
                 if inc == 'udma_i2c_defines.sv':
                     # why is this in a weird place?
-                    fname = Path('ips/incdir') / inc
+                    fname = path / Path('ips/incdir') / inc
                 else:
                     fname = Path(file).parent / inc
                 with open(fname, "r", encoding='utf-8') as def_file:
@@ -2348,7 +2347,7 @@ def main():
         "--loglevel", required=False, help="set logging level (INFO/DEBUG/WARNING/ERROR)", type=str, default="INFO",
     )
     parser.add_argument(
-        "--outdir", required=False, help="Path to output files", type=str, default="./scripts/headergen/output/"
+        "--outdir", required=False, help="Path to output files", type=str, default="output/"
     )
     args = parser.parse_args()
     numeric_level = getattr(logging, args.loglevel.upper(), None)
@@ -2590,17 +2589,6 @@ def main():
                 'banks' : {},
                 'display_name' : 'secsub',
             },
-        'rp_pio' :
-            {
-                'socregion' : SoCRegion(
-                            origin=0x5012_3000,
-                            size=0x1000,
-                            mode='rw',
-                            cached=False
-                        ),
-                'banks' : {},
-                'display_name' : 'pio',
-            },
         # The address in soc_ifsub needs to be changed here as well!!!
         'bio_bdma' :
             {
@@ -2655,7 +2643,7 @@ def main():
         (top_file, _version) = versioned_files[region]
         # SCE defines banks by attaching them to an abps mux. Open the top-level file and look for
         # the apbs mux index and infer the region for register banks from that.
-        with open(top_file, 'r') as top:
+        with open(top_file, 'r', encoding='utf-8') as top:
             multi_line_expr = ''
             for line in top:
                 code_line = remove_comments(line.strip()).lstrip()
@@ -2926,13 +2914,13 @@ def main():
         region.obj = csr_list
 
     # generate SVD
-    with open(args.outdir + 'daric.svd', 'w') as svd_f:
-        svd = get_csr_svd(doc_soc, vendor="cramium", name="soc", description="Cramium SoC")
+    with open(args.outdir + 'bao1x_peri.svd', 'w') as svd_f:
+        svd = get_csr_svd(doc_soc, vendor="baochip", name="soc", description="Baochip-1x SoC")
         svd = patch_pl230(svd, doc_soc.mem_regions['pl230'].origin)
         svd_f.write(svd)
 
     # generate C header
-    with open(args.outdir + 'daric.h', 'w') as header_f:
+    with open(args.outdir + 'bao1x_peri.h', 'w') as header_f:
         reg_header = get_csr_header(doc_soc.csr.regions, doc_soc.constants)
         header_f.write(reg_header)
         mem_header = get_mem_header(doc_soc.mem_regions)
@@ -2944,13 +2932,15 @@ def main():
     with open(args.outdir + 'apb_check.rs', 'w') as rust_f:
         generate_rust_test(doc_soc, rust_f)
 
-    subprocess.run(['cargo', 'run', str('../output/daric.svd'), str('../output/daric_generated.rs')], cwd=Path(args.outdir) / '../svd2utra')
+    subprocess.run(['cargo', 'run', str('../' + args.outdir + 'bao1x_peri.svd'), str('../' + args.outdir + 'bao1x_peri.rs')], cwd=Path(args.outdir) / '../svd2utra')
 
-    # generate the C CMSIS file
-    subprocess.run(['../svdconv', '-o', 'c', '--generate=header', '--fields=struct', 'daric.svd'], cwd=Path(args.outdir))
+    # generate the C CMSIS file. Requires 'svdconv' which, unfortunately, is not open source but it is freely
+    # downloadable (see https://arm-software.github.io/CMSIS_5/SVD/html/svd_SVDConv_pg.html or https://developer.arm.com/documentation/107778/5-43-0/MDK-Version-5-38a)
+    if shutil.which("svdconv"):
+        subprocess.run(['svdconv', '-o', 'c', '--generate=header', '--fields=struct', 'bao1x_peri.svd'], cwd=Path(args.outdir))
 
     doc_dir = args.outdir + 'doc/'
-    generate_docs(doc_soc, doc_dir, project_name="Cramium SoC", author="Cramium, Inc.")
+    generate_docs(doc_soc, doc_dir, project_name="Baochip-1x SoC", author="Baochip, Inc.")
     subprocess.run(['sphinx-build', '-M', 'html', doc_dir, doc_dir + '/_build'])
 
 if __name__ == "__main__":
