@@ -1,0 +1,3 @@
+[submodule "deps/litex"]
+	path = deps/litex
+	url = https://github.com/buncram/litex.git
