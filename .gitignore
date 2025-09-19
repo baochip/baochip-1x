@@ -36,3 +36,6 @@ listings/
 
 # This is just for the maintainer's internal use
 todo.md
+
+# outputs of the documentation generator
+rtl/scripts/headergen/output/
