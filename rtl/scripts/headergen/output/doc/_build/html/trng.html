@@ -1,0 +1,702 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>TRNG &#8212; Baochip-1x SoC  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/default.js"></script>
+    <script src="_static/WaveDrom.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SCEDMA" href="scedma.html" />
+    <link rel="prev" title="PKE" href="pke.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="trng">
+<h1>TRNG<a class="headerlink" href="#trng" title="Permalink to this heading">¶</a></h1>
+<section id="register-listing-for-trng">
+<h2>Register Listing for TRNG<a class="headerlink" href="#register-listing-for-trng" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Register</p></th>
+<th class="head"><p>Address</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#trng-sfr-crsrc"><span class="std std-ref">TRNG_SFR_CRSRC</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-crsrc"><span class="std std-ref">0x4002e000</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#trng-sfr-crana"><span class="std std-ref">TRNG_SFR_CRANA</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-crana"><span class="std std-ref">0x4002e004</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#trng-sfr-pp"><span class="std std-ref">TRNG_SFR_PP</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-pp"><span class="std std-ref">0x4002e008</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#trng-sfr-opt"><span class="std std-ref">TRNG_SFR_OPT</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-opt"><span class="std std-ref">0x4002e00c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#trng-sfr-sr"><span class="std std-ref">TRNG_SFR_SR</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-sr"><span class="std std-ref">0x4002e010</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#trng-sfr-ar-gen"><span class="std std-ref">TRNG_SFR_AR_GEN</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-ar-gen"><span class="std std-ref">0x4002e014</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#trng-sfr-fr"><span class="std std-ref">TRNG_SFR_FR</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-fr"><span class="std std-ref">0x4002e018</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#trng-sfr-drpsz"><span class="std std-ref">TRNG_SFR_DRPSZ</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-drpsz"><span class="std std-ref">0x4002e020</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#trng-sfr-drgen"><span class="std std-ref">TRNG_SFR_DRGEN</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-drgen"><span class="std std-ref">0x4002e024</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#trng-sfr-drreseed"><span class="std std-ref">TRNG_SFR_DRRESEED</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-drreseed"><span class="std std-ref">0x4002e028</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#trng-sfr-buf"><span class="std std-ref">TRNG_SFR_BUF</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-buf"><span class="std std-ref">0x4002e030</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#trng-sfr-chain-rngchainen0"><span class="std std-ref">TRNG_SFR_CHAIN_RNGCHAINEN0</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-chain-rngchainen0"><span class="std std-ref">0x4002e040</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#trng-sfr-chain-rngchainen1"><span class="std std-ref">TRNG_SFR_CHAIN_RNGCHAINEN1</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-chain-rngchainen1"><span class="std std-ref">0x4002e044</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#trng-sfr-chain-rngchainen2"><span class="std std-ref">TRNG_SFR_CHAIN_RNGCHAINEN2</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-chain-rngchainen2"><span class="std std-ref">0x4002e048</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#trng-sfr-chain-rngchainen3"><span class="std std-ref">TRNG_SFR_CHAIN_RNGCHAINEN3</span></a></p></td>
+<td><p><a class="reference internal" href="#trng-sfr-chain-rngchainen3"><span class="std std-ref">0x4002e04c</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="trng-sfr-crsrc">
+<h3>TRNG_SFR_CRSRC<a class="headerlink" href="#trng-sfr-crsrc" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x0 = 0x4002e000</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_crsrc",  "bits": 13},
+        {"bits": 19}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[12:0]</p></td>
+<td><p>SFR_CRSRC</p></td>
+<td><p>sfr_crsrc read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-crana">
+<h3>TRNG_SFR_CRANA<a class="headerlink" href="#trng-sfr-crana" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x4 = 0x4002e004</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_crana",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SFR_CRANA</p></td>
+<td><p>sfr_crana read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-pp">
+<h3>TRNG_SFR_PP<a class="headerlink" href="#trng-sfr-pp" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x8 = 0x4002e008</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_pp",  "bits": 17},
+        {"bits": 15}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[16:0]</p></td>
+<td><p>SFR_PP</p></td>
+<td><p>sfr_pp read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-opt">
+<h3>TRNG_SFR_OPT<a class="headerlink" href="#trng-sfr-opt" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0xc = 0x4002e00c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_opt",  "bits": 17},
+        {"bits": 15}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[16:0]</p></td>
+<td><p>SFR_OPT</p></td>
+<td><p>sfr_opt read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-sr">
+<h3>TRNG_SFR_SR<a class="headerlink" href="#trng-sfr-sr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x10 = 0x4002e010</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sr_rng",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SR_RNG</p></td>
+<td><p>sr_rng read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-ar-gen">
+<h3>TRNG_SFR_AR_GEN<a class="headerlink" href="#trng-sfr-ar-gen" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x14 = 0x4002e014</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_ar_gen",  "type": 4, "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_AR_GEN</p></td>
+<td><p>sfr_ar_gen performs action on write of value: 0x55</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-fr">
+<h3>TRNG_SFR_FR<a class="headerlink" href="#trng-sfr-fr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x18 = 0x4002e018</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_fr",  "bits": 3},
+        {"bits": 29}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[2:0]</p></td>
+<td><p>SFR_FR</p></td>
+<td><p>sfr_fr flag register. <cite>1</cite> means event happened, write back <cite>1</cite> in respective bit
+position to clear the flag</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-drpsz">
+<h3>TRNG_SFR_DRPSZ<a class="headerlink" href="#trng-sfr-drpsz" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x20 = 0x4002e020</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_drpsz",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_DRPSZ</p></td>
+<td><p>sfr_drpsz read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-drgen">
+<h3>TRNG_SFR_DRGEN<a class="headerlink" href="#trng-sfr-drgen" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x24 = 0x4002e024</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_drgen",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_DRGEN</p></td>
+<td><p>sfr_drgen read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-drreseed">
+<h3>TRNG_SFR_DRRESEED<a class="headerlink" href="#trng-sfr-drreseed" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x28 = 0x4002e028</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_drreseed",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_DRRESEED</p></td>
+<td><p>sfr_drreseed read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-buf">
+<h3>TRNG_SFR_BUF<a class="headerlink" href="#trng-sfr-buf" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x30 = 0x4002e030</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_buf",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_BUF</p></td>
+<td><p>sfr_buf read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-chain-rngchainen0">
+<h3>TRNG_SFR_CHAIN_RNGCHAINEN0<a class="headerlink" href="#trng-sfr-chain-rngchainen0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x40 = 0x4002e040</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "rngchainen0",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>RNGCHAINEN0</p></td>
+<td><p>rngchainen read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-chain-rngchainen1">
+<h3>TRNG_SFR_CHAIN_RNGCHAINEN1<a class="headerlink" href="#trng-sfr-chain-rngchainen1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x44 = 0x4002e044</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "rngchainen1",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>RNGCHAINEN1</p></td>
+<td><p>rngchainen read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-chain-rngchainen2">
+<h3>TRNG_SFR_CHAIN_RNGCHAINEN2<a class="headerlink" href="#trng-sfr-chain-rngchainen2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x48 = 0x4002e048</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "rngchainen2",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>RNGCHAINEN2</p></td>
+<td><p>rngchainen read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trng-sfr-chain-rngchainen3">
+<h3>TRNG_SFR_CHAIN_RNGCHAINEN3<a class="headerlink" href="#trng-sfr-chain-rngchainen3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002e000 + 0x4c = 0x4002e04c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "rngchainen3",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>RNGCHAINEN3</p></td>
+<td><p>rngchainen read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Baochip-1x SoC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interrupts.html">Interrupt Controller</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="alu.html">ALU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aes.html">AES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combohash.html">COMBOHASH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pke.html">PKE</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TRNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scedma.html">SCEDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sce_glbsfr.html">SCE_GLBSFR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="duart.html">DUART</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rbist_wrp.html">RBIST_WRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wdg_intf.html">WDG_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timer_intf.html">TIMER_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evc.html">EVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysctrl.html">SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apb_thru.html">APB_THRU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_bdma.html">BIO_BDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iox.html">IOX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pwm.html">PWM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sddc.html">SDDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coresub_sramtrm.html">CORESUB_SRAMTRM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mdma.html">MDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfc.html">QFC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mbox_apb.html">MBOX_APB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rrc.html">RRC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gluechain.html">GLUECHAIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">MESH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensorc.html">SENSORC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aobureg.html">AOBUREG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ao_sysctrl.html">AO_SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dkpc.html">DKPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_ctrl.html">UDMA_CTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_0.html">UDMA_UART_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_1.html">UDMA_UART_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_2.html">UDMA_UART_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_3.html">UDMA_UART_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_0.html">UDMA_SPIM_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_1.html">UDMA_SPIM_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_2.html">UDMA_SPIM_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_3.html">UDMA_SPIM_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_0.html">UDMA_I2C_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_1.html">UDMA_I2C_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_2.html">UDMA_I2C_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_3.html">UDMA_I2C_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_sdio.html">UDMA_SDIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2s.html">UDMA_I2S</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_camera.html">UDMA_CAMERA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_filter.html">UDMA_FILTER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_scif.html">UDMA_SCIF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_0.html">UDMA_SPIS_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_1.html">UDMA_SPIS_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_adc.html">UDMA_ADC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo0.html">BIO_FIFO0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo1.html">BIO_FIFO1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo2.html">BIO_FIFO2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo3.html">BIO_FIFO3</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="pke.html" title="previous chapter">PKE</a></li>
+      <li>Next: <a href="scedma.html" title="next chapter">SCEDMA</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, Baochip, Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/trng.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

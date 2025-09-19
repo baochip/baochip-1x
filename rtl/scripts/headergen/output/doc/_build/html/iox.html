@@ -1,0 +1,2420 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>IOX &#8212; Baochip-1x SoC  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/default.js"></script>
+    <script src="_static/WaveDrom.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PWM" href="pwm.html" />
+    <link rel="prev" title="BIO_BDMA" href="bio_bdma.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="iox">
+<h1>IOX<a class="headerlink" href="#iox" title="Permalink to this heading">¶</a></h1>
+<section id="register-listing-for-iox">
+<h2>Register Listing for IOX<a class="headerlink" href="#register-listing-for-iox" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Register</p></th>
+<th class="head"><p>Address</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel0"><span class="std std-ref">IOX_SFR_AFSEL_CRAFSEL0</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel0"><span class="std std-ref">0x5012f000</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel1"><span class="std std-ref">IOX_SFR_AFSEL_CRAFSEL1</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel1"><span class="std std-ref">0x5012f004</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel2"><span class="std std-ref">IOX_SFR_AFSEL_CRAFSEL2</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel2"><span class="std std-ref">0x5012f008</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel3"><span class="std std-ref">IOX_SFR_AFSEL_CRAFSEL3</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel3"><span class="std std-ref">0x5012f00c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel4"><span class="std std-ref">IOX_SFR_AFSEL_CRAFSEL4</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel4"><span class="std std-ref">0x5012f010</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel5"><span class="std std-ref">IOX_SFR_AFSEL_CRAFSEL5</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel5"><span class="std std-ref">0x5012f014</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel6"><span class="std std-ref">IOX_SFR_AFSEL_CRAFSEL6</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel6"><span class="std std-ref">0x5012f018</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel7"><span class="std std-ref">IOX_SFR_AFSEL_CRAFSEL7</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel7"><span class="std std-ref">0x5012f01c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel8"><span class="std std-ref">IOX_SFR_AFSEL_CRAFSEL8</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel8"><span class="std std-ref">0x5012f020</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel9"><span class="std std-ref">IOX_SFR_AFSEL_CRAFSEL9</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel9"><span class="std std-ref">0x5012f024</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel10"><span class="std std-ref">IOX_SFR_AFSEL_CRAFSEL10</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel10"><span class="std std-ref">0x5012f028</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel11"><span class="std std-ref">IOX_SFR_AFSEL_CRAFSEL11</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-afsel-crafsel11"><span class="std std-ref">0x5012f02c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-intcr-crint0"><span class="std std-ref">IOX_SFR_INTCR_CRINT0</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-intcr-crint0"><span class="std std-ref">0x5012f100</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-intcr-crint1"><span class="std std-ref">IOX_SFR_INTCR_CRINT1</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-intcr-crint1"><span class="std std-ref">0x5012f104</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-intcr-crint2"><span class="std std-ref">IOX_SFR_INTCR_CRINT2</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-intcr-crint2"><span class="std std-ref">0x5012f108</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-intcr-crint3"><span class="std std-ref">IOX_SFR_INTCR_CRINT3</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-intcr-crint3"><span class="std std-ref">0x5012f10c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-intcr-crint4"><span class="std std-ref">IOX_SFR_INTCR_CRINT4</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-intcr-crint4"><span class="std std-ref">0x5012f110</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-intcr-crint5"><span class="std std-ref">IOX_SFR_INTCR_CRINT5</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-intcr-crint5"><span class="std std-ref">0x5012f114</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-intcr-crint6"><span class="std std-ref">IOX_SFR_INTCR_CRINT6</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-intcr-crint6"><span class="std std-ref">0x5012f118</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-intcr-crint7"><span class="std std-ref">IOX_SFR_INTCR_CRINT7</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-intcr-crint7"><span class="std std-ref">0x5012f11c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-intfr"><span class="std std-ref">IOX_SFR_INTFR</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-intfr"><span class="std std-ref">0x5012f120</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-gpioout-crgo0"><span class="std std-ref">IOX_SFR_GPIOOUT_CRGO0</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpioout-crgo0"><span class="std std-ref">0x5012f130</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-gpioout-crgo1"><span class="std std-ref">IOX_SFR_GPIOOUT_CRGO1</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpioout-crgo1"><span class="std std-ref">0x5012f134</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-gpioout-crgo2"><span class="std std-ref">IOX_SFR_GPIOOUT_CRGO2</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpioout-crgo2"><span class="std std-ref">0x5012f138</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-gpioout-crgo3"><span class="std std-ref">IOX_SFR_GPIOOUT_CRGO3</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpioout-crgo3"><span class="std std-ref">0x5012f13c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-gpioout-crgo4"><span class="std std-ref">IOX_SFR_GPIOOUT_CRGO4</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpioout-crgo4"><span class="std std-ref">0x5012f140</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-gpioout-crgo5"><span class="std std-ref">IOX_SFR_GPIOOUT_CRGO5</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpioout-crgo5"><span class="std std-ref">0x5012f144</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-gpiooe-crgoe0"><span class="std std-ref">IOX_SFR_GPIOOE_CRGOE0</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpiooe-crgoe0"><span class="std std-ref">0x5012f148</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-gpiooe-crgoe1"><span class="std std-ref">IOX_SFR_GPIOOE_CRGOE1</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpiooe-crgoe1"><span class="std std-ref">0x5012f14c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-gpiooe-crgoe2"><span class="std std-ref">IOX_SFR_GPIOOE_CRGOE2</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpiooe-crgoe2"><span class="std std-ref">0x5012f150</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-gpiooe-crgoe3"><span class="std std-ref">IOX_SFR_GPIOOE_CRGOE3</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpiooe-crgoe3"><span class="std std-ref">0x5012f154</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-gpiooe-crgoe4"><span class="std std-ref">IOX_SFR_GPIOOE_CRGOE4</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpiooe-crgoe4"><span class="std std-ref">0x5012f158</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-gpiooe-crgoe5"><span class="std std-ref">IOX_SFR_GPIOOE_CRGOE5</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpiooe-crgoe5"><span class="std std-ref">0x5012f15c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-gpiopu-crgpu0"><span class="std std-ref">IOX_SFR_GPIOPU_CRGPU0</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpiopu-crgpu0"><span class="std std-ref">0x5012f160</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-gpiopu-crgpu1"><span class="std std-ref">IOX_SFR_GPIOPU_CRGPU1</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpiopu-crgpu1"><span class="std std-ref">0x5012f164</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-gpiopu-crgpu2"><span class="std std-ref">IOX_SFR_GPIOPU_CRGPU2</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpiopu-crgpu2"><span class="std std-ref">0x5012f168</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-gpiopu-crgpu3"><span class="std std-ref">IOX_SFR_GPIOPU_CRGPU3</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpiopu-crgpu3"><span class="std std-ref">0x5012f16c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-gpiopu-crgpu4"><span class="std std-ref">IOX_SFR_GPIOPU_CRGPU4</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpiopu-crgpu4"><span class="std std-ref">0x5012f170</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-gpiopu-crgpu5"><span class="std std-ref">IOX_SFR_GPIOPU_CRGPU5</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpiopu-crgpu5"><span class="std std-ref">0x5012f174</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-gpioin-srgi0"><span class="std std-ref">IOX_SFR_GPIOIN_SRGI0</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpioin-srgi0"><span class="std std-ref">0x5012f178</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-gpioin-srgi1"><span class="std std-ref">IOX_SFR_GPIOIN_SRGI1</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpioin-srgi1"><span class="std std-ref">0x5012f17c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-gpioin-srgi2"><span class="std std-ref">IOX_SFR_GPIOIN_SRGI2</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpioin-srgi2"><span class="std std-ref">0x5012f180</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-gpioin-srgi3"><span class="std std-ref">IOX_SFR_GPIOIN_SRGI3</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpioin-srgi3"><span class="std std-ref">0x5012f184</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-gpioin-srgi4"><span class="std std-ref">IOX_SFR_GPIOIN_SRGI4</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpioin-srgi4"><span class="std std-ref">0x5012f188</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-gpioin-srgi5"><span class="std std-ref">IOX_SFR_GPIOIN_SRGI5</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-gpioin-srgi5"><span class="std std-ref">0x5012f18c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-piosel"><span class="std std-ref">IOX_SFR_PIOSEL</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-piosel"><span class="std std-ref">0x5012f200</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-cfg-schm-cr-cfg-schmsel0"><span class="std std-ref">IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL0</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-schm-cr-cfg-schmsel0"><span class="std std-ref">0x5012f230</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-cfg-schm-cr-cfg-schmsel1"><span class="std std-ref">IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL1</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-schm-cr-cfg-schmsel1"><span class="std std-ref">0x5012f234</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-cfg-schm-cr-cfg-schmsel2"><span class="std std-ref">IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL2</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-schm-cr-cfg-schmsel2"><span class="std std-ref">0x5012f238</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-cfg-schm-cr-cfg-schmsel3"><span class="std std-ref">IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL3</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-schm-cr-cfg-schmsel3"><span class="std std-ref">0x5012f23c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-cfg-schm-cr-cfg-schmsel4"><span class="std std-ref">IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL4</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-schm-cr-cfg-schmsel4"><span class="std std-ref">0x5012f240</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-cfg-schm-cr-cfg-schmsel5"><span class="std std-ref">IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL5</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-schm-cr-cfg-schmsel5"><span class="std std-ref">0x5012f244</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-cfg-slew-cr-cfg-slewslow0"><span class="std std-ref">IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW0</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-slew-cr-cfg-slewslow0"><span class="std std-ref">0x5012f248</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-cfg-slew-cr-cfg-slewslow1"><span class="std std-ref">IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW1</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-slew-cr-cfg-slewslow1"><span class="std std-ref">0x5012f24c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-cfg-slew-cr-cfg-slewslow2"><span class="std std-ref">IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW2</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-slew-cr-cfg-slewslow2"><span class="std std-ref">0x5012f250</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-cfg-slew-cr-cfg-slewslow3"><span class="std std-ref">IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW3</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-slew-cr-cfg-slewslow3"><span class="std std-ref">0x5012f254</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-cfg-slew-cr-cfg-slewslow4"><span class="std std-ref">IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW4</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-slew-cr-cfg-slewslow4"><span class="std std-ref">0x5012f258</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-cfg-slew-cr-cfg-slewslow5"><span class="std std-ref">IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW5</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-slew-cr-cfg-slewslow5"><span class="std std-ref">0x5012f25c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel0"><span class="std std-ref">IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL0</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel0"><span class="std std-ref">0x5012f260</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel1"><span class="std std-ref">IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL1</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel1"><span class="std std-ref">0x5012f264</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel2"><span class="std std-ref">IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL2</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel2"><span class="std std-ref">0x5012f268</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel3"><span class="std std-ref">IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL3</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel3"><span class="std std-ref">0x5012f26c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel4"><span class="std std-ref">IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL4</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel4"><span class="std std-ref">0x5012f270</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel5"><span class="std std-ref">IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL5</span></a></p></td>
+<td><p><a class="reference internal" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel5"><span class="std std-ref">0x5012f274</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="iox-sfr-afsel-crafsel0">
+<h3>IOX_SFR_AFSEL_CRAFSEL0<a class="headerlink" href="#iox-sfr-afsel-crafsel0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x0 = 0x5012f000</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crafsel0",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRAFSEL0</p></td>
+<td><p>crafsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-afsel-crafsel1">
+<h3>IOX_SFR_AFSEL_CRAFSEL1<a class="headerlink" href="#iox-sfr-afsel-crafsel1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x4 = 0x5012f004</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crafsel1",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRAFSEL1</p></td>
+<td><p>crafsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-afsel-crafsel2">
+<h3>IOX_SFR_AFSEL_CRAFSEL2<a class="headerlink" href="#iox-sfr-afsel-crafsel2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x8 = 0x5012f008</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crafsel2",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRAFSEL2</p></td>
+<td><p>crafsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-afsel-crafsel3">
+<h3>IOX_SFR_AFSEL_CRAFSEL3<a class="headerlink" href="#iox-sfr-afsel-crafsel3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0xc = 0x5012f00c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crafsel3",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRAFSEL3</p></td>
+<td><p>crafsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-afsel-crafsel4">
+<h3>IOX_SFR_AFSEL_CRAFSEL4<a class="headerlink" href="#iox-sfr-afsel-crafsel4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x10 = 0x5012f010</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crafsel4",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRAFSEL4</p></td>
+<td><p>crafsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-afsel-crafsel5">
+<h3>IOX_SFR_AFSEL_CRAFSEL5<a class="headerlink" href="#iox-sfr-afsel-crafsel5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x14 = 0x5012f014</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crafsel5",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRAFSEL5</p></td>
+<td><p>crafsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-afsel-crafsel6">
+<h3>IOX_SFR_AFSEL_CRAFSEL6<a class="headerlink" href="#iox-sfr-afsel-crafsel6" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x18 = 0x5012f018</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crafsel6",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRAFSEL6</p></td>
+<td><p>crafsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-afsel-crafsel7">
+<h3>IOX_SFR_AFSEL_CRAFSEL7<a class="headerlink" href="#iox-sfr-afsel-crafsel7" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x1c = 0x5012f01c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crafsel7",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRAFSEL7</p></td>
+<td><p>crafsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-afsel-crafsel8">
+<h3>IOX_SFR_AFSEL_CRAFSEL8<a class="headerlink" href="#iox-sfr-afsel-crafsel8" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x20 = 0x5012f020</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crafsel8",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRAFSEL8</p></td>
+<td><p>crafsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-afsel-crafsel9">
+<h3>IOX_SFR_AFSEL_CRAFSEL9<a class="headerlink" href="#iox-sfr-afsel-crafsel9" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x24 = 0x5012f024</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crafsel9",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRAFSEL9</p></td>
+<td><p>crafsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-afsel-crafsel10">
+<h3>IOX_SFR_AFSEL_CRAFSEL10<a class="headerlink" href="#iox-sfr-afsel-crafsel10" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x28 = 0x5012f028</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crafsel10",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRAFSEL10</p></td>
+<td><p>crafsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-afsel-crafsel11">
+<h3>IOX_SFR_AFSEL_CRAFSEL11<a class="headerlink" href="#iox-sfr-afsel-crafsel11" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x2c = 0x5012f02c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crafsel11",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRAFSEL11</p></td>
+<td><p>crafsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-intcr-crint0">
+<h3>IOX_SFR_INTCR_CRINT0<a class="headerlink" href="#iox-sfr-intcr-crint0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x100 = 0x5012f100</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crint0",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>CRINT0</p></td>
+<td><p>crint read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-intcr-crint1">
+<h3>IOX_SFR_INTCR_CRINT1<a class="headerlink" href="#iox-sfr-intcr-crint1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x104 = 0x5012f104</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crint1",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>CRINT1</p></td>
+<td><p>crint read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-intcr-crint2">
+<h3>IOX_SFR_INTCR_CRINT2<a class="headerlink" href="#iox-sfr-intcr-crint2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x108 = 0x5012f108</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crint2",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>CRINT2</p></td>
+<td><p>crint read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-intcr-crint3">
+<h3>IOX_SFR_INTCR_CRINT3<a class="headerlink" href="#iox-sfr-intcr-crint3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x10c = 0x5012f10c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crint3",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>CRINT3</p></td>
+<td><p>crint read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-intcr-crint4">
+<h3>IOX_SFR_INTCR_CRINT4<a class="headerlink" href="#iox-sfr-intcr-crint4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x110 = 0x5012f110</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crint4",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>CRINT4</p></td>
+<td><p>crint read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-intcr-crint5">
+<h3>IOX_SFR_INTCR_CRINT5<a class="headerlink" href="#iox-sfr-intcr-crint5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x114 = 0x5012f114</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crint5",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>CRINT5</p></td>
+<td><p>crint read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-intcr-crint6">
+<h3>IOX_SFR_INTCR_CRINT6<a class="headerlink" href="#iox-sfr-intcr-crint6" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x118 = 0x5012f118</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crint6",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>CRINT6</p></td>
+<td><p>crint read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-intcr-crint7">
+<h3>IOX_SFR_INTCR_CRINT7<a class="headerlink" href="#iox-sfr-intcr-crint7" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x11c = 0x5012f11c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crint7",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>CRINT7</p></td>
+<td><p>crint read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-intfr">
+<h3>IOX_SFR_INTFR<a class="headerlink" href="#iox-sfr-intfr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x120 = 0x5012f120</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "frint",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>FRINT</p></td>
+<td><p>frint flag register. <cite>1</cite> means event happened, write back <cite>1</cite> in respective bit
+position to clear the flag</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpioout-crgo0">
+<h3>IOX_SFR_GPIOOUT_CRGO0<a class="headerlink" href="#iox-sfr-gpioout-crgo0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x130 = 0x5012f130</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgo0",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGO0</p></td>
+<td><p>crgo read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpioout-crgo1">
+<h3>IOX_SFR_GPIOOUT_CRGO1<a class="headerlink" href="#iox-sfr-gpioout-crgo1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x134 = 0x5012f134</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgo1",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGO1</p></td>
+<td><p>crgo read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpioout-crgo2">
+<h3>IOX_SFR_GPIOOUT_CRGO2<a class="headerlink" href="#iox-sfr-gpioout-crgo2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x138 = 0x5012f138</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgo2",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGO2</p></td>
+<td><p>crgo read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpioout-crgo3">
+<h3>IOX_SFR_GPIOOUT_CRGO3<a class="headerlink" href="#iox-sfr-gpioout-crgo3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x13c = 0x5012f13c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgo3",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGO3</p></td>
+<td><p>crgo read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpioout-crgo4">
+<h3>IOX_SFR_GPIOOUT_CRGO4<a class="headerlink" href="#iox-sfr-gpioout-crgo4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x140 = 0x5012f140</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgo4",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGO4</p></td>
+<td><p>crgo read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpioout-crgo5">
+<h3>IOX_SFR_GPIOOUT_CRGO5<a class="headerlink" href="#iox-sfr-gpioout-crgo5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x144 = 0x5012f144</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgo5",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGO5</p></td>
+<td><p>crgo read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpiooe-crgoe0">
+<h3>IOX_SFR_GPIOOE_CRGOE0<a class="headerlink" href="#iox-sfr-gpiooe-crgoe0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x148 = 0x5012f148</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgoe0",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGOE0</p></td>
+<td><p>crgoe read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpiooe-crgoe1">
+<h3>IOX_SFR_GPIOOE_CRGOE1<a class="headerlink" href="#iox-sfr-gpiooe-crgoe1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x14c = 0x5012f14c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgoe1",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGOE1</p></td>
+<td><p>crgoe read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpiooe-crgoe2">
+<h3>IOX_SFR_GPIOOE_CRGOE2<a class="headerlink" href="#iox-sfr-gpiooe-crgoe2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x150 = 0x5012f150</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgoe2",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGOE2</p></td>
+<td><p>crgoe read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpiooe-crgoe3">
+<h3>IOX_SFR_GPIOOE_CRGOE3<a class="headerlink" href="#iox-sfr-gpiooe-crgoe3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x154 = 0x5012f154</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgoe3",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGOE3</p></td>
+<td><p>crgoe read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpiooe-crgoe4">
+<h3>IOX_SFR_GPIOOE_CRGOE4<a class="headerlink" href="#iox-sfr-gpiooe-crgoe4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x158 = 0x5012f158</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgoe4",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGOE4</p></td>
+<td><p>crgoe read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpiooe-crgoe5">
+<h3>IOX_SFR_GPIOOE_CRGOE5<a class="headerlink" href="#iox-sfr-gpiooe-crgoe5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x15c = 0x5012f15c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgoe5",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGOE5</p></td>
+<td><p>crgoe read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpiopu-crgpu0">
+<h3>IOX_SFR_GPIOPU_CRGPU0<a class="headerlink" href="#iox-sfr-gpiopu-crgpu0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x160 = 0x5012f160</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgpu0",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGPU0</p></td>
+<td><p>crgpu read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpiopu-crgpu1">
+<h3>IOX_SFR_GPIOPU_CRGPU1<a class="headerlink" href="#iox-sfr-gpiopu-crgpu1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x164 = 0x5012f164</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgpu1",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGPU1</p></td>
+<td><p>crgpu read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpiopu-crgpu2">
+<h3>IOX_SFR_GPIOPU_CRGPU2<a class="headerlink" href="#iox-sfr-gpiopu-crgpu2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x168 = 0x5012f168</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgpu2",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGPU2</p></td>
+<td><p>crgpu read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpiopu-crgpu3">
+<h3>IOX_SFR_GPIOPU_CRGPU3<a class="headerlink" href="#iox-sfr-gpiopu-crgpu3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x16c = 0x5012f16c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgpu3",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGPU3</p></td>
+<td><p>crgpu read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpiopu-crgpu4">
+<h3>IOX_SFR_GPIOPU_CRGPU4<a class="headerlink" href="#iox-sfr-gpiopu-crgpu4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x170 = 0x5012f170</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgpu4",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGPU4</p></td>
+<td><p>crgpu read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpiopu-crgpu5">
+<h3>IOX_SFR_GPIOPU_CRGPU5<a class="headerlink" href="#iox-sfr-gpiopu-crgpu5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x174 = 0x5012f174</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "crgpu5",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CRGPU5</p></td>
+<td><p>crgpu read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpioin-srgi0">
+<h3>IOX_SFR_GPIOIN_SRGI0<a class="headerlink" href="#iox-sfr-gpioin-srgi0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x178 = 0x5012f178</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "srgi0",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SRGI0</p></td>
+<td><p>srgi read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpioin-srgi1">
+<h3>IOX_SFR_GPIOIN_SRGI1<a class="headerlink" href="#iox-sfr-gpioin-srgi1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x17c = 0x5012f17c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "srgi1",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SRGI1</p></td>
+<td><p>srgi read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpioin-srgi2">
+<h3>IOX_SFR_GPIOIN_SRGI2<a class="headerlink" href="#iox-sfr-gpioin-srgi2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x180 = 0x5012f180</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "srgi2",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SRGI2</p></td>
+<td><p>srgi read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpioin-srgi3">
+<h3>IOX_SFR_GPIOIN_SRGI3<a class="headerlink" href="#iox-sfr-gpioin-srgi3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x184 = 0x5012f184</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "srgi3",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SRGI3</p></td>
+<td><p>srgi read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpioin-srgi4">
+<h3>IOX_SFR_GPIOIN_SRGI4<a class="headerlink" href="#iox-sfr-gpioin-srgi4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x188 = 0x5012f188</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "srgi4",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SRGI4</p></td>
+<td><p>srgi read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-gpioin-srgi5">
+<h3>IOX_SFR_GPIOIN_SRGI5<a class="headerlink" href="#iox-sfr-gpioin-srgi5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x18c = 0x5012f18c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "srgi5",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SRGI5</p></td>
+<td><p>srgi read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-piosel">
+<h3>IOX_SFR_PIOSEL<a class="headerlink" href="#iox-sfr-piosel" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x200 = 0x5012f200</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "piosel",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>PIOSEL</p></td>
+<td><p>piosel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-schm-cr-cfg-schmsel0">
+<h3>IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL0<a class="headerlink" href="#iox-sfr-cfg-schm-cr-cfg-schmsel0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x230 = 0x5012f230</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_schmsel0",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_CFG_SCHMSEL0</p></td>
+<td><p>cr_cfg_schmsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-schm-cr-cfg-schmsel1">
+<h3>IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL1<a class="headerlink" href="#iox-sfr-cfg-schm-cr-cfg-schmsel1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x234 = 0x5012f234</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_schmsel1",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_CFG_SCHMSEL1</p></td>
+<td><p>cr_cfg_schmsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-schm-cr-cfg-schmsel2">
+<h3>IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL2<a class="headerlink" href="#iox-sfr-cfg-schm-cr-cfg-schmsel2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x238 = 0x5012f238</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_schmsel2",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_CFG_SCHMSEL2</p></td>
+<td><p>cr_cfg_schmsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-schm-cr-cfg-schmsel3">
+<h3>IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL3<a class="headerlink" href="#iox-sfr-cfg-schm-cr-cfg-schmsel3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x23c = 0x5012f23c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_schmsel3",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_CFG_SCHMSEL3</p></td>
+<td><p>cr_cfg_schmsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-schm-cr-cfg-schmsel4">
+<h3>IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL4<a class="headerlink" href="#iox-sfr-cfg-schm-cr-cfg-schmsel4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x240 = 0x5012f240</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_schmsel4",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_CFG_SCHMSEL4</p></td>
+<td><p>cr_cfg_schmsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-schm-cr-cfg-schmsel5">
+<h3>IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL5<a class="headerlink" href="#iox-sfr-cfg-schm-cr-cfg-schmsel5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x244 = 0x5012f244</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_schmsel5",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_CFG_SCHMSEL5</p></td>
+<td><p>cr_cfg_schmsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-slew-cr-cfg-slewslow0">
+<h3>IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW0<a class="headerlink" href="#iox-sfr-cfg-slew-cr-cfg-slewslow0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x248 = 0x5012f248</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_slewslow0",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_CFG_SLEWSLOW0</p></td>
+<td><p>cr_cfg_slewslow read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-slew-cr-cfg-slewslow1">
+<h3>IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW1<a class="headerlink" href="#iox-sfr-cfg-slew-cr-cfg-slewslow1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x24c = 0x5012f24c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_slewslow1",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_CFG_SLEWSLOW1</p></td>
+<td><p>cr_cfg_slewslow read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-slew-cr-cfg-slewslow2">
+<h3>IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW2<a class="headerlink" href="#iox-sfr-cfg-slew-cr-cfg-slewslow2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x250 = 0x5012f250</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_slewslow2",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_CFG_SLEWSLOW2</p></td>
+<td><p>cr_cfg_slewslow read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-slew-cr-cfg-slewslow3">
+<h3>IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW3<a class="headerlink" href="#iox-sfr-cfg-slew-cr-cfg-slewslow3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x254 = 0x5012f254</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_slewslow3",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_CFG_SLEWSLOW3</p></td>
+<td><p>cr_cfg_slewslow read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-slew-cr-cfg-slewslow4">
+<h3>IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW4<a class="headerlink" href="#iox-sfr-cfg-slew-cr-cfg-slewslow4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x258 = 0x5012f258</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_slewslow4",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_CFG_SLEWSLOW4</p></td>
+<td><p>cr_cfg_slewslow read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-slew-cr-cfg-slewslow5">
+<h3>IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW5<a class="headerlink" href="#iox-sfr-cfg-slew-cr-cfg-slewslow5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x25c = 0x5012f25c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_slewslow5",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_CFG_SLEWSLOW5</p></td>
+<td><p>cr_cfg_slewslow read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-drvsel-cr-cfg-drvsel0">
+<h3>IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL0<a class="headerlink" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x260 = 0x5012f260</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_drvsel0",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CR_CFG_DRVSEL0</p></td>
+<td><p>cr_cfg_drvsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-drvsel-cr-cfg-drvsel1">
+<h3>IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL1<a class="headerlink" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x264 = 0x5012f264</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_drvsel1",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CR_CFG_DRVSEL1</p></td>
+<td><p>cr_cfg_drvsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-drvsel-cr-cfg-drvsel2">
+<h3>IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL2<a class="headerlink" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x268 = 0x5012f268</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_drvsel2",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CR_CFG_DRVSEL2</p></td>
+<td><p>cr_cfg_drvsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-drvsel-cr-cfg-drvsel3">
+<h3>IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL3<a class="headerlink" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x26c = 0x5012f26c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_drvsel3",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CR_CFG_DRVSEL3</p></td>
+<td><p>cr_cfg_drvsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-drvsel-cr-cfg-drvsel4">
+<h3>IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL4<a class="headerlink" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x270 = 0x5012f270</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_drvsel4",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CR_CFG_DRVSEL4</p></td>
+<td><p>cr_cfg_drvsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iox-sfr-cfg-drvsel-cr-cfg-drvsel5">
+<h3>IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL5<a class="headerlink" href="#iox-sfr-cfg-drvsel-cr-cfg-drvsel5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x5012f000 + 0x274 = 0x5012f274</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_cfg_drvsel5",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CR_CFG_DRVSEL5</p></td>
+<td><p>cr_cfg_drvsel read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Baochip-1x SoC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interrupts.html">Interrupt Controller</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="alu.html">ALU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aes.html">AES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combohash.html">COMBOHASH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pke.html">PKE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trng.html">TRNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scedma.html">SCEDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sce_glbsfr.html">SCE_GLBSFR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="duart.html">DUART</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rbist_wrp.html">RBIST_WRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wdg_intf.html">WDG_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timer_intf.html">TIMER_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evc.html">EVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysctrl.html">SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apb_thru.html">APB_THRU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_bdma.html">BIO_BDMA</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">IOX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pwm.html">PWM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sddc.html">SDDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coresub_sramtrm.html">CORESUB_SRAMTRM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mdma.html">MDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfc.html">QFC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mbox_apb.html">MBOX_APB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rrc.html">RRC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gluechain.html">GLUECHAIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">MESH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensorc.html">SENSORC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aobureg.html">AOBUREG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ao_sysctrl.html">AO_SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dkpc.html">DKPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_ctrl.html">UDMA_CTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_0.html">UDMA_UART_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_1.html">UDMA_UART_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_2.html">UDMA_UART_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_3.html">UDMA_UART_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_0.html">UDMA_SPIM_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_1.html">UDMA_SPIM_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_2.html">UDMA_SPIM_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_3.html">UDMA_SPIM_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_0.html">UDMA_I2C_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_1.html">UDMA_I2C_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_2.html">UDMA_I2C_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_3.html">UDMA_I2C_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_sdio.html">UDMA_SDIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2s.html">UDMA_I2S</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_camera.html">UDMA_CAMERA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_filter.html">UDMA_FILTER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_scif.html">UDMA_SCIF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_0.html">UDMA_SPIS_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_1.html">UDMA_SPIS_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_adc.html">UDMA_ADC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo0.html">BIO_FIFO0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo1.html">BIO_FIFO1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo2.html">BIO_FIFO2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo3.html">BIO_FIFO3</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="bio_bdma.html" title="previous chapter">BIO_BDMA</a></li>
+      <li>Next: <a href="pwm.html" title="next chapter">PWM</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, Baochip, Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/iox.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

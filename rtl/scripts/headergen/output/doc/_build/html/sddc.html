@@ -1,0 +1,4093 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>SDDC &#8212; Baochip-1x SoC  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/default.js"></script>
+    <script src="_static/WaveDrom.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CORESUB_SRAMTRM" href="coresub_sramtrm.html" />
+    <link rel="prev" title="PWM" href="pwm.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="sddc">
+<h1>SDDC<a class="headerlink" href="#sddc" title="Permalink to this heading">¶</a></h1>
+<section id="register-listing-for-sddc">
+<h2>Register Listing for SDDC<a class="headerlink" href="#register-listing-for-sddc" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Register</p></th>
+<th class="head"><p>Address</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-sfr-io"><span class="std std-ref">SDDC_SFR_IO</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-sfr-io"><span class="std std-ref">0x50121000</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-sfr-ar"><span class="std std-ref">SDDC_SFR_AR</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-sfr-ar"><span class="std std-ref">0x50121004</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-ocr"><span class="std std-ref">SDDC_CR_OCR</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-ocr"><span class="std std-ref">0x50121010</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-rdffthres"><span class="std std-ref">SDDC_CR_RDFFTHRES</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-rdffthres"><span class="std std-ref">0x50121014</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-rev"><span class="std std-ref">SDDC_CR_REV</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-rev"><span class="std std-ref">0x50121018</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-bacsa"><span class="std std-ref">SDDC_CR_BACSA</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-bacsa"><span class="std std-ref">0x5012101c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func0"><span class="std std-ref">SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func0"><span class="std std-ref">0x50121020</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func1"><span class="std std-ref">SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func1"><span class="std std-ref">0x50121024</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func2"><span class="std std-ref">SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC2</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func2"><span class="std std-ref">0x50121028</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func3"><span class="std std-ref">SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC3</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func3"><span class="std std-ref">0x5012102c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func4"><span class="std std-ref">SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC4</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func4"><span class="std std-ref">0x50121030</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func5"><span class="std std-ref">SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC5</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func5"><span class="std std-ref">0x50121034</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func6"><span class="std std-ref">SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC6</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func6"><span class="std std-ref">0x50121038</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func7"><span class="std std-ref">SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC7</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-baiofn-cfg-base-addr-io-func7"><span class="std std-ref">0x5012103c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr0"><span class="std std-ref">SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr0"><span class="std std-ref">0x50121040</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr1"><span class="std std-ref">SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr1"><span class="std std-ref">0x50121044</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr2"><span class="std std-ref">SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR2</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr2"><span class="std std-ref">0x50121048</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr3"><span class="std std-ref">SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR3</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr3"><span class="std std-ref">0x5012104c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr4"><span class="std std-ref">SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR4</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr4"><span class="std std-ref">0x50121050</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr5"><span class="std std-ref">SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR5</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr5"><span class="std std-ref">0x50121054</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr6"><span class="std std-ref">SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR6</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr6"><span class="std std-ref">0x50121058</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr7"><span class="std std-ref">SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR7</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr7"><span class="std std-ref">0x5012105c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code0"><span class="std std-ref">SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code0"><span class="std std-ref">0x50121060</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code1"><span class="std std-ref">SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code1"><span class="std std-ref">0x50121064</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code2"><span class="std std-ref">SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE2</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code2"><span class="std std-ref">0x50121068</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code3"><span class="std std-ref">SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE3</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code3"><span class="std std-ref">0x5012106c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code4"><span class="std std-ref">SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE4</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code4"><span class="std std-ref">0x50121070</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code5"><span class="std std-ref">SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE5</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code5"><span class="std std-ref">0x50121074</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code6"><span class="std std-ref">SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE6</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code6"><span class="std std-ref">0x50121078</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code7"><span class="std std-ref">SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE7</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code7"><span class="std std-ref">0x5012107c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-write-protect"><span class="std std-ref">SDDC_CR_WRITE_PROTECT</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-write-protect"><span class="std std-ref">0x50121080</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-dsr"><span class="std std-ref">SDDC_CR_REG_DSR</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-dsr"><span class="std std-ref">0x50121084</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-cid-cfg-reg-cid0"><span class="std std-ref">SDDC_CR_REG_CID_CFG_REG_CID0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-cid-cfg-reg-cid0"><span class="std std-ref">0x50121088</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-cid-cfg-reg-cid1"><span class="std std-ref">SDDC_CR_REG_CID_CFG_REG_CID1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-cid-cfg-reg-cid1"><span class="std std-ref">0x5012108c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-cid-cfg-reg-cid2"><span class="std std-ref">SDDC_CR_REG_CID_CFG_REG_CID2</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-cid-cfg-reg-cid2"><span class="std std-ref">0x50121090</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-cid-cfg-reg-cid3"><span class="std std-ref">SDDC_CR_REG_CID_CFG_REG_CID3</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-cid-cfg-reg-cid3"><span class="std std-ref">0x50121094</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-csd-cfg-reg-csd0"><span class="std std-ref">SDDC_CR_REG_CSD_CFG_REG_CSD0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-csd-cfg-reg-csd0"><span class="std std-ref">0x50121098</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-csd-cfg-reg-csd1"><span class="std std-ref">SDDC_CR_REG_CSD_CFG_REG_CSD1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-csd-cfg-reg-csd1"><span class="std std-ref">0x5012109c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-csd-cfg-reg-csd2"><span class="std std-ref">SDDC_CR_REG_CSD_CFG_REG_CSD2</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-csd-cfg-reg-csd2"><span class="std std-ref">0x501210a0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-csd-cfg-reg-csd3"><span class="std std-ref">SDDC_CR_REG_CSD_CFG_REG_CSD3</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-csd-cfg-reg-csd3"><span class="std std-ref">0x501210a4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-scr-cfg-reg-scr0"><span class="std std-ref">SDDC_CR_REG_SCR_CFG_REG_SCR0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-scr-cfg-reg-scr0"><span class="std std-ref">0x501210a8</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-scr-cfg-reg-scr1"><span class="std std-ref">SDDC_CR_REG_SCR_CFG_REG_SCR1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-scr-cfg-reg-scr1"><span class="std std-ref">0x501210ac</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status0"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status0"><span class="std std-ref">0x501210b0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status1"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status1"><span class="std std-ref">0x501210b4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status2"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS2</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status2"><span class="std std-ref">0x501210b8</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status3"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS3</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status3"><span class="std std-ref">0x501210bc</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status4"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS4</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status4"><span class="std std-ref">0x501210c0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status5"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS5</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status5"><span class="std std-ref">0x501210c4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status6"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS6</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status6"><span class="std std-ref">0x501210c8</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status7"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS7</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status7"><span class="std std-ref">0x501210cc</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status8"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS8</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status8"><span class="std std-ref">0x501210d0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status9"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS9</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status9"><span class="std std-ref">0x501210d4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status10"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS10</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status10"><span class="std std-ref">0x501210d8</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status11"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS11</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status11"><span class="std std-ref">0x501210dc</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status12"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS12</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status12"><span class="std std-ref">0x501210e0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status13"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS13</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status13"><span class="std std-ref">0x501210e4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status14"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS14</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status14"><span class="std std-ref">0x501210e8</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status15"><span class="std std-ref">SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS15</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status15"><span class="std std-ref">0x501210ec</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func0"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func0"><span class="std std-ref">0x50121100</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func1"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func1"><span class="std std-ref">0x50121104</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func2"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC2</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func2"><span class="std std-ref">0x50121108</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func3"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC3</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func3"><span class="std std-ref">0x5012110c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func4"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC4</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func4"><span class="std std-ref">0x50121110</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func5"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC5</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func5"><span class="std std-ref">0x50121114</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func6"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC6</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func6"><span class="std std-ref">0x50121118</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func7"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC7</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func7"><span class="std std-ref">0x5012111c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func8"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC8</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func8"><span class="std std-ref">0x50121120</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func9"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC9</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func9"><span class="std std-ref">0x50121124</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func10"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC10</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func10"><span class="std std-ref">0x50121128</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func11"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC11</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func11"><span class="std std-ref">0x5012112c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func12"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC12</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func12"><span class="std std-ref">0x50121130</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func13"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC13</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func13"><span class="std std-ref">0x50121134</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func14"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC14</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func14"><span class="std std-ref">0x50121138</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func15"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC15</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func15"><span class="std std-ref">0x5012113c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func16"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC16</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func16"><span class="std std-ref">0x50121140</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func17"><span class="std std-ref">SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC17</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func17"><span class="std std-ref">0x50121144</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code0"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code0"><span class="std std-ref">0x50121148</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code1"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code1"><span class="std std-ref">0x5012114c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code2"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE2</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code2"><span class="std std-ref">0x50121150</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code3"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE3</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code3"><span class="std std-ref">0x50121154</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code4"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE4</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code4"><span class="std std-ref">0x50121158</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code5"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE5</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code5"><span class="std std-ref">0x5012115c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code6"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE6</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code6"><span class="std std-ref">0x50121160</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code0"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code0"><span class="std std-ref">0x50121168</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code1"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code1"><span class="std std-ref">0x5012116c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code2"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE2</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code2"><span class="std std-ref">0x50121170</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code3"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE3</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code3"><span class="std std-ref">0x50121174</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code4"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE4</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code4"><span class="std std-ref">0x50121178</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code5"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE5</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code5"><span class="std std-ref">0x5012117c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code6"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE6</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code6"><span class="std std-ref">0x50121180</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info0"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info0"><span class="std std-ref">0x50121188</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info1"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info1"><span class="std std-ref">0x5012118c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info2"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO2</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info2"><span class="std std-ref">0x50121190</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info3"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO3</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info3"><span class="std std-ref">0x50121194</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info4"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO4</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info4"><span class="std std-ref">0x50121198</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info5"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO5</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info5"><span class="std std-ref">0x5012119c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info6"><span class="std std-ref">SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO6</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info6"><span class="std std-ref">0x501211a0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code0"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code0"><span class="std std-ref">0x501211a8</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code1"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code1"><span class="std std-ref">0x501211ac</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code2"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE2</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code2"><span class="std std-ref">0x501211b0</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code3"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE3</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code3"><span class="std std-ref">0x501211b4</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code4"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE4</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code4"><span class="std std-ref">0x501211b8</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code5"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE5</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code5"><span class="std std-ref">0x501211bc</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code6"><span class="std std-ref">SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE6</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code6"><span class="std std-ref">0x501211c0</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info0"><span class="std std-ref">SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO0</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info0"><span class="std std-ref">0x501211c8</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info1"><span class="std std-ref">SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO1</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info1"><span class="std std-ref">0x501211cc</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info2"><span class="std std-ref">SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO2</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info2"><span class="std std-ref">0x501211d0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info3"><span class="std std-ref">SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO3</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info3"><span class="std std-ref">0x501211d4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info4"><span class="std std-ref">SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO4</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info4"><span class="std std-ref">0x501211d8</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info5"><span class="std std-ref">SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO5</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info5"><span class="std std-ref">0x501211dc</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info6"><span class="std std-ref">SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO6</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-func-info-cfg-reg-func-info6"><span class="std std-ref">0x501211e0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sddc-cr-reg-uhs-1-support"><span class="std std-ref">SDDC_CR_REG_UHS_1_SUPPORT</span></a></p></td>
+<td><p><a class="reference internal" href="#sddc-cr-reg-uhs-1-support"><span class="std std-ref">0x501211f0</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="sddc-sfr-io">
+<h3>SDDC_SFR_IO<a class="headerlink" href="#sddc-sfr-io" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x0 = 0x50121000</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_io",  "bits": 2},
+        {"bits": 30}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[1:0]</p></td>
+<td><p>SFR_IO</p></td>
+<td><p>sfr_io read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-sfr-ar">
+<h3>SDDC_SFR_AR<a class="headerlink" href="#sddc-sfr-ar" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x4 = 0x50121004</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_ar",  "type": 4, "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_AR</p></td>
+<td><p>sfr_ar performs action on write of value: 0x5a</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-ocr">
+<h3>SDDC_CR_OCR<a class="headerlink" href="#sddc-cr-ocr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x10 = 0x50121010</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_ocr",  "bits": 24},
+        {"bits": 8}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[23:0]</p></td>
+<td><p>CR_OCR</p></td>
+<td><p>cr_ocr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-rdffthres">
+<h3>SDDC_CR_RDFFTHRES<a class="headerlink" href="#sddc-cr-rdffthres" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x14 = 0x50121014</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_rdffthres",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CR_RDFFTHRES</p></td>
+<td><p>cr_rdffthres read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-rev">
+<h3>SDDC_CR_REV<a class="headerlink" href="#sddc-cr-rev" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x18 = 0x50121018</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_spec_revision",  "bits": 8},
+        {"name": "cfg_reg_cccr_sdio_revision",  "bits": 8},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_SD_SPEC_REVISION</p></td>
+<td><p>cfg_reg_sd_spec_revision read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[15:8]</p></td>
+<td><p>CFG_REG_CCCR_SDIO_REVISION</p></td>
+<td><p>cfg_reg_cccr_sdio_revision read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-bacsa">
+<h3>SDDC_CR_BACSA<a class="headerlink" href="#sddc-cr-bacsa" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1c = 0x5012101c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_csa",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_CSA</p></td>
+<td><p>cfg_base_addr_csa read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-baiofn-cfg-base-addr-io-func0">
+<h3>SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC0<a class="headerlink" href="#sddc-cr-baiofn-cfg-base-addr-io-func0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x20 = 0x50121020</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_io_func0",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_IO_FUNC0</p></td>
+<td><p>cfg_base_addr_io_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-baiofn-cfg-base-addr-io-func1">
+<h3>SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC1<a class="headerlink" href="#sddc-cr-baiofn-cfg-base-addr-io-func1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x24 = 0x50121024</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_io_func1",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_IO_FUNC1</p></td>
+<td><p>cfg_base_addr_io_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-baiofn-cfg-base-addr-io-func2">
+<h3>SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC2<a class="headerlink" href="#sddc-cr-baiofn-cfg-base-addr-io-func2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x28 = 0x50121028</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_io_func2",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_IO_FUNC2</p></td>
+<td><p>cfg_base_addr_io_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-baiofn-cfg-base-addr-io-func3">
+<h3>SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC3<a class="headerlink" href="#sddc-cr-baiofn-cfg-base-addr-io-func3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x2c = 0x5012102c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_io_func3",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_IO_FUNC3</p></td>
+<td><p>cfg_base_addr_io_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-baiofn-cfg-base-addr-io-func4">
+<h3>SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC4<a class="headerlink" href="#sddc-cr-baiofn-cfg-base-addr-io-func4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x30 = 0x50121030</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_io_func4",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_IO_FUNC4</p></td>
+<td><p>cfg_base_addr_io_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-baiofn-cfg-base-addr-io-func5">
+<h3>SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC5<a class="headerlink" href="#sddc-cr-baiofn-cfg-base-addr-io-func5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x34 = 0x50121034</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_io_func5",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_IO_FUNC5</p></td>
+<td><p>cfg_base_addr_io_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-baiofn-cfg-base-addr-io-func6">
+<h3>SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC6<a class="headerlink" href="#sddc-cr-baiofn-cfg-base-addr-io-func6" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x38 = 0x50121038</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_io_func6",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_IO_FUNC6</p></td>
+<td><p>cfg_base_addr_io_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-baiofn-cfg-base-addr-io-func7">
+<h3>SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC7<a class="headerlink" href="#sddc-cr-baiofn-cfg-base-addr-io-func7" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x3c = 0x5012103c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_io_func7",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_IO_FUNC7</p></td>
+<td><p>cfg_base_addr_io_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fncisptr-cfg-reg-func-cis-ptr0">
+<h3>SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR0<a class="headerlink" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x40 = 0x50121040</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_cis_ptr0",  "bits": 17},
+        {"bits": 15}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[16:0]</p></td>
+<td><p>CFG_REG_FUNC_CIS_PTR0</p></td>
+<td><p>cfg_reg_func_cis_ptr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fncisptr-cfg-reg-func-cis-ptr1">
+<h3>SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR1<a class="headerlink" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x44 = 0x50121044</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_cis_ptr1",  "bits": 17},
+        {"bits": 15}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[16:0]</p></td>
+<td><p>CFG_REG_FUNC_CIS_PTR1</p></td>
+<td><p>cfg_reg_func_cis_ptr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fncisptr-cfg-reg-func-cis-ptr2">
+<h3>SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR2<a class="headerlink" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x48 = 0x50121048</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_cis_ptr2",  "bits": 17},
+        {"bits": 15}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[16:0]</p></td>
+<td><p>CFG_REG_FUNC_CIS_PTR2</p></td>
+<td><p>cfg_reg_func_cis_ptr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fncisptr-cfg-reg-func-cis-ptr3">
+<h3>SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR3<a class="headerlink" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x4c = 0x5012104c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_cis_ptr3",  "bits": 17},
+        {"bits": 15}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[16:0]</p></td>
+<td><p>CFG_REG_FUNC_CIS_PTR3</p></td>
+<td><p>cfg_reg_func_cis_ptr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fncisptr-cfg-reg-func-cis-ptr4">
+<h3>SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR4<a class="headerlink" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x50 = 0x50121050</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_cis_ptr4",  "bits": 17},
+        {"bits": 15}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[16:0]</p></td>
+<td><p>CFG_REG_FUNC_CIS_PTR4</p></td>
+<td><p>cfg_reg_func_cis_ptr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fncisptr-cfg-reg-func-cis-ptr5">
+<h3>SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR5<a class="headerlink" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x54 = 0x50121054</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_cis_ptr5",  "bits": 17},
+        {"bits": 15}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[16:0]</p></td>
+<td><p>CFG_REG_FUNC_CIS_PTR5</p></td>
+<td><p>cfg_reg_func_cis_ptr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fncisptr-cfg-reg-func-cis-ptr6">
+<h3>SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR6<a class="headerlink" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr6" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x58 = 0x50121058</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_cis_ptr6",  "bits": 17},
+        {"bits": 15}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[16:0]</p></td>
+<td><p>CFG_REG_FUNC_CIS_PTR6</p></td>
+<td><p>cfg_reg_func_cis_ptr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fncisptr-cfg-reg-func-cis-ptr7">
+<h3>SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR7<a class="headerlink" href="#sddc-cr-fncisptr-cfg-reg-func-cis-ptr7" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x5c = 0x5012105c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_cis_ptr7",  "bits": 17},
+        {"bits": 15}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[16:0]</p></td>
+<td><p>CFG_REG_FUNC_CIS_PTR7</p></td>
+<td><p>cfg_reg_func_cis_ptr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code0">
+<h3>SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE0<a class="headerlink" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x60 = 0x50121060</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_ext_std_code0",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_EXT_STD_CODE0</p></td>
+<td><p>cfg_reg_func_ext_std_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code1">
+<h3>SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE1<a class="headerlink" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x64 = 0x50121064</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_ext_std_code1",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_EXT_STD_CODE1</p></td>
+<td><p>cfg_reg_func_ext_std_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code2">
+<h3>SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE2<a class="headerlink" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x68 = 0x50121068</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_ext_std_code2",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_EXT_STD_CODE2</p></td>
+<td><p>cfg_reg_func_ext_std_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code3">
+<h3>SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE3<a class="headerlink" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x6c = 0x5012106c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_ext_std_code3",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_EXT_STD_CODE3</p></td>
+<td><p>cfg_reg_func_ext_std_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code4">
+<h3>SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE4<a class="headerlink" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x70 = 0x50121070</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_ext_std_code4",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_EXT_STD_CODE4</p></td>
+<td><p>cfg_reg_func_ext_std_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code5">
+<h3>SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE5<a class="headerlink" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x74 = 0x50121074</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_ext_std_code5",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_EXT_STD_CODE5</p></td>
+<td><p>cfg_reg_func_ext_std_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code6">
+<h3>SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE6<a class="headerlink" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code6" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x78 = 0x50121078</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_ext_std_code6",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_EXT_STD_CODE6</p></td>
+<td><p>cfg_reg_func_ext_std_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code7">
+<h3>SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE7<a class="headerlink" href="#sddc-cr-fnextstdcode-cfg-reg-func-ext-std-code7" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x7c = 0x5012107c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_ext_std_code7",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_EXT_STD_CODE7</p></td>
+<td><p>cfg_reg_func_ext_std_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-write-protect">
+<h3>SDDC_CR_WRITE_PROTECT<a class="headerlink" href="#sddc-cr-write-protect" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x80 = 0x50121080</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_write_protect",  "bits": 1},
+        {"bits": 31}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>CR_WRITE_PROTECT</p></td>
+<td><p>cr_write_protect read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-dsr">
+<h3>SDDC_CR_REG_DSR<a class="headerlink" href="#sddc-cr-reg-dsr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x84 = 0x50121084</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_reg_dsr",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_REG_DSR</p></td>
+<td><p>cr_reg_dsr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-cid-cfg-reg-cid0">
+<h3>SDDC_CR_REG_CID_CFG_REG_CID0<a class="headerlink" href="#sddc-cr-reg-cid-cfg-reg-cid0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x88 = 0x50121088</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_cid0",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_CID0</p></td>
+<td><p>cr_reg_cid read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-cid-cfg-reg-cid1">
+<h3>SDDC_CR_REG_CID_CFG_REG_CID1<a class="headerlink" href="#sddc-cr-reg-cid-cfg-reg-cid1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x8c = 0x5012108c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_cid1",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_CID1</p></td>
+<td><p>cr_reg_cid read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-cid-cfg-reg-cid2">
+<h3>SDDC_CR_REG_CID_CFG_REG_CID2<a class="headerlink" href="#sddc-cr-reg-cid-cfg-reg-cid2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x90 = 0x50121090</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_cid2",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_CID2</p></td>
+<td><p>cr_reg_cid read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-cid-cfg-reg-cid3">
+<h3>SDDC_CR_REG_CID_CFG_REG_CID3<a class="headerlink" href="#sddc-cr-reg-cid-cfg-reg-cid3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x94 = 0x50121094</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_cid3",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_CID3</p></td>
+<td><p>cr_reg_cid read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-csd-cfg-reg-csd0">
+<h3>SDDC_CR_REG_CSD_CFG_REG_CSD0<a class="headerlink" href="#sddc-cr-reg-csd-cfg-reg-csd0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x98 = 0x50121098</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_csd0",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_CSD0</p></td>
+<td><p>cr_reg_csd read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-csd-cfg-reg-csd1">
+<h3>SDDC_CR_REG_CSD_CFG_REG_CSD1<a class="headerlink" href="#sddc-cr-reg-csd-cfg-reg-csd1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x9c = 0x5012109c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_csd1",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_CSD1</p></td>
+<td><p>cr_reg_csd read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-csd-cfg-reg-csd2">
+<h3>SDDC_CR_REG_CSD_CFG_REG_CSD2<a class="headerlink" href="#sddc-cr-reg-csd-cfg-reg-csd2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xa0 = 0x501210a0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_csd2",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_CSD2</p></td>
+<td><p>cr_reg_csd read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-csd-cfg-reg-csd3">
+<h3>SDDC_CR_REG_CSD_CFG_REG_CSD3<a class="headerlink" href="#sddc-cr-reg-csd-cfg-reg-csd3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xa4 = 0x501210a4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_csd3",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_CSD3</p></td>
+<td><p>cr_reg_csd read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-scr-cfg-reg-scr0">
+<h3>SDDC_CR_REG_SCR_CFG_REG_SCR0<a class="headerlink" href="#sddc-cr-reg-scr-cfg-reg-scr0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xa8 = 0x501210a8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_scr0",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SCR0</p></td>
+<td><p>cr_reg_scr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-scr-cfg-reg-scr1">
+<h3>SDDC_CR_REG_SCR_CFG_REG_SCR1<a class="headerlink" href="#sddc-cr-reg-scr-cfg-reg-scr1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xac = 0x501210ac</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_scr1",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SCR1</p></td>
+<td><p>cr_reg_scr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status0">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS0<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xb0 = 0x501210b0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status0",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS0</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status1">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS1<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xb4 = 0x501210b4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status1",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS1</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status2">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS2<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xb8 = 0x501210b8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status2",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS2</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status3">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS3<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xbc = 0x501210bc</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status3",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS3</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status4">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS4<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xc0 = 0x501210c0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status4",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS4</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status5">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS5<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xc4 = 0x501210c4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status5",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS5</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status6">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS6<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status6" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xc8 = 0x501210c8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status6",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS6</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status7">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS7<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status7" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xcc = 0x501210cc</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status7",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS7</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status8">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS8<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status8" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xd0 = 0x501210d0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status8",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS8</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status9">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS9<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status9" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xd4 = 0x501210d4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status9",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS9</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status10">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS10<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status10" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xd8 = 0x501210d8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status10",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS10</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status11">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS11<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status11" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xdc = 0x501210dc</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status11",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS11</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status12">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS12<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status12" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xe0 = 0x501210e0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status12",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS12</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status13">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS13<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status13" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xe4 = 0x501210e4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status13",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS13</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status14">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS14<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status14" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xe8 = 0x501210e8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status14",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS14</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-sd-status-cfg-reg-sd-status15">
+<h3>SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS15<a class="headerlink" href="#sddc-cr-reg-sd-status-cfg-reg-sd-status15" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0xec = 0x501210ec</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_sd_status15",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFG_REG_SD_STATUS15</p></td>
+<td><p>cr_reg_sd_status read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func0">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC0<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x100 = 0x50121100</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func0",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC0</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func1">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC1<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x104 = 0x50121104</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func1",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC1</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func2">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC2<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x108 = 0x50121108</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func2",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC2</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func3">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC3<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x10c = 0x5012110c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func3",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC3</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func4">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC4<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x110 = 0x50121110</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func4",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC4</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func5">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC5<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x114 = 0x50121114</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func5",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC5</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func6">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC6<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func6" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x118 = 0x50121118</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func6",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC6</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func7">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC7<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func7" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x11c = 0x5012111c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func7",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC7</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func8">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC8<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func8" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x120 = 0x50121120</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func8",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC8</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func9">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC9<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func9" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x124 = 0x50121124</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func9",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC9</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func10">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC10<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func10" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x128 = 0x50121128</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func10",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC10</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func11">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC11<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func11" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x12c = 0x5012112c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func11",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC11</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func12">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC12<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func12" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x130 = 0x50121130</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func12",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC12</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func13">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC13<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func13" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x134 = 0x50121134</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func13",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC13</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func14">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC14<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func14" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x138 = 0x50121138</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func14",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC14</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func15">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC15<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func15" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x13c = 0x5012113c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func15",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC15</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func16">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC16<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func16" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x140 = 0x50121140</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func16",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC16</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func17">
+<h3>SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC17<a class="headerlink" href="#sddc-cr-base-addr-mem-func-cfg-base-addr-mem-func17" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x144 = 0x50121144</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_base_addr_mem_func17",  "bits": 18},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[17:0]</p></td>
+<td><p>CFG_BASE_ADDR_MEM_FUNC17</p></td>
+<td><p>cfg_base_addr_mem_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code0">
+<h3>SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE0<a class="headerlink" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x148 = 0x50121148</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_interface_code0",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_INTERFACE_CODE0</p></td>
+<td><p>cfg_reg_func_isdio_interface_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code1">
+<h3>SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE1<a class="headerlink" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x14c = 0x5012114c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_interface_code1",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_INTERFACE_CODE1</p></td>
+<td><p>cfg_reg_func_isdio_interface_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code2">
+<h3>SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE2<a class="headerlink" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x150 = 0x50121150</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_interface_code2",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_INTERFACE_CODE2</p></td>
+<td><p>cfg_reg_func_isdio_interface_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code3">
+<h3>SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE3<a class="headerlink" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x154 = 0x50121154</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_interface_code3",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_INTERFACE_CODE3</p></td>
+<td><p>cfg_reg_func_isdio_interface_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code4">
+<h3>SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE4<a class="headerlink" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x158 = 0x50121158</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_interface_code4",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_INTERFACE_CODE4</p></td>
+<td><p>cfg_reg_func_isdio_interface_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code5">
+<h3>SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE5<a class="headerlink" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x15c = 0x5012115c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_interface_code5",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_INTERFACE_CODE5</p></td>
+<td><p>cfg_reg_func_isdio_interface_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code6">
+<h3>SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE6<a class="headerlink" href="#sddc-cr-reg-func-isdio-interface-code-cfg-reg-func-isdio-interface-code6" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x160 = 0x50121160</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_interface_code6",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_INTERFACE_CODE6</p></td>
+<td><p>cfg_reg_func_isdio_interface_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code0">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE0<a class="headerlink" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x168 = 0x50121168</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_code0",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_CODE0</p></td>
+<td><p>cfg_reg_func_manufact_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code1">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE1<a class="headerlink" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x16c = 0x5012116c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_code1",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_CODE1</p></td>
+<td><p>cfg_reg_func_manufact_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code2">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE2<a class="headerlink" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x170 = 0x50121170</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_code2",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_CODE2</p></td>
+<td><p>cfg_reg_func_manufact_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code3">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE3<a class="headerlink" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x174 = 0x50121174</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_code3",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_CODE3</p></td>
+<td><p>cfg_reg_func_manufact_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code4">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE4<a class="headerlink" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x178 = 0x50121178</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_code4",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_CODE4</p></td>
+<td><p>cfg_reg_func_manufact_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code5">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE5<a class="headerlink" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x17c = 0x5012117c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_code5",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_CODE5</p></td>
+<td><p>cfg_reg_func_manufact_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code6">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE6<a class="headerlink" href="#sddc-cr-reg-func-manufact-code-cfg-reg-func-manufact-code6" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x180 = 0x50121180</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_code6",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_CODE6</p></td>
+<td><p>cfg_reg_func_manufact_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info0">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO0<a class="headerlink" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x188 = 0x50121188</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_info0",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_INFO0</p></td>
+<td><p>cfg_reg_func_manufact_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info1">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO1<a class="headerlink" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x18c = 0x5012118c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_info1",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_INFO1</p></td>
+<td><p>cfg_reg_func_manufact_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info2">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO2<a class="headerlink" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x190 = 0x50121190</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_info2",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_INFO2</p></td>
+<td><p>cfg_reg_func_manufact_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info3">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO3<a class="headerlink" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x194 = 0x50121194</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_info3",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_INFO3</p></td>
+<td><p>cfg_reg_func_manufact_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info4">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO4<a class="headerlink" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x198 = 0x50121198</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_info4",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_INFO4</p></td>
+<td><p>cfg_reg_func_manufact_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info5">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO5<a class="headerlink" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x19c = 0x5012119c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_info5",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_INFO5</p></td>
+<td><p>cfg_reg_func_manufact_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info6">
+<h3>SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO6<a class="headerlink" href="#sddc-cr-reg-func-manufact-info-cfg-reg-func-manufact-info6" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1a0 = 0x501211a0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_manufact_info6",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_MANUFACT_INFO6</p></td>
+<td><p>cfg_reg_func_manufact_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code0">
+<h3>SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE0<a class="headerlink" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1a8 = 0x501211a8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_type_sup_code0",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE0</p></td>
+<td><p>cfg_reg_func_isdio_type_sup_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code1">
+<h3>SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE1<a class="headerlink" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1ac = 0x501211ac</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_type_sup_code1",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE1</p></td>
+<td><p>cfg_reg_func_isdio_type_sup_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code2">
+<h3>SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE2<a class="headerlink" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1b0 = 0x501211b0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_type_sup_code2",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE2</p></td>
+<td><p>cfg_reg_func_isdio_type_sup_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code3">
+<h3>SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE3<a class="headerlink" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1b4 = 0x501211b4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_type_sup_code3",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE3</p></td>
+<td><p>cfg_reg_func_isdio_type_sup_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code4">
+<h3>SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE4<a class="headerlink" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1b8 = 0x501211b8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_type_sup_code4",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE4</p></td>
+<td><p>cfg_reg_func_isdio_type_sup_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code5">
+<h3>SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE5<a class="headerlink" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1bc = 0x501211bc</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_type_sup_code5",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE5</p></td>
+<td><p>cfg_reg_func_isdio_type_sup_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code6">
+<h3>SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE6<a class="headerlink" href="#sddc-cr-reg-func-isdio-type-sup-code-cfg-reg-func-isdio-type-sup-code6" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1c0 = 0x501211c0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_isdio_type_sup_code6",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE6</p></td>
+<td><p>cfg_reg_func_isdio_type_sup_code read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-info-cfg-reg-func-info0">
+<h3>SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO0<a class="headerlink" href="#sddc-cr-reg-func-info-cfg-reg-func-info0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1c8 = 0x501211c8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_info0",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_INFO0</p></td>
+<td><p>cfg_reg_func_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-info-cfg-reg-func-info1">
+<h3>SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO1<a class="headerlink" href="#sddc-cr-reg-func-info-cfg-reg-func-info1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1cc = 0x501211cc</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_info1",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_INFO1</p></td>
+<td><p>cfg_reg_func_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-info-cfg-reg-func-info2">
+<h3>SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO2<a class="headerlink" href="#sddc-cr-reg-func-info-cfg-reg-func-info2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1d0 = 0x501211d0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_info2",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_INFO2</p></td>
+<td><p>cfg_reg_func_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-info-cfg-reg-func-info3">
+<h3>SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO3<a class="headerlink" href="#sddc-cr-reg-func-info-cfg-reg-func-info3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1d4 = 0x501211d4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_info3",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_INFO3</p></td>
+<td><p>cfg_reg_func_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-info-cfg-reg-func-info4">
+<h3>SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO4<a class="headerlink" href="#sddc-cr-reg-func-info-cfg-reg-func-info4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1d8 = 0x501211d8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_info4",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_INFO4</p></td>
+<td><p>cfg_reg_func_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-info-cfg-reg-func-info5">
+<h3>SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO5<a class="headerlink" href="#sddc-cr-reg-func-info-cfg-reg-func-info5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1dc = 0x501211dc</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_info5",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_INFO5</p></td>
+<td><p>cfg_reg_func_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-func-info-cfg-reg-func-info6">
+<h3>SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO6<a class="headerlink" href="#sddc-cr-reg-func-info-cfg-reg-func-info6" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1e0 = 0x501211e0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_func_info6",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_FUNC_INFO6</p></td>
+<td><p>cfg_reg_func_info read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sddc-cr-reg-uhs-1-support">
+<h3>SDDC_CR_REG_UHS_1_SUPPORT<a class="headerlink" href="#sddc-cr-reg-uhs-1-support" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50121000 + 0x1f0 = 0x501211f0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv">file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfg_reg_max_current",  "bits": 16},
+        {"name": "cfg_reg_data_strc_version",  "bits": 8},
+        {"name": "cfg_reg_uhs_1_support",  "bits": 8}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CFG_REG_MAX_CURRENT</p></td>
+<td><p>cfg_reg_max_current read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[23:16]</p></td>
+<td><p>CFG_REG_DATA_STRC_VERSION</p></td>
+<td><p>cfg_reg_data_strc_version read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[31:24]</p></td>
+<td><p>CFG_REG_UHS_1_SUPPORT</p></td>
+<td><p>cfg_reg_uhs_1_support read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Baochip-1x SoC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interrupts.html">Interrupt Controller</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="alu.html">ALU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aes.html">AES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combohash.html">COMBOHASH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pke.html">PKE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trng.html">TRNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scedma.html">SCEDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sce_glbsfr.html">SCE_GLBSFR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="duart.html">DUART</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rbist_wrp.html">RBIST_WRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wdg_intf.html">WDG_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timer_intf.html">TIMER_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evc.html">EVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysctrl.html">SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apb_thru.html">APB_THRU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_bdma.html">BIO_BDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iox.html">IOX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pwm.html">PWM</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SDDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coresub_sramtrm.html">CORESUB_SRAMTRM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mdma.html">MDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfc.html">QFC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mbox_apb.html">MBOX_APB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rrc.html">RRC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gluechain.html">GLUECHAIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">MESH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensorc.html">SENSORC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aobureg.html">AOBUREG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ao_sysctrl.html">AO_SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dkpc.html">DKPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_ctrl.html">UDMA_CTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_0.html">UDMA_UART_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_1.html">UDMA_UART_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_2.html">UDMA_UART_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_3.html">UDMA_UART_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_0.html">UDMA_SPIM_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_1.html">UDMA_SPIM_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_2.html">UDMA_SPIM_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_3.html">UDMA_SPIM_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_0.html">UDMA_I2C_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_1.html">UDMA_I2C_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_2.html">UDMA_I2C_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_3.html">UDMA_I2C_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_sdio.html">UDMA_SDIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2s.html">UDMA_I2S</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_camera.html">UDMA_CAMERA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_filter.html">UDMA_FILTER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_scif.html">UDMA_SCIF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_0.html">UDMA_SPIS_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_1.html">UDMA_SPIS_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_adc.html">UDMA_ADC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo0.html">BIO_FIFO0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo1.html">BIO_FIFO1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo2.html">BIO_FIFO2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo3.html">BIO_FIFO3</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="pwm.html" title="previous chapter">PWM</a></li>
+      <li>Next: <a href="coresub_sramtrm.html" title="next chapter">CORESUB_SRAMTRM</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, Baochip, Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/sddc.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

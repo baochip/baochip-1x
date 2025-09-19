@@ -1,0 +1,1465 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>SYSCTRL &#8212; Baochip-1x SoC  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/default.js"></script>
+    <script src="_static/WaveDrom.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="APB_THRU" href="apb_thru.html" />
+    <link rel="prev" title="EVC" href="evc.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="sysctrl">
+<h1>SYSCTRL<a class="headerlink" href="#sysctrl" title="Permalink to this heading">¶</a></h1>
+<section id="register-listing-for-sysctrl">
+<h2>Register Listing for SYSCTRL<a class="headerlink" href="#register-listing-for-sysctrl" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Register</p></th>
+<th class="head"><p>Address</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-cgusec"><span class="std std-ref">SYSCTRL_SFR_CGUSEC</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgusec"><span class="std std-ref">0x40040000</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-cgulp"><span class="std std-ref">SYSCTRL_SFR_CGULP</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgulp"><span class="std std-ref">0x40040004</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-seed"><span class="std std-ref">SYSCTRL_SFR_SEED</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-seed"><span class="std std-ref">0x40040008</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-seedar"><span class="std std-ref">SYSCTRL_SFR_SEEDAR</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-seedar"><span class="std std-ref">0x4004000c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-cgusel0"><span class="std std-ref">SYSCTRL_SFR_CGUSEL0</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgusel0"><span class="std std-ref">0x40040010</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-0"><span class="std std-ref">SYSCTRL_SFR_CGUFD_CFGFDCR_0_4_0</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-0"><span class="std std-ref">0x40040014</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-1"><span class="std std-ref">SYSCTRL_SFR_CGUFD_CFGFDCR_0_4_1</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-1"><span class="std std-ref">0x40040018</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-2"><span class="std std-ref">SYSCTRL_SFR_CGUFD_CFGFDCR_0_4_2</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-2"><span class="std std-ref">0x4004001c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-3"><span class="std std-ref">SYSCTRL_SFR_CGUFD_CFGFDCR_0_4_3</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-3"><span class="std std-ref">0x40040020</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-4"><span class="std std-ref">SYSCTRL_SFR_CGUFD_CFGFDCR_0_4_4</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-4"><span class="std std-ref">0x40040024</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufdao"><span class="std std-ref">SYSCTRL_SFR_CGUFDAO</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufdao"><span class="std std-ref">0x40040028</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-cguset"><span class="std std-ref">SYSCTRL_SFR_CGUSET</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cguset"><span class="std std-ref">0x4004002c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-cgusel1"><span class="std std-ref">SYSCTRL_SFR_CGUSEL1</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgusel1"><span class="std std-ref">0x40040030</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufdpke"><span class="std std-ref">SYSCTRL_SFR_CGUFDPKE</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufdpke"><span class="std std-ref">0x40040034</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufdaoram"><span class="std std-ref">SYSCTRL_SFR_CGUFDAORAM</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufdaoram"><span class="std std-ref">0x40040038</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufdper"><span class="std std-ref">SYSCTRL_SFR_CGUFDPER</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufdper"><span class="std std-ref">0x4004003c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufssr-fsfreq0"><span class="std std-ref">SYSCTRL_SFR_CGUFSSR_FSFREQ0</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufssr-fsfreq0"><span class="std std-ref">0x40040040</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufssr-fsfreq1"><span class="std std-ref">SYSCTRL_SFR_CGUFSSR_FSFREQ1</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufssr-fsfreq1"><span class="std std-ref">0x40040044</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufssr-fsfreq2"><span class="std std-ref">SYSCTRL_SFR_CGUFSSR_FSFREQ2</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufssr-fsfreq2"><span class="std std-ref">0x40040048</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufssr-fsfreq3"><span class="std std-ref">SYSCTRL_SFR_CGUFSSR_FSFREQ3</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufssr-fsfreq3"><span class="std std-ref">0x4004004c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufsvld"><span class="std std-ref">SYSCTRL_SFR_CGUFSVLD</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufsvld"><span class="std std-ref">0x40040050</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-cgufscr"><span class="std std-ref">SYSCTRL_SFR_CGUFSCR</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-cgufscr"><span class="std std-ref">0x40040054</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-aclkgr"><span class="std std-ref">SYSCTRL_SFR_ACLKGR</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-aclkgr"><span class="std std-ref">0x40040060</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-hclkgr"><span class="std std-ref">SYSCTRL_SFR_HCLKGR</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-hclkgr"><span class="std std-ref">0x40040064</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-iclkgr"><span class="std std-ref">SYSCTRL_SFR_ICLKGR</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-iclkgr"><span class="std std-ref">0x40040068</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-pclkgr"><span class="std std-ref">SYSCTRL_SFR_PCLKGR</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-pclkgr"><span class="std std-ref">0x4004006c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-rcurst0"><span class="std std-ref">SYSCTRL_SFR_RCURST0</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-rcurst0"><span class="std std-ref">0x40040080</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-rcurst1"><span class="std std-ref">SYSCTRL_SFR_RCURST1</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-rcurst1"><span class="std std-ref">0x40040084</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-rcusrcfr"><span class="std std-ref">SYSCTRL_SFR_RCUSRCFR</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-rcusrcfr"><span class="std std-ref">0x40040088</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-ipcaripflow"><span class="std std-ref">SYSCTRL_SFR_IPCARIPFLOW</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-ipcaripflow"><span class="std std-ref">0x40040090</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-ipcen"><span class="std std-ref">SYSCTRL_SFR_IPCEN</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-ipcen"><span class="std std-ref">0x40040094</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-ipclpen"><span class="std std-ref">SYSCTRL_SFR_IPCLPEN</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-ipclpen"><span class="std std-ref">0x40040098</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-ipcosc"><span class="std std-ref">SYSCTRL_SFR_IPCOSC</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-ipcosc"><span class="std std-ref">0x4004009c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-ipcpllmn"><span class="std std-ref">SYSCTRL_SFR_IPCPLLMN</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-ipcpllmn"><span class="std std-ref">0x400400a0</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-ipcpllf"><span class="std std-ref">SYSCTRL_SFR_IPCPLLF</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-ipcpllf"><span class="std std-ref">0x400400a4</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sysctrl-sfr-ipcpllq"><span class="std std-ref">SYSCTRL_SFR_IPCPLLQ</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-ipcpllq"><span class="std std-ref">0x400400a8</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sysctrl-sfr-ipccr"><span class="std std-ref">SYSCTRL_SFR_IPCCR</span></a></p></td>
+<td><p><a class="reference internal" href="#sysctrl-sfr-ipccr"><span class="std std-ref">0x400400ac</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="sysctrl-sfr-cgusec">
+<h3>SYSCTRL_SFR_CGUSEC<a class="headerlink" href="#sysctrl-sfr-cgusec" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x0 = 0x40040000</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_cgusec",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SFR_CGUSEC</p></td>
+<td><p>sfr_cgusec read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgulp">
+<h3>SYSCTRL_SFR_CGULP<a class="headerlink" href="#sysctrl-sfr-cgulp" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x4 = 0x40040004</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_cgulp",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SFR_CGULP</p></td>
+<td><p>sfr_cgulp read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-seed">
+<h3>SYSCTRL_SFR_SEED<a class="headerlink" href="#sysctrl-sfr-seed" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x8 = 0x40040008</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_seed",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_SEED</p></td>
+<td><p>sfr_seed read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-seedar">
+<h3>SYSCTRL_SFR_SEEDAR<a class="headerlink" href="#sysctrl-sfr-seedar" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0xc = 0x4004000c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_seedar",  "type": 4, "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_SEEDAR</p></td>
+<td><p>sfr_seedar performs action on write of value: 0x5a</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgusel0">
+<h3>SYSCTRL_SFR_CGUSEL0<a class="headerlink" href="#sysctrl-sfr-cgusel0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x10 = 0x40040010</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_cgusel0",  "bits": 2},
+        {"bits": 30}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[1:0]</p></td>
+<td><p>SFR_CGUSEL0</p></td>
+<td><p>sfr_cgusel0 read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufd-cfgfdcr-0-4-0">
+<h3>SYSCTRL_SFR_CGUFD_CFGFDCR_0_4_0<a class="headerlink" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x14 = 0x40040014</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfgfdcr_0_4_0",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFGFDCR_0_4_0</p></td>
+<td><p>cfgfdcr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufd-cfgfdcr-0-4-1">
+<h3>SYSCTRL_SFR_CGUFD_CFGFDCR_0_4_1<a class="headerlink" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x18 = 0x40040018</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfgfdcr_0_4_1",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFGFDCR_0_4_1</p></td>
+<td><p>cfgfdcr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufd-cfgfdcr-0-4-2">
+<h3>SYSCTRL_SFR_CGUFD_CFGFDCR_0_4_2<a class="headerlink" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x1c = 0x4004001c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfgfdcr_0_4_2",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFGFDCR_0_4_2</p></td>
+<td><p>cfgfdcr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufd-cfgfdcr-0-4-3">
+<h3>SYSCTRL_SFR_CGUFD_CFGFDCR_0_4_3<a class="headerlink" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x20 = 0x40040020</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfgfdcr_0_4_3",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFGFDCR_0_4_3</p></td>
+<td><p>cfgfdcr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufd-cfgfdcr-0-4-4">
+<h3>SYSCTRL_SFR_CGUFD_CFGFDCR_0_4_4<a class="headerlink" href="#sysctrl-sfr-cgufd-cfgfdcr-0-4-4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x24 = 0x40040024</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfgfdcr_0_4_4",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFGFDCR_0_4_4</p></td>
+<td><p>cfgfdcr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufdao">
+<h3>SYSCTRL_SFR_CGUFDAO<a class="headerlink" href="#sysctrl-sfr-cgufdao" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x28 = 0x40040028</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cfgfdcr",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CFGFDCR</p></td>
+<td><p>cfgfdcr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cguset">
+<h3>SYSCTRL_SFR_CGUSET<a class="headerlink" href="#sysctrl-sfr-cguset" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x2c = 0x4004002c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_cguset",  "type": 4, "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_CGUSET</p></td>
+<td><p>sfr_cguset performs action on write of value: 0x32</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgusel1">
+<h3>SYSCTRL_SFR_CGUSEL1<a class="headerlink" href="#sysctrl-sfr-cgusel1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x30 = 0x40040030</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_cgusel1",  "bits": 1},
+        {"bits": 31}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>SFR_CGUSEL1</p></td>
+<td><p>sfr_cgusel1 read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufdpke">
+<h3>SYSCTRL_SFR_CGUFDPKE<a class="headerlink" href="#sysctrl-sfr-cgufdpke" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x34 = 0x40040034</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_cgufdpke",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>SFR_CGUFDPKE</p></td>
+<td><p>sfr_cgufdpke read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufdaoram">
+<h3>SYSCTRL_SFR_CGUFDAORAM<a class="headerlink" href="#sysctrl-sfr-cgufdaoram" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x38 = 0x40040038</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_cgufdaoram",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SFR_CGUFDAORAM</p></td>
+<td><p>sfr_cgufdaoram read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufdper">
+<h3>SYSCTRL_SFR_CGUFDPER<a class="headerlink" href="#sysctrl-sfr-cgufdper" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x3c = 0x4004003c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_cgufdper",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_CGUFDPER</p></td>
+<td><p>sfr_cgufdper read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufssr-fsfreq0">
+<h3>SYSCTRL_SFR_CGUFSSR_FSFREQ0<a class="headerlink" href="#sysctrl-sfr-cgufssr-fsfreq0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x40 = 0x40040040</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fsfreq0",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>FSFREQ0</p></td>
+<td><p>fsfreq read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufssr-fsfreq1">
+<h3>SYSCTRL_SFR_CGUFSSR_FSFREQ1<a class="headerlink" href="#sysctrl-sfr-cgufssr-fsfreq1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x44 = 0x40040044</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fsfreq1",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>FSFREQ1</p></td>
+<td><p>fsfreq read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufssr-fsfreq2">
+<h3>SYSCTRL_SFR_CGUFSSR_FSFREQ2<a class="headerlink" href="#sysctrl-sfr-cgufssr-fsfreq2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x48 = 0x40040048</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fsfreq2",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>FSFREQ2</p></td>
+<td><p>fsfreq read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufssr-fsfreq3">
+<h3>SYSCTRL_SFR_CGUFSSR_FSFREQ3<a class="headerlink" href="#sysctrl-sfr-cgufssr-fsfreq3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x4c = 0x4004004c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fsfreq3",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>FSFREQ3</p></td>
+<td><p>fsfreq read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufsvld">
+<h3>SYSCTRL_SFR_CGUFSVLD<a class="headerlink" href="#sysctrl-sfr-cgufsvld" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x50 = 0x40040050</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_cgufsvld",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>SFR_CGUFSVLD</p></td>
+<td><p>sfr_cgufsvld read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-cgufscr">
+<h3>SYSCTRL_SFR_CGUFSCR<a class="headerlink" href="#sysctrl-sfr-cgufscr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x54 = 0x40040054</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_cgufscr",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SFR_CGUFSCR</p></td>
+<td><p>sfr_cgufscr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-aclkgr">
+<h3>SYSCTRL_SFR_ACLKGR<a class="headerlink" href="#sysctrl-sfr-aclkgr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x60 = 0x40040060</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "aclksubgate",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>ACLKSUBGATE</p></td>
+<td><p>aclksubgate read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-hclkgr">
+<h3>SYSCTRL_SFR_HCLKGR<a class="headerlink" href="#sysctrl-sfr-hclkgr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x64 = 0x40040064</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "hclksubgate",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>HCLKSUBGATE</p></td>
+<td><p>hclksubgate read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-iclkgr">
+<h3>SYSCTRL_SFR_ICLKGR<a class="headerlink" href="#sysctrl-sfr-iclkgr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x68 = 0x40040068</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "iclksubgate",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>ICLKSUBGATE</p></td>
+<td><p>iclksubgate read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-pclkgr">
+<h3>SYSCTRL_SFR_PCLKGR<a class="headerlink" href="#sysctrl-sfr-pclkgr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x6c = 0x4004006c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "pclksubgate",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>PCLKSUBGATE</p></td>
+<td><p>pclksubgate read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-rcurst0">
+<h3>SYSCTRL_SFR_RCURST0<a class="headerlink" href="#sysctrl-sfr-rcurst0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x80 = 0x40040080</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_rcurst0",  "type": 4, "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_RCURST0</p></td>
+<td><p>sfr_rcurst0 performs action on write of value: 0x55aa</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-rcurst1">
+<h3>SYSCTRL_SFR_RCURST1<a class="headerlink" href="#sysctrl-sfr-rcurst1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x84 = 0x40040084</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_rcurst1",  "type": 4, "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_RCURST1</p></td>
+<td><p>sfr_rcurst1 performs action on write of value: 0x55aa</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-rcusrcfr">
+<h3>SYSCTRL_SFR_RCUSRCFR<a class="headerlink" href="#sysctrl-sfr-rcusrcfr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x88 = 0x40040088</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_rcusrcfr",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SFR_RCUSRCFR</p></td>
+<td><p>sfr_rcusrcfr flag register. <cite>1</cite> means event happened, write back <cite>1</cite> in
+respective bit position to clear the flag</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-ipcaripflow">
+<h3>SYSCTRL_SFR_IPCARIPFLOW<a class="headerlink" href="#sysctrl-sfr-ipcaripflow" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x90 = 0x40040090</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_ipcaripflow",  "type": 4, "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_IPCARIPFLOW</p></td>
+<td><p>sfr_ipcaripflow performs action on write of value: 0x57</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-ipcen">
+<h3>SYSCTRL_SFR_IPCEN<a class="headerlink" href="#sysctrl-sfr-ipcen" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x94 = 0x40040094</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_ipcen",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SFR_IPCEN</p></td>
+<td><p>sfr_ipcen read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-ipclpen">
+<h3>SYSCTRL_SFR_IPCLPEN<a class="headerlink" href="#sysctrl-sfr-ipclpen" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x98 = 0x40040098</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_ipclpen",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SFR_IPCLPEN</p></td>
+<td><p>sfr_ipclpen read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-ipcosc">
+<h3>SYSCTRL_SFR_IPCOSC<a class="headerlink" href="#sysctrl-sfr-ipcosc" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0x9c = 0x4004009c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_ipcosc",  "bits": 7},
+        {"bits": 25}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[6:0]</p></td>
+<td><p>SFR_IPCOSC</p></td>
+<td><p>sfr_ipcosc read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-ipcpllmn">
+<h3>SYSCTRL_SFR_IPCPLLMN<a class="headerlink" href="#sysctrl-sfr-ipcpllmn" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0xa0 = 0x400400a0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_ipcpllmn",  "bits": 17},
+        {"bits": 15}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[16:0]</p></td>
+<td><p>SFR_IPCPLLMN</p></td>
+<td><p>sfr_ipcpllmn read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-ipcpllf">
+<h3>SYSCTRL_SFR_IPCPLLF<a class="headerlink" href="#sysctrl-sfr-ipcpllf" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0xa4 = 0x400400a4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_ipcpllf",  "bits": 25},
+        {"bits": 7}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[24:0]</p></td>
+<td><p>SFR_IPCPLLF</p></td>
+<td><p>sfr_ipcpllf read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-ipcpllq">
+<h3>SYSCTRL_SFR_IPCPLLQ<a class="headerlink" href="#sysctrl-sfr-ipcpllq" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0xa8 = 0x400400a8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_ipcpllq",  "bits": 15},
+        {"bits": 17}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[14:0]</p></td>
+<td><p>SFR_IPCPLLQ</p></td>
+<td><p>sfr_ipcpllq read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sysctrl-sfr-ipccr">
+<h3>SYSCTRL_SFR_IPCCR<a class="headerlink" href="#sysctrl-sfr-ipccr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x40040000 + 0xac = 0x400400ac</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv">file:///F:/code/cram-nto/../../modules/sysctrl/rtl/sysctrl.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_ipccr",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>SFR_IPCCR</p></td>
+<td><p>sfr_ipccr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Baochip-1x SoC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interrupts.html">Interrupt Controller</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="alu.html">ALU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aes.html">AES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combohash.html">COMBOHASH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pke.html">PKE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trng.html">TRNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scedma.html">SCEDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sce_glbsfr.html">SCE_GLBSFR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="duart.html">DUART</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rbist_wrp.html">RBIST_WRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wdg_intf.html">WDG_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timer_intf.html">TIMER_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evc.html">EVC</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apb_thru.html">APB_THRU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_bdma.html">BIO_BDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iox.html">IOX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pwm.html">PWM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sddc.html">SDDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coresub_sramtrm.html">CORESUB_SRAMTRM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mdma.html">MDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfc.html">QFC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mbox_apb.html">MBOX_APB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rrc.html">RRC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gluechain.html">GLUECHAIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">MESH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensorc.html">SENSORC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aobureg.html">AOBUREG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ao_sysctrl.html">AO_SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dkpc.html">DKPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_ctrl.html">UDMA_CTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_0.html">UDMA_UART_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_1.html">UDMA_UART_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_2.html">UDMA_UART_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_3.html">UDMA_UART_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_0.html">UDMA_SPIM_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_1.html">UDMA_SPIM_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_2.html">UDMA_SPIM_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_3.html">UDMA_SPIM_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_0.html">UDMA_I2C_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_1.html">UDMA_I2C_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_2.html">UDMA_I2C_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_3.html">UDMA_I2C_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_sdio.html">UDMA_SDIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2s.html">UDMA_I2S</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_camera.html">UDMA_CAMERA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_filter.html">UDMA_FILTER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_scif.html">UDMA_SCIF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_0.html">UDMA_SPIS_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_1.html">UDMA_SPIS_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_adc.html">UDMA_ADC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo0.html">BIO_FIFO0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo1.html">BIO_FIFO1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo2.html">BIO_FIFO2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo3.html">BIO_FIFO3</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="evc.html" title="previous chapter">EVC</a></li>
+      <li>Next: <a href="apb_thru.html" title="next chapter">APB_THRU</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, Baochip, Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/sysctrl.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,2140 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>PWM &#8212; Baochip-1x SoC  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/default.js"></script>
+    <script src="_static/WaveDrom.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SDDC" href="sddc.html" />
+    <link rel="prev" title="IOX" href="iox.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="pwm">
+<h1>PWM<a class="headerlink" href="#pwm" title="Permalink to this heading">¶</a></h1>
+<section id="register-listing-for-pwm">
+<h2>Register Listing for PWM<a class="headerlink" href="#register-listing-for-pwm" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Register</p></th>
+<th class="head"><p>Address</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim0-cmd"><span class="std std-ref">PWM_REG_TIM0_CMD</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim0-cmd"><span class="std std-ref">0x50120000</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim0-cfg"><span class="std std-ref">PWM_REG_TIM0_CFG</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim0-cfg"><span class="std std-ref">0x50120004</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim0-ch0-th"><span class="std std-ref">PWM_REG_TIM0_CH0_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim0-ch0-th"><span class="std std-ref">0x5012000c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim0-ch1-th"><span class="std std-ref">PWM_REG_TIM0_CH1_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim0-ch1-th"><span class="std std-ref">0x50120010</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim0-ch2-th"><span class="std std-ref">PWM_REG_TIM0_CH2_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim0-ch2-th"><span class="std std-ref">0x50120014</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim0-ch3-th"><span class="std std-ref">PWM_REG_TIM0_CH3_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim0-ch3-th"><span class="std std-ref">0x50120018</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim0-ch0-lut"><span class="std std-ref">PWM_REG_TIM0_CH0_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim0-ch0-lut"><span class="std std-ref">0x5012001c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim0-ch1-lut"><span class="std std-ref">PWM_REG_TIM0_CH1_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim0-ch1-lut"><span class="std std-ref">0x50120020</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim0-ch2-lut"><span class="std std-ref">PWM_REG_TIM0_CH2_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim0-ch2-lut"><span class="std std-ref">0x50120024</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim0-ch3-lut"><span class="std std-ref">PWM_REG_TIM0_CH3_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim0-ch3-lut"><span class="std std-ref">0x50120028</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim1-cmd"><span class="std std-ref">PWM_REG_TIM1_CMD</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim1-cmd"><span class="std std-ref">0x50120040</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim1-cfg"><span class="std std-ref">PWM_REG_TIM1_CFG</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim1-cfg"><span class="std std-ref">0x50120044</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim1-ch0-th"><span class="std std-ref">PWM_REG_TIM1_CH0_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim1-ch0-th"><span class="std std-ref">0x5012004c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim1-ch1-th"><span class="std std-ref">PWM_REG_TIM1_CH1_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim1-ch1-th"><span class="std std-ref">0x50120050</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim1-ch2-th"><span class="std std-ref">PWM_REG_TIM1_CH2_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim1-ch2-th"><span class="std std-ref">0x50120054</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim1-ch3-th"><span class="std std-ref">PWM_REG_TIM1_CH3_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim1-ch3-th"><span class="std std-ref">0x50120058</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim1-ch0-lut"><span class="std std-ref">PWM_REG_TIM1_CH0_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim1-ch0-lut"><span class="std std-ref">0x5012005c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim1-ch1-lut"><span class="std std-ref">PWM_REG_TIM1_CH1_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim1-ch1-lut"><span class="std std-ref">0x50120060</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim1-ch2-lut"><span class="std std-ref">PWM_REG_TIM1_CH2_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim1-ch2-lut"><span class="std std-ref">0x50120064</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim1-ch3-lut"><span class="std std-ref">PWM_REG_TIM1_CH3_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim1-ch3-lut"><span class="std std-ref">0x50120068</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim2-cmd"><span class="std std-ref">PWM_REG_TIM2_CMD</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim2-cmd"><span class="std std-ref">0x50120080</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim2-cfg"><span class="std std-ref">PWM_REG_TIM2_CFG</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim2-cfg"><span class="std std-ref">0x50120084</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim2-ch0-th"><span class="std std-ref">PWM_REG_TIM2_CH0_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim2-ch0-th"><span class="std std-ref">0x5012008c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim2-ch1-th"><span class="std std-ref">PWM_REG_TIM2_CH1_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim2-ch1-th"><span class="std std-ref">0x50120090</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim2-ch2-th"><span class="std std-ref">PWM_REG_TIM2_CH2_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim2-ch2-th"><span class="std std-ref">0x50120094</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim2-ch3-th"><span class="std std-ref">PWM_REG_TIM2_CH3_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim2-ch3-th"><span class="std std-ref">0x50120098</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim2-ch0-lut"><span class="std std-ref">PWM_REG_TIM2_CH0_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim2-ch0-lut"><span class="std std-ref">0x5012009c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim2-ch1-lut"><span class="std std-ref">PWM_REG_TIM2_CH1_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim2-ch1-lut"><span class="std std-ref">0x501200a0</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim2-ch2-lut"><span class="std std-ref">PWM_REG_TIM2_CH2_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim2-ch2-lut"><span class="std std-ref">0x501200a4</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim2-ch3-lut"><span class="std std-ref">PWM_REG_TIM2_CH3_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim2-ch3-lut"><span class="std std-ref">0x501200a8</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim3-cmd"><span class="std std-ref">PWM_REG_TIM3_CMD</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim3-cmd"><span class="std std-ref">0x501200c0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim3-cfg"><span class="std std-ref">PWM_REG_TIM3_CFG</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim3-cfg"><span class="std std-ref">0x501200c4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim3-ch0-th"><span class="std std-ref">PWM_REG_TIM3_CH0_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim3-ch0-th"><span class="std std-ref">0x501200cc</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim3-ch1-th"><span class="std std-ref">PWM_REG_TIM3_CH1_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim3-ch1-th"><span class="std std-ref">0x501200d0</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim3-ch2-th"><span class="std std-ref">PWM_REG_TIM3_CH2_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim3-ch2-th"><span class="std std-ref">0x501200d4</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim3-ch3-th"><span class="std std-ref">PWM_REG_TIM3_CH3_TH</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim3-ch3-th"><span class="std std-ref">0x501200d8</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim3-ch0-lut"><span class="std std-ref">PWM_REG_TIM3_CH0_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim3-ch0-lut"><span class="std std-ref">0x501200dc</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim3-ch1-lut"><span class="std std-ref">PWM_REG_TIM3_CH1_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim3-ch1-lut"><span class="std std-ref">0x501200e0</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-tim3-ch2-lut"><span class="std std-ref">PWM_REG_TIM3_CH2_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim3-ch2-lut"><span class="std std-ref">0x501200e4</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-tim3-ch3-lut"><span class="std std-ref">PWM_REG_TIM3_CH3_LUT</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-tim3-ch3-lut"><span class="std std-ref">0x501200e8</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-event-cfg"><span class="std std-ref">PWM_REG_EVENT_CFG</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-event-cfg"><span class="std std-ref">0x50120100</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-ch-en"><span class="std std-ref">PWM_REG_CH_EN</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-ch-en"><span class="std std-ref">0x50120104</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-prefd0"><span class="std std-ref">PWM_REG_PREFD0</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-prefd0"><span class="std std-ref">0x50120140</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-prefd1"><span class="std std-ref">PWM_REG_PREFD1</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-prefd1"><span class="std std-ref">0x50120144</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pwm-reg-prefd2"><span class="std std-ref">PWM_REG_PREFD2</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-prefd2"><span class="std std-ref">0x50120148</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pwm-reg-prefd3"><span class="std std-ref">PWM_REG_PREFD3</span></a></p></td>
+<td><p><a class="reference internal" href="#pwm-reg-prefd3"><span class="std std-ref">0x5012014c</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="pwm-reg-tim0-cmd">
+<h3>PWM_REG_TIM0_CMD<a class="headerlink" href="#pwm-reg-tim0-cmd" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x0 = 0x50120000</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer0_start",  "bits": 1},
+        {"name": "r_timer0_stop",  "bits": 1},
+        {"name": "r_timer0_update",  "bits": 1},
+        {"name": "r_timer0_rst",  "bits": 1},
+        {"name": "r_timer0_arm",  "bits": 1},
+        {"bits": 27}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>R_TIMER0_START</p></td>
+<td><p>r_timer0_start</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>R_TIMER0_STOP</p></td>
+<td><p>r_timer0_stop</p></td>
+</tr>
+<tr class="row-even"><td><p>[2]</p></td>
+<td><p>R_TIMER0_UPDATE</p></td>
+<td><p>r_timer0_update</p></td>
+</tr>
+<tr class="row-odd"><td><p>[3]</p></td>
+<td><p>R_TIMER0_RST</p></td>
+<td><p>r_timer0_rst</p></td>
+</tr>
+<tr class="row-even"><td><p>[4]</p></td>
+<td><p>R_TIMER0_ARM</p></td>
+<td><p>r_timer0_arm</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim0-cfg">
+<h3>PWM_REG_TIM0_CFG<a class="headerlink" href="#pwm-reg-tim0-cfg" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x4 = 0x50120004</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer0_in_sel",  "bits": 8},
+        {"name": "r_timer0_in_mode",  "bits": 3},
+        {"name": "r_timer0_in_clk",  "bits": 1},
+        {"name": "r_timer0_saw",  "bits": 1},
+        {"bits": 3},
+        {"name": "r_timer0_presc",  "bits": 8},
+        {"bits": 8}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>R_TIMER0_IN_SEL</p></td>
+<td><p>r_timer0_in_sel</p></td>
+</tr>
+<tr class="row-odd"><td><p>[10:8]</p></td>
+<td><p>R_TIMER0_IN_MODE</p></td>
+<td><p>r_timer0_in_mode</p></td>
+</tr>
+<tr class="row-even"><td><p>[11]</p></td>
+<td><p>R_TIMER0_IN_CLK</p></td>
+<td><p>r_timer0_in_clk</p></td>
+</tr>
+<tr class="row-odd"><td><p>[12]</p></td>
+<td><p>R_TIMER0_SAW</p></td>
+<td><p>r_timer0_saw</p></td>
+</tr>
+<tr class="row-even"><td><p>[23:16]</p></td>
+<td><p>R_TIMER0_PRESC</p></td>
+<td><p>r_timer0_presc</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim0-ch0-th">
+<h3>PWM_REG_TIM0_CH0_TH<a class="headerlink" href="#pwm-reg-tim0-ch0-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xc = 0x5012000c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer0_ch0_th",  "bits": 16},
+        {"name": "r_timer0_ch0_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER0_CH0_TH</p></td>
+<td><p>r_timer0_ch0_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER0_CH0_MODE</p></td>
+<td><p>r_timer0_ch0_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim0-ch1-th">
+<h3>PWM_REG_TIM0_CH1_TH<a class="headerlink" href="#pwm-reg-tim0-ch1-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x10 = 0x50120010</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer0_ch1_th",  "bits": 16},
+        {"name": "r_timer0_ch1_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER0_CH1_TH</p></td>
+<td><p>r_timer0_ch1_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER0_CH1_MODE</p></td>
+<td><p>r_timer0_ch1_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim0-ch2-th">
+<h3>PWM_REG_TIM0_CH2_TH<a class="headerlink" href="#pwm-reg-tim0-ch2-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x14 = 0x50120014</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer0_ch2_th",  "bits": 16},
+        {"name": "r_timer0_ch2_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER0_CH2_TH</p></td>
+<td><p>r_timer0_ch2_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER0_CH2_MODE</p></td>
+<td><p>r_timer0_ch2_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim0-ch3-th">
+<h3>PWM_REG_TIM0_CH3_TH<a class="headerlink" href="#pwm-reg-tim0-ch3-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x18 = 0x50120018</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer0_ch3_th",  "bits": 16},
+        {"name": "r_timer0_ch3_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER0_CH3_TH</p></td>
+<td><p>r_timer0_ch3_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER0_CH3_MODE</p></td>
+<td><p>r_timer0_ch3_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim0-ch0-lut">
+<h3>PWM_REG_TIM0_CH0_LUT<a class="headerlink" href="#pwm-reg-tim0-ch0-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x1c = 0x5012001c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer0_ch0_lut",  "bits": 16},
+        {"name": "r_timer0_ch0_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER0_CH0_LUT</p></td>
+<td><p>r_timer0_ch0_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER0_CH0_FLT</p></td>
+<td><p>r_timer0_ch0_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim0-ch1-lut">
+<h3>PWM_REG_TIM0_CH1_LUT<a class="headerlink" href="#pwm-reg-tim0-ch1-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x20 = 0x50120020</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer0_ch1_lut",  "bits": 16},
+        {"name": "r_timer0_ch1_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER0_CH1_LUT</p></td>
+<td><p>r_timer0_ch1_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER0_CH1_FLT</p></td>
+<td><p>r_timer0_ch1_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim0-ch2-lut">
+<h3>PWM_REG_TIM0_CH2_LUT<a class="headerlink" href="#pwm-reg-tim0-ch2-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x24 = 0x50120024</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer0_ch2_lut",  "bits": 16},
+        {"name": "r_timer0_ch2_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER0_CH2_LUT</p></td>
+<td><p>r_timer0_ch2_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER0_CH2_FLT</p></td>
+<td><p>r_timer0_ch2_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim0-ch3-lut">
+<h3>PWM_REG_TIM0_CH3_LUT<a class="headerlink" href="#pwm-reg-tim0-ch3-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x28 = 0x50120028</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer0_ch3_lut",  "bits": 16},
+        {"name": "r_timer0_ch3_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER0_CH3_LUT</p></td>
+<td><p>r_timer0_ch3_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER0_CH3_FLT</p></td>
+<td><p>r_timer0_ch3_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim1-cmd">
+<h3>PWM_REG_TIM1_CMD<a class="headerlink" href="#pwm-reg-tim1-cmd" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x40 = 0x50120040</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer1_start",  "bits": 1},
+        {"name": "r_timer1_stop",  "bits": 1},
+        {"name": "r_timer1_update",  "bits": 1},
+        {"name": "r_timer1_rst",  "bits": 1},
+        {"name": "r_timer1_arm",  "bits": 1},
+        {"bits": 27}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>R_TIMER1_START</p></td>
+<td><p>r_timer1_start</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>R_TIMER1_STOP</p></td>
+<td><p>r_timer1_stop</p></td>
+</tr>
+<tr class="row-even"><td><p>[2]</p></td>
+<td><p>R_TIMER1_UPDATE</p></td>
+<td><p>r_timer1_update</p></td>
+</tr>
+<tr class="row-odd"><td><p>[3]</p></td>
+<td><p>R_TIMER1_RST</p></td>
+<td><p>r_timer1_rst</p></td>
+</tr>
+<tr class="row-even"><td><p>[4]</p></td>
+<td><p>R_TIMER1_ARM</p></td>
+<td><p>r_timer1_arm</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim1-cfg">
+<h3>PWM_REG_TIM1_CFG<a class="headerlink" href="#pwm-reg-tim1-cfg" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x44 = 0x50120044</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer1_in_sel",  "bits": 8},
+        {"name": "r_timer1_in_mode",  "bits": 3},
+        {"name": "r_timer1_in_clk",  "bits": 1},
+        {"name": "r_timer1_saw",  "bits": 1},
+        {"bits": 3},
+        {"name": "r_timer1_presc",  "bits": 8},
+        {"bits": 8}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>R_TIMER1_IN_SEL</p></td>
+<td><p>r_timer1_in_sel</p></td>
+</tr>
+<tr class="row-odd"><td><p>[10:8]</p></td>
+<td><p>R_TIMER1_IN_MODE</p></td>
+<td><p>r_timer1_in_mode</p></td>
+</tr>
+<tr class="row-even"><td><p>[11]</p></td>
+<td><p>R_TIMER1_IN_CLK</p></td>
+<td><p>r_timer1_in_clk</p></td>
+</tr>
+<tr class="row-odd"><td><p>[12]</p></td>
+<td><p>R_TIMER1_SAW</p></td>
+<td><p>r_timer1_saw</p></td>
+</tr>
+<tr class="row-even"><td><p>[23:16]</p></td>
+<td><p>R_TIMER1_PRESC</p></td>
+<td><p>r_timer1_presc</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim1-ch0-th">
+<h3>PWM_REG_TIM1_CH0_TH<a class="headerlink" href="#pwm-reg-tim1-ch0-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x4c = 0x5012004c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer1_ch0_th",  "bits": 16},
+        {"name": "r_timer1_ch0_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER1_CH0_TH</p></td>
+<td><p>r_timer1_ch0_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER1_CH0_MODE</p></td>
+<td><p>r_timer1_ch0_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim1-ch1-th">
+<h3>PWM_REG_TIM1_CH1_TH<a class="headerlink" href="#pwm-reg-tim1-ch1-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x50 = 0x50120050</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer1_ch1_th",  "bits": 16},
+        {"name": "r_timer1_ch1_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER1_CH1_TH</p></td>
+<td><p>r_timer1_ch1_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER1_CH1_MODE</p></td>
+<td><p>r_timer1_ch1_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim1-ch2-th">
+<h3>PWM_REG_TIM1_CH2_TH<a class="headerlink" href="#pwm-reg-tim1-ch2-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x54 = 0x50120054</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer1_ch2_th",  "bits": 16},
+        {"name": "r_timer1_ch2_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER1_CH2_TH</p></td>
+<td><p>r_timer1_ch2_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER1_CH2_MODE</p></td>
+<td><p>r_timer1_ch2_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim1-ch3-th">
+<h3>PWM_REG_TIM1_CH3_TH<a class="headerlink" href="#pwm-reg-tim1-ch3-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x58 = 0x50120058</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer1_ch3_th",  "bits": 16},
+        {"name": "r_timer1_ch3_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER1_CH3_TH</p></td>
+<td><p>r_timer1_ch3_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER1_CH3_MODE</p></td>
+<td><p>r_timer1_ch3_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim1-ch0-lut">
+<h3>PWM_REG_TIM1_CH0_LUT<a class="headerlink" href="#pwm-reg-tim1-ch0-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x5c = 0x5012005c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer1_ch0_lut",  "bits": 16},
+        {"name": "r_timer1_ch0_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER1_CH0_LUT</p></td>
+<td><p>r_timer1_ch0_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER1_CH0_FLT</p></td>
+<td><p>r_timer1_ch0_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim1-ch1-lut">
+<h3>PWM_REG_TIM1_CH1_LUT<a class="headerlink" href="#pwm-reg-tim1-ch1-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x60 = 0x50120060</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer1_ch1_lut",  "bits": 16},
+        {"name": "r_timer1_ch1_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER1_CH1_LUT</p></td>
+<td><p>r_timer1_ch1_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER1_CH1_FLT</p></td>
+<td><p>r_timer1_ch1_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim1-ch2-lut">
+<h3>PWM_REG_TIM1_CH2_LUT<a class="headerlink" href="#pwm-reg-tim1-ch2-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x64 = 0x50120064</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer1_ch2_lut",  "bits": 16},
+        {"name": "r_timer1_ch2_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER1_CH2_LUT</p></td>
+<td><p>r_timer1_ch2_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER1_CH2_FLT</p></td>
+<td><p>r_timer1_ch2_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim1-ch3-lut">
+<h3>PWM_REG_TIM1_CH3_LUT<a class="headerlink" href="#pwm-reg-tim1-ch3-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x68 = 0x50120068</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer1_ch3_lut",  "bits": 16},
+        {"name": "r_timer1_ch3_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER1_CH3_LUT</p></td>
+<td><p>r_timer1_ch3_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER1_CH3_FLT</p></td>
+<td><p>r_timer1_ch3_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim2-cmd">
+<h3>PWM_REG_TIM2_CMD<a class="headerlink" href="#pwm-reg-tim2-cmd" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x80 = 0x50120080</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer2_start",  "bits": 1},
+        {"name": "r_timer2_stop",  "bits": 1},
+        {"name": "r_timer2_update",  "bits": 1},
+        {"name": "r_timer2_rst",  "bits": 1},
+        {"name": "r_timer2_arm",  "bits": 1},
+        {"bits": 27}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>R_TIMER2_START</p></td>
+<td><p>r_timer2_start</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>R_TIMER2_STOP</p></td>
+<td><p>r_timer2_stop</p></td>
+</tr>
+<tr class="row-even"><td><p>[2]</p></td>
+<td><p>R_TIMER2_UPDATE</p></td>
+<td><p>r_timer2_update</p></td>
+</tr>
+<tr class="row-odd"><td><p>[3]</p></td>
+<td><p>R_TIMER2_RST</p></td>
+<td><p>r_timer2_rst</p></td>
+</tr>
+<tr class="row-even"><td><p>[4]</p></td>
+<td><p>R_TIMER2_ARM</p></td>
+<td><p>r_timer2_arm</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim2-cfg">
+<h3>PWM_REG_TIM2_CFG<a class="headerlink" href="#pwm-reg-tim2-cfg" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x84 = 0x50120084</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer2_in_sel",  "bits": 8},
+        {"name": "r_timer2_in_mode",  "bits": 3},
+        {"name": "r_timer2_in_clk",  "bits": 1},
+        {"name": "r_timer2_saw",  "bits": 1},
+        {"bits": 3},
+        {"name": "r_timer2_presc",  "bits": 8},
+        {"bits": 8}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>R_TIMER2_IN_SEL</p></td>
+<td><p>r_timer2_in_sel</p></td>
+</tr>
+<tr class="row-odd"><td><p>[10:8]</p></td>
+<td><p>R_TIMER2_IN_MODE</p></td>
+<td><p>r_timer2_in_mode</p></td>
+</tr>
+<tr class="row-even"><td><p>[11]</p></td>
+<td><p>R_TIMER2_IN_CLK</p></td>
+<td><p>r_timer2_in_clk</p></td>
+</tr>
+<tr class="row-odd"><td><p>[12]</p></td>
+<td><p>R_TIMER2_SAW</p></td>
+<td><p>r_timer2_saw</p></td>
+</tr>
+<tr class="row-even"><td><p>[23:16]</p></td>
+<td><p>R_TIMER2_PRESC</p></td>
+<td><p>r_timer2_presc</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim2-ch0-th">
+<h3>PWM_REG_TIM2_CH0_TH<a class="headerlink" href="#pwm-reg-tim2-ch0-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x8c = 0x5012008c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer2_ch0_th",  "bits": 16},
+        {"name": "r_timer2_ch0_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER2_CH0_TH</p></td>
+<td><p>r_timer2_ch0_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER2_CH0_MODE</p></td>
+<td><p>r_timer2_ch0_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim2-ch1-th">
+<h3>PWM_REG_TIM2_CH1_TH<a class="headerlink" href="#pwm-reg-tim2-ch1-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x90 = 0x50120090</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer2_ch1_th",  "bits": 16},
+        {"name": "r_timer2_ch1_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER2_CH1_TH</p></td>
+<td><p>r_timer2_ch1_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER2_CH1_MODE</p></td>
+<td><p>r_timer2_ch1_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim2-ch2-th">
+<h3>PWM_REG_TIM2_CH2_TH<a class="headerlink" href="#pwm-reg-tim2-ch2-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x94 = 0x50120094</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer2_ch2_th",  "bits": 16},
+        {"name": "r_timer2_ch2_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER2_CH2_TH</p></td>
+<td><p>r_timer2_ch2_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER2_CH2_MODE</p></td>
+<td><p>r_timer2_ch2_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim2-ch3-th">
+<h3>PWM_REG_TIM2_CH3_TH<a class="headerlink" href="#pwm-reg-tim2-ch3-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x98 = 0x50120098</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer2_ch3_th",  "bits": 16},
+        {"name": "r_timer2_ch3_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER2_CH3_TH</p></td>
+<td><p>r_timer2_ch3_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER2_CH3_MODE</p></td>
+<td><p>r_timer2_ch3_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim2-ch0-lut">
+<h3>PWM_REG_TIM2_CH0_LUT<a class="headerlink" href="#pwm-reg-tim2-ch0-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x9c = 0x5012009c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer2_ch0_lut",  "bits": 16},
+        {"name": "r_timer2_ch0_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER2_CH0_LUT</p></td>
+<td><p>r_timer2_ch0_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER2_CH0_FLT</p></td>
+<td><p>r_timer2_ch0_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim2-ch1-lut">
+<h3>PWM_REG_TIM2_CH1_LUT<a class="headerlink" href="#pwm-reg-tim2-ch1-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xa0 = 0x501200a0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer2_ch1_lut",  "bits": 16},
+        {"name": "r_timer2_ch1_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER2_CH1_LUT</p></td>
+<td><p>r_timer2_ch1_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER2_CH1_FLT</p></td>
+<td><p>r_timer2_ch1_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim2-ch2-lut">
+<h3>PWM_REG_TIM2_CH2_LUT<a class="headerlink" href="#pwm-reg-tim2-ch2-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xa4 = 0x501200a4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer2_ch2_lut",  "bits": 16},
+        {"name": "r_timer2_ch2_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER2_CH2_LUT</p></td>
+<td><p>r_timer2_ch2_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER2_CH2_FLT</p></td>
+<td><p>r_timer2_ch2_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim2-ch3-lut">
+<h3>PWM_REG_TIM2_CH3_LUT<a class="headerlink" href="#pwm-reg-tim2-ch3-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xa8 = 0x501200a8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer2_ch3_lut",  "bits": 16},
+        {"name": "r_timer2_ch3_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER2_CH3_LUT</p></td>
+<td><p>r_timer2_ch3_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER2_CH3_FLT</p></td>
+<td><p>r_timer2_ch3_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim3-cmd">
+<h3>PWM_REG_TIM3_CMD<a class="headerlink" href="#pwm-reg-tim3-cmd" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xc0 = 0x501200c0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer3_start",  "bits": 1},
+        {"name": "r_timer3_stop",  "bits": 1},
+        {"name": "r_timer3_update",  "bits": 1},
+        {"name": "r_timer3_rst",  "bits": 1},
+        {"name": "r_timer3_arm",  "bits": 1},
+        {"bits": 27}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>R_TIMER3_START</p></td>
+<td><p>r_timer3_start</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>R_TIMER3_STOP</p></td>
+<td><p>r_timer3_stop</p></td>
+</tr>
+<tr class="row-even"><td><p>[2]</p></td>
+<td><p>R_TIMER3_UPDATE</p></td>
+<td><p>r_timer3_update</p></td>
+</tr>
+<tr class="row-odd"><td><p>[3]</p></td>
+<td><p>R_TIMER3_RST</p></td>
+<td><p>r_timer3_rst</p></td>
+</tr>
+<tr class="row-even"><td><p>[4]</p></td>
+<td><p>R_TIMER3_ARM</p></td>
+<td><p>r_timer3_arm</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim3-cfg">
+<h3>PWM_REG_TIM3_CFG<a class="headerlink" href="#pwm-reg-tim3-cfg" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xc4 = 0x501200c4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer3_in_sel",  "bits": 8},
+        {"name": "r_timer3_in_mode",  "bits": 3},
+        {"name": "r_timer3_in_clk",  "bits": 1},
+        {"name": "r_timer3_saw",  "bits": 1},
+        {"bits": 3},
+        {"name": "r_timer3_presc",  "bits": 8},
+        {"bits": 8}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>R_TIMER3_IN_SEL</p></td>
+<td><p>r_timer3_in_sel</p></td>
+</tr>
+<tr class="row-odd"><td><p>[10:8]</p></td>
+<td><p>R_TIMER3_IN_MODE</p></td>
+<td><p>r_timer3_in_mode</p></td>
+</tr>
+<tr class="row-even"><td><p>[11]</p></td>
+<td><p>R_TIMER3_IN_CLK</p></td>
+<td><p>r_timer3_in_clk</p></td>
+</tr>
+<tr class="row-odd"><td><p>[12]</p></td>
+<td><p>R_TIMER3_SAW</p></td>
+<td><p>r_timer3_saw</p></td>
+</tr>
+<tr class="row-even"><td><p>[23:16]</p></td>
+<td><p>R_TIMER3_PRESC</p></td>
+<td><p>r_timer3_presc</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim3-ch0-th">
+<h3>PWM_REG_TIM3_CH0_TH<a class="headerlink" href="#pwm-reg-tim3-ch0-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xcc = 0x501200cc</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer3_ch0_th",  "bits": 16},
+        {"name": "r_timer3_ch0_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER3_CH0_TH</p></td>
+<td><p>r_timer3_ch0_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER3_CH0_MODE</p></td>
+<td><p>r_timer3_ch0_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim3-ch1-th">
+<h3>PWM_REG_TIM3_CH1_TH<a class="headerlink" href="#pwm-reg-tim3-ch1-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xd0 = 0x501200d0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer3_ch1_th",  "bits": 16},
+        {"name": "r_timer3_ch1_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER3_CH1_TH</p></td>
+<td><p>r_timer3_ch1_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER3_CH1_MODE</p></td>
+<td><p>r_timer3_ch1_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim3-ch2-th">
+<h3>PWM_REG_TIM3_CH2_TH<a class="headerlink" href="#pwm-reg-tim3-ch2-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xd4 = 0x501200d4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer3_ch2_th",  "bits": 16},
+        {"name": "r_timer3_ch2_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER3_CH2_TH</p></td>
+<td><p>r_timer3_ch2_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER3_CH2_MODE</p></td>
+<td><p>r_timer3_ch2_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim3-ch3-th">
+<h3>PWM_REG_TIM3_CH3_TH<a class="headerlink" href="#pwm-reg-tim3-ch3-th" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xd8 = 0x501200d8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer3_ch3_th",  "bits": 16},
+        {"name": "r_timer3_ch3_mode",  "bits": 3},
+        {"bits": 13}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER3_CH3_TH</p></td>
+<td><p>r_timer3_ch3_th</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:16]</p></td>
+<td><p>R_TIMER3_CH3_MODE</p></td>
+<td><p>r_timer3_ch3_mode</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim3-ch0-lut">
+<h3>PWM_REG_TIM3_CH0_LUT<a class="headerlink" href="#pwm-reg-tim3-ch0-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xdc = 0x501200dc</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer3_ch0_lut",  "bits": 16},
+        {"name": "r_timer3_ch0_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER3_CH0_LUT</p></td>
+<td><p>r_timer3_ch0_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER3_CH0_FLT</p></td>
+<td><p>r_timer3_ch0_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim3-ch1-lut">
+<h3>PWM_REG_TIM3_CH1_LUT<a class="headerlink" href="#pwm-reg-tim3-ch1-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xe0 = 0x501200e0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer3_ch1_lut",  "bits": 16},
+        {"name": "r_timer3_ch1_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER3_CH1_LUT</p></td>
+<td><p>r_timer3_ch1_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER3_CH1_FLT</p></td>
+<td><p>r_timer3_ch1_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim3-ch2-lut">
+<h3>PWM_REG_TIM3_CH2_LUT<a class="headerlink" href="#pwm-reg-tim3-ch2-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xe4 = 0x501200e4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer3_ch2_lut",  "bits": 16},
+        {"name": "r_timer3_ch2_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER3_CH2_LUT</p></td>
+<td><p>r_timer3_ch2_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER3_CH2_FLT</p></td>
+<td><p>r_timer3_ch2_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-tim3-ch3-lut">
+<h3>PWM_REG_TIM3_CH3_LUT<a class="headerlink" href="#pwm-reg-tim3-ch3-lut" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0xe8 = 0x501200e8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_timer3_ch3_lut",  "bits": 16},
+        {"name": "r_timer3_ch3_flt",  "bits": 2},
+        {"bits": 14}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>R_TIMER3_CH3_LUT</p></td>
+<td><p>r_timer3_ch3_lut</p></td>
+</tr>
+<tr class="row-odd"><td><p>[17:16]</p></td>
+<td><p>R_TIMER3_CH3_FLT</p></td>
+<td><p>r_timer3_ch3_flt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-event-cfg">
+<h3>PWM_REG_EVENT_CFG<a class="headerlink" href="#pwm-reg-event-cfg" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x100 = 0x50120100</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_event_sel_0",  "bits": 4},
+        {"name": "r_event_sel_1",  "bits": 4},
+        {"name": "r_event_sel_2",  "bits": 4},
+        {"name": "r_event_sel_3",  "bits": 4},
+        {"name": "r_event_en",  "bits": 4},
+        {"bits": 12}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[3:0]</p></td>
+<td><p>R_EVENT_SEL_0</p></td>
+<td><p>r_event_sel_0</p></td>
+</tr>
+<tr class="row-odd"><td><p>[7:4]</p></td>
+<td><p>R_EVENT_SEL_1</p></td>
+<td><p>r_event_sel_1</p></td>
+</tr>
+<tr class="row-even"><td><p>[11:8]</p></td>
+<td><p>R_EVENT_SEL_2</p></td>
+<td><p>r_event_sel_2</p></td>
+</tr>
+<tr class="row-odd"><td><p>[15:12]</p></td>
+<td><p>R_EVENT_SEL_3</p></td>
+<td><p>r_event_sel_3</p></td>
+</tr>
+<tr class="row-even"><td><p>[19:16]</p></td>
+<td><p>R_EVENT_EN</p></td>
+<td><p>r_event_en</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-ch-en">
+<h3>PWM_REG_CH_EN<a class="headerlink" href="#pwm-reg-ch-en" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x104 = 0x50120104</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "r_clk_en",  "bits": 4},
+        {"bits": 28}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[3:0]</p></td>
+<td><p>R_CLK_EN</p></td>
+<td><p>r_clk_en</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-prefd0">
+<h3>PWM_REG_PREFD0<a class="headerlink" href="#pwm-reg-prefd0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x140 = 0x50120140</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "lsclk_prefd_0",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>LSCLK_PREFD_0</p></td>
+<td><p>lsclk_prefd_0</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-prefd1">
+<h3>PWM_REG_PREFD1<a class="headerlink" href="#pwm-reg-prefd1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x144 = 0x50120144</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "lsclk_prefd_1",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>LSCLK_PREFD_1</p></td>
+<td><p>lsclk_prefd_1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-prefd2">
+<h3>PWM_REG_PREFD2<a class="headerlink" href="#pwm-reg-prefd2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x148 = 0x50120148</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "lsclk_prefd_2",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>LSCLK_PREFD_2</p></td>
+<td><p>lsclk_prefd_2</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pwm-reg-prefd3">
+<h3>PWM_REG_PREFD3<a class="headerlink" href="#pwm-reg-prefd3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50120000 + 0x14c = 0x5012014c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv">file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "lsclk_prefd_3",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>LSCLK_PREFD_3</p></td>
+<td><p>lsclk_prefd_3</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Baochip-1x SoC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interrupts.html">Interrupt Controller</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="alu.html">ALU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aes.html">AES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combohash.html">COMBOHASH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pke.html">PKE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trng.html">TRNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scedma.html">SCEDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sce_glbsfr.html">SCE_GLBSFR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="duart.html">DUART</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rbist_wrp.html">RBIST_WRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wdg_intf.html">WDG_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timer_intf.html">TIMER_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evc.html">EVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysctrl.html">SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apb_thru.html">APB_THRU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_bdma.html">BIO_BDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iox.html">IOX</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PWM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sddc.html">SDDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coresub_sramtrm.html">CORESUB_SRAMTRM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mdma.html">MDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfc.html">QFC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mbox_apb.html">MBOX_APB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rrc.html">RRC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gluechain.html">GLUECHAIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">MESH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensorc.html">SENSORC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aobureg.html">AOBUREG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ao_sysctrl.html">AO_SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dkpc.html">DKPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_ctrl.html">UDMA_CTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_0.html">UDMA_UART_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_1.html">UDMA_UART_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_2.html">UDMA_UART_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_3.html">UDMA_UART_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_0.html">UDMA_SPIM_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_1.html">UDMA_SPIM_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_2.html">UDMA_SPIM_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_3.html">UDMA_SPIM_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_0.html">UDMA_I2C_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_1.html">UDMA_I2C_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_2.html">UDMA_I2C_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_3.html">UDMA_I2C_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_sdio.html">UDMA_SDIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2s.html">UDMA_I2S</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_camera.html">UDMA_CAMERA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_filter.html">UDMA_FILTER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_scif.html">UDMA_SCIF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_0.html">UDMA_SPIS_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_1.html">UDMA_SPIS_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_adc.html">UDMA_ADC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo0.html">BIO_FIFO0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo1.html">BIO_FIFO1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo2.html">BIO_FIFO2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo3.html">BIO_FIFO3</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="iox.html" title="previous chapter">IOX</a></li>
+      <li>Next: <a href="sddc.html" title="next chapter">SDDC</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, Baochip, Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/pwm.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

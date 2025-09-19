@@ -1,0 +1,772 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>COMBOHASH &#8212; Baochip-1x SoC  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/default.js"></script>
+    <script src="_static/WaveDrom.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PKE" href="pke.html" />
+    <link rel="prev" title="AES" href="aes.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="combohash">
+<h1>COMBOHASH<a class="headerlink" href="#combohash" title="Permalink to this heading">¶</a></h1>
+<section id="register-listing-for-combohash">
+<h2>Register Listing for COMBOHASH<a class="headerlink" href="#register-listing-for-combohash" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Register</p></th>
+<th class="head"><p>Address</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#combohash-sfr-crfunc"><span class="std std-ref">COMBOHASH_SFR_CRFUNC</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-crfunc"><span class="std std-ref">0x4002b000</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#combohash-sfr-ar"><span class="std std-ref">COMBOHASH_SFR_AR</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-ar"><span class="std std-ref">0x4002b004</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#combohash-sfr-srmfsm"><span class="std std-ref">COMBOHASH_SFR_SRMFSM</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-srmfsm"><span class="std std-ref">0x4002b008</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#combohash-sfr-fr"><span class="std std-ref">COMBOHASH_SFR_FR</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-fr"><span class="std std-ref">0x4002b00c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#combohash-sfr-opt1"><span class="std std-ref">COMBOHASH_SFR_OPT1</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-opt1"><span class="std std-ref">0x4002b010</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#combohash-sfr-opt2"><span class="std std-ref">COMBOHASH_SFR_OPT2</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-opt2"><span class="std std-ref">0x4002b014</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#combohash-sfr-opt3"><span class="std std-ref">COMBOHASH_SFR_OPT3</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-opt3"><span class="std std-ref">0x4002b018</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#combohash-sfr-blkt0"><span class="std std-ref">COMBOHASH_SFR_BLKT0</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-blkt0"><span class="std std-ref">0x4002b01c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#combohash-sfr-segptr-segid-lkey"><span class="std std-ref">COMBOHASH_SFR_SEGPTR_SEGID_LKEY</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-segptr-segid-lkey"><span class="std std-ref">0x4002b020</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#combohash-sfr-segptr-segid-key"><span class="std std-ref">COMBOHASH_SFR_SEGPTR_SEGID_KEY</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-segptr-segid-key"><span class="std std-ref">0x4002b024</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#combohash-sfr-segptr-segid-scrt"><span class="std std-ref">COMBOHASH_SFR_SEGPTR_SEGID_SCRT</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-segptr-segid-scrt"><span class="std std-ref">0x4002b02c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#combohash-sfr-segptr-segid-msg"><span class="std std-ref">COMBOHASH_SFR_SEGPTR_SEGID_MSG</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-segptr-segid-msg"><span class="std std-ref">0x4002b030</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#combohash-sfr-segptr-segid-hout"><span class="std std-ref">COMBOHASH_SFR_SEGPTR_SEGID_HOUT</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-segptr-segid-hout"><span class="std std-ref">0x4002b034</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#combohash-sfr-segptr-segid-hout2"><span class="std std-ref">COMBOHASH_SFR_SEGPTR_SEGID_HOUT2</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-segptr-segid-hout2"><span class="std std-ref">0x4002b03c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#combohash-sfr-keyidx"><span class="std std-ref">COMBOHASH_SFR_KEYIDX</span></a></p></td>
+<td><p><a class="reference internal" href="#combohash-sfr-keyidx"><span class="std std-ref">0x4002b060</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="combohash-sfr-crfunc">
+<h3>COMBOHASH_SFR_CRFUNC<a class="headerlink" href="#combohash-sfr-crfunc" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x0 = 0x4002b000</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_func",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CR_FUNC</p></td>
+<td><p>cr_func read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-ar">
+<h3>COMBOHASH_SFR_AR<a class="headerlink" href="#combohash-sfr-ar" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x4 = 0x4002b004</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_ar",  "type": 4, "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_AR</p></td>
+<td><p>sfr_ar performs action on write of value: 0x5a</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-srmfsm">
+<h3>COMBOHASH_SFR_SRMFSM<a class="headerlink" href="#combohash-sfr-srmfsm" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x8 = 0x4002b008</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "mfsm",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>MFSM</p></td>
+<td><p>mfsm read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-fr">
+<h3>COMBOHASH_SFR_FR<a class="headerlink" href="#combohash-sfr-fr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0xc = 0x4002b00c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "mfsm_done",  "bits": 1},
+        {"name": "hash_done",  "bits": 1},
+        {"name": "chnlo_done",  "bits": 1},
+        {"name": "chnli_done",  "bits": 1},
+        {"name": "chkdone",  "bits": 1},
+        {"name": "chkpass",  "bits": 1},
+        {"name": "chkfail",  "bits": 1},
+        {"bits": 25}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>MFSM_DONE</p></td>
+<td><p>mfsm_done flag register. <cite>1</cite> means event happened, write back <cite>1</cite> in respective
+bit position to clear the flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>HASH_DONE</p></td>
+<td><p>hash_done flag register. <cite>1</cite> means event happened, write back <cite>1</cite> in respective
+bit position to clear the flag</p></td>
+</tr>
+<tr class="row-even"><td><p>[2]</p></td>
+<td><p>CHNLO_DONE</p></td>
+<td><p>chnlo_done flag register. <cite>1</cite> means event happened, write back <cite>1</cite> in respective
+bit position to clear the flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>[3]</p></td>
+<td><p>CHNLI_DONE</p></td>
+<td><p>chnli_done flag register. <cite>1</cite> means event happened, write back <cite>1</cite> in respective
+bit position to clear the flag</p></td>
+</tr>
+<tr class="row-even"><td><p>[4]</p></td>
+<td><p>CHKDONE</p></td>
+<td><p>chkdone flag register. <cite>1</cite> means event happened, write back <cite>1</cite> in respective
+bit position to clear the flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>[5]</p></td>
+<td><p>CHKPASS</p></td>
+<td><p>chkpass flag register. <cite>1</cite> means event happened, write back <cite>1</cite> in respective
+bit position to clear the flag</p></td>
+</tr>
+<tr class="row-even"><td><p>[6]</p></td>
+<td><p>CHKFAIL</p></td>
+<td><p>chkfail flag register. <cite>1</cite> means event happened, write back <cite>1</cite> in respective
+bit position to clear the flag</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-opt1">
+<h3>COMBOHASH_SFR_OPT1<a class="headerlink" href="#combohash-sfr-opt1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x10 = 0x4002b010</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_opt_hashcnt",  "bits": 16},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[15:0]</p></td>
+<td><p>CR_OPT_HASHCNT</p></td>
+<td><p>cr_opt_hashcnt read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-opt2">
+<h3>COMBOHASH_SFR_OPT2<a class="headerlink" href="#combohash-sfr-opt2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x14 = 0x4002b014</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_opt_scrtchk",  "bits": 1},
+        {"name": "cr_opt_ifsob",  "bits": 1},
+        {"name": "cr_opt_ifstart",  "bits": 1},
+        {"name": "opt_schnr1_0",  "bits": 1},
+        {"name": "tsmode",  "bits": 1},
+        {"name": "cr_opt_ifskey",  "bits": 1},
+        {"bits": 26}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>CR_OPT_SCRTCHK</p></td>
+<td><p>cr_opt.scrtchk read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>CR_OPT_IFSOB</p></td>
+<td><p>cr_opt.ifsob read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[2]</p></td>
+<td><p>CR_OPT_IFSTART</p></td>
+<td><p>cr_opt.ifstart read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[3]</p></td>
+<td><p>OPT_SCHNR1_0</p></td>
+<td><p>opt_schnr[1:0] read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[4]</p></td>
+<td><p>TSMODE</p></td>
+<td><p>tsmode read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[5]</p></td>
+<td><p>CR_OPT_IFSKEY</p></td>
+<td><p>cr_opt.ifskey read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-opt3">
+<h3>COMBOHASH_SFR_OPT3<a class="headerlink" href="#combohash-sfr-opt3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x18 = 0x4002b018</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_opt3",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>SFR_OPT3</p></td>
+<td><p>sfr_opt3 read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-blkt0">
+<h3>COMBOHASH_SFR_BLKT0<a class="headerlink" href="#combohash-sfr-blkt0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x1c = 0x4002b01c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_blkt0",  "bits": 8},
+        {"bits": 24}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>SFR_BLKT0</p></td>
+<td><p>sfr_blkt0 read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-segptr-segid-lkey">
+<h3>COMBOHASH_SFR_SEGPTR_SEGID_LKEY<a class="headerlink" href="#combohash-sfr-segptr-segid-lkey" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x20 = 0x4002b020</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "SEGID_LKEY",  "bits": 12},
+        {"bits": 20}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[11:0]</p></td>
+<td><p>SEGID_LKEY</p></td>
+<td><p>cr_segptrstart read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-segptr-segid-key">
+<h3>COMBOHASH_SFR_SEGPTR_SEGID_KEY<a class="headerlink" href="#combohash-sfr-segptr-segid-key" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x24 = 0x4002b024</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "SEGID_KEY",  "bits": 12},
+        {"bits": 20}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[11:0]</p></td>
+<td><p>SEGID_KEY</p></td>
+<td><p>cr_segptrstart read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-segptr-segid-scrt">
+<h3>COMBOHASH_SFR_SEGPTR_SEGID_SCRT<a class="headerlink" href="#combohash-sfr-segptr-segid-scrt" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x2c = 0x4002b02c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "SEGID_SCRT",  "bits": 12},
+        {"bits": 20}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[11:0]</p></td>
+<td><p>SEGID_SCRT</p></td>
+<td><p>cr_segptrstart read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-segptr-segid-msg">
+<h3>COMBOHASH_SFR_SEGPTR_SEGID_MSG<a class="headerlink" href="#combohash-sfr-segptr-segid-msg" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x30 = 0x4002b030</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "SEGID_MSG",  "bits": 12},
+        {"bits": 20}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[11:0]</p></td>
+<td><p>SEGID_MSG</p></td>
+<td><p>cr_segptrstart read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-segptr-segid-hout">
+<h3>COMBOHASH_SFR_SEGPTR_SEGID_HOUT<a class="headerlink" href="#combohash-sfr-segptr-segid-hout" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x34 = 0x4002b034</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "SEGID_HOUT",  "bits": 12},
+        {"bits": 20}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[11:0]</p></td>
+<td><p>SEGID_HOUT</p></td>
+<td><p>cr_segptrstart read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-segptr-segid-hout2">
+<h3>COMBOHASH_SFR_SEGPTR_SEGID_HOUT2<a class="headerlink" href="#combohash-sfr-segptr-segid-hout2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x3c = 0x4002b03c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "SEGID_HOUT2",  "bits": 12},
+        {"bits": 20}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[11:0]</p></td>
+<td><p>SEGID_HOUT2</p></td>
+<td><p>cr_segptrstart read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combohash-sfr-keyidx">
+<h3>COMBOHASH_SFR_KEYIDX<a class="headerlink" href="#combohash-sfr-keyidx" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x4002b000 + 0x60 = 0x4002b060</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv">file:///F:/code/cram-nto/../../modules/crypto_top/rtl/combohasha.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_keyidx",  "bits": 10},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[9:0]</p></td>
+<td><p>SFR_KEYIDX</p></td>
+<td><p>sfr_keyidx read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Baochip-1x SoC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interrupts.html">Interrupt Controller</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="alu.html">ALU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aes.html">AES</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">COMBOHASH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pke.html">PKE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trng.html">TRNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scedma.html">SCEDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sce_glbsfr.html">SCE_GLBSFR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="duart.html">DUART</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rbist_wrp.html">RBIST_WRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wdg_intf.html">WDG_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timer_intf.html">TIMER_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evc.html">EVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysctrl.html">SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apb_thru.html">APB_THRU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_bdma.html">BIO_BDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iox.html">IOX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pwm.html">PWM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sddc.html">SDDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coresub_sramtrm.html">CORESUB_SRAMTRM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mdma.html">MDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfc.html">QFC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mbox_apb.html">MBOX_APB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rrc.html">RRC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gluechain.html">GLUECHAIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">MESH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensorc.html">SENSORC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aobureg.html">AOBUREG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ao_sysctrl.html">AO_SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dkpc.html">DKPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_ctrl.html">UDMA_CTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_0.html">UDMA_UART_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_1.html">UDMA_UART_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_2.html">UDMA_UART_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_3.html">UDMA_UART_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_0.html">UDMA_SPIM_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_1.html">UDMA_SPIM_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_2.html">UDMA_SPIM_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_3.html">UDMA_SPIM_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_0.html">UDMA_I2C_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_1.html">UDMA_I2C_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_2.html">UDMA_I2C_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_3.html">UDMA_I2C_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_sdio.html">UDMA_SDIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2s.html">UDMA_I2S</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_camera.html">UDMA_CAMERA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_filter.html">UDMA_FILTER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_scif.html">UDMA_SCIF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_0.html">UDMA_SPIS_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_1.html">UDMA_SPIS_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_adc.html">UDMA_ADC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo0.html">BIO_FIFO0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo1.html">BIO_FIFO1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo2.html">BIO_FIFO2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo3.html">BIO_FIFO3</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="aes.html" title="previous chapter">AES</a></li>
+      <li>Next: <a href="pke.html" title="next chapter">PKE</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, Baochip, Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/combohash.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

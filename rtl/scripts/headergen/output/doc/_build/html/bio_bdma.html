@@ -1,0 +1,2441 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>BIO_BDMA &#8212; Baochip-1x SoC  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/default.js"></script>
+    <script src="_static/WaveDrom.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="IOX" href="iox.html" />
+    <link rel="prev" title="APB_THRU" href="apb_thru.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="bio-bdma">
+<h1>BIO_BDMA<a class="headerlink" href="#bio-bdma" title="Permalink to this heading">¶</a></h1>
+<section id="register-listing-for-bio-bdma">
+<h2>Register Listing for BIO_BDMA<a class="headerlink" href="#register-listing-for-bio-bdma" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Register</p></th>
+<th class="head"><p>Address</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-ctrl"><span class="std std-ref">BIO_BDMA_SFR_CTRL</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-ctrl"><span class="std std-ref">0x50124000</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-cfginfo"><span class="std std-ref">BIO_BDMA_SFR_CFGINFO</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-cfginfo"><span class="std std-ref">0x50124004</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-config"><span class="std std-ref">BIO_BDMA_SFR_CONFIG</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-config"><span class="std std-ref">0x50124008</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-flevel"><span class="std std-ref">BIO_BDMA_SFR_FLEVEL</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-flevel"><span class="std std-ref">0x5012400c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-txf0"><span class="std std-ref">BIO_BDMA_SFR_TXF0</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-txf0"><span class="std std-ref">0x50124010</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-txf1"><span class="std std-ref">BIO_BDMA_SFR_TXF1</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-txf1"><span class="std std-ref">0x50124014</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-txf2"><span class="std std-ref">BIO_BDMA_SFR_TXF2</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-txf2"><span class="std std-ref">0x50124018</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-txf3"><span class="std std-ref">BIO_BDMA_SFR_TXF3</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-txf3"><span class="std std-ref">0x5012401c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-rxf0"><span class="std std-ref">BIO_BDMA_SFR_RXF0</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-rxf0"><span class="std std-ref">0x50124020</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-rxf1"><span class="std std-ref">BIO_BDMA_SFR_RXF1</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-rxf1"><span class="std std-ref">0x50124024</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-rxf2"><span class="std std-ref">BIO_BDMA_SFR_RXF2</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-rxf2"><span class="std std-ref">0x50124028</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-rxf3"><span class="std std-ref">BIO_BDMA_SFR_RXF3</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-rxf3"><span class="std std-ref">0x5012402c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-elevel"><span class="std std-ref">BIO_BDMA_SFR_ELEVEL</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-elevel"><span class="std std-ref">0x50124030</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-etype"><span class="std std-ref">BIO_BDMA_SFR_ETYPE</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-etype"><span class="std std-ref">0x50124034</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-event-set"><span class="std std-ref">BIO_BDMA_SFR_EVENT_SET</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-event-set"><span class="std std-ref">0x50124038</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-event-clr"><span class="std std-ref">BIO_BDMA_SFR_EVENT_CLR</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-event-clr"><span class="std std-ref">0x5012403c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-event-status"><span class="std std-ref">BIO_BDMA_SFR_EVENT_STATUS</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-event-status"><span class="std std-ref">0x50124040</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-extclock"><span class="std std-ref">BIO_BDMA_SFR_EXTCLOCK</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-extclock"><span class="std std-ref">0x50124044</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-fifo-clr"><span class="std std-ref">BIO_BDMA_SFR_FIFO_CLR</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-fifo-clr"><span class="std std-ref">0x50124048</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-qdiv0"><span class="std std-ref">BIO_BDMA_SFR_QDIV0</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-qdiv0"><span class="std std-ref">0x50124050</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-qdiv1"><span class="std std-ref">BIO_BDMA_SFR_QDIV1</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-qdiv1"><span class="std std-ref">0x50124054</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-qdiv2"><span class="std std-ref">BIO_BDMA_SFR_QDIV2</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-qdiv2"><span class="std std-ref">0x50124058</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-qdiv3"><span class="std std-ref">BIO_BDMA_SFR_QDIV3</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-qdiv3"><span class="std std-ref">0x5012405c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-sync-bypass"><span class="std std-ref">BIO_BDMA_SFR_SYNC_BYPASS</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-sync-bypass"><span class="std std-ref">0x50124060</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-io-oe-inv"><span class="std std-ref">BIO_BDMA_SFR_IO_OE_INV</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-io-oe-inv"><span class="std std-ref">0x50124064</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-io-o-inv"><span class="std std-ref">BIO_BDMA_SFR_IO_O_INV</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-io-o-inv"><span class="std std-ref">0x50124068</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-io-i-inv"><span class="std std-ref">BIO_BDMA_SFR_IO_I_INV</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-io-i-inv"><span class="std std-ref">0x5012406c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-irqmask-0"><span class="std std-ref">BIO_BDMA_SFR_IRQMASK_0</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-irqmask-0"><span class="std std-ref">0x50124070</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-irqmask-1"><span class="std std-ref">BIO_BDMA_SFR_IRQMASK_1</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-irqmask-1"><span class="std std-ref">0x50124074</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-irqmask-2"><span class="std std-ref">BIO_BDMA_SFR_IRQMASK_2</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-irqmask-2"><span class="std std-ref">0x50124078</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-irqmask-3"><span class="std std-ref">BIO_BDMA_SFR_IRQMASK_3</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-irqmask-3"><span class="std std-ref">0x5012407c</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-irq-edge"><span class="std std-ref">BIO_BDMA_SFR_IRQ_EDGE</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-irq-edge"><span class="std std-ref">0x50124080</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-dbg-padout"><span class="std std-ref">BIO_BDMA_SFR_DBG_PADOUT</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dbg-padout"><span class="std std-ref">0x50124084</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-dbg-padoe"><span class="std std-ref">BIO_BDMA_SFR_DBG_PADOE</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dbg-padoe"><span class="std std-ref">0x50124088</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-dbg0"><span class="std std-ref">BIO_BDMA_SFR_DBG0</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dbg0"><span class="std std-ref">0x50124090</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-dbg1"><span class="std std-ref">BIO_BDMA_SFR_DBG1</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dbg1"><span class="std std-ref">0x50124094</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-dbg2"><span class="std std-ref">BIO_BDMA_SFR_DBG2</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dbg2"><span class="std std-ref">0x50124098</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-dbg3"><span class="std std-ref">BIO_BDMA_SFR_DBG3</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dbg3"><span class="std std-ref">0x5012409c</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-mem-gutter"><span class="std std-ref">BIO_BDMA_SFR_MEM_GUTTER</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-mem-gutter"><span class="std std-ref">0x501240a0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-peri-gutter"><span class="std std-ref">BIO_BDMA_SFR_PERI_GUTTER</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-peri-gutter"><span class="std std-ref">0x501240a4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-map-cr-evmap0"><span class="std std-ref">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP0</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-map-cr-evmap0"><span class="std std-ref">0x501240b0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-map-cr-evmap1"><span class="std std-ref">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP1</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-map-cr-evmap1"><span class="std std-ref">0x501240b4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-map-cr-evmap2"><span class="std std-ref">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP2</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-map-cr-evmap2"><span class="std std-ref">0x501240b8</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-map-cr-evmap3"><span class="std std-ref">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP3</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-map-cr-evmap3"><span class="std std-ref">0x501240bc</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-map-cr-evmap4"><span class="std std-ref">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP4</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-map-cr-evmap4"><span class="std std-ref">0x501240c0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-map-cr-evmap5"><span class="std std-ref">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP5</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-map-cr-evmap5"><span class="std std-ref">0x501240c4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-stat-sr-evstat0"><span class="std std-ref">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT0</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-stat-sr-evstat0"><span class="std std-ref">0x501240c8</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-stat-sr-evstat1"><span class="std std-ref">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT1</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-stat-sr-evstat1"><span class="std std-ref">0x501240cc</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-stat-sr-evstat2"><span class="std std-ref">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT2</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-stat-sr-evstat2"><span class="std std-ref">0x501240d0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-stat-sr-evstat3"><span class="std std-ref">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT3</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-stat-sr-evstat3"><span class="std std-ref">0x501240d4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-stat-sr-evstat4"><span class="std std-ref">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT4</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-stat-sr-evstat4"><span class="std std-ref">0x501240d8</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-stat-sr-evstat5"><span class="std std-ref">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT5</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-dmareq-stat-sr-evstat5"><span class="std std-ref">0x501240dc</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-filter-base-0"><span class="std std-ref">BIO_BDMA_SFR_FILTER_BASE_0</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-filter-base-0"><span class="std std-ref">0x501240e0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-filter-bounds-0"><span class="std std-ref">BIO_BDMA_SFR_FILTER_BOUNDS_0</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-filter-bounds-0"><span class="std std-ref">0x501240e4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-filter-base-1"><span class="std std-ref">BIO_BDMA_SFR_FILTER_BASE_1</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-filter-base-1"><span class="std std-ref">0x501240e8</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-filter-bounds-1"><span class="std std-ref">BIO_BDMA_SFR_FILTER_BOUNDS_1</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-filter-bounds-1"><span class="std std-ref">0x501240ec</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-filter-base-2"><span class="std std-ref">BIO_BDMA_SFR_FILTER_BASE_2</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-filter-base-2"><span class="std std-ref">0x501240f0</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-filter-bounds-2"><span class="std std-ref">BIO_BDMA_SFR_FILTER_BOUNDS_2</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-filter-bounds-2"><span class="std std-ref">0x501240f4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bio-bdma-sfr-filter-base-3"><span class="std std-ref">BIO_BDMA_SFR_FILTER_BASE_3</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-filter-base-3"><span class="std std-ref">0x501240f8</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bio-bdma-sfr-filter-bounds-3"><span class="std std-ref">BIO_BDMA_SFR_FILTER_BOUNDS_3</span></a></p></td>
+<td><p><a class="reference internal" href="#bio-bdma-sfr-filter-bounds-3"><span class="std std-ref">0x501240fc</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="bio-bdma-sfr-ctrl">
+<h3>BIO_BDMA_SFR_CTRL<a class="headerlink" href="#bio-bdma-sfr-ctrl" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x0 = 0x50124000</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "en",  "bits": 4},
+        {"name": "restart",  "bits": 4},
+        {"name": "clkdiv_restart",  "bits": 4},
+        {"bits": 20}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[3:0]</p></td>
+<td><p>EN</p></td>
+<td><p>en read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[7:4]</p></td>
+<td><p>RESTART</p></td>
+<td><p>restart read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[11:8]</p></td>
+<td><p>CLKDIV_RESTART</p></td>
+<td><p>clkdiv_restart read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-cfginfo">
+<h3>BIO_BDMA_SFR_CFGINFO<a class="headerlink" href="#bio-bdma-sfr-cfginfo" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x4 = 0x50124004</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "constant0",  "bits": 8},
+        {"name": "constant1",  "bits": 8},
+        {"name": "constant2",  "bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>CONSTANT0</p></td>
+<td><p>constant value of 8</p></td>
+</tr>
+<tr class="row-odd"><td><p>[15:8]</p></td>
+<td><p>CONSTANT1</p></td>
+<td><p>constant value of 4</p></td>
+</tr>
+<tr class="row-even"><td><p>[31:16]</p></td>
+<td><p>CONSTANT2</p></td>
+<td><p>constant value of 4096</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-config">
+<h3>BIO_BDMA_SFR_CONFIG<a class="headerlink" href="#bio-bdma-sfr-config" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x8 = 0x50124008</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "snap_output_to_which",  "bits": 2},
+        {"name": "snap_output_to_quantum",  "bits": 1},
+        {"name": "snap_input_to_which",  "bits": 2},
+        {"name": "snap_input_to_quantum",  "bits": 1},
+        {"name": "disable_filter_peri",  "bits": 1},
+        {"name": "disable_filter_mem",  "bits": 1},
+        {"name": "clocking_mode",  "bits": 2},
+        {"bits": 22}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[1:0]</p></td>
+<td><p>SNAP_OUTPUT_TO_WHICH</p></td>
+<td><p>snap_output_to_which read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[2]</p></td>
+<td><p>SNAP_OUTPUT_TO_QUANTUM</p></td>
+<td><p>snap_output_to_quantum read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[4:3]</p></td>
+<td><p>SNAP_INPUT_TO_WHICH</p></td>
+<td><p>snap_input_to_which read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[5]</p></td>
+<td><p>SNAP_INPUT_TO_QUANTUM</p></td>
+<td><p>snap_input_to_quantum read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[6]</p></td>
+<td><p>DISABLE_FILTER_PERI</p></td>
+<td><p>disable_filter_peri read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[7]</p></td>
+<td><p>DISABLE_FILTER_MEM</p></td>
+<td><p>disable_filter_mem read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[9:8]</p></td>
+<td><p>CLOCKING_MODE</p></td>
+<td><p>clocking_mode read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-flevel">
+<h3>BIO_BDMA_SFR_FLEVEL<a class="headerlink" href="#bio-bdma-sfr-flevel" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xc = 0x5012400c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "pclk_regfifo_level0",  "bits": 4},
+        {"name": "pclk_regfifo_level1",  "bits": 4},
+        {"name": "pclk_regfifo_level2",  "bits": 4},
+        {"name": "pclk_regfifo_level3",  "bits": 4},
+        {"bits": 16}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[3:0]</p></td>
+<td><p>PCLK_REGFIFO_LEVEL0</p></td>
+<td><p>pclk_regfifo_level[0] read only status register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[7:4]</p></td>
+<td><p>PCLK_REGFIFO_LEVEL1</p></td>
+<td><p>pclk_regfifo_level[1] read only status register</p></td>
+</tr>
+<tr class="row-even"><td><p>[11:8]</p></td>
+<td><p>PCLK_REGFIFO_LEVEL2</p></td>
+<td><p>pclk_regfifo_level[2] read only status register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[15:12]</p></td>
+<td><p>PCLK_REGFIFO_LEVEL3</p></td>
+<td><p>pclk_regfifo_level[3] read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-txf0">
+<h3>BIO_BDMA_SFR_TXF0<a class="headerlink" href="#bio-bdma-sfr-txf0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x10 = 0x50124010</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fdin",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>FDIN</p></td>
+<td><p>fdin read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-txf1">
+<h3>BIO_BDMA_SFR_TXF1<a class="headerlink" href="#bio-bdma-sfr-txf1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x14 = 0x50124014</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fdin",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>FDIN</p></td>
+<td><p>fdin read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-txf2">
+<h3>BIO_BDMA_SFR_TXF2<a class="headerlink" href="#bio-bdma-sfr-txf2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x18 = 0x50124018</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fdin",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>FDIN</p></td>
+<td><p>fdin read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-txf3">
+<h3>BIO_BDMA_SFR_TXF3<a class="headerlink" href="#bio-bdma-sfr-txf3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x1c = 0x5012401c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fdin",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>FDIN</p></td>
+<td><p>fdin read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-rxf0">
+<h3>BIO_BDMA_SFR_RXF0<a class="headerlink" href="#bio-bdma-sfr-rxf0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x20 = 0x50124020</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fdout",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>FDOUT</p></td>
+<td><p>fdout read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-rxf1">
+<h3>BIO_BDMA_SFR_RXF1<a class="headerlink" href="#bio-bdma-sfr-rxf1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x24 = 0x50124024</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fdout",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>FDOUT</p></td>
+<td><p>fdout read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-rxf2">
+<h3>BIO_BDMA_SFR_RXF2<a class="headerlink" href="#bio-bdma-sfr-rxf2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x28 = 0x50124028</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fdout",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>FDOUT</p></td>
+<td><p>fdout read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-rxf3">
+<h3>BIO_BDMA_SFR_RXF3<a class="headerlink" href="#bio-bdma-sfr-rxf3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x2c = 0x5012402c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fdout",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>FDOUT</p></td>
+<td><p>fdout read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-elevel">
+<h3>BIO_BDMA_SFR_ELEVEL<a class="headerlink" href="#bio-bdma-sfr-elevel" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x30 = 0x50124030</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fifo_event_level0",  "bits": 4},
+        {"name": "fifo_event_level1",  "bits": 4},
+        {"name": "fifo_event_level2",  "bits": 4},
+        {"name": "fifo_event_level3",  "bits": 4},
+        {"name": "fifo_event_level4",  "bits": 4},
+        {"name": "fifo_event_level5",  "bits": 4},
+        {"name": "fifo_event_level6",  "bits": 4},
+        {"name": "fifo_event_level7",  "bits": 4}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[3:0]</p></td>
+<td><p>FIFO_EVENT_LEVEL0</p></td>
+<td><p>fifo_event_level[0] read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[7:4]</p></td>
+<td><p>FIFO_EVENT_LEVEL1</p></td>
+<td><p>fifo_event_level[1] read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[11:8]</p></td>
+<td><p>FIFO_EVENT_LEVEL2</p></td>
+<td><p>fifo_event_level[2] read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[15:12]</p></td>
+<td><p>FIFO_EVENT_LEVEL3</p></td>
+<td><p>fifo_event_level[3] read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[19:16]</p></td>
+<td><p>FIFO_EVENT_LEVEL4</p></td>
+<td><p>fifo_event_level[4] read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[23:20]</p></td>
+<td><p>FIFO_EVENT_LEVEL5</p></td>
+<td><p>fifo_event_level[5] read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[27:24]</p></td>
+<td><p>FIFO_EVENT_LEVEL6</p></td>
+<td><p>fifo_event_level[6] read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[31:28]</p></td>
+<td><p>FIFO_EVENT_LEVEL7</p></td>
+<td><p>fifo_event_level[7] read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-etype">
+<h3>BIO_BDMA_SFR_ETYPE<a class="headerlink" href="#bio-bdma-sfr-etype" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x34 = 0x50124034</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "fifo_event_lt_mask",  "bits": 8},
+        {"name": "fifo_event_eq_mask",  "bits": 8},
+        {"name": "fifo_event_gt_mask",  "bits": 8},
+        {"bits": 8}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[7:0]</p></td>
+<td><p>FIFO_EVENT_LT_MASK</p></td>
+<td><p>fifo_event_lt_mask read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[15:8]</p></td>
+<td><p>FIFO_EVENT_EQ_MASK</p></td>
+<td><p>fifo_event_eq_mask read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[23:16]</p></td>
+<td><p>FIFO_EVENT_GT_MASK</p></td>
+<td><p>fifo_event_gt_mask read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-event-set">
+<h3>BIO_BDMA_SFR_EVENT_SET<a class="headerlink" href="#bio-bdma-sfr-event-set" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x38 = 0x50124038</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_event_set",  "bits": 24},
+        {"bits": 8}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[23:0]</p></td>
+<td><p>SFR_EVENT_SET</p></td>
+<td><p>sfr_event_set read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-event-clr">
+<h3>BIO_BDMA_SFR_EVENT_CLR<a class="headerlink" href="#bio-bdma-sfr-event-clr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x3c = 0x5012403c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_event_clr",  "bits": 24},
+        {"bits": 8}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[23:0]</p></td>
+<td><p>SFR_EVENT_CLR</p></td>
+<td><p>sfr_event_clr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-event-status">
+<h3>BIO_BDMA_SFR_EVENT_STATUS<a class="headerlink" href="#bio-bdma-sfr-event-status" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x40 = 0x50124040</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_event_status",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_EVENT_STATUS</p></td>
+<td><p>sfr_event_status read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-extclock">
+<h3>BIO_BDMA_SFR_EXTCLOCK<a class="headerlink" href="#bio-bdma-sfr-extclock" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x44 = 0x50124044</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "use_extclk",  "bits": 4},
+        {"name": "extclk_gpio_0",  "bits": 5},
+        {"name": "extclk_gpio_1",  "bits": 5},
+        {"name": "extclk_gpio_2",  "bits": 5},
+        {"name": "extclk_gpio_3",  "bits": 5},
+        {"bits": 8}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[3:0]</p></td>
+<td><p>USE_EXTCLK</p></td>
+<td><p>use_extclk read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[8:4]</p></td>
+<td><p>EXTCLK_GPIO_0</p></td>
+<td><p>extclk_gpio_0 read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[13:9]</p></td>
+<td><p>EXTCLK_GPIO_1</p></td>
+<td><p>extclk_gpio_1 read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[18:14]</p></td>
+<td><p>EXTCLK_GPIO_2</p></td>
+<td><p>extclk_gpio_2 read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[23:19]</p></td>
+<td><p>EXTCLK_GPIO_3</p></td>
+<td><p>extclk_gpio_3 read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-fifo-clr">
+<h3>BIO_BDMA_SFR_FIFO_CLR<a class="headerlink" href="#bio-bdma-sfr-fifo-clr" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x48 = 0x50124048</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_fifo_clr",  "bits": 4},
+        {"bits": 28}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[3:0]</p></td>
+<td><p>SFR_FIFO_CLR</p></td>
+<td><p>sfr_fifo_clr read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-qdiv0">
+<h3>BIO_BDMA_SFR_QDIV0<a class="headerlink" href="#bio-bdma-sfr-qdiv0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x50 = 0x50124050</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "unused_div",  "bits": 1},
+        {"name": "div_frac",  "bits": 1},
+        {"name": "div_int",  "bits": 1},
+        {"bits": 29}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>UNUSED_DIV</p></td>
+<td><p>unused_div read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>DIV_FRAC</p></td>
+<td><p>div_frac read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[2]</p></td>
+<td><p>DIV_INT</p></td>
+<td><p>div_int read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-qdiv1">
+<h3>BIO_BDMA_SFR_QDIV1<a class="headerlink" href="#bio-bdma-sfr-qdiv1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x54 = 0x50124054</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "unused_div",  "bits": 1},
+        {"name": "div_frac",  "bits": 1},
+        {"name": "div_int",  "bits": 1},
+        {"bits": 29}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>UNUSED_DIV</p></td>
+<td><p>unused_div read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>DIV_FRAC</p></td>
+<td><p>div_frac read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[2]</p></td>
+<td><p>DIV_INT</p></td>
+<td><p>div_int read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-qdiv2">
+<h3>BIO_BDMA_SFR_QDIV2<a class="headerlink" href="#bio-bdma-sfr-qdiv2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x58 = 0x50124058</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "unused_div",  "bits": 1},
+        {"name": "div_frac",  "bits": 1},
+        {"name": "div_int",  "bits": 1},
+        {"bits": 29}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>UNUSED_DIV</p></td>
+<td><p>unused_div read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>DIV_FRAC</p></td>
+<td><p>div_frac read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[2]</p></td>
+<td><p>DIV_INT</p></td>
+<td><p>div_int read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-qdiv3">
+<h3>BIO_BDMA_SFR_QDIV3<a class="headerlink" href="#bio-bdma-sfr-qdiv3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x5c = 0x5012405c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "unused_div",  "bits": 1},
+        {"name": "div_frac",  "bits": 1},
+        {"name": "div_int",  "bits": 1},
+        {"bits": 29}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>UNUSED_DIV</p></td>
+<td><p>unused_div read/write control register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>DIV_FRAC</p></td>
+<td><p>div_frac read/write control register</p></td>
+</tr>
+<tr class="row-even"><td><p>[2]</p></td>
+<td><p>DIV_INT</p></td>
+<td><p>div_int read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-sync-bypass">
+<h3>BIO_BDMA_SFR_SYNC_BYPASS<a class="headerlink" href="#bio-bdma-sfr-sync-bypass" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x60 = 0x50124060</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_sync_bypass",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_SYNC_BYPASS</p></td>
+<td><p>sfr_sync_bypass read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-io-oe-inv">
+<h3>BIO_BDMA_SFR_IO_OE_INV<a class="headerlink" href="#bio-bdma-sfr-io-oe-inv" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x64 = 0x50124064</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_io_oe_inv",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_IO_OE_INV</p></td>
+<td><p>sfr_io_oe_inv read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-io-o-inv">
+<h3>BIO_BDMA_SFR_IO_O_INV<a class="headerlink" href="#bio-bdma-sfr-io-o-inv" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x68 = 0x50124068</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_io_o_inv",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_IO_O_INV</p></td>
+<td><p>sfr_io_o_inv read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-io-i-inv">
+<h3>BIO_BDMA_SFR_IO_I_INV<a class="headerlink" href="#bio-bdma-sfr-io-i-inv" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x6c = 0x5012406c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_io_i_inv",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_IO_I_INV</p></td>
+<td><p>sfr_io_i_inv read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-irqmask-0">
+<h3>BIO_BDMA_SFR_IRQMASK_0<a class="headerlink" href="#bio-bdma-sfr-irqmask-0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x70 = 0x50124070</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_irqmask_0",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_IRQMASK_0</p></td>
+<td><p>sfr_irqmask_0 read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-irqmask-1">
+<h3>BIO_BDMA_SFR_IRQMASK_1<a class="headerlink" href="#bio-bdma-sfr-irqmask-1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x74 = 0x50124074</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_irqmask_1",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_IRQMASK_1</p></td>
+<td><p>sfr_irqmask_1 read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-irqmask-2">
+<h3>BIO_BDMA_SFR_IRQMASK_2<a class="headerlink" href="#bio-bdma-sfr-irqmask-2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x78 = 0x50124078</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_irqmask_2",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_IRQMASK_2</p></td>
+<td><p>sfr_irqmask_2 read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-irqmask-3">
+<h3>BIO_BDMA_SFR_IRQMASK_3<a class="headerlink" href="#bio-bdma-sfr-irqmask-3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x7c = 0x5012407c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_irqmask_3",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_IRQMASK_3</p></td>
+<td><p>sfr_irqmask_3 read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-irq-edge">
+<h3>BIO_BDMA_SFR_IRQ_EDGE<a class="headerlink" href="#bio-bdma-sfr-irq-edge" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x80 = 0x50124080</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_irq_edge",  "bits": 4},
+        {"bits": 28}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[3:0]</p></td>
+<td><p>SFR_IRQ_EDGE</p></td>
+<td><p>sfr_irq_edge read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dbg-padout">
+<h3>BIO_BDMA_SFR_DBG_PADOUT<a class="headerlink" href="#bio-bdma-sfr-dbg-padout" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x84 = 0x50124084</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_dbg_padout",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_DBG_PADOUT</p></td>
+<td><p>sfr_dbg_padout read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dbg-padoe">
+<h3>BIO_BDMA_SFR_DBG_PADOE<a class="headerlink" href="#bio-bdma-sfr-dbg-padoe" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x88 = 0x50124088</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_dbg_padoe",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_DBG_PADOE</p></td>
+<td><p>sfr_dbg_padoe read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dbg0">
+<h3>BIO_BDMA_SFR_DBG0<a class="headerlink" href="#bio-bdma-sfr-dbg0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x90 = 0x50124090</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "dbg_pc",  "bits": 1},
+        {"name": "trap",  "bits": 1},
+        {"bits": 30}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>DBG_PC</p></td>
+<td><p>dbg_pc read only status register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>TRAP</p></td>
+<td><p>trap read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dbg1">
+<h3>BIO_BDMA_SFR_DBG1<a class="headerlink" href="#bio-bdma-sfr-dbg1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x94 = 0x50124094</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "dbg_pc",  "bits": 1},
+        {"name": "trap",  "bits": 1},
+        {"bits": 30}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>DBG_PC</p></td>
+<td><p>dbg_pc read only status register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>TRAP</p></td>
+<td><p>trap read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dbg2">
+<h3>BIO_BDMA_SFR_DBG2<a class="headerlink" href="#bio-bdma-sfr-dbg2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x98 = 0x50124098</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "dbg_pc",  "bits": 1},
+        {"name": "trap",  "bits": 1},
+        {"bits": 30}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>DBG_PC</p></td>
+<td><p>dbg_pc read only status register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>TRAP</p></td>
+<td><p>trap read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dbg3">
+<h3>BIO_BDMA_SFR_DBG3<a class="headerlink" href="#bio-bdma-sfr-dbg3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0x9c = 0x5012409c</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "dbg_pc",  "bits": 1},
+        {"name": "trap",  "bits": 1},
+        {"bits": 30}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 4 }, "options": {"hspace": 400, "bits": 32, "lanes": 4}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p>DBG_PC</p></td>
+<td><p>dbg_pc read only status register</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1]</p></td>
+<td><p>TRAP</p></td>
+<td><p>trap read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-mem-gutter">
+<h3>BIO_BDMA_SFR_MEM_GUTTER<a class="headerlink" href="#bio-bdma-sfr-mem-gutter" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xa0 = 0x501240a0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_mem_gutter",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_MEM_GUTTER</p></td>
+<td><p>sfr_mem_gutter read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-peri-gutter">
+<h3>BIO_BDMA_SFR_PERI_GUTTER<a class="headerlink" href="#bio-bdma-sfr-peri-gutter" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xa4 = 0x501240a4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sfr_peri_gutter",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SFR_PERI_GUTTER</p></td>
+<td><p>sfr_peri_gutter read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dmareq-map-cr-evmap0">
+<h3>BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP0<a class="headerlink" href="#bio-bdma-sfr-dmareq-map-cr-evmap0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xb0 = 0x501240b0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_evmap0",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CR_EVMAP0</p></td>
+<td><p>cr_evmap read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dmareq-map-cr-evmap1">
+<h3>BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP1<a class="headerlink" href="#bio-bdma-sfr-dmareq-map-cr-evmap1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xb4 = 0x501240b4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_evmap1",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CR_EVMAP1</p></td>
+<td><p>cr_evmap read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dmareq-map-cr-evmap2">
+<h3>BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP2<a class="headerlink" href="#bio-bdma-sfr-dmareq-map-cr-evmap2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xb8 = 0x501240b8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_evmap2",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CR_EVMAP2</p></td>
+<td><p>cr_evmap read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dmareq-map-cr-evmap3">
+<h3>BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP3<a class="headerlink" href="#bio-bdma-sfr-dmareq-map-cr-evmap3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xbc = 0x501240bc</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_evmap3",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CR_EVMAP3</p></td>
+<td><p>cr_evmap read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dmareq-map-cr-evmap4">
+<h3>BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP4<a class="headerlink" href="#bio-bdma-sfr-dmareq-map-cr-evmap4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xc0 = 0x501240c0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_evmap4",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CR_EVMAP4</p></td>
+<td><p>cr_evmap read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dmareq-map-cr-evmap5">
+<h3>BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP5<a class="headerlink" href="#bio-bdma-sfr-dmareq-map-cr-evmap5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xc4 = 0x501240c4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "cr_evmap5",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>CR_EVMAP5</p></td>
+<td><p>cr_evmap read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dmareq-stat-sr-evstat0">
+<h3>BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT0<a class="headerlink" href="#bio-bdma-sfr-dmareq-stat-sr-evstat0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xc8 = 0x501240c8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sr_evstat0",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SR_EVSTAT0</p></td>
+<td><p>sr_evstat read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dmareq-stat-sr-evstat1">
+<h3>BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT1<a class="headerlink" href="#bio-bdma-sfr-dmareq-stat-sr-evstat1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xcc = 0x501240cc</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sr_evstat1",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SR_EVSTAT1</p></td>
+<td><p>sr_evstat read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dmareq-stat-sr-evstat2">
+<h3>BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT2<a class="headerlink" href="#bio-bdma-sfr-dmareq-stat-sr-evstat2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xd0 = 0x501240d0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sr_evstat2",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SR_EVSTAT2</p></td>
+<td><p>sr_evstat read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dmareq-stat-sr-evstat3">
+<h3>BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT3<a class="headerlink" href="#bio-bdma-sfr-dmareq-stat-sr-evstat3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xd4 = 0x501240d4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sr_evstat3",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SR_EVSTAT3</p></td>
+<td><p>sr_evstat read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dmareq-stat-sr-evstat4">
+<h3>BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT4<a class="headerlink" href="#bio-bdma-sfr-dmareq-stat-sr-evstat4" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xd8 = 0x501240d8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sr_evstat4",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SR_EVSTAT4</p></td>
+<td><p>sr_evstat read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-dmareq-stat-sr-evstat5">
+<h3>BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT5<a class="headerlink" href="#bio-bdma-sfr-dmareq-stat-sr-evstat5" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xdc = 0x501240dc</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "sr_evstat5",  "bits": 32}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[31:0]</p></td>
+<td><p>SR_EVSTAT5</p></td>
+<td><p>sr_evstat read only status register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-filter-base-0">
+<h3>BIO_BDMA_SFR_FILTER_BASE_0<a class="headerlink" href="#bio-bdma-sfr-filter-base-0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xe0 = 0x501240e0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "filter_base",  "bits": 20},
+        {"bits": 12}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[19:0]</p></td>
+<td><p>FILTER_BASE</p></td>
+<td><p>filter_base read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-filter-bounds-0">
+<h3>BIO_BDMA_SFR_FILTER_BOUNDS_0<a class="headerlink" href="#bio-bdma-sfr-filter-bounds-0" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xe4 = 0x501240e4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "filter_bounds",  "bits": 20},
+        {"bits": 12}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[19:0]</p></td>
+<td><p>FILTER_BOUNDS</p></td>
+<td><p>filter_bounds read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-filter-base-1">
+<h3>BIO_BDMA_SFR_FILTER_BASE_1<a class="headerlink" href="#bio-bdma-sfr-filter-base-1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xe8 = 0x501240e8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "filter_base",  "bits": 20},
+        {"bits": 12}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[19:0]</p></td>
+<td><p>FILTER_BASE</p></td>
+<td><p>filter_base read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-filter-bounds-1">
+<h3>BIO_BDMA_SFR_FILTER_BOUNDS_1<a class="headerlink" href="#bio-bdma-sfr-filter-bounds-1" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xec = 0x501240ec</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "filter_bounds",  "bits": 20},
+        {"bits": 12}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[19:0]</p></td>
+<td><p>FILTER_BOUNDS</p></td>
+<td><p>filter_bounds read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-filter-base-2">
+<h3>BIO_BDMA_SFR_FILTER_BASE_2<a class="headerlink" href="#bio-bdma-sfr-filter-base-2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xf0 = 0x501240f0</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "filter_base",  "bits": 20},
+        {"bits": 12}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[19:0]</p></td>
+<td><p>FILTER_BASE</p></td>
+<td><p>filter_base read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-filter-bounds-2">
+<h3>BIO_BDMA_SFR_FILTER_BOUNDS_2<a class="headerlink" href="#bio-bdma-sfr-filter-bounds-2" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xf4 = 0x501240f4</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "filter_bounds",  "bits": 20},
+        {"bits": 12}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[19:0]</p></td>
+<td><p>FILTER_BOUNDS</p></td>
+<td><p>filter_bounds read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-filter-base-3">
+<h3>BIO_BDMA_SFR_FILTER_BASE_3<a class="headerlink" href="#bio-bdma-sfr-filter-base-3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xf8 = 0x501240f8</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "filter_base",  "bits": 20},
+        {"bits": 12}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[19:0]</p></td>
+<td><p>FILTER_BASE</p></td>
+<td><p>filter_base read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bio-bdma-sfr-filter-bounds-3">
+<h3>BIO_BDMA_SFR_FILTER_BOUNDS_3<a class="headerlink" href="#bio-bdma-sfr-filter-bounds-3" title="Permalink to this heading">¶</a></h3>
+<p><cite>Address: 0x50124000 + 0xfc = 0x501240fc</cite></p>
+<blockquote>
+<div><p>See <a class="reference external" href="file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv">file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv</a></p>
+
+<div style="overflow-x:auto">
+<script type="WaveDrom">
+{
+    "reg": [
+        {"name": "filter_bounds",  "bits": 20},
+        {"bits": 12}
+    ], "config": {"hspace": 400, "bits": 32, "lanes": 1 }, "options": {"hspace": 400, "bits": 32, "lanes": 1}
+}
+</script>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[19:0]</p></td>
+<td><p>FILTER_BOUNDS</p></td>
+<td><p>filter_bounds read/write control register</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Baochip-1x SoC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interrupts.html">Interrupt Controller</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="alu.html">ALU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aes.html">AES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combohash.html">COMBOHASH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pke.html">PKE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trng.html">TRNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scedma.html">SCEDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sce_glbsfr.html">SCE_GLBSFR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="duart.html">DUART</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rbist_wrp.html">RBIST_WRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wdg_intf.html">WDG_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timer_intf.html">TIMER_INTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evc.html">EVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysctrl.html">SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apb_thru.html">APB_THRU</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BIO_BDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iox.html">IOX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pwm.html">PWM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sddc.html">SDDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coresub_sramtrm.html">CORESUB_SRAMTRM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mdma.html">MDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfc.html">QFC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mbox_apb.html">MBOX_APB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rrc.html">RRC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gluechain.html">GLUECHAIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">MESH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensorc.html">SENSORC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aobureg.html">AOBUREG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ao_sysctrl.html">AO_SYSCTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dkpc.html">DKPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_ctrl.html">UDMA_CTRL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_0.html">UDMA_UART_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_1.html">UDMA_UART_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_2.html">UDMA_UART_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_uart_3.html">UDMA_UART_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_0.html">UDMA_SPIM_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_1.html">UDMA_SPIM_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_2.html">UDMA_SPIM_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spim_3.html">UDMA_SPIM_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_0.html">UDMA_I2C_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_1.html">UDMA_I2C_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_2.html">UDMA_I2C_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2c_3.html">UDMA_I2C_3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_sdio.html">UDMA_SDIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_i2s.html">UDMA_I2S</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_camera.html">UDMA_CAMERA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_filter.html">UDMA_FILTER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_scif.html">UDMA_SCIF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_0.html">UDMA_SPIS_0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_spis_1.html">UDMA_SPIS_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udma_adc.html">UDMA_ADC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo0.html">BIO_FIFO0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo1.html">BIO_FIFO1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo2.html">BIO_FIFO2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bio_fifo3.html">BIO_FIFO3</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="apb_thru.html" title="previous chapter">APB_THRU</a></li>
+      <li>Next: <a href="iox.html" title="next chapter">IOX</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, Baochip, Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/bio_bdma.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
