@@ -1,7 +1,7 @@
 # Baochip-1x Documentation
 
 The Baochip-1x is documented using the "book" template. The documentation source
-is in the [src](./src/) directory.
+is in the [src](./src/) directory. The compiled docs can be viewed on [github pages](https://baochip.github.io/baochip-1x/)
 
 ## Requirements
 

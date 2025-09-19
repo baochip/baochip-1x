@@ -4,12 +4,15 @@ This repo contains the open source elements of the Baochip 1x.
 
 ## Code Organization
 
-- `rtl/` contains the open-sourced elements of the taped out RTL.
+- `docs` contains source for the [Baochip 1x book](https://baochip.github.io/baochip-1x/).
+- `rtl` contains the open-sourced elements of the taped out RTL.
 - `Vexriscv` contains the source configuration for the Vex CPU
 - `scripts` contains helper scripts for repo management
 - `verilate` contains the files to simulate a subsetted RTL analog of the Baochip-1x using verilator.
 - `arty` contains the files to build Arty-A7 targeted SoC stubs. Useful for debugging and developing future extensions.
 
+Auto-extracted documentation based on the RTL in this repo have been uploaded to [peripherals](https://ci.betrusted.io/bao1x/)
+[core cluster](https://ci.betrusted.io/bao1x-cpu/).
 
 ## Releases, tags and branches
 
