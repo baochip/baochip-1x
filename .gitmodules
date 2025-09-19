@@ -1,3 +1,9 @@
 [submodule "deps/litex"]
 	path = deps/litex
 	url = https://github.com/buncram/litex.git
+[submodule "deps/verilog-axi"]
+	path = deps/verilog-axi
+	url = https://github.com/buncram/verilog-axi.git
+[submodule "deps/migen"]
+	path = deps/migen
+	url = https://github.com/buncram/migen.git
