@@ -39,7 +39,8 @@ AES_SFR_CRFUNC
 
 `Address: 0x4002d000 + 0x0 = 0x4002d000`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L140 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L140>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_CRFUNC
@@ -63,7 +64,8 @@ AES_SFR_AR
 
 `Address: 0x4002d000 + 0x4 = 0x4002d004`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L141 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L141>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_AR
@@ -86,7 +88,8 @@ AES_SFR_SRMFSM
 
 `Address: 0x4002d000 + 0x8 = 0x4002d008`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_SRMFSM
@@ -110,7 +113,8 @@ AES_SFR_FR
 
 `Address: 0x4002d000 + 0xc = 0x4002d00c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L143 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L143>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_FR
@@ -147,7 +151,8 @@ AES_SFR_OPT
 
 `Address: 0x4002d000 + 0x10 = 0x4002d010`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L145 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L145>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_OPT
@@ -177,7 +182,8 @@ AES_SFR_OPT1
 
 `Address: 0x4002d000 + 0x14 = 0x4002d014`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L146 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L146>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_OPT1
@@ -201,7 +207,8 @@ AES_SFR_OPTLTX
 
 `Address: 0x4002d000 + 0x18 = 0x4002d018`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L147 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L147>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_OPTLTX
@@ -225,7 +232,8 @@ AES_SFR_MASKSEED
 
 `Address: 0x4002d000 + 0x20 = 0x4002d020`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L150 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L150>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_MASKSEED
@@ -248,7 +256,8 @@ AES_SFR_MASKSEEDAR
 
 `Address: 0x4002d000 + 0x24 = 0x4002d024`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L151 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L151>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_MASKSEEDAR
@@ -271,7 +280,8 @@ AES_SFR_SEGPTR_PTRID_IV
 
 `Address: 0x4002d000 + 0x30 = 0x4002d030`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L153 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L153>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_SEGPTR_PTRID_IV
@@ -295,7 +305,8 @@ AES_SFR_SEGPTR_PTRID_AKEY
 
 `Address: 0x4002d000 + 0x34 = 0x4002d034`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L153 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L153>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_SEGPTR_PTRID_AKEY
@@ -319,7 +330,8 @@ AES_SFR_SEGPTR_PTRID_AIB
 
 `Address: 0x4002d000 + 0x38 = 0x4002d038`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L153 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L153>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_SEGPTR_PTRID_AIB
@@ -343,7 +355,8 @@ AES_SFR_SEGPTR_PTRID_AOB
 
 `Address: 0x4002d000 + 0x3c = 0x4002d03c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/aes.sv
+    See `aes.sv#L153 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/aes.sv#L153>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AES_SFR_SEGPTR_PTRID_AOB

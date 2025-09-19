@@ -55,7 +55,8 @@ SCE_GLBSFR_SFR_SUBEN
 
 `Address: 0x40028000 + 0x4 = 0x40028004`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L76 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L76>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_SUBEN
@@ -79,7 +80,8 @@ SCE_GLBSFR_SFR_APBS
 
 `Address: 0x40028000 + 0x8 = 0x40028008`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L77 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L77>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_APBS
@@ -103,7 +105,8 @@ SCE_GLBSFR_SFR_SRBUSY
 
 `Address: 0x40028000 + 0x10 = 0x40028010`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L79 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L79>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_SRBUSY
@@ -127,7 +130,8 @@ SCE_GLBSFR_SFR_FRDONE
 
 `Address: 0x40028000 + 0x14 = 0x40028014`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L80 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L80>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_FRDONE
@@ -152,7 +156,8 @@ SCE_GLBSFR_SFR_FRERR
 
 `Address: 0x40028000 + 0x18 = 0x40028018`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L81 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L81>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_FRERR
@@ -177,7 +182,8 @@ SCE_GLBSFR_SFR_ARCLR
 
 `Address: 0x40028000 + 0x1c = 0x4002801c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L84 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L84>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_ARCLR
@@ -200,7 +206,8 @@ SCE_GLBSFR_SFR_TICKCYC
 
 `Address: 0x40028000 + 0x20 = 0x40028020`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L116 <https://github.com/baochip/baochip-1x/blob/main/rtl/mo
+    dules/crypto_top/rtl/sce_glbsfra.sv#L116>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_TICKCYC
@@ -224,7 +231,8 @@ SCE_GLBSFR_SFR_TICKCNT
 
 `Address: 0x40028000 + 0x24 = 0x40028024`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L117 <https://github.com/baochip/baochip-1x/blob/main/rtl/mo
+    dules/crypto_top/rtl/sce_glbsfra.sv#L117>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_TICKCNT
@@ -247,7 +255,8 @@ SCE_GLBSFR_SFR_FFEN
 
 `Address: 0x40028000 + 0x30 = 0x40028030`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L90 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L90>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_FFEN
@@ -271,7 +280,8 @@ SCE_GLBSFR_SFR_FFCLR
 
 `Address: 0x40028000 + 0x34 = 0x40028034`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L96 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L96>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_FFCLR
@@ -294,7 +304,8 @@ SCE_GLBSFR_SFR_FFCNT_SR_FF0
 
 `Address: 0x40028000 + 0x40 = 0x40028040`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L91 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L91>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_FFCNT_SR_FF0
@@ -318,7 +329,8 @@ SCE_GLBSFR_SFR_FFCNT_SR_FF1
 
 `Address: 0x40028000 + 0x44 = 0x40028044`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L91 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L91>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_FFCNT_SR_FF1
@@ -342,7 +354,8 @@ SCE_GLBSFR_SFR_FFCNT_SR_FF2
 
 `Address: 0x40028000 + 0x48 = 0x40028048`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L91 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L91>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_FFCNT_SR_FF2
@@ -366,7 +379,8 @@ SCE_GLBSFR_SFR_FFCNT_SR_FF3
 
 `Address: 0x40028000 + 0x4c = 0x4002804c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L91 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L91>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_FFCNT_SR_FF3
@@ -390,7 +404,8 @@ SCE_GLBSFR_SFR_FFCNT_SR_FF4
 
 `Address: 0x40028000 + 0x50 = 0x40028050`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L91 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L91>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_FFCNT_SR_FF4
@@ -414,7 +429,8 @@ SCE_GLBSFR_SFR_FFCNT_SR_FF5
 
 `Address: 0x40028000 + 0x54 = 0x40028054`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L91 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L91>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_FFCNT_SR_FF5
@@ -438,7 +454,8 @@ SCE_GLBSFR_SFR_FRACERR
 
 `Address: 0x40028000 + 0x60 = 0x40028060`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L86 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/crypto_top/rtl/sce_glbsfra.sv#L86>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_FRACERR
@@ -463,7 +480,8 @@ SCE_GLBSFR_SFR_TS_SR_TS0
 
 `Address: 0x40028000 + 0xe0 = 0x400280e0`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L100 <https://github.com/baochip/baochip-1x/blob/main/rtl/mo
+    dules/crypto_top/rtl/sce_glbsfra.sv#L100>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_TS_SR_TS0
@@ -486,7 +504,8 @@ SCE_GLBSFR_SFR_TS_SR_TS1
 
 `Address: 0x40028000 + 0xe4 = 0x400280e4`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L100 <https://github.com/baochip/baochip-1x/blob/main/rtl/mo
+    dules/crypto_top/rtl/sce_glbsfra.sv#L100>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_TS_SR_TS1
@@ -509,7 +528,8 @@ SCE_GLBSFR_SFR_TS_SR_TS2
 
 `Address: 0x40028000 + 0xe8 = 0x400280e8`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L100 <https://github.com/baochip/baochip-1x/blob/main/rtl/mo
+    dules/crypto_top/rtl/sce_glbsfra.sv#L100>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_TS_SR_TS2
@@ -532,7 +552,8 @@ SCE_GLBSFR_SFR_TS_SR_TS3
 
 `Address: 0x40028000 + 0xec = 0x400280ec`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/sce_glbsfra.sv
+    See `sce_glbsfra.sv#L100 <https://github.com/baochip/baochip-1x/blob/main/rtl/mo
+    dules/crypto_top/rtl/sce_glbsfra.sv#L100>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCE_GLBSFR_SFR_TS_SR_TS3

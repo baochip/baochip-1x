@@ -43,7 +43,8 @@ TRNG_SFR_CRSRC
 
 `Address: 0x4002e000 + 0x0 = 0x4002e000`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L105 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L105>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_CRSRC
@@ -67,7 +68,8 @@ TRNG_SFR_CRANA
 
 `Address: 0x4002e000 + 0x4 = 0x4002e004`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L106 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L106>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_CRANA
@@ -91,7 +93,8 @@ TRNG_SFR_PP
 
 `Address: 0x4002e000 + 0x8 = 0x4002e008`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L107 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L107>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_PP
@@ -115,7 +118,8 @@ TRNG_SFR_OPT
 
 `Address: 0x4002e000 + 0xc = 0x4002e00c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L108 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L108>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_OPT
@@ -139,7 +143,8 @@ TRNG_SFR_SR
 
 `Address: 0x4002e000 + 0x10 = 0x4002e010`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L114 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L114>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_SR
@@ -162,7 +167,8 @@ TRNG_SFR_AR_GEN
 
 `Address: 0x4002e000 + 0x14 = 0x4002e014`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L112 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L112>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_AR_GEN
@@ -185,7 +191,8 @@ TRNG_SFR_FR
 
 `Address: 0x4002e000 + 0x18 = 0x4002e018`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L115 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L115>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_FR
@@ -210,7 +217,8 @@ TRNG_SFR_DRPSZ
 
 `Address: 0x4002e000 + 0x20 = 0x4002e020`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L239 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L239>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_DRPSZ
@@ -233,7 +241,8 @@ TRNG_SFR_DRGEN
 
 `Address: 0x4002e000 + 0x24 = 0x4002e024`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L240 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L240>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_DRGEN
@@ -256,7 +265,8 @@ TRNG_SFR_DRRESEED
 
 `Address: 0x4002e000 + 0x28 = 0x4002e028`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L241 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L241>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_DRRESEED
@@ -279,7 +289,8 @@ TRNG_SFR_BUF
 
 `Address: 0x4002e000 + 0x30 = 0x4002e030`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L242 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L242>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_BUF
@@ -302,7 +313,8 @@ TRNG_SFR_CHAIN_RNGCHAINEN0
 
 `Address: 0x4002e000 + 0x40 = 0x4002e040`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L117 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L117>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_CHAIN_RNGCHAINEN0
@@ -325,7 +337,8 @@ TRNG_SFR_CHAIN_RNGCHAINEN1
 
 `Address: 0x4002e000 + 0x44 = 0x4002e044`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L117 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L117>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_CHAIN_RNGCHAINEN1
@@ -348,7 +361,8 @@ TRNG_SFR_CHAIN_RNGCHAINEN2
 
 `Address: 0x4002e000 + 0x48 = 0x4002e048`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L117 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L117>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_CHAIN_RNGCHAINEN2
@@ -371,7 +385,8 @@ TRNG_SFR_CHAIN_RNGCHAINEN3
 
 `Address: 0x4002e000 + 0x4c = 0x4002e04c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/trng.sv
+    See `trng.sv#L117 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/c
+    rypto_top/rtl/trng.sv#L117>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: TRNG_SFR_CHAIN_RNGCHAINEN3

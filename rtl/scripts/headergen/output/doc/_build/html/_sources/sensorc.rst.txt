@@ -51,7 +51,8 @@ SENSORC_SFR_VDMASK0
 
 `Address: 0x40053000 + 0x0 = 0x40053000`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L63 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L63>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDMASK0
@@ -75,7 +76,8 @@ SENSORC_SFR_VDMASK1
 
 `Address: 0x40053000 + 0x4 = 0x40053004`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L64 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L64>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDMASK1
@@ -99,7 +101,8 @@ SENSORC_SFR_VDSR
 
 `Address: 0x40053000 + 0x8 = 0x40053008`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L65 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L65>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDSR
@@ -123,7 +126,8 @@ SENSORC_SFR_VDFR
 
 `Address: 0x40053000 + 0xc = 0x4005300c`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L66 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L66>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDFR
@@ -148,7 +152,8 @@ SENSORC_SFR_LDMASK
 
 `Address: 0x40053000 + 0x10 = 0x40053010`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L68 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L68>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_LDMASK
@@ -172,7 +177,8 @@ SENSORC_SFR_LDSR
 
 `Address: 0x40053000 + 0x14 = 0x40053014`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L69 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L69>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_LDSR
@@ -196,7 +202,8 @@ SENSORC_SFR_LDCFG
 
 `Address: 0x40053000 + 0x18 = 0x40053018`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L70 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L70>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_LDCFG
@@ -220,7 +227,8 @@ SENSORC_SFR_VDCFG_CR_VDCFG0
 
 `Address: 0x40053000 + 0x20 = 0x40053020`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L72 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L72>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDCFG_CR_VDCFG0
@@ -244,7 +252,8 @@ SENSORC_SFR_VDCFG_CR_VDCFG1
 
 `Address: 0x40053000 + 0x24 = 0x40053024`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L72 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L72>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDCFG_CR_VDCFG1
@@ -268,7 +277,8 @@ SENSORC_SFR_VDCFG_CR_VDCFG2
 
 `Address: 0x40053000 + 0x28 = 0x40053028`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L72 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L72>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDCFG_CR_VDCFG2
@@ -292,7 +302,8 @@ SENSORC_SFR_VDCFG_CR_VDCFG3
 
 `Address: 0x40053000 + 0x2c = 0x4005302c`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L72 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L72>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDCFG_CR_VDCFG3
@@ -316,7 +327,8 @@ SENSORC_SFR_VDCFG_CR_VDCFG4
 
 `Address: 0x40053000 + 0x30 = 0x40053030`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L72 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L72>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDCFG_CR_VDCFG4
@@ -340,7 +352,8 @@ SENSORC_SFR_VDCFG_CR_VDCFG5
 
 `Address: 0x40053000 + 0x34 = 0x40053034`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L72 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L72>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDCFG_CR_VDCFG5
@@ -364,7 +377,8 @@ SENSORC_SFR_VDCFG_CR_VDCFG6
 
 `Address: 0x40053000 + 0x38 = 0x40053038`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L72 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L72>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDCFG_CR_VDCFG6
@@ -388,7 +402,8 @@ SENSORC_SFR_VDCFG_CR_VDCFG7
 
 `Address: 0x40053000 + 0x3c = 0x4005303c`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L72 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L72>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDCFG_CR_VDCFG7
@@ -412,7 +427,8 @@ SENSORC_SFR_VDIP_ENA
 
 `Address: 0x40053000 + 0x40 = 0x40053040`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L74 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L74>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDIP_ENA
@@ -436,7 +452,8 @@ SENSORC_SFR_VDIP_TEST
 
 `Address: 0x40053000 + 0x44 = 0x40053044`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L75 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L75>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_VDIP_TEST
@@ -460,7 +477,8 @@ SENSORC_SFR_LDIP_TEST
 
 `Address: 0x40053000 + 0x48 = 0x40053048`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L77 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L77>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_LDIP_TEST
@@ -484,7 +502,8 @@ SENSORC_SFR_LDIP_FD
 
 `Address: 0x40053000 + 0x4c = 0x4005304c`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/sensorc.sv
+    See `sensorc.sv#L78 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /sec/rtl/sensorc.sv#L78>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SENSORC_SFR_LDIP_FD

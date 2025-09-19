@@ -37,7 +37,8 @@ ALU_SFR_CRFUNC
 
 `Address: 0x4002f000 + 0x0 = 0x4002f000`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_alu/rtl/alu.sv
+    See `alu.sv#L136 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_alu/rtl/alu.sv#L136>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: ALU_SFR_CRFUNC
@@ -61,7 +62,8 @@ ALU_SFR_AR
 
 `Address: 0x4002f000 + 0x4 = 0x4002f004`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_alu/rtl/alu.sv
+    See `alu.sv#L137 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_alu/rtl/alu.sv#L137>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: ALU_SFR_AR
@@ -84,7 +86,8 @@ ALU_SFR_SRMFSM
 
 `Address: 0x4002f000 + 0x8 = 0x4002f008`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_alu/rtl/alu.sv
+    See `alu.sv#L138 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_alu/rtl/alu.sv#L138>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: ALU_SFR_SRMFSM
@@ -111,7 +114,8 @@ ALU_SFR_FR
 
 `Address: 0x4002f000 + 0xc = 0x4002f00c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_alu/rtl/alu.sv
+    See `alu.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_alu/rtl/alu.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: ALU_SFR_FR
@@ -156,7 +160,8 @@ ALU_SFR_CRDIVLEN
 
 `Address: 0x4002f000 + 0x10 = 0x4002f010`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_alu/rtl/alu.sv
+    See `alu.sv#L141 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_alu/rtl/alu.sv#L141>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: ALU_SFR_CRDIVLEN
@@ -180,7 +185,8 @@ ALU_SFR_SRDIVLEN
 
 `Address: 0x4002f000 + 0x14 = 0x4002f014`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_alu/rtl/alu.sv
+    See `alu.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_alu/rtl/alu.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: ALU_SFR_SRDIVLEN
@@ -204,7 +210,8 @@ ALU_SFR_OPT
 
 `Address: 0x4002f000 + 0x18 = 0x4002f018`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_alu/rtl/alu.sv
+    See `alu.sv#L143 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_alu/rtl/alu.sv#L143>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: ALU_SFR_OPT
@@ -227,7 +234,8 @@ ALU_SFR_OPTLTX
 
 `Address: 0x4002f000 + 0x1c = 0x4002f01c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_alu/rtl/alu.sv
+    See `alu.sv#L144 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_alu/rtl/alu.sv#L144>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: ALU_SFR_OPTLTX
@@ -251,7 +259,8 @@ ALU_SFR_SEGPTR_CR_SEGCFG0
 
 `Address: 0x4002f000 + 0x30 = 0x4002f030`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_alu/rtl/alu.sv
+    See `alu.sv#L146 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_alu/rtl/alu.sv#L146>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: ALU_SFR_SEGPTR_CR_SEGCFG0
@@ -275,7 +284,8 @@ ALU_SFR_SEGPTR_CR_SEGCFG1
 
 `Address: 0x4002f000 + 0x34 = 0x4002f034`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_alu/rtl/alu.sv
+    See `alu.sv#L146 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_alu/rtl/alu.sv#L146>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: ALU_SFR_SEGPTR_CR_SEGCFG1
@@ -299,7 +309,8 @@ ALU_SFR_SEGPTR_CR_SEGCFG2
 
 `Address: 0x4002f000 + 0x38 = 0x4002f038`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_alu/rtl/alu.sv
+    See `alu.sv#L146 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_alu/rtl/alu.sv#L146>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: ALU_SFR_SEGPTR_CR_SEGCFG2
@@ -323,7 +334,8 @@ ALU_SFR_SEGPTR_CR_SEGCFG3
 
 `Address: 0x4002f000 + 0x3c = 0x4002f03c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_alu/rtl/alu.sv
+    See `alu.sv#L146 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_alu/rtl/alu.sv#L146>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: ALU_SFR_SEGPTR_CR_SEGCFG3

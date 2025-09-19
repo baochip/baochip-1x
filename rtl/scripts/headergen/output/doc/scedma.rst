@@ -53,7 +53,8 @@ SCEDMA_SFR_SCHSTART_AR
 
 `Address: 0x40029000 + 0x0 = 0x40029000`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L95 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/
+    crypto_top/rtl/scedma.sv#L95>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_SCHSTART_AR
@@ -76,7 +77,8 @@ SCEDMA_SFR_XCH_FUNC
 
 `Address: 0x40029000 + 0x10 = 0x40029010`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L97 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/
+    crypto_top/rtl/scedma.sv#L97>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_XCH_FUNC
@@ -100,7 +102,8 @@ SCEDMA_SFR_XCH_OPT
 
 `Address: 0x40029000 + 0x14 = 0x40029014`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L98 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/
+    crypto_top/rtl/scedma.sv#L98>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_XCH_OPT
@@ -124,7 +127,8 @@ SCEDMA_SFR_XCH_AXSTART
 
 `Address: 0x40029000 + 0x18 = 0x40029018`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L99 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/
+    crypto_top/rtl/scedma.sv#L99>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_XCH_AXSTART
@@ -147,7 +151,8 @@ SCEDMA_SFR_XCH_SEGID
 
 `Address: 0x40029000 + 0x1c = 0x4002901c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L100 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L100>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_XCH_SEGID
@@ -171,7 +176,8 @@ SCEDMA_SFR_XCH_SEGSTART
 
 `Address: 0x40029000 + 0x20 = 0x40029020`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L101 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L101>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_XCH_SEGSTART
@@ -195,7 +201,8 @@ SCEDMA_SFR_XCH_TRANSIZE
 
 `Address: 0x40029000 + 0x24 = 0x40029024`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L102 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L102>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_XCH_TRANSIZE
@@ -219,7 +226,8 @@ SCEDMA_SFR_SCH_FUNC
 
 `Address: 0x40029000 + 0x30 = 0x40029030`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L104 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L104>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_SCH_FUNC
@@ -243,7 +251,8 @@ SCEDMA_SFR_SCH_OPT
 
 `Address: 0x40029000 + 0x34 = 0x40029034`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L105 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L105>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_SCH_OPT
@@ -267,7 +276,8 @@ SCEDMA_SFR_SCH_AXSTART
 
 `Address: 0x40029000 + 0x38 = 0x40029038`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L106 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L106>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_SCH_AXSTART
@@ -290,7 +300,8 @@ SCEDMA_SFR_SCH_SEGID
 
 `Address: 0x40029000 + 0x3c = 0x4002903c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L107 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L107>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_SCH_SEGID
@@ -314,7 +325,8 @@ SCEDMA_SFR_SCH_SEGSTART
 
 `Address: 0x40029000 + 0x40 = 0x40029040`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L108 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L108>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_SCH_SEGSTART
@@ -338,7 +350,8 @@ SCEDMA_SFR_SCH_TRANSIZE
 
 `Address: 0x40029000 + 0x44 = 0x40029044`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L109 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L109>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_SCH_TRANSIZE
@@ -362,7 +375,8 @@ SCEDMA_SFR_ICH_OPT
 
 `Address: 0x40029000 + 0x50 = 0x40029050`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L111 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L111>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_ICH_OPT
@@ -386,7 +400,8 @@ SCEDMA_SFR_ICH_SEGID
 
 `Address: 0x40029000 + 0x54 = 0x40029054`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L112 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L112>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_ICH_SEGID
@@ -410,7 +425,8 @@ SCEDMA_SFR_ICH_RPSTART
 
 `Address: 0x40029000 + 0x58 = 0x40029058`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L113 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L113>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_ICH_RPSTART
@@ -434,7 +450,8 @@ SCEDMA_SFR_ICH_WPSTART
 
 `Address: 0x40029000 + 0x5c = 0x4002905c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L114 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L114>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_ICH_WPSTART
@@ -458,7 +475,8 @@ SCEDMA_SFR_ICH_TRANSIZE
 
 `Address: 0x40029000 + 0x60 = 0x40029060`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L115 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L115>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_ICH_TRANSIZE
@@ -482,7 +500,8 @@ SCEDMA_SFR_WDATABYPASS_MODE
 
 `Address: 0x40029000 + 0x70 = 0x40029070`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L117 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L117>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_WDATABYPASS_MODE
@@ -506,7 +525,8 @@ SCEDMA_SFR_WDATABYPASS_DATA
 
 `Address: 0x40029000 + 0x74 = 0x40029074`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/scedma.sv
+    See `scedma.sv#L118 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /crypto_top/rtl/scedma.sv#L118>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SCEDMA_SFR_WDATABYPASS_DATA

@@ -35,7 +35,8 @@ RRC_SFR_RRCCR
 
 `Address: 0x40000000 + 0x0 = 0x40000000`
 
-    See file:///F:/code/cram-nto/../../modules/rrc/rtl/rrc.sv
+    See `rrc.sv#L261 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/rr
+    c/rtl/rrc.sv#L261>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RRC_SFR_RRCCR
@@ -58,7 +59,8 @@ RRC_SFR_RRCFD
 
 `Address: 0x40000000 + 0x4 = 0x40000004`
 
-    See file:///F:/code/cram-nto/../../modules/rrc/rtl/rrc.sv
+    See `rrc.sv#L262 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/rr
+    c/rtl/rrc.sv#L262>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RRC_SFR_RRCFD
@@ -82,7 +84,8 @@ RRC_SFR_RRCSR
 
 `Address: 0x40000000 + 0x8 = 0x40000008`
 
-    See file:///F:/code/cram-nto/../../modules/rrc/rtl/rrc.sv
+    See `rrc.sv#L263 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/rr
+    c/rtl/rrc.sv#L263>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RRC_SFR_RRCSR
@@ -106,7 +109,8 @@ RRC_SFR_RRCFR
 
 `Address: 0x40000000 + 0xc = 0x4000000c`
 
-    See file:///F:/code/cram-nto/../../modules/rrc/rtl/rrc.sv
+    See `rrc.sv#L264 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/rr
+    c/rtl/rrc.sv#L264>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RRC_SFR_RRCFR
@@ -131,7 +135,8 @@ RRC_SFR_RRCSR_SET0
 
 `Address: 0x40000000 + 0x14 = 0x40000014`
 
-    See file:///F:/code/cram-nto/../../modules/rrc/rtl/rrc.sv
+    See `rrc.sv#L266 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/rr
+    c/rtl/rrc.sv#L266>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RRC_SFR_RRCSR_SET0
@@ -154,7 +159,8 @@ RRC_SFR_RRCSR_SET1
 
 `Address: 0x40000000 + 0x18 = 0x40000018`
 
-    See file:///F:/code/cram-nto/../../modules/rrc/rtl/rrc.sv
+    See `rrc.sv#L267 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/rr
+    c/rtl/rrc.sv#L267>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RRC_SFR_RRCSR_SET1
@@ -177,7 +183,8 @@ RRC_SFR_RRCSR_RST0
 
 `Address: 0x40000000 + 0x1c = 0x4000001c`
 
-    See file:///F:/code/cram-nto/../../modules/rrc/rtl/rrc.sv
+    See `rrc.sv#L268 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/rr
+    c/rtl/rrc.sv#L268>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RRC_SFR_RRCSR_RST0
@@ -200,7 +207,8 @@ RRC_SFR_RRCSR_RST1
 
 `Address: 0x40000000 + 0x20 = 0x40000020`
 
-    See file:///F:/code/cram-nto/../../modules/rrc/rtl/rrc.sv
+    See `rrc.sv#L269 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/rr
+    c/rtl/rrc.sv#L269>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RRC_SFR_RRCSR_RST1
@@ -223,7 +231,8 @@ RRC_SFR_RRCSR_RD0
 
 `Address: 0x40000000 + 0x24 = 0x40000024`
 
-    See file:///F:/code/cram-nto/../../modules/rrc/rtl/rrc.sv
+    See `rrc.sv#L270 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/rr
+    c/rtl/rrc.sv#L270>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RRC_SFR_RRCSR_RD0
@@ -246,7 +255,8 @@ RRC_SFR_RRCSR_RD1
 
 `Address: 0x40000000 + 0x28 = 0x40000028`
 
-    See file:///F:/code/cram-nto/../../modules/rrc/rtl/rrc.sv
+    See `rrc.sv#L271 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/rr
+    c/rtl/rrc.sv#L271>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RRC_SFR_RRCSR_RD1
@@ -269,7 +279,8 @@ RRC_SFR_RRCAR
 
 `Address: 0x40000000 + 0xf0 = 0x400000f0`
 
-    See file:///F:/code/cram-nto/../../modules/rrc/rtl/rrc.sv
+    See `rrc.sv#L273 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/rr
+    c/rtl/rrc.sv#L273>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RRC_SFR_RRCAR

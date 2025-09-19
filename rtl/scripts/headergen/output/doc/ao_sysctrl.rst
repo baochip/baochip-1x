@@ -53,7 +53,8 @@ AO_SYSCTRL_CR_CR
 
 `Address: 0x40060000 + 0x0 = 0x40060000`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L367 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L367>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_CR_CR
@@ -83,7 +84,8 @@ AO_SYSCTRL_CR_CLK1HZFD
 
 `Address: 0x40060000 + 0x4 = 0x40060004`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L368 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L368>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_CR_CLK1HZFD
@@ -107,7 +109,8 @@ AO_SYSCTRL_CR_WKUPMASK
 
 `Address: 0x40060000 + 0x8 = 0x40060008`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L369 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L369>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_CR_WKUPMASK
@@ -134,7 +137,8 @@ AO_SYSCTRL_CR_RSTCRMASK
 
 `Address: 0x40060000 + 0xc = 0x4006000c`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L370 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L370>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_CR_RSTCRMASK
@@ -158,7 +162,8 @@ AO_SYSCTRL_SFR_PMUCSR
 
 `Address: 0x40060000 + 0x10 = 0x40060010`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L376 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L376>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_PMUCSR
@@ -182,7 +187,8 @@ AO_SYSCTRL_SFR_PMUCRLP
 
 `Address: 0x40060000 + 0x14 = 0x40060014`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L373 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L373>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_PMUCRLP
@@ -206,7 +212,8 @@ AO_SYSCTRL_SFR_PMUCRPD
 
 `Address: 0x40060000 + 0x18 = 0x40060018`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L374 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L374>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_PMUCRPD
@@ -230,7 +237,8 @@ AO_SYSCTRL_SFR_PMUDFTSR
 
 `Address: 0x40060000 + 0x1c = 0x4006001c`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L377 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L377>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_PMUDFTSR
@@ -254,7 +262,8 @@ AO_SYSCTRL_SFR_PMUTRM0CSR
 
 `Address: 0x40060000 + 0x20 = 0x40060020`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L383 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L383>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_PMUTRM0CSR
@@ -277,7 +286,8 @@ AO_SYSCTRL_SFR_PMUTRM1CSR
 
 `Address: 0x40060000 + 0x24 = 0x40060024`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L384 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L384>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_PMUTRM1CSR
@@ -301,7 +311,8 @@ AO_SYSCTRL_SFR_PMUTRMLP0
 
 `Address: 0x40060000 + 0x28 = 0x40060028`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L381 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L381>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_PMUTRMLP0
@@ -324,7 +335,8 @@ AO_SYSCTRL_SFR_PMUTRMLP1
 
 `Address: 0x40060000 + 0x2c = 0x4006002c`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L382 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L382>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_PMUTRMLP1
@@ -348,7 +360,8 @@ AO_SYSCTRL_SFR_OSCCR
 
 `Address: 0x40060000 + 0x34 = 0x40060034`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L386 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L386>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_OSCCR
@@ -384,7 +397,8 @@ AO_SYSCTRL_SFR_PMUSR
 
 `Address: 0x40060000 + 0x38 = 0x40060038`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L387 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L387>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_PMUSR
@@ -408,7 +422,8 @@ AO_SYSCTRL_SFR_PMUFR
 
 `Address: 0x40060000 + 0x3c = 0x4006003c`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L388 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L388>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_PMUFR
@@ -433,7 +448,8 @@ AO_SYSCTRL_SFR_AOFR
 
 `Address: 0x40060000 + 0x40 = 0x40060040`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L390 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L390>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_AOFR
@@ -458,7 +474,8 @@ AO_SYSCTRL_SFR_PMUPDAR
 
 `Address: 0x40060000 + 0x44 = 0x40060044`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L391 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L391>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_PMUPDAR
@@ -481,7 +498,8 @@ AO_SYSCTRL_AR_AOPERI_CLRINT
 
 `Address: 0x40060000 + 0x50 = 0x40060050`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L393 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L393>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_AR_AOPERI_CLRINT
@@ -504,7 +522,8 @@ AO_SYSCTRL_SFR_IOX
 
 `Address: 0x40060000 + 0x60 = 0x40060060`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L400 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L400>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_IOX
@@ -528,7 +547,8 @@ AO_SYSCTRL_SFR_AOPADPU
 
 `Address: 0x40060000 + 0x64 = 0x40060064`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/ao_sysctrl.sv
+    See `ao_sysctrl.sv#L401 <https://github.com/baochip/baochip-1x/blob/main/rtl/mod
+    ules/ao/rtl/ao_sysctrl.sv#L401>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AO_SYSCTRL_SFR_AOPADPU

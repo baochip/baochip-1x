@@ -37,7 +37,8 @@ UDMA_SPIS_0_REG_RX_SADDR
 
 `Address: 0x50112000 + 0x0 = 0x50112000`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_spis_reg.sv
+    See `udma_spis_reg.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/ifsub/rtl/udma_spis_reg.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIS_0_REG_RX_SADDR
@@ -61,7 +62,8 @@ UDMA_SPIS_0_REG_RX_SIZE
 
 `Address: 0x50112000 + 0x4 = 0x50112004`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_spis_reg.sv
+    See `udma_spis_reg.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/ifsub/rtl/udma_spis_reg.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIS_0_REG_RX_SIZE
@@ -85,7 +87,8 @@ UDMA_SPIS_0_REG_RX_CFG
 
 `Address: 0x50112000 + 0x8 = 0x50112008`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_spis_reg.sv
+    See `udma_spis_reg.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/ifsub/rtl/udma_spis_reg.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIS_0_REG_RX_CFG
@@ -117,7 +120,8 @@ UDMA_SPIS_0_REG_TX_SADDR
 
 `Address: 0x50112000 + 0x10 = 0x50112010`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_spis_reg.sv
+    See `udma_spis_reg.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/ifsub/rtl/udma_spis_reg.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIS_0_REG_TX_SADDR
@@ -141,7 +145,8 @@ UDMA_SPIS_0_REG_TX_SIZE
 
 `Address: 0x50112000 + 0x14 = 0x50112014`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_spis_reg.sv
+    See `udma_spis_reg.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/ifsub/rtl/udma_spis_reg.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIS_0_REG_TX_SIZE
@@ -165,7 +170,8 @@ UDMA_SPIS_0_REG_TX_CFG
 
 `Address: 0x50112000 + 0x18 = 0x50112018`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_spis_reg.sv
+    See `udma_spis_reg.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/ifsub/rtl/udma_spis_reg.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIS_0_REG_TX_CFG
@@ -197,7 +203,8 @@ UDMA_SPIS_0_REG_SPIS_SETUP
 
 `Address: 0x50112000 + 0x20 = 0x50112020`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_spis_reg.sv
+    See `udma_spis_reg.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/ifsub/rtl/udma_spis_reg.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIS_0_REG_SPIS_SETUP
@@ -224,7 +231,8 @@ UDMA_SPIS_0_REG_SEOT_CNT
 
 `Address: 0x50112000 + 0x24 = 0x50112024`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_spis_reg.sv
+    See `udma_spis_reg.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/ifsub/rtl/udma_spis_reg.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIS_0_REG_SEOT_CNT
@@ -248,7 +256,8 @@ UDMA_SPIS_0_REG_SPIS_IRQ_EN
 
 `Address: 0x50112000 + 0x28 = 0x50112028`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_spis_reg.sv
+    See `udma_spis_reg.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/ifsub/rtl/udma_spis_reg.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIS_0_REG_SPIS_IRQ_EN
@@ -272,7 +281,8 @@ UDMA_SPIS_0_REG_SPIS_RXCNT
 
 `Address: 0x50112000 + 0x2c = 0x5011202c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_spis_reg.sv
+    See `udma_spis_reg.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/ifsub/rtl/udma_spis_reg.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIS_0_REG_SPIS_RXCNT
@@ -296,7 +306,8 @@ UDMA_SPIS_0_REG_SPIS_TXCNT
 
 `Address: 0x50112000 + 0x30 = 0x50112030`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_spis_reg.sv
+    See `udma_spis_reg.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/ifsub/rtl/udma_spis_reg.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIS_0_REG_SPIS_TXCNT
@@ -320,7 +331,8 @@ UDMA_SPIS_0_REG_SPIS_DMCNT
 
 `Address: 0x50112000 + 0x34 = 0x50112034`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_spis_reg.sv
+    See `udma_spis_reg.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/ifsub/rtl/udma_spis_reg.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIS_0_REG_SPIS_DMCNT

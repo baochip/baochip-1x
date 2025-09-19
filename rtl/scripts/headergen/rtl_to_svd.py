@@ -59,7 +59,7 @@ import pprint
 from math import log2
 import shutil
 
-URL_PREFIX='file:///F:/code/cram-nto/'
+URL_PREFIX='https://github.com/baochip/baochip-1x/blob/main/rtl/'
 # SVD patch for PL230 DMA
 
 def patch_pl230(svd_string, pl230_base_address):
@@ -1526,7 +1526,7 @@ def extract_bitwidth(schema, module, code_line):
                     logging.debug(f"bit expression not handled: {bw}, not creating an entry")
 
 
-def add_reg(schema, module, code_line, source_file=None):
+def add_reg(schema, module, code_line, source_file=None, line_number=None):
     REGEX = '(apb_[cfas2hfinbur]+[rnf])\s+#\((.+)\)\s(.+)\s\((.+)\);'
     line_matcher = re.match(REGEX, code_line)
     if line_matcher is None:
@@ -1554,7 +1554,10 @@ def add_reg(schema, module, code_line, source_file=None):
             'args': expand_param_list(args),
         }
         if source_file is not None:
-            schema[module][apb_type][reg_name]['src'] = source_file
+            if line_number is not None:
+                schema[module][apb_type][reg_name]['src'] = source_file + f'#L{line_number}'
+            else:
+                schema[module][apb_type][reg_name]['src'] = source_file
 
 def is_m_or_p_empty(m_or_p):
     # we don't evaluate 'sfr_bank' because that's dependent on the apb_* not being empty
@@ -1679,7 +1682,7 @@ def create_csrs(doc_soc, schema, module, banks, orphans, ctrl_offset=0x4002_8000
                                         name=leaf_name + '_' + sfr_name,
                                         n=int((leaf_desc['params']['A'].eval_result / 4) + offset),
                                         fields=fields,
-                                        description = f'See {URL_PREFIX + leaf_desc["src"]}'
+                                        description = f'See `{Path(leaf_desc["src"]).name} <{URL_PREFIX + leaf_desc["src"]}>`__ (line numbers are approximate)'
                                     )]
                                 else:
                                     csrs += [regfuncs[rtype](
@@ -1815,7 +1818,7 @@ def create_csrs(doc_soc, schema, module, banks, orphans, ctrl_offset=0x4002_8000
                                     name=leaf_name,
                                     n=int(leaf_desc['params']['A'].eval_result / 4),
                                     fields=fields,
-                                    description=f'See {URL_PREFIX + leaf_desc["src"]}'
+                                    description=f'See `{Path(leaf_desc["src"]).name} <{URL_PREFIX + leaf_desc["src"]}>`__ (line numbers are approximate)'
                                 )]
                             else:
                                 csrs += [regfuncs[rtype_fixup](
@@ -2035,7 +2038,7 @@ def process_pulp(doc_soc, pulp_reg_files, schema, path, top_regions):
             pulp_file.seek(0)
             if 'i2s' in str(file):
                 print("b")
-            lines = consolidate_lines(file, skip_directives=False)
+            (lines, _unused) = consolidate_lines(file, skip_directives=False)
             for line in lines:
                 if 'case' in line and 's_wr_addr' in line:
                     extract = True
@@ -2249,7 +2252,7 @@ def process_pulp(doc_soc, pulp_reg_files, schema, path, top_regions):
                             name= rf_name,
                             n = reg_addrs[base_name][rf_name] / 4,
                             fields = fields,
-                            description=f'See {URL_PREFIX + reg_srcs[base_name]}'
+                            description=f'See `{Path(reg_srcs[base_name]).name} <{URL_PREFIX + reg_srcs[base_name][len(path)-1:]}>`__'
                         )
                     ]
                 for rf_name in reg_wr_fields[base_name]:
@@ -2271,7 +2274,7 @@ def process_pulp(doc_soc, pulp_reg_files, schema, path, top_regions):
                             name= rf_name.strip(),
                             n = reg_addrs[base_name][rf_name] / 4,
                             fields = fields,
-                            description=f'See {URL_PREFIX + reg_srcs[base_name]}'
+                            description=f'See `{Path(reg_srcs[base_name]).name} <{URL_PREFIX + reg_srcs[base_name][len(path)-1:]}>`__'
                         )
                     ]
                 # add a suffix if we have a bank of identical peripheral
@@ -2305,6 +2308,7 @@ def check_file(x):
 
 def consolidate_lines(file, skip_directives = True):
     with open(file, "r", encoding='utf-8') as sv_file:
+        offset = 0
         if True:
             condensed = ''
             multi_line = ''
@@ -2312,6 +2316,7 @@ def consolidate_lines(file, skip_directives = True):
             for line in sv_file.readlines():
                 line = remove_comments(line.strip()).lstrip()
                 if line.startswith("`") and skip_directives:
+                    # offset += 1
                     continue
 
                 # handle a case where there is a typo in PX's code and he doesn't start a `define'd keyword on a newline after an end in udma subsystem
@@ -2332,12 +2337,13 @@ def consolidate_lines(file, skip_directives = True):
                         trigger = False
                     else:
                         multi_line += line
+                        # offset += 1
                 else:
                     condensed += line
                     condensed += '\n'
-            return condensed.split('\n')
+            return (condensed.split('\n'), offset)
         else:
-            return sv_file.readlines()
+            return (sv_file.readlines(), 0)
 
 def main():
     parser = argparse.ArgumentParser(description="Extract SVD from Daric design")
@@ -2398,11 +2404,11 @@ def main():
     # ------- extract the general schema of the code ----------
     schema = {}
     for (_file_root, (file, _version)) in versioned_files.items():
-            lines = consolidate_lines(file)
+            (lines, offset) = consolidate_lines(file)
             mod_or_pkg = ''
             multi_line_param = ''
             state = 'IDLE'
-            for line in lines:
+            for (line_number, line) in enumerate(lines):
                 if state == 'IDLE':
                     # TODO: handle 'typedef enum' case and extract as localparam
                     if line.lstrip().startswith('module') or line.lstrip().startswith('package'):
@@ -2437,7 +2443,9 @@ def main():
                         code_line = remove_comments(line.strip()).lstrip()
                         if re.match('^a[ph]b_[csfa2hfinbur]+[rnf]', code_line):
                             code_line = code_line.replace('ahb', 'apb') # generalize the code to AHB as well
-                            add_reg(schema, mod_or_pkg, code_line, str(file))
+                            # Line number is only approximate because some pre-processing is done on the file
+                            # but I think it's better than nothing?
+                            add_reg(schema, mod_or_pkg, code_line, str(file)[len(args.path):], line_number + offset)
                         elif code_line.startswith('localparam'):
                             # simple one line case
                             if code_line.strip().endswith(';'):
@@ -2502,7 +2510,7 @@ def main():
                         re_pattern = sfr_name + '\[(.*)\]'
                         sfr_re = re.compile(re_pattern)
                         cr_defs['sfrs'] = {}
-                        sfr_f = consolidate_lines(sfr_file)
+                        (sfr_f, _unused) = consolidate_lines(sfr_file)
                         defs_found = False
                         for line in sfr_f:
                             matches = sfr_re.search(line)

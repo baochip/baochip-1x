@@ -19,7 +19,8 @@ RBIST_WRP_SFRCR_TRM
 
 `Address: 0x40045000 + 0x0 = 0x40045000`
 
-    See file:///F:/code/cram-nto/../../modules/rbist/rtl/rbist_wrp.sv
+    See `rbist_wrp.sv#L174 <https://github.com/baochip/baochip-1x/blob/main/rtl/modu
+    les/rbist/rtl/rbist_wrp.sv#L174>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RBIST_WRP_SFRCR_TRM
@@ -43,7 +44,8 @@ RBIST_WRP_SFRSR_TRM
 
 `Address: 0x40045000 + 0x4 = 0x40045004`
 
-    See file:///F:/code/cram-nto/../../modules/rbist/rtl/rbist_wrp.sv
+    See `rbist_wrp.sv#L175 <https://github.com/baochip/baochip-1x/blob/main/rtl/modu
+    les/rbist/rtl/rbist_wrp.sv#L175>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RBIST_WRP_SFRSR_TRM
@@ -67,7 +69,8 @@ RBIST_WRP_SFRAR_TRM
 
 `Address: 0x40045000 + 0x8 = 0x40045008`
 
-    See file:///F:/code/cram-nto/../../modules/rbist/rtl/rbist_wrp.sv
+    See `rbist_wrp.sv#L176 <https://github.com/baochip/baochip-1x/blob/main/rtl/modu
+    les/rbist/rtl/rbist_wrp.sv#L176>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: RBIST_WRP_SFRAR_TRM

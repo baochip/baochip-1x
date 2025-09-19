@@ -29,7 +29,8 @@ CORESUB_SRAMTRM_SFR_CACHE
 
 `Address: 0x40014000 + 0x0 = 0x40014000`
 
-    See file:///F:/code/cram-nto/../../modules/core/rtl/coresub_sramtrm.sv
+    See `coresub_sramtrm.sv#L54 <https://github.com/baochip/baochip-1x/blob/main/rtl
+    /modules/core/rtl/coresub_sramtrm.sv#L54>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: CORESUB_SRAMTRM_SFR_CACHE
@@ -53,7 +54,8 @@ CORESUB_SRAMTRM_SFR_ITCM
 
 `Address: 0x40014000 + 0x4 = 0x40014004`
 
-    See file:///F:/code/cram-nto/../../modules/core/rtl/coresub_sramtrm.sv
+    See `coresub_sramtrm.sv#L55 <https://github.com/baochip/baochip-1x/blob/main/rtl
+    /modules/core/rtl/coresub_sramtrm.sv#L55>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: CORESUB_SRAMTRM_SFR_ITCM
@@ -77,7 +79,8 @@ CORESUB_SRAMTRM_SFR_DTCM
 
 `Address: 0x40014000 + 0x8 = 0x40014008`
 
-    See file:///F:/code/cram-nto/../../modules/core/rtl/coresub_sramtrm.sv
+    See `coresub_sramtrm.sv#L56 <https://github.com/baochip/baochip-1x/blob/main/rtl
+    /modules/core/rtl/coresub_sramtrm.sv#L56>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: CORESUB_SRAMTRM_SFR_DTCM
@@ -101,7 +104,8 @@ CORESUB_SRAMTRM_SFR_SRAM0
 
 `Address: 0x40014000 + 0xc = 0x4001400c`
 
-    See file:///F:/code/cram-nto/../../modules/core/rtl/coresub_sramtrm.sv
+    See `coresub_sramtrm.sv#L57 <https://github.com/baochip/baochip-1x/blob/main/rtl
+    /modules/core/rtl/coresub_sramtrm.sv#L57>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: CORESUB_SRAMTRM_SFR_SRAM0
@@ -125,7 +129,8 @@ CORESUB_SRAMTRM_SFR_SRAM1
 
 `Address: 0x40014000 + 0x10 = 0x40014010`
 
-    See file:///F:/code/cram-nto/../../modules/core/rtl/coresub_sramtrm.sv
+    See `coresub_sramtrm.sv#L58 <https://github.com/baochip/baochip-1x/blob/main/rtl
+    /modules/core/rtl/coresub_sramtrm.sv#L58>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: CORESUB_SRAMTRM_SFR_SRAM1
@@ -149,7 +154,8 @@ CORESUB_SRAMTRM_SFR_VEXRAM
 
 `Address: 0x40014000 + 0x14 = 0x40014014`
 
-    See file:///F:/code/cram-nto/../../modules/core/rtl/coresub_sramtrm.sv
+    See `coresub_sramtrm.sv#L59 <https://github.com/baochip/baochip-1x/blob/main/rtl
+    /modules/core/rtl/coresub_sramtrm.sv#L59>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: CORESUB_SRAMTRM_SFR_VEXRAM
@@ -173,7 +179,8 @@ CORESUB_SRAMTRM_SFR_SRAMERR
 
 `Address: 0x40014000 + 0x20 = 0x40014020`
 
-    See file:///F:/code/cram-nto/../../modules/core/rtl/coresub_sramtrm.sv
+    See `coresub_sramtrm.sv#L60 <https://github.com/baochip/baochip-1x/blob/main/rtl
+    /modules/core/rtl/coresub_sramtrm.sv#L60>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: CORESUB_SRAMTRM_SFR_SRAMERR
@@ -198,7 +205,8 @@ CORESUB_SRAMTRM_SFR_RAMSEC
 
 `Address: 0x40014000 + 0x30 = 0x40014030`
 
-    See file:///F:/code/cram-nto/../../modules/core/rtl/coresub_sramtrm.sv
+    See `coresub_sramtrm.sv#L61 <https://github.com/baochip/baochip-1x/blob/main/rtl
+    /modules/core/rtl/coresub_sramtrm.sv#L61>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: CORESUB_SRAMTRM_SFR_RAMSEC

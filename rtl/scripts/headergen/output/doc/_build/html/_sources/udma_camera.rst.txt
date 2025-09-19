@@ -31,7 +31,8 @@ UDMA_CAMERA_REG_RX_SADDR
 
 `Address: 0x5010f000 + 0x0 = 0x5010f000`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_camera/rtl/camera_reg_if.sv
+    See `camera_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips/u
+    dma/udma_camera/rtl/camera_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_CAMERA_REG_RX_SADDR
@@ -55,7 +56,8 @@ UDMA_CAMERA_REG_RX_SIZE
 
 `Address: 0x5010f000 + 0x4 = 0x5010f004`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_camera/rtl/camera_reg_if.sv
+    See `camera_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips/u
+    dma/udma_camera/rtl/camera_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_CAMERA_REG_RX_SIZE
@@ -79,7 +81,8 @@ UDMA_CAMERA_REG_RX_CFG
 
 `Address: 0x5010f000 + 0x8 = 0x5010f008`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_camera/rtl/camera_reg_if.sv
+    See `camera_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips/u
+    dma/udma_camera/rtl/camera_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_CAMERA_REG_RX_CFG
@@ -114,7 +117,8 @@ UDMA_CAMERA_REG_CAM_CFG_GLOB
 
 `Address: 0x5010f000 + 0x20 = 0x5010f020`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_camera/rtl/camera_reg_if.sv
+    See `camera_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips/u
+    dma/udma_camera/rtl/camera_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_CAMERA_REG_CAM_CFG_GLOB
@@ -141,7 +145,8 @@ UDMA_CAMERA_REG_CAM_CFG_LL
 
 `Address: 0x5010f000 + 0x24 = 0x5010f024`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_camera/rtl/camera_reg_if.sv
+    See `camera_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips/u
+    dma/udma_camera/rtl/camera_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_CAMERA_REG_CAM_CFG_LL
@@ -164,7 +169,8 @@ UDMA_CAMERA_REG_CAM_CFG_UR
 
 `Address: 0x5010f000 + 0x28 = 0x5010f028`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_camera/rtl/camera_reg_if.sv
+    See `camera_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips/u
+    dma/udma_camera/rtl/camera_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_CAMERA_REG_CAM_CFG_UR
@@ -187,7 +193,8 @@ UDMA_CAMERA_REG_CAM_CFG_SIZE
 
 `Address: 0x5010f000 + 0x2c = 0x5010f02c`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_camera/rtl/camera_reg_if.sv
+    See `camera_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips/u
+    dma/udma_camera/rtl/camera_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_CAMERA_REG_CAM_CFG_SIZE
@@ -210,7 +217,8 @@ UDMA_CAMERA_REG_CAM_CFG_FILTER
 
 `Address: 0x5010f000 + 0x30 = 0x5010f030`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_camera/rtl/camera_reg_if.sv
+    See `camera_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips/u
+    dma/udma_camera/rtl/camera_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_CAMERA_REG_CAM_CFG_FILTER
@@ -233,7 +241,8 @@ UDMA_CAMERA_REG_CAM_VSYNC_POLARITY
 
 `Address: 0x5010f000 + 0x34 = 0x5010f034`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_camera/rtl/camera_reg_if.sv
+    See `camera_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips/u
+    dma/udma_camera/rtl/camera_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_CAMERA_REG_CAM_VSYNC_POLARITY

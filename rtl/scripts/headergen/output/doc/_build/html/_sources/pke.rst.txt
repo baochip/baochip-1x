@@ -51,7 +51,8 @@ PKE_SFR_CRFUNC
 
 `Address: 0x4002c000 + 0x0 = 0x4002c000`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L294 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L294>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_CRFUNC
@@ -78,7 +79,8 @@ PKE_SFR_AR2
 
 `Address: 0x4002c000 + 0x4 = 0x4002c004`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L296 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L296>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_AR2
@@ -101,7 +103,8 @@ PKE_SFR_SRMFSM
 
 `Address: 0x4002c000 + 0x8 = 0x4002c008`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L297 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L297>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_SRMFSM
@@ -128,7 +131,8 @@ PKE_SFR_FR
 
 `Address: 0x4002c000 + 0xc = 0x4002c00c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L298 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L298>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_FR
@@ -169,7 +173,8 @@ PKE_SFR_OPTNW
 
 `Address: 0x4002c000 + 0x10 = 0x4002c010`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L300 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L300>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_OPTNW
@@ -193,7 +198,8 @@ PKE_SFR_OPTEW
 
 `Address: 0x4002c000 + 0x14 = 0x4002c014`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L301 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L301>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_OPTEW
@@ -217,7 +223,8 @@ PKE_SFR_OPTRW
 
 `Address: 0x4002c000 + 0x18 = 0x4002c018`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L302 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L302>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_OPTRW
@@ -241,7 +248,8 @@ PKE_SFR_OPTLTX
 
 `Address: 0x4002c000 + 0x1c = 0x4002c01c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L303 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L303>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_OPTLTX
@@ -265,7 +273,8 @@ PKE_SFR_OPTMASK
 
 `Address: 0x4002c000 + 0x20 = 0x4002c020`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L305 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L305>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_OPTMASK
@@ -289,7 +298,8 @@ PKE_SFR_MIMMCR
 
 `Address: 0x4002c000 + 0x24 = 0x4002c024`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L306 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L306>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_MIMMCR
@@ -313,7 +323,8 @@ PKE_SFR_SEGPTR_PTRID_PCON
 
 `Address: 0x4002c000 + 0x30 = 0x4002c030`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L307 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L307>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_SEGPTR_PTRID_PCON
@@ -337,7 +348,8 @@ PKE_SFR_SEGPTR_PTRID_PIB0
 
 `Address: 0x4002c000 + 0x34 = 0x4002c034`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L307 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L307>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_SEGPTR_PTRID_PIB0
@@ -361,7 +373,8 @@ PKE_SFR_SEGPTR_PTRID_PIB1
 
 `Address: 0x4002c000 + 0x38 = 0x4002c038`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L307 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L307>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_SEGPTR_PTRID_PIB1
@@ -385,7 +398,8 @@ PKE_SFR_SEGPTR_PTRID_PKB
 
 `Address: 0x4002c000 + 0x3c = 0x4002c03c`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L307 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L307>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_SEGPTR_PTRID_PKB
@@ -409,7 +423,8 @@ PKE_SFR_SEGPTR_PTRID_POB
 
 `Address: 0x4002c000 + 0x40 = 0x4002c040`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L307 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L307>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_SEGPTR_PTRID_POB
@@ -433,7 +448,8 @@ PKE_SFR_TICKCYC
 
 `Address: 0x4002c000 + 0x50 = 0x4002c050`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L309 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L309>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_TICKCYC
@@ -457,7 +473,8 @@ PKE_SFR_TICKCNT
 
 `Address: 0x4002c000 + 0x54 = 0x4002c054`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L310 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L310>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_TICKCNT
@@ -480,7 +497,8 @@ PKE_SFR_MASKSEED
 
 `Address: 0x4002c000 + 0x60 = 0x4002c060`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L312 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L312>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_MASKSEED
@@ -503,7 +521,8 @@ PKE_SFR_MASKSEEDAR
 
 `Address: 0x4002c000 + 0x64 = 0x4002c064`
 
-    See file:///F:/code/cram-nto/../../modules/crypto_top/rtl/pke.sv
+    See `pke.sv#L313 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/cr
+    ypto_top/rtl/pke.sv#L313>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: PKE_SFR_MASKSEEDAR

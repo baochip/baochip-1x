@@ -37,7 +37,8 @@ MESH_SFR_MLDRV_CR_MLDRV0
 
 `Address: 0x40052000 + 0x0 = 0x40052000`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/mesh.sv
+    See `mesh.sv#L49 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/se
+    c/rtl/mesh.sv#L49>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MESH_SFR_MLDRV_CR_MLDRV0
@@ -60,7 +61,8 @@ MESH_SFR_MLDRV_CR_MLDRV1
 
 `Address: 0x40052000 + 0x4 = 0x40052004`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/mesh.sv
+    See `mesh.sv#L49 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/se
+    c/rtl/mesh.sv#L49>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MESH_SFR_MLDRV_CR_MLDRV1
@@ -83,7 +85,8 @@ MESH_SFR_MLIE_CR_MLIE0
 
 `Address: 0x40052000 + 0x10 = 0x40052010`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/mesh.sv
+    See `mesh.sv#L50 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/se
+    c/rtl/mesh.sv#L50>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MESH_SFR_MLIE_CR_MLIE0
@@ -106,7 +109,8 @@ MESH_SFR_MLIE_CR_MLIE1
 
 `Address: 0x40052000 + 0x14 = 0x40052014`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/mesh.sv
+    See `mesh.sv#L50 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/se
+    c/rtl/mesh.sv#L50>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MESH_SFR_MLIE_CR_MLIE1
@@ -129,7 +133,8 @@ MESH_SFR_MLSR_SR_MLSR0
 
 `Address: 0x40052000 + 0x20 = 0x40052020`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/mesh.sv
+    See `mesh.sv#L51 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/se
+    c/rtl/mesh.sv#L51>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MESH_SFR_MLSR_SR_MLSR0
@@ -152,7 +157,8 @@ MESH_SFR_MLSR_SR_MLSR1
 
 `Address: 0x40052000 + 0x24 = 0x40052024`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/mesh.sv
+    See `mesh.sv#L51 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/se
+    c/rtl/mesh.sv#L51>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MESH_SFR_MLSR_SR_MLSR1
@@ -175,7 +181,8 @@ MESH_SFR_MLSR_SR_MLSR2
 
 `Address: 0x40052000 + 0x28 = 0x40052028`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/mesh.sv
+    See `mesh.sv#L51 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/se
+    c/rtl/mesh.sv#L51>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MESH_SFR_MLSR_SR_MLSR2
@@ -198,7 +205,8 @@ MESH_SFR_MLSR_SR_MLSR3
 
 `Address: 0x40052000 + 0x2c = 0x4005202c`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/mesh.sv
+    See `mesh.sv#L51 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/se
+    c/rtl/mesh.sv#L51>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MESH_SFR_MLSR_SR_MLSR3
@@ -221,7 +229,8 @@ MESH_SFR_MLSR_SR_MLSR4
 
 `Address: 0x40052000 + 0x30 = 0x40052030`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/mesh.sv
+    See `mesh.sv#L51 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/se
+    c/rtl/mesh.sv#L51>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MESH_SFR_MLSR_SR_MLSR4
@@ -244,7 +253,8 @@ MESH_SFR_MLSR_SR_MLSR5
 
 `Address: 0x40052000 + 0x34 = 0x40052034`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/mesh.sv
+    See `mesh.sv#L51 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/se
+    c/rtl/mesh.sv#L51>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MESH_SFR_MLSR_SR_MLSR5
@@ -267,7 +277,8 @@ MESH_SFR_MLSR_SR_MLSR6
 
 `Address: 0x40052000 + 0x38 = 0x40052038`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/mesh.sv
+    See `mesh.sv#L51 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/se
+    c/rtl/mesh.sv#L51>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MESH_SFR_MLSR_SR_MLSR6
@@ -290,7 +301,8 @@ MESH_SFR_MLSR_SR_MLSR7
 
 `Address: 0x40052000 + 0x3c = 0x4005203c`
 
-    See file:///F:/code/cram-nto/../../modules/sec/rtl/mesh.sv
+    See `mesh.sv#L51 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/se
+    c/rtl/mesh.sv#L51>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MESH_SFR_MLSR_SR_MLSR7

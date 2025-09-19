@@ -23,7 +23,8 @@ MBOX_APB_SFR_WDATA
 
 `Address: 0x40013000 + 0x0 = 0x40013000`
 
-    See file:///F:/code/cram-nto/../../modules/vexriscv/lib/mbox_v0.1.sv
+    See `mbox_v0.1.sv#L105 <https://github.com/baochip/baochip-1x/blob/main/rtl/modu
+    les/vexriscv/lib/mbox_v0.1.sv#L105>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MBOX_APB_SFR_WDATA
@@ -46,7 +47,8 @@ MBOX_APB_SFR_RDATA
 
 `Address: 0x40013000 + 0x4 = 0x40013004`
 
-    See file:///F:/code/cram-nto/../../modules/vexriscv/lib/mbox_v0.1.sv
+    See `mbox_v0.1.sv#L106 <https://github.com/baochip/baochip-1x/blob/main/rtl/modu
+    les/vexriscv/lib/mbox_v0.1.sv#L106>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MBOX_APB_SFR_RDATA
@@ -69,7 +71,8 @@ MBOX_APB_SFR_STATUS
 
 `Address: 0x40013000 + 0x8 = 0x40013008`
 
-    See file:///F:/code/cram-nto/../../modules/vexriscv/lib/mbox_v0.1.sv
+    See `mbox_v0.1.sv#L107 <https://github.com/baochip/baochip-1x/blob/main/rtl/modu
+    les/vexriscv/lib/mbox_v0.1.sv#L107>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MBOX_APB_SFR_STATUS
@@ -108,7 +111,8 @@ MBOX_APB_SFR_ABORT
 
 `Address: 0x40013000 + 0x18 = 0x40013018`
 
-    See file:///F:/code/cram-nto/../../modules/vexriscv/lib/mbox_v0.1.sv
+    See `mbox_v0.1.sv#L108 <https://github.com/baochip/baochip-1x/blob/main/rtl/modu
+    les/vexriscv/lib/mbox_v0.1.sv#L108>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MBOX_APB_SFR_ABORT
@@ -131,7 +135,8 @@ MBOX_APB_SFR_DONE
 
 `Address: 0x40013000 + 0x1c = 0x4001301c`
 
-    See file:///F:/code/cram-nto/../../modules/vexriscv/lib/mbox_v0.1.sv
+    See `mbox_v0.1.sv#L109 <https://github.com/baochip/baochip-1x/blob/main/rtl/modu
+    les/vexriscv/lib/mbox_v0.1.sv#L109>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: MBOX_APB_SFR_DONE

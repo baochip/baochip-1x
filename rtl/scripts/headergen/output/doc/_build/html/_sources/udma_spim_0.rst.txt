@@ -33,7 +33,8 @@ UDMA_SPIM_0_REG_RX_SADDR
 
 `Address: 0x50105000 + 0x0 = 0x50105000`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv
+    See `udma_spim_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/udma/udma_qspi/rtl/udma_spim_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIM_0_REG_RX_SADDR
@@ -57,7 +58,8 @@ UDMA_SPIM_0_REG_RX_SIZE
 
 `Address: 0x50105000 + 0x4 = 0x50105004`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv
+    See `udma_spim_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/udma/udma_qspi/rtl/udma_spim_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIM_0_REG_RX_SIZE
@@ -81,7 +83,8 @@ UDMA_SPIM_0_REG_RX_CFG
 
 `Address: 0x50105000 + 0x8 = 0x50105008`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv
+    See `udma_spim_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/udma/udma_qspi/rtl/udma_spim_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIM_0_REG_RX_CFG
@@ -119,7 +122,8 @@ UDMA_SPIM_0_REG_TX_SADDR
 
 `Address: 0x50105000 + 0x10 = 0x50105010`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv
+    See `udma_spim_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/udma/udma_qspi/rtl/udma_spim_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIM_0_REG_TX_SADDR
@@ -143,7 +147,8 @@ UDMA_SPIM_0_REG_TX_SIZE
 
 `Address: 0x50105000 + 0x14 = 0x50105014`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv
+    See `udma_spim_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/udma/udma_qspi/rtl/udma_spim_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIM_0_REG_TX_SIZE
@@ -167,7 +172,8 @@ UDMA_SPIM_0_REG_TX_CFG
 
 `Address: 0x50105000 + 0x18 = 0x50105018`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv
+    See `udma_spim_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/udma/udma_qspi/rtl/udma_spim_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIM_0_REG_TX_CFG
@@ -202,7 +208,8 @@ UDMA_SPIM_0_REG_CMD_SADDR
 
 `Address: 0x50105000 + 0x20 = 0x50105020`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv
+    See `udma_spim_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/udma/udma_qspi/rtl/udma_spim_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIM_0_REG_CMD_SADDR
@@ -226,7 +233,8 @@ UDMA_SPIM_0_REG_CMD_SIZE
 
 `Address: 0x50105000 + 0x24 = 0x50105024`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv
+    See `udma_spim_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/udma/udma_qspi/rtl/udma_spim_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIM_0_REG_CMD_SIZE
@@ -250,7 +258,8 @@ UDMA_SPIM_0_REG_CMD_CFG
 
 `Address: 0x50105000 + 0x28 = 0x50105028`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv
+    See `udma_spim_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/udma/udma_qspi/rtl/udma_spim_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIM_0_REG_CMD_CFG
@@ -282,7 +291,8 @@ UDMA_SPIM_0_REG_STATUS
 
 `Address: 0x50105000 + 0x30 = 0x50105030`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv
+    See `udma_spim_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/udma/udma_qspi/rtl/udma_spim_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_SPIM_0_REG_STATUS

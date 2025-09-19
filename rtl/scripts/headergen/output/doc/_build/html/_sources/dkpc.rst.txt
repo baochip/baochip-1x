@@ -27,7 +27,8 @@ DKPC_SFR_CFG0
 
 `Address: 0x40064000 + 0x0 = 0x40064000`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/dkpc.sv
+    See `dkpc.sv#L167 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/a
+    o/rtl/dkpc.sv#L167>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: DKPC_SFR_CFG0
@@ -66,7 +67,8 @@ DKPC_SFR_CFG1
 
 `Address: 0x40064000 + 0x4 = 0x40064004`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/dkpc.sv
+    See `dkpc.sv#L168 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/a
+    o/rtl/dkpc.sv#L168>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: DKPC_SFR_CFG1
@@ -96,7 +98,8 @@ DKPC_SFR_CFG2
 
 `Address: 0x40064000 + 0x8 = 0x40064008`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/dkpc.sv
+    See `dkpc.sv#L169 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/a
+    o/rtl/dkpc.sv#L169>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: DKPC_SFR_CFG2
@@ -119,7 +122,8 @@ DKPC_SFR_CFG3
 
 `Address: 0x40064000 + 0xc = 0x4006400c`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/dkpc.sv
+    See `dkpc.sv#L170 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/a
+    o/rtl/dkpc.sv#L170>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: DKPC_SFR_CFG3
@@ -146,7 +150,8 @@ DKPC_SFR_SR0
 
 `Address: 0x40064000 + 0x10 = 0x40064010`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/dkpc.sv
+    See `dkpc.sv#L173 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/a
+    o/rtl/dkpc.sv#L173>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: DKPC_SFR_SR0
@@ -182,7 +187,8 @@ DKPC_SFR_SR1
 
 `Address: 0x40064000 + 0x14 = 0x40064014`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/dkpc.sv
+    See `dkpc.sv#L174 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/a
+    o/rtl/dkpc.sv#L174>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: DKPC_SFR_SR1
@@ -206,7 +212,8 @@ DKPC_SFR_CFG4
 
 `Address: 0x40064000 + 0x30 = 0x40064030`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/dkpc.sv
+    See `dkpc.sv#L171 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/a
+    o/rtl/dkpc.sv#L171>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: DKPC_SFR_CFG4

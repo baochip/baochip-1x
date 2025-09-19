@@ -29,7 +29,8 @@ AOBUREG_SFR_BUREG_CR_BUREGS0
 
 `Address: 0x40065000 + 0x0 = 0x40065000`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/aobureg.sv
+    See `aobureg.sv#L33 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /ao/rtl/aobureg.sv#L33>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AOBUREG_SFR_BUREG_CR_BUREGS0
@@ -52,7 +53,8 @@ AOBUREG_SFR_BUREG_CR_BUREGS1
 
 `Address: 0x40065000 + 0x4 = 0x40065004`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/aobureg.sv
+    See `aobureg.sv#L33 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /ao/rtl/aobureg.sv#L33>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AOBUREG_SFR_BUREG_CR_BUREGS1
@@ -75,7 +77,8 @@ AOBUREG_SFR_BUREG_CR_BUREGS2
 
 `Address: 0x40065000 + 0x8 = 0x40065008`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/aobureg.sv
+    See `aobureg.sv#L33 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /ao/rtl/aobureg.sv#L33>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AOBUREG_SFR_BUREG_CR_BUREGS2
@@ -98,7 +101,8 @@ AOBUREG_SFR_BUREG_CR_BUREGS3
 
 `Address: 0x40065000 + 0xc = 0x4006500c`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/aobureg.sv
+    See `aobureg.sv#L33 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /ao/rtl/aobureg.sv#L33>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AOBUREG_SFR_BUREG_CR_BUREGS3
@@ -121,7 +125,8 @@ AOBUREG_SFR_BUREG_CR_BUREGS4
 
 `Address: 0x40065000 + 0x10 = 0x40065010`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/aobureg.sv
+    See `aobureg.sv#L33 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /ao/rtl/aobureg.sv#L33>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AOBUREG_SFR_BUREG_CR_BUREGS4
@@ -144,7 +149,8 @@ AOBUREG_SFR_BUREG_CR_BUREGS5
 
 `Address: 0x40065000 + 0x14 = 0x40065014`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/aobureg.sv
+    See `aobureg.sv#L33 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /ao/rtl/aobureg.sv#L33>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AOBUREG_SFR_BUREG_CR_BUREGS5
@@ -167,7 +173,8 @@ AOBUREG_SFR_BUREG_CR_BUREGS6
 
 `Address: 0x40065000 + 0x18 = 0x40065018`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/aobureg.sv
+    See `aobureg.sv#L33 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /ao/rtl/aobureg.sv#L33>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AOBUREG_SFR_BUREG_CR_BUREGS6
@@ -190,7 +197,8 @@ AOBUREG_SFR_BUREG_CR_BUREGS7
 
 `Address: 0x40065000 + 0x1c = 0x4006501c`
 
-    See file:///F:/code/cram-nto/../../modules/ao/rtl/aobureg.sv
+    See `aobureg.sv#L33 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules
+    /ao/rtl/aobureg.sv#L33>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: AOBUREG_SFR_BUREG_CR_BUREGS7

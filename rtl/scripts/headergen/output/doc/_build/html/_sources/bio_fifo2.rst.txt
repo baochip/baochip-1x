@@ -25,7 +25,8 @@ BIO_FIFO2_SFR_FLEVEL
 
 `Address: 0x5012b000 + 0xc = 0x5012b00c`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L492 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L492>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_FIFO2_SFR_FLEVEL
@@ -58,7 +59,8 @@ BIO_FIFO2_SFR_TXF2
 
 `Address: 0x5012b000 + 0x18 = 0x5012b018`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L495 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L495>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_FIFO2_SFR_TXF2
@@ -81,7 +83,8 @@ BIO_FIFO2_SFR_RXF2
 
 `Address: 0x5012b000 + 0x28 = 0x5012b028`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L499 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L499>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_FIFO2_SFR_RXF2
@@ -104,7 +107,8 @@ BIO_FIFO2_SFR_EVENT_SET
 
 `Address: 0x5012b000 + 0x38 = 0x5012b038`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L504 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L504>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_FIFO2_SFR_EVENT_SET
@@ -128,7 +132,8 @@ BIO_FIFO2_SFR_EVENT_CLR
 
 `Address: 0x5012b000 + 0x3c = 0x5012b03c`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L505 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L505>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_FIFO2_SFR_EVENT_CLR
@@ -152,7 +157,8 @@ BIO_FIFO2_SFR_EVENT_STATUS
 
 `Address: 0x5012b000 + 0x40 = 0x5012b040`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L506 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L506>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_FIFO2_SFR_EVENT_STATUS

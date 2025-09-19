@@ -21,7 +21,8 @@ UDMA_ADC_REG_RX_SADDR
 
 `Address: 0x50114000 + 0x0 = 0x50114000`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_adc_ts_reg_if.sv
+    See `udma_adc_ts_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/
+    modules/ifsub/rtl/udma_adc_ts_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_ADC_REG_RX_SADDR
@@ -45,7 +46,8 @@ UDMA_ADC_REG_RX_SIZE
 
 `Address: 0x50114000 + 0x4 = 0x50114004`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_adc_ts_reg_if.sv
+    See `udma_adc_ts_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/
+    modules/ifsub/rtl/udma_adc_ts_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_ADC_REG_RX_SIZE
@@ -69,7 +71,8 @@ UDMA_ADC_REG_RX_CFG
 
 `Address: 0x50114000 + 0x8 = 0x50114008`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_adc_ts_reg_if.sv
+    See `udma_adc_ts_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/
+    modules/ifsub/rtl/udma_adc_ts_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_ADC_REG_RX_CFG
@@ -100,7 +103,8 @@ UDMA_ADC_REG_CR_ADC
 
 `Address: 0x50114000 + 0x10 = 0x50114010`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/udma_adc_ts_reg_if.sv
+    See `udma_adc_ts_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/
+    modules/ifsub/rtl/udma_adc_ts_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_ADC_REG_CR_ADC

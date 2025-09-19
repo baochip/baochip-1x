@@ -105,7 +105,8 @@ PWM_REG_TIM0_CMD
 
 `Address: 0x50120000 + 0x0 = 0x50120000`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM0_CMD
@@ -141,7 +142,8 @@ PWM_REG_TIM0_CFG
 
 `Address: 0x50120000 + 0x4 = 0x50120004`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM0_CFG
@@ -178,7 +180,8 @@ PWM_REG_TIM0_CH0_TH
 
 `Address: 0x50120000 + 0xc = 0x5012000c`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM0_CH0_TH
@@ -205,7 +208,8 @@ PWM_REG_TIM0_CH1_TH
 
 `Address: 0x50120000 + 0x10 = 0x50120010`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM0_CH1_TH
@@ -232,7 +236,8 @@ PWM_REG_TIM0_CH2_TH
 
 `Address: 0x50120000 + 0x14 = 0x50120014`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM0_CH2_TH
@@ -259,7 +264,8 @@ PWM_REG_TIM0_CH3_TH
 
 `Address: 0x50120000 + 0x18 = 0x50120018`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM0_CH3_TH
@@ -286,7 +292,8 @@ PWM_REG_TIM0_CH0_LUT
 
 `Address: 0x50120000 + 0x1c = 0x5012001c`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM0_CH0_LUT
@@ -313,7 +320,8 @@ PWM_REG_TIM0_CH1_LUT
 
 `Address: 0x50120000 + 0x20 = 0x50120020`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM0_CH1_LUT
@@ -340,7 +348,8 @@ PWM_REG_TIM0_CH2_LUT
 
 `Address: 0x50120000 + 0x24 = 0x50120024`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM0_CH2_LUT
@@ -367,7 +376,8 @@ PWM_REG_TIM0_CH3_LUT
 
 `Address: 0x50120000 + 0x28 = 0x50120028`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM0_CH3_LUT
@@ -394,7 +404,8 @@ PWM_REG_TIM1_CMD
 
 `Address: 0x50120000 + 0x40 = 0x50120040`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM1_CMD
@@ -430,7 +441,8 @@ PWM_REG_TIM1_CFG
 
 `Address: 0x50120000 + 0x44 = 0x50120044`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM1_CFG
@@ -467,7 +479,8 @@ PWM_REG_TIM1_CH0_TH
 
 `Address: 0x50120000 + 0x4c = 0x5012004c`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM1_CH0_TH
@@ -494,7 +507,8 @@ PWM_REG_TIM1_CH1_TH
 
 `Address: 0x50120000 + 0x50 = 0x50120050`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM1_CH1_TH
@@ -521,7 +535,8 @@ PWM_REG_TIM1_CH2_TH
 
 `Address: 0x50120000 + 0x54 = 0x50120054`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM1_CH2_TH
@@ -548,7 +563,8 @@ PWM_REG_TIM1_CH3_TH
 
 `Address: 0x50120000 + 0x58 = 0x50120058`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM1_CH3_TH
@@ -575,7 +591,8 @@ PWM_REG_TIM1_CH0_LUT
 
 `Address: 0x50120000 + 0x5c = 0x5012005c`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM1_CH0_LUT
@@ -602,7 +619,8 @@ PWM_REG_TIM1_CH1_LUT
 
 `Address: 0x50120000 + 0x60 = 0x50120060`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM1_CH1_LUT
@@ -629,7 +647,8 @@ PWM_REG_TIM1_CH2_LUT
 
 `Address: 0x50120000 + 0x64 = 0x50120064`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM1_CH2_LUT
@@ -656,7 +675,8 @@ PWM_REG_TIM1_CH3_LUT
 
 `Address: 0x50120000 + 0x68 = 0x50120068`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM1_CH3_LUT
@@ -683,7 +703,8 @@ PWM_REG_TIM2_CMD
 
 `Address: 0x50120000 + 0x80 = 0x50120080`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM2_CMD
@@ -719,7 +740,8 @@ PWM_REG_TIM2_CFG
 
 `Address: 0x50120000 + 0x84 = 0x50120084`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM2_CFG
@@ -756,7 +778,8 @@ PWM_REG_TIM2_CH0_TH
 
 `Address: 0x50120000 + 0x8c = 0x5012008c`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM2_CH0_TH
@@ -783,7 +806,8 @@ PWM_REG_TIM2_CH1_TH
 
 `Address: 0x50120000 + 0x90 = 0x50120090`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM2_CH1_TH
@@ -810,7 +834,8 @@ PWM_REG_TIM2_CH2_TH
 
 `Address: 0x50120000 + 0x94 = 0x50120094`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM2_CH2_TH
@@ -837,7 +862,8 @@ PWM_REG_TIM2_CH3_TH
 
 `Address: 0x50120000 + 0x98 = 0x50120098`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM2_CH3_TH
@@ -864,7 +890,8 @@ PWM_REG_TIM2_CH0_LUT
 
 `Address: 0x50120000 + 0x9c = 0x5012009c`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM2_CH0_LUT
@@ -891,7 +918,8 @@ PWM_REG_TIM2_CH1_LUT
 
 `Address: 0x50120000 + 0xa0 = 0x501200a0`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM2_CH1_LUT
@@ -918,7 +946,8 @@ PWM_REG_TIM2_CH2_LUT
 
 `Address: 0x50120000 + 0xa4 = 0x501200a4`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM2_CH2_LUT
@@ -945,7 +974,8 @@ PWM_REG_TIM2_CH3_LUT
 
 `Address: 0x50120000 + 0xa8 = 0x501200a8`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM2_CH3_LUT
@@ -972,7 +1002,8 @@ PWM_REG_TIM3_CMD
 
 `Address: 0x50120000 + 0xc0 = 0x501200c0`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM3_CMD
@@ -1008,7 +1039,8 @@ PWM_REG_TIM3_CFG
 
 `Address: 0x50120000 + 0xc4 = 0x501200c4`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM3_CFG
@@ -1045,7 +1077,8 @@ PWM_REG_TIM3_CH0_TH
 
 `Address: 0x50120000 + 0xcc = 0x501200cc`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM3_CH0_TH
@@ -1072,7 +1105,8 @@ PWM_REG_TIM3_CH1_TH
 
 `Address: 0x50120000 + 0xd0 = 0x501200d0`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM3_CH1_TH
@@ -1099,7 +1133,8 @@ PWM_REG_TIM3_CH2_TH
 
 `Address: 0x50120000 + 0xd4 = 0x501200d4`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM3_CH2_TH
@@ -1126,7 +1161,8 @@ PWM_REG_TIM3_CH3_TH
 
 `Address: 0x50120000 + 0xd8 = 0x501200d8`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM3_CH3_TH
@@ -1153,7 +1189,8 @@ PWM_REG_TIM3_CH0_LUT
 
 `Address: 0x50120000 + 0xdc = 0x501200dc`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM3_CH0_LUT
@@ -1180,7 +1217,8 @@ PWM_REG_TIM3_CH1_LUT
 
 `Address: 0x50120000 + 0xe0 = 0x501200e0`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM3_CH1_LUT
@@ -1207,7 +1245,8 @@ PWM_REG_TIM3_CH2_LUT
 
 `Address: 0x50120000 + 0xe4 = 0x501200e4`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM3_CH2_LUT
@@ -1234,7 +1273,8 @@ PWM_REG_TIM3_CH3_LUT
 
 `Address: 0x50120000 + 0xe8 = 0x501200e8`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_TIM3_CH3_LUT
@@ -1261,7 +1301,8 @@ PWM_REG_EVENT_CFG
 
 `Address: 0x50120000 + 0x100 = 0x50120100`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_EVENT_CFG
@@ -1297,7 +1338,8 @@ PWM_REG_CH_EN
 
 `Address: 0x50120000 + 0x104 = 0x50120104`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_CH_EN
@@ -1321,7 +1363,8 @@ PWM_REG_PREFD0
 
 `Address: 0x50120000 + 0x140 = 0x50120140`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_PREFD0
@@ -1345,7 +1388,8 @@ PWM_REG_PREFD1
 
 `Address: 0x50120000 + 0x144 = 0x50120144`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_PREFD1
@@ -1369,7 +1413,8 @@ PWM_REG_PREFD2
 
 `Address: 0x50120000 + 0x148 = 0x50120148`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_PREFD2
@@ -1393,7 +1438,8 @@ PWM_REG_PREFD3
 
 `Address: 0x50120000 + 0x14c = 0x5012014c`
 
-    See file:///F:/code/cram-nto/../../ips/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv
+    See `adv_timer_apb_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ip
+    s/apb/apb_adv_timer/rtl/adv_timer_apb_if.sv>`__
 
     .. wavedrom::
         :caption: PWM_REG_PREFD3

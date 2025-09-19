@@ -237,7 +237,8 @@ SDDC_SFR_IO
 
 `Address: 0x50121000 + 0x0 = 0x50121000`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L113 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L113>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_SFR_IO
@@ -261,7 +262,8 @@ SDDC_SFR_AR
 
 `Address: 0x50121000 + 0x4 = 0x50121004`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L114 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L114>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_SFR_AR
@@ -284,7 +286,8 @@ SDDC_CR_OCR
 
 `Address: 0x50121000 + 0x10 = 0x50121010`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L116 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L116>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_OCR
@@ -308,7 +311,8 @@ SDDC_CR_RDFFTHRES
 
 `Address: 0x50121000 + 0x14 = 0x50121014`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L117 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L117>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_RDFFTHRES
@@ -332,7 +336,8 @@ SDDC_CR_REV
 
 `Address: 0x50121000 + 0x18 = 0x50121018`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L118 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L118>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REV
@@ -359,7 +364,8 @@ SDDC_CR_BACSA
 
 `Address: 0x50121000 + 0x1c = 0x5012101c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L120 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L120>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BACSA
@@ -383,7 +389,8 @@ SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC0
 
 `Address: 0x50121000 + 0x20 = 0x50121020`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L121 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L121>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC0
@@ -407,7 +414,8 @@ SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC1
 
 `Address: 0x50121000 + 0x24 = 0x50121024`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L121 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L121>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC1
@@ -431,7 +439,8 @@ SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC2
 
 `Address: 0x50121000 + 0x28 = 0x50121028`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L121 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L121>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC2
@@ -455,7 +464,8 @@ SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC3
 
 `Address: 0x50121000 + 0x2c = 0x5012102c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L121 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L121>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC3
@@ -479,7 +489,8 @@ SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC4
 
 `Address: 0x50121000 + 0x30 = 0x50121030`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L121 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L121>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC4
@@ -503,7 +514,8 @@ SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC5
 
 `Address: 0x50121000 + 0x34 = 0x50121034`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L121 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L121>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC5
@@ -527,7 +539,8 @@ SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC6
 
 `Address: 0x50121000 + 0x38 = 0x50121038`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L121 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L121>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC6
@@ -551,7 +564,8 @@ SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC7
 
 `Address: 0x50121000 + 0x3c = 0x5012103c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L121 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L121>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BAIOFN_CFG_BASE_ADDR_IO_FUNC7
@@ -575,7 +589,8 @@ SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR0
 
 `Address: 0x50121000 + 0x40 = 0x50121040`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L123 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L123>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR0
@@ -599,7 +614,8 @@ SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR1
 
 `Address: 0x50121000 + 0x44 = 0x50121044`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L123 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L123>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR1
@@ -623,7 +639,8 @@ SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR2
 
 `Address: 0x50121000 + 0x48 = 0x50121048`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L123 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L123>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR2
@@ -647,7 +664,8 @@ SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR3
 
 `Address: 0x50121000 + 0x4c = 0x5012104c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L123 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L123>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR3
@@ -671,7 +689,8 @@ SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR4
 
 `Address: 0x50121000 + 0x50 = 0x50121050`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L123 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L123>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR4
@@ -695,7 +714,8 @@ SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR5
 
 `Address: 0x50121000 + 0x54 = 0x50121054`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L123 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L123>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR5
@@ -719,7 +739,8 @@ SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR6
 
 `Address: 0x50121000 + 0x58 = 0x50121058`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L123 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L123>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR6
@@ -743,7 +764,8 @@ SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR7
 
 `Address: 0x50121000 + 0x5c = 0x5012105c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L123 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L123>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNCISPTR_CFG_REG_FUNC_CIS_PTR7
@@ -767,7 +789,8 @@ SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE0
 
 `Address: 0x50121000 + 0x60 = 0x50121060`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L124 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L124>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE0
@@ -791,7 +814,8 @@ SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE1
 
 `Address: 0x50121000 + 0x64 = 0x50121064`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L124 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L124>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE1
@@ -815,7 +839,8 @@ SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE2
 
 `Address: 0x50121000 + 0x68 = 0x50121068`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L124 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L124>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE2
@@ -839,7 +864,8 @@ SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE3
 
 `Address: 0x50121000 + 0x6c = 0x5012106c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L124 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L124>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE3
@@ -863,7 +889,8 @@ SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE4
 
 `Address: 0x50121000 + 0x70 = 0x50121070`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L124 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L124>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE4
@@ -887,7 +914,8 @@ SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE5
 
 `Address: 0x50121000 + 0x74 = 0x50121074`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L124 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L124>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE5
@@ -911,7 +939,8 @@ SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE6
 
 `Address: 0x50121000 + 0x78 = 0x50121078`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L124 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L124>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE6
@@ -935,7 +964,8 @@ SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE7
 
 `Address: 0x50121000 + 0x7c = 0x5012107c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L124 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L124>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_FNEXTSTDCODE_CFG_REG_FUNC_EXT_STD_CODE7
@@ -959,7 +989,8 @@ SDDC_CR_WRITE_PROTECT
 
 `Address: 0x50121000 + 0x80 = 0x50121080`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L134 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L134>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_WRITE_PROTECT
@@ -983,7 +1014,8 @@ SDDC_CR_REG_DSR
 
 `Address: 0x50121000 + 0x84 = 0x50121084`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L135 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L135>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_DSR
@@ -1007,7 +1039,8 @@ SDDC_CR_REG_CID_CFG_REG_CID0
 
 `Address: 0x50121000 + 0x88 = 0x50121088`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L136 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L136>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_CID_CFG_REG_CID0
@@ -1030,7 +1063,8 @@ SDDC_CR_REG_CID_CFG_REG_CID1
 
 `Address: 0x50121000 + 0x8c = 0x5012108c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L136 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L136>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_CID_CFG_REG_CID1
@@ -1053,7 +1087,8 @@ SDDC_CR_REG_CID_CFG_REG_CID2
 
 `Address: 0x50121000 + 0x90 = 0x50121090`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L136 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L136>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_CID_CFG_REG_CID2
@@ -1076,7 +1111,8 @@ SDDC_CR_REG_CID_CFG_REG_CID3
 
 `Address: 0x50121000 + 0x94 = 0x50121094`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L136 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L136>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_CID_CFG_REG_CID3
@@ -1099,7 +1135,8 @@ SDDC_CR_REG_CSD_CFG_REG_CSD0
 
 `Address: 0x50121000 + 0x98 = 0x50121098`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L137 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L137>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_CSD_CFG_REG_CSD0
@@ -1122,7 +1159,8 @@ SDDC_CR_REG_CSD_CFG_REG_CSD1
 
 `Address: 0x50121000 + 0x9c = 0x5012109c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L137 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L137>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_CSD_CFG_REG_CSD1
@@ -1145,7 +1183,8 @@ SDDC_CR_REG_CSD_CFG_REG_CSD2
 
 `Address: 0x50121000 + 0xa0 = 0x501210a0`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L137 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L137>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_CSD_CFG_REG_CSD2
@@ -1168,7 +1207,8 @@ SDDC_CR_REG_CSD_CFG_REG_CSD3
 
 `Address: 0x50121000 + 0xa4 = 0x501210a4`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L137 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L137>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_CSD_CFG_REG_CSD3
@@ -1191,7 +1231,8 @@ SDDC_CR_REG_SCR_CFG_REG_SCR0
 
 `Address: 0x50121000 + 0xa8 = 0x501210a8`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L138 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L138>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SCR_CFG_REG_SCR0
@@ -1214,7 +1255,8 @@ SDDC_CR_REG_SCR_CFG_REG_SCR1
 
 `Address: 0x50121000 + 0xac = 0x501210ac`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L138 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L138>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SCR_CFG_REG_SCR1
@@ -1237,7 +1279,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS0
 
 `Address: 0x50121000 + 0xb0 = 0x501210b0`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS0
@@ -1260,7 +1303,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS1
 
 `Address: 0x50121000 + 0xb4 = 0x501210b4`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS1
@@ -1283,7 +1327,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS2
 
 `Address: 0x50121000 + 0xb8 = 0x501210b8`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS2
@@ -1306,7 +1351,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS3
 
 `Address: 0x50121000 + 0xbc = 0x501210bc`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS3
@@ -1329,7 +1375,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS4
 
 `Address: 0x50121000 + 0xc0 = 0x501210c0`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS4
@@ -1352,7 +1399,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS5
 
 `Address: 0x50121000 + 0xc4 = 0x501210c4`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS5
@@ -1375,7 +1423,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS6
 
 `Address: 0x50121000 + 0xc8 = 0x501210c8`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS6
@@ -1398,7 +1447,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS7
 
 `Address: 0x50121000 + 0xcc = 0x501210cc`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS7
@@ -1421,7 +1471,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS8
 
 `Address: 0x50121000 + 0xd0 = 0x501210d0`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS8
@@ -1444,7 +1495,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS9
 
 `Address: 0x50121000 + 0xd4 = 0x501210d4`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS9
@@ -1467,7 +1519,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS10
 
 `Address: 0x50121000 + 0xd8 = 0x501210d8`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS10
@@ -1490,7 +1543,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS11
 
 `Address: 0x50121000 + 0xdc = 0x501210dc`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS11
@@ -1513,7 +1567,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS12
 
 `Address: 0x50121000 + 0xe0 = 0x501210e0`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS12
@@ -1536,7 +1591,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS13
 
 `Address: 0x50121000 + 0xe4 = 0x501210e4`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS13
@@ -1559,7 +1615,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS14
 
 `Address: 0x50121000 + 0xe8 = 0x501210e8`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS14
@@ -1582,7 +1639,8 @@ SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS15
 
 `Address: 0x50121000 + 0xec = 0x501210ec`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L139 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L139>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_SD_STATUS_CFG_REG_SD_STATUS15
@@ -1605,7 +1663,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC0
 
 `Address: 0x50121000 + 0x100 = 0x50121100`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC0
@@ -1629,7 +1688,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC1
 
 `Address: 0x50121000 + 0x104 = 0x50121104`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC1
@@ -1653,7 +1713,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC2
 
 `Address: 0x50121000 + 0x108 = 0x50121108`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC2
@@ -1677,7 +1738,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC3
 
 `Address: 0x50121000 + 0x10c = 0x5012110c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC3
@@ -1701,7 +1763,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC4
 
 `Address: 0x50121000 + 0x110 = 0x50121110`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC4
@@ -1725,7 +1788,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC5
 
 `Address: 0x50121000 + 0x114 = 0x50121114`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC5
@@ -1749,7 +1813,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC6
 
 `Address: 0x50121000 + 0x118 = 0x50121118`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC6
@@ -1773,7 +1838,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC7
 
 `Address: 0x50121000 + 0x11c = 0x5012111c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC7
@@ -1797,7 +1863,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC8
 
 `Address: 0x50121000 + 0x120 = 0x50121120`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC8
@@ -1821,7 +1888,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC9
 
 `Address: 0x50121000 + 0x124 = 0x50121124`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC9
@@ -1845,7 +1913,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC10
 
 `Address: 0x50121000 + 0x128 = 0x50121128`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC10
@@ -1869,7 +1938,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC11
 
 `Address: 0x50121000 + 0x12c = 0x5012112c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC11
@@ -1893,7 +1963,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC12
 
 `Address: 0x50121000 + 0x130 = 0x50121130`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC12
@@ -1917,7 +1988,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC13
 
 `Address: 0x50121000 + 0x134 = 0x50121134`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC13
@@ -1941,7 +2013,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC14
 
 `Address: 0x50121000 + 0x138 = 0x50121138`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC14
@@ -1965,7 +2038,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC15
 
 `Address: 0x50121000 + 0x13c = 0x5012113c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC15
@@ -1989,7 +2063,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC16
 
 `Address: 0x50121000 + 0x140 = 0x50121140`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC16
@@ -2013,7 +2088,8 @@ SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC17
 
 `Address: 0x50121000 + 0x144 = 0x50121144`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L142 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L142>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_BASE_ADDR_MEM_FUNC_CFG_BASE_ADDR_MEM_FUNC17
@@ -2037,7 +2113,8 @@ SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE0
 
 `Address: 0x50121000 + 0x148 = 0x50121148`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L150 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L150>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE0
@@ -2061,7 +2138,8 @@ SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE1
 
 `Address: 0x50121000 + 0x14c = 0x5012114c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L150 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L150>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE1
@@ -2085,7 +2163,8 @@ SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE2
 
 `Address: 0x50121000 + 0x150 = 0x50121150`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L150 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L150>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE2
@@ -2109,7 +2188,8 @@ SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE3
 
 `Address: 0x50121000 + 0x154 = 0x50121154`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L150 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L150>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE3
@@ -2133,7 +2213,8 @@ SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE4
 
 `Address: 0x50121000 + 0x158 = 0x50121158`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L150 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L150>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE4
@@ -2157,7 +2238,8 @@ SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE5
 
 `Address: 0x50121000 + 0x15c = 0x5012115c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L150 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L150>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE5
@@ -2181,7 +2263,8 @@ SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE6
 
 `Address: 0x50121000 + 0x160 = 0x50121160`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L150 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L150>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_INTERFACE_CODE_CFG_REG_FUNC_ISDIO_INTERFACE_CODE6
@@ -2205,7 +2288,8 @@ SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE0
 
 `Address: 0x50121000 + 0x168 = 0x50121168`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L151 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L151>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE0
@@ -2229,7 +2313,8 @@ SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE1
 
 `Address: 0x50121000 + 0x16c = 0x5012116c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L151 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L151>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE1
@@ -2253,7 +2338,8 @@ SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE2
 
 `Address: 0x50121000 + 0x170 = 0x50121170`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L151 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L151>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE2
@@ -2277,7 +2363,8 @@ SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE3
 
 `Address: 0x50121000 + 0x174 = 0x50121174`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L151 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L151>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE3
@@ -2301,7 +2388,8 @@ SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE4
 
 `Address: 0x50121000 + 0x178 = 0x50121178`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L151 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L151>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE4
@@ -2325,7 +2413,8 @@ SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE5
 
 `Address: 0x50121000 + 0x17c = 0x5012117c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L151 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L151>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE5
@@ -2349,7 +2438,8 @@ SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE6
 
 `Address: 0x50121000 + 0x180 = 0x50121180`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L151 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L151>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_CODE_CFG_REG_FUNC_MANUFACT_CODE6
@@ -2373,7 +2463,8 @@ SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO0
 
 `Address: 0x50121000 + 0x188 = 0x50121188`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L152 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L152>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO0
@@ -2397,7 +2488,8 @@ SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO1
 
 `Address: 0x50121000 + 0x18c = 0x5012118c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L152 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L152>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO1
@@ -2421,7 +2513,8 @@ SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO2
 
 `Address: 0x50121000 + 0x190 = 0x50121190`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L152 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L152>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO2
@@ -2445,7 +2538,8 @@ SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO3
 
 `Address: 0x50121000 + 0x194 = 0x50121194`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L152 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L152>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO3
@@ -2469,7 +2563,8 @@ SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO4
 
 `Address: 0x50121000 + 0x198 = 0x50121198`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L152 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L152>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO4
@@ -2493,7 +2588,8 @@ SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO5
 
 `Address: 0x50121000 + 0x19c = 0x5012119c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L152 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L152>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO5
@@ -2517,7 +2613,8 @@ SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO6
 
 `Address: 0x50121000 + 0x1a0 = 0x501211a0`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L152 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L152>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_MANUFACT_INFO_CFG_REG_FUNC_MANUFACT_INFO6
@@ -2541,7 +2638,8 @@ SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE0
 
 `Address: 0x50121000 + 0x1a8 = 0x501211a8`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L153 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L153>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE0
@@ -2565,7 +2663,8 @@ SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE1
 
 `Address: 0x50121000 + 0x1ac = 0x501211ac`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L153 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L153>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE1
@@ -2589,7 +2688,8 @@ SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE2
 
 `Address: 0x50121000 + 0x1b0 = 0x501211b0`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L153 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L153>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE2
@@ -2613,7 +2713,8 @@ SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE3
 
 `Address: 0x50121000 + 0x1b4 = 0x501211b4`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L153 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L153>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE3
@@ -2637,7 +2738,8 @@ SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE4
 
 `Address: 0x50121000 + 0x1b8 = 0x501211b8`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L153 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L153>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE4
@@ -2661,7 +2763,8 @@ SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE5
 
 `Address: 0x50121000 + 0x1bc = 0x501211bc`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L153 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L153>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE5
@@ -2685,7 +2788,8 @@ SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE6
 
 `Address: 0x50121000 + 0x1c0 = 0x501211c0`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L153 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L153>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_ISDIO_TYPE_SUP_CODE_CFG_REG_FUNC_ISDIO_TYPE_SUP_CODE6
@@ -2709,7 +2813,8 @@ SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO0
 
 `Address: 0x50121000 + 0x1c8 = 0x501211c8`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L154 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L154>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO0
@@ -2733,7 +2838,8 @@ SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO1
 
 `Address: 0x50121000 + 0x1cc = 0x501211cc`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L154 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L154>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO1
@@ -2757,7 +2863,8 @@ SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO2
 
 `Address: 0x50121000 + 0x1d0 = 0x501211d0`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L154 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L154>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO2
@@ -2781,7 +2888,8 @@ SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO3
 
 `Address: 0x50121000 + 0x1d4 = 0x501211d4`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L154 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L154>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO3
@@ -2805,7 +2913,8 @@ SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO4
 
 `Address: 0x50121000 + 0x1d8 = 0x501211d8`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L154 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L154>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO4
@@ -2829,7 +2938,8 @@ SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO5
 
 `Address: 0x50121000 + 0x1dc = 0x501211dc`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L154 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L154>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO5
@@ -2853,7 +2963,8 @@ SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO6
 
 `Address: 0x50121000 + 0x1e0 = 0x501211e0`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L154 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L154>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_FUNC_INFO_CFG_REG_FUNC_INFO6
@@ -2877,7 +2988,8 @@ SDDC_CR_REG_UHS_1_SUPPORT
 
 `Address: 0x50121000 + 0x1f0 = 0x501211f0`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/sddc.sv
+    See `sddc.sv#L159 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/i
+    fsub/rtl/sddc.sv#L159>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: SDDC_CR_REG_UHS_1_SUPPORT

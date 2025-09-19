@@ -141,7 +141,8 @@ IOX_SFR_AFSEL_CRAFSEL0
 
 `Address: 0x5012f000 + 0x0 = 0x5012f000`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L73 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/ifs
+    ub/rtl/iox.sv#L73>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_AFSEL_CRAFSEL0
@@ -165,7 +166,8 @@ IOX_SFR_AFSEL_CRAFSEL1
 
 `Address: 0x5012f000 + 0x4 = 0x5012f004`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L73 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/ifs
+    ub/rtl/iox.sv#L73>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_AFSEL_CRAFSEL1
@@ -189,7 +191,8 @@ IOX_SFR_AFSEL_CRAFSEL2
 
 `Address: 0x5012f000 + 0x8 = 0x5012f008`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L73 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/ifs
+    ub/rtl/iox.sv#L73>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_AFSEL_CRAFSEL2
@@ -213,7 +216,8 @@ IOX_SFR_AFSEL_CRAFSEL3
 
 `Address: 0x5012f000 + 0xc = 0x5012f00c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L73 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/ifs
+    ub/rtl/iox.sv#L73>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_AFSEL_CRAFSEL3
@@ -237,7 +241,8 @@ IOX_SFR_AFSEL_CRAFSEL4
 
 `Address: 0x5012f000 + 0x10 = 0x5012f010`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L73 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/ifs
+    ub/rtl/iox.sv#L73>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_AFSEL_CRAFSEL4
@@ -261,7 +266,8 @@ IOX_SFR_AFSEL_CRAFSEL5
 
 `Address: 0x5012f000 + 0x14 = 0x5012f014`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L73 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/ifs
+    ub/rtl/iox.sv#L73>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_AFSEL_CRAFSEL5
@@ -285,7 +291,8 @@ IOX_SFR_AFSEL_CRAFSEL6
 
 `Address: 0x5012f000 + 0x18 = 0x5012f018`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L73 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/ifs
+    ub/rtl/iox.sv#L73>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_AFSEL_CRAFSEL6
@@ -309,7 +316,8 @@ IOX_SFR_AFSEL_CRAFSEL7
 
 `Address: 0x5012f000 + 0x1c = 0x5012f01c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L73 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/ifs
+    ub/rtl/iox.sv#L73>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_AFSEL_CRAFSEL7
@@ -333,7 +341,8 @@ IOX_SFR_AFSEL_CRAFSEL8
 
 `Address: 0x5012f000 + 0x20 = 0x5012f020`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L73 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/ifs
+    ub/rtl/iox.sv#L73>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_AFSEL_CRAFSEL8
@@ -357,7 +366,8 @@ IOX_SFR_AFSEL_CRAFSEL9
 
 `Address: 0x5012f000 + 0x24 = 0x5012f024`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L73 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/ifs
+    ub/rtl/iox.sv#L73>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_AFSEL_CRAFSEL9
@@ -381,7 +391,8 @@ IOX_SFR_AFSEL_CRAFSEL10
 
 `Address: 0x5012f000 + 0x28 = 0x5012f028`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L73 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/ifs
+    ub/rtl/iox.sv#L73>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_AFSEL_CRAFSEL10
@@ -405,7 +416,8 @@ IOX_SFR_AFSEL_CRAFSEL11
 
 `Address: 0x5012f000 + 0x2c = 0x5012f02c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L73 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/ifs
+    ub/rtl/iox.sv#L73>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_AFSEL_CRAFSEL11
@@ -429,7 +441,8 @@ IOX_SFR_INTCR_CRINT0
 
 `Address: 0x5012f000 + 0x100 = 0x5012f100`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L127 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L127>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_INTCR_CRINT0
@@ -453,7 +466,8 @@ IOX_SFR_INTCR_CRINT1
 
 `Address: 0x5012f000 + 0x104 = 0x5012f104`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L127 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L127>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_INTCR_CRINT1
@@ -477,7 +491,8 @@ IOX_SFR_INTCR_CRINT2
 
 `Address: 0x5012f000 + 0x108 = 0x5012f108`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L127 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L127>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_INTCR_CRINT2
@@ -501,7 +516,8 @@ IOX_SFR_INTCR_CRINT3
 
 `Address: 0x5012f000 + 0x10c = 0x5012f10c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L127 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L127>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_INTCR_CRINT3
@@ -525,7 +541,8 @@ IOX_SFR_INTCR_CRINT4
 
 `Address: 0x5012f000 + 0x110 = 0x5012f110`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L127 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L127>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_INTCR_CRINT4
@@ -549,7 +566,8 @@ IOX_SFR_INTCR_CRINT5
 
 `Address: 0x5012f000 + 0x114 = 0x5012f114`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L127 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L127>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_INTCR_CRINT5
@@ -573,7 +591,8 @@ IOX_SFR_INTCR_CRINT6
 
 `Address: 0x5012f000 + 0x118 = 0x5012f118`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L127 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L127>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_INTCR_CRINT6
@@ -597,7 +616,8 @@ IOX_SFR_INTCR_CRINT7
 
 `Address: 0x5012f000 + 0x11c = 0x5012f11c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L127 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L127>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_INTCR_CRINT7
@@ -621,7 +641,8 @@ IOX_SFR_INTFR
 
 `Address: 0x5012f000 + 0x120 = 0x5012f120`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L128 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L128>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_INTFR
@@ -646,7 +667,8 @@ IOX_SFR_GPIOOUT_CRGO0
 
 `Address: 0x5012f000 + 0x130 = 0x5012f130`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L146 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L146>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOOUT_CRGO0
@@ -670,7 +692,8 @@ IOX_SFR_GPIOOUT_CRGO1
 
 `Address: 0x5012f000 + 0x134 = 0x5012f134`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L146 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L146>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOOUT_CRGO1
@@ -694,7 +717,8 @@ IOX_SFR_GPIOOUT_CRGO2
 
 `Address: 0x5012f000 + 0x138 = 0x5012f138`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L146 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L146>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOOUT_CRGO2
@@ -718,7 +742,8 @@ IOX_SFR_GPIOOUT_CRGO3
 
 `Address: 0x5012f000 + 0x13c = 0x5012f13c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L146 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L146>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOOUT_CRGO3
@@ -742,7 +767,8 @@ IOX_SFR_GPIOOUT_CRGO4
 
 `Address: 0x5012f000 + 0x140 = 0x5012f140`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L146 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L146>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOOUT_CRGO4
@@ -766,7 +792,8 @@ IOX_SFR_GPIOOUT_CRGO5
 
 `Address: 0x5012f000 + 0x144 = 0x5012f144`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L146 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L146>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOOUT_CRGO5
@@ -790,7 +817,8 @@ IOX_SFR_GPIOOE_CRGOE0
 
 `Address: 0x5012f000 + 0x148 = 0x5012f148`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L147 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L147>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOOE_CRGOE0
@@ -814,7 +842,8 @@ IOX_SFR_GPIOOE_CRGOE1
 
 `Address: 0x5012f000 + 0x14c = 0x5012f14c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L147 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L147>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOOE_CRGOE1
@@ -838,7 +867,8 @@ IOX_SFR_GPIOOE_CRGOE2
 
 `Address: 0x5012f000 + 0x150 = 0x5012f150`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L147 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L147>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOOE_CRGOE2
@@ -862,7 +892,8 @@ IOX_SFR_GPIOOE_CRGOE3
 
 `Address: 0x5012f000 + 0x154 = 0x5012f154`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L147 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L147>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOOE_CRGOE3
@@ -886,7 +917,8 @@ IOX_SFR_GPIOOE_CRGOE4
 
 `Address: 0x5012f000 + 0x158 = 0x5012f158`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L147 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L147>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOOE_CRGOE4
@@ -910,7 +942,8 @@ IOX_SFR_GPIOOE_CRGOE5
 
 `Address: 0x5012f000 + 0x15c = 0x5012f15c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L147 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L147>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOOE_CRGOE5
@@ -934,7 +967,8 @@ IOX_SFR_GPIOPU_CRGPU0
 
 `Address: 0x5012f000 + 0x160 = 0x5012f160`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L148 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L148>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOPU_CRGPU0
@@ -958,7 +992,8 @@ IOX_SFR_GPIOPU_CRGPU1
 
 `Address: 0x5012f000 + 0x164 = 0x5012f164`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L148 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L148>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOPU_CRGPU1
@@ -982,7 +1017,8 @@ IOX_SFR_GPIOPU_CRGPU2
 
 `Address: 0x5012f000 + 0x168 = 0x5012f168`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L148 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L148>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOPU_CRGPU2
@@ -1006,7 +1042,8 @@ IOX_SFR_GPIOPU_CRGPU3
 
 `Address: 0x5012f000 + 0x16c = 0x5012f16c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L148 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L148>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOPU_CRGPU3
@@ -1030,7 +1067,8 @@ IOX_SFR_GPIOPU_CRGPU4
 
 `Address: 0x5012f000 + 0x170 = 0x5012f170`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L148 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L148>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOPU_CRGPU4
@@ -1054,7 +1092,8 @@ IOX_SFR_GPIOPU_CRGPU5
 
 `Address: 0x5012f000 + 0x174 = 0x5012f174`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L148 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L148>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOPU_CRGPU5
@@ -1078,7 +1117,8 @@ IOX_SFR_GPIOIN_SRGI0
 
 `Address: 0x5012f000 + 0x178 = 0x5012f178`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L149 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L149>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOIN_SRGI0
@@ -1102,7 +1142,8 @@ IOX_SFR_GPIOIN_SRGI1
 
 `Address: 0x5012f000 + 0x17c = 0x5012f17c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L149 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L149>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOIN_SRGI1
@@ -1126,7 +1167,8 @@ IOX_SFR_GPIOIN_SRGI2
 
 `Address: 0x5012f000 + 0x180 = 0x5012f180`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L149 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L149>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOIN_SRGI2
@@ -1150,7 +1192,8 @@ IOX_SFR_GPIOIN_SRGI3
 
 `Address: 0x5012f000 + 0x184 = 0x5012f184`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L149 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L149>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOIN_SRGI3
@@ -1174,7 +1217,8 @@ IOX_SFR_GPIOIN_SRGI4
 
 `Address: 0x5012f000 + 0x188 = 0x5012f188`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L149 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L149>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOIN_SRGI4
@@ -1198,7 +1242,8 @@ IOX_SFR_GPIOIN_SRGI5
 
 `Address: 0x5012f000 + 0x18c = 0x5012f18c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L149 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L149>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_GPIOIN_SRGI5
@@ -1222,7 +1267,8 @@ IOX_SFR_PIOSEL
 
 `Address: 0x5012f000 + 0x200 = 0x5012f200`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L249 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L249>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_PIOSEL
@@ -1245,7 +1291,8 @@ IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL0
 
 `Address: 0x5012f000 + 0x230 = 0x5012f230`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L225 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L225>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL0
@@ -1269,7 +1316,8 @@ IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL1
 
 `Address: 0x5012f000 + 0x234 = 0x5012f234`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L225 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L225>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL1
@@ -1293,7 +1341,8 @@ IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL2
 
 `Address: 0x5012f000 + 0x238 = 0x5012f238`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L225 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L225>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL2
@@ -1317,7 +1366,8 @@ IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL3
 
 `Address: 0x5012f000 + 0x23c = 0x5012f23c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L225 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L225>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL3
@@ -1341,7 +1391,8 @@ IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL4
 
 `Address: 0x5012f000 + 0x240 = 0x5012f240`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L225 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L225>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL4
@@ -1365,7 +1416,8 @@ IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL5
 
 `Address: 0x5012f000 + 0x244 = 0x5012f244`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L225 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L225>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_SCHM_CR_CFG_SCHMSEL5
@@ -1389,7 +1441,8 @@ IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW0
 
 `Address: 0x5012f000 + 0x248 = 0x5012f248`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L226 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L226>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW0
@@ -1413,7 +1466,8 @@ IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW1
 
 `Address: 0x5012f000 + 0x24c = 0x5012f24c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L226 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L226>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW1
@@ -1437,7 +1491,8 @@ IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW2
 
 `Address: 0x5012f000 + 0x250 = 0x5012f250`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L226 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L226>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW2
@@ -1461,7 +1516,8 @@ IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW3
 
 `Address: 0x5012f000 + 0x254 = 0x5012f254`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L226 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L226>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW3
@@ -1485,7 +1541,8 @@ IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW4
 
 `Address: 0x5012f000 + 0x258 = 0x5012f258`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L226 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L226>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW4
@@ -1509,7 +1566,8 @@ IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW5
 
 `Address: 0x5012f000 + 0x25c = 0x5012f25c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L226 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L226>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_SLEW_CR_CFG_SLEWSLOW5
@@ -1533,7 +1591,8 @@ IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL0
 
 `Address: 0x5012f000 + 0x260 = 0x5012f260`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L227 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L227>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL0
@@ -1556,7 +1615,8 @@ IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL1
 
 `Address: 0x5012f000 + 0x264 = 0x5012f264`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L227 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L227>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL1
@@ -1579,7 +1639,8 @@ IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL2
 
 `Address: 0x5012f000 + 0x268 = 0x5012f268`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L227 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L227>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL2
@@ -1602,7 +1663,8 @@ IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL3
 
 `Address: 0x5012f000 + 0x26c = 0x5012f26c`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L227 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L227>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL3
@@ -1625,7 +1687,8 @@ IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL4
 
 `Address: 0x5012f000 + 0x270 = 0x5012f270`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L227 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L227>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL4
@@ -1648,7 +1711,8 @@ IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL5
 
 `Address: 0x5012f000 + 0x274 = 0x5012f274`
 
-    See file:///F:/code/cram-nto/../../modules/ifsub/rtl/iox.sv
+    See `iox.sv#L227 <https://github.com/baochip/baochip-1x/blob/main/rtl/modules/if
+    sub/rtl/iox.sv#L227>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: IOX_SFR_CFG_DRVSEL_CR_CFG_DRVSEL5

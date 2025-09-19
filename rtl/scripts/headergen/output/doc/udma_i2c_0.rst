@@ -35,7 +35,8 @@ UDMA_I2C_0_REG_RX_SADDR
 
 `Address: 0x50109000 + 0x0 = 0x50109000`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_i2c/rtl/udma_i2c_reg_if.sv
+    See `udma_i2c_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips
+    /udma/udma_i2c/rtl/udma_i2c_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_I2C_0_REG_RX_SADDR
@@ -59,7 +60,8 @@ UDMA_I2C_0_REG_RX_SIZE
 
 `Address: 0x50109000 + 0x4 = 0x50109004`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_i2c/rtl/udma_i2c_reg_if.sv
+    See `udma_i2c_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips
+    /udma/udma_i2c/rtl/udma_i2c_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_I2C_0_REG_RX_SIZE
@@ -83,7 +85,8 @@ UDMA_I2C_0_REG_RX_CFG
 
 `Address: 0x50109000 + 0x8 = 0x50109008`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_i2c/rtl/udma_i2c_reg_if.sv
+    See `udma_i2c_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips
+    /udma/udma_i2c/rtl/udma_i2c_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_I2C_0_REG_RX_CFG
@@ -111,7 +114,8 @@ UDMA_I2C_0_REG_TX_SADDR
 
 `Address: 0x50109000 + 0x10 = 0x50109010`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_i2c/rtl/udma_i2c_reg_if.sv
+    See `udma_i2c_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips
+    /udma/udma_i2c/rtl/udma_i2c_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_I2C_0_REG_TX_SADDR
@@ -135,7 +139,8 @@ UDMA_I2C_0_REG_TX_SIZE
 
 `Address: 0x50109000 + 0x14 = 0x50109014`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_i2c/rtl/udma_i2c_reg_if.sv
+    See `udma_i2c_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips
+    /udma/udma_i2c/rtl/udma_i2c_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_I2C_0_REG_TX_SIZE
@@ -159,7 +164,8 @@ UDMA_I2C_0_REG_TX_CFG
 
 `Address: 0x50109000 + 0x18 = 0x50109018`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_i2c/rtl/udma_i2c_reg_if.sv
+    See `udma_i2c_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips
+    /udma/udma_i2c/rtl/udma_i2c_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_I2C_0_REG_TX_CFG
@@ -187,7 +193,8 @@ UDMA_I2C_0_REG_CMD_SADDR
 
 `Address: 0x50109000 + 0x20 = 0x50109020`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_i2c/rtl/udma_i2c_reg_if.sv
+    See `udma_i2c_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips
+    /udma/udma_i2c/rtl/udma_i2c_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_I2C_0_REG_CMD_SADDR
@@ -211,7 +218,8 @@ UDMA_I2C_0_REG_CMD_SIZE
 
 `Address: 0x50109000 + 0x24 = 0x50109024`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_i2c/rtl/udma_i2c_reg_if.sv
+    See `udma_i2c_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips
+    /udma/udma_i2c/rtl/udma_i2c_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_I2C_0_REG_CMD_SIZE
@@ -235,7 +243,8 @@ UDMA_I2C_0_REG_CMD_CFG
 
 `Address: 0x50109000 + 0x28 = 0x50109028`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_i2c/rtl/udma_i2c_reg_if.sv
+    See `udma_i2c_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips
+    /udma/udma_i2c/rtl/udma_i2c_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_I2C_0_REG_CMD_CFG
@@ -263,7 +272,8 @@ UDMA_I2C_0_REG_STATUS
 
 `Address: 0x50109000 + 0x30 = 0x50109030`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_i2c/rtl/udma_i2c_reg_if.sv
+    See `udma_i2c_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips
+    /udma/udma_i2c/rtl/udma_i2c_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_I2C_0_REG_STATUS
@@ -290,7 +300,8 @@ UDMA_I2C_0_REG_ACK
 
 `Address: 0x50109000 + 0x38 = 0x50109038`
 
-    See file:///F:/code/cram-nto/../../ips/udma/udma_i2c/rtl/udma_i2c_reg_if.sv
+    See `udma_i2c_reg_if.sv <https://github.com/baochip/baochip-1x/blob/main/rtl/ips
+    /udma/udma_i2c/rtl/udma_i2c_reg_if.sv>`__
 
     .. wavedrom::
         :caption: UDMA_I2C_0_REG_ACK

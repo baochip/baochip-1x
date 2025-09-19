@@ -133,7 +133,8 @@ BIO_BDMA_SFR_CTRL
 
 `Address: 0x50124000 + 0x0 = 0x50124000`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L488 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L488>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_CTRL
@@ -163,7 +164,8 @@ BIO_BDMA_SFR_CFGINFO
 
 `Address: 0x50124000 + 0x4 = 0x50124004`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L489 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L489>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_CFGINFO
@@ -192,7 +194,8 @@ BIO_BDMA_SFR_CONFIG
 
 `Address: 0x50124000 + 0x8 = 0x50124008`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L490 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L490>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_CONFIG
@@ -234,7 +237,8 @@ BIO_BDMA_SFR_FLEVEL
 
 `Address: 0x50124000 + 0xc = 0x5012400c`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L492 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L492>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_FLEVEL
@@ -267,7 +271,8 @@ BIO_BDMA_SFR_TXF0
 
 `Address: 0x50124000 + 0x10 = 0x50124010`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L493 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L493>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_TXF0
@@ -290,7 +295,8 @@ BIO_BDMA_SFR_TXF1
 
 `Address: 0x50124000 + 0x14 = 0x50124014`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L494 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L494>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_TXF1
@@ -313,7 +319,8 @@ BIO_BDMA_SFR_TXF2
 
 `Address: 0x50124000 + 0x18 = 0x50124018`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L495 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L495>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_TXF2
@@ -336,7 +343,8 @@ BIO_BDMA_SFR_TXF3
 
 `Address: 0x50124000 + 0x1c = 0x5012401c`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L496 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L496>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_TXF3
@@ -359,7 +367,8 @@ BIO_BDMA_SFR_RXF0
 
 `Address: 0x50124000 + 0x20 = 0x50124020`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L497 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L497>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_RXF0
@@ -382,7 +391,8 @@ BIO_BDMA_SFR_RXF1
 
 `Address: 0x50124000 + 0x24 = 0x50124024`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L498 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L498>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_RXF1
@@ -405,7 +415,8 @@ BIO_BDMA_SFR_RXF2
 
 `Address: 0x50124000 + 0x28 = 0x50124028`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L499 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L499>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_RXF2
@@ -428,7 +439,8 @@ BIO_BDMA_SFR_RXF3
 
 `Address: 0x50124000 + 0x2c = 0x5012402c`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L500 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L500>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_RXF3
@@ -451,7 +463,8 @@ BIO_BDMA_SFR_ELEVEL
 
 `Address: 0x50124000 + 0x30 = 0x50124030`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L502 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L502>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_ELEVEL
@@ -495,7 +508,8 @@ BIO_BDMA_SFR_ETYPE
 
 `Address: 0x50124000 + 0x34 = 0x50124034`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L503 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L503>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_ETYPE
@@ -525,7 +539,8 @@ BIO_BDMA_SFR_EVENT_SET
 
 `Address: 0x50124000 + 0x38 = 0x50124038`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L504 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L504>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_EVENT_SET
@@ -549,7 +564,8 @@ BIO_BDMA_SFR_EVENT_CLR
 
 `Address: 0x50124000 + 0x3c = 0x5012403c`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L505 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L505>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_EVENT_CLR
@@ -573,7 +589,8 @@ BIO_BDMA_SFR_EVENT_STATUS
 
 `Address: 0x50124000 + 0x40 = 0x50124040`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L506 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L506>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_EVENT_STATUS
@@ -596,7 +613,8 @@ BIO_BDMA_SFR_EXTCLOCK
 
 `Address: 0x50124000 + 0x44 = 0x50124044`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L508 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L508>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_EXTCLOCK
@@ -632,7 +650,8 @@ BIO_BDMA_SFR_FIFO_CLR
 
 `Address: 0x50124000 + 0x48 = 0x50124048`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L509 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L509>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_FIFO_CLR
@@ -656,7 +675,8 @@ BIO_BDMA_SFR_QDIV0
 
 `Address: 0x50124000 + 0x50 = 0x50124050`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L511 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L511>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_QDIV0
@@ -686,7 +706,8 @@ BIO_BDMA_SFR_QDIV1
 
 `Address: 0x50124000 + 0x54 = 0x50124054`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L512 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L512>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_QDIV1
@@ -716,7 +737,8 @@ BIO_BDMA_SFR_QDIV2
 
 `Address: 0x50124000 + 0x58 = 0x50124058`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L513 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L513>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_QDIV2
@@ -746,7 +768,8 @@ BIO_BDMA_SFR_QDIV3
 
 `Address: 0x50124000 + 0x5c = 0x5012405c`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L514 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L514>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_QDIV3
@@ -776,7 +799,8 @@ BIO_BDMA_SFR_SYNC_BYPASS
 
 `Address: 0x50124000 + 0x60 = 0x50124060`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L516 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L516>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_SYNC_BYPASS
@@ -799,7 +823,8 @@ BIO_BDMA_SFR_IO_OE_INV
 
 `Address: 0x50124000 + 0x64 = 0x50124064`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L517 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L517>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_IO_OE_INV
@@ -822,7 +847,8 @@ BIO_BDMA_SFR_IO_O_INV
 
 `Address: 0x50124000 + 0x68 = 0x50124068`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L518 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L518>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_IO_O_INV
@@ -845,7 +871,8 @@ BIO_BDMA_SFR_IO_I_INV
 
 `Address: 0x50124000 + 0x6c = 0x5012406c`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L519 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L519>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_IO_I_INV
@@ -868,7 +895,8 @@ BIO_BDMA_SFR_IRQMASK_0
 
 `Address: 0x50124000 + 0x70 = 0x50124070`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L521 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L521>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_IRQMASK_0
@@ -891,7 +919,8 @@ BIO_BDMA_SFR_IRQMASK_1
 
 `Address: 0x50124000 + 0x74 = 0x50124074`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L522 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L522>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_IRQMASK_1
@@ -914,7 +943,8 @@ BIO_BDMA_SFR_IRQMASK_2
 
 `Address: 0x50124000 + 0x78 = 0x50124078`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L523 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L523>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_IRQMASK_2
@@ -937,7 +967,8 @@ BIO_BDMA_SFR_IRQMASK_3
 
 `Address: 0x50124000 + 0x7c = 0x5012407c`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L524 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L524>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_IRQMASK_3
@@ -960,7 +991,8 @@ BIO_BDMA_SFR_IRQ_EDGE
 
 `Address: 0x50124000 + 0x80 = 0x50124080`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L525 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L525>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_IRQ_EDGE
@@ -984,7 +1016,8 @@ BIO_BDMA_SFR_DBG_PADOUT
 
 `Address: 0x50124000 + 0x84 = 0x50124084`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L526 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L526>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DBG_PADOUT
@@ -1007,7 +1040,8 @@ BIO_BDMA_SFR_DBG_PADOE
 
 `Address: 0x50124000 + 0x88 = 0x50124088`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L527 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L527>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DBG_PADOE
@@ -1030,7 +1064,8 @@ BIO_BDMA_SFR_DBG0
 
 `Address: 0x50124000 + 0x90 = 0x50124090`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L529 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L529>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DBG0
@@ -1057,7 +1092,8 @@ BIO_BDMA_SFR_DBG1
 
 `Address: 0x50124000 + 0x94 = 0x50124094`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L530 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L530>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DBG1
@@ -1084,7 +1120,8 @@ BIO_BDMA_SFR_DBG2
 
 `Address: 0x50124000 + 0x98 = 0x50124098`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L531 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L531>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DBG2
@@ -1111,7 +1148,8 @@ BIO_BDMA_SFR_DBG3
 
 `Address: 0x50124000 + 0x9c = 0x5012409c`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L532 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L532>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DBG3
@@ -1138,7 +1176,8 @@ BIO_BDMA_SFR_MEM_GUTTER
 
 `Address: 0x50124000 + 0xa0 = 0x501240a0`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L535 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L535>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_MEM_GUTTER
@@ -1161,7 +1200,8 @@ BIO_BDMA_SFR_PERI_GUTTER
 
 `Address: 0x50124000 + 0xa4 = 0x501240a4`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L536 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L536>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_PERI_GUTTER
@@ -1184,7 +1224,8 @@ BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP0
 
 `Address: 0x50124000 + 0xb0 = 0x501240b0`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L571 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L571>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP0
@@ -1207,7 +1248,8 @@ BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP1
 
 `Address: 0x50124000 + 0xb4 = 0x501240b4`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L571 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L571>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP1
@@ -1230,7 +1272,8 @@ BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP2
 
 `Address: 0x50124000 + 0xb8 = 0x501240b8`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L571 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L571>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP2
@@ -1253,7 +1296,8 @@ BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP3
 
 `Address: 0x50124000 + 0xbc = 0x501240bc`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L571 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L571>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP3
@@ -1276,7 +1320,8 @@ BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP4
 
 `Address: 0x50124000 + 0xc0 = 0x501240c0`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L571 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L571>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP4
@@ -1299,7 +1344,8 @@ BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP5
 
 `Address: 0x50124000 + 0xc4 = 0x501240c4`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L571 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L571>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP5
@@ -1322,7 +1368,8 @@ BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT0
 
 `Address: 0x50124000 + 0xc8 = 0x501240c8`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L572 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L572>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT0
@@ -1345,7 +1392,8 @@ BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT1
 
 `Address: 0x50124000 + 0xcc = 0x501240cc`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L572 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L572>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT1
@@ -1368,7 +1416,8 @@ BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT2
 
 `Address: 0x50124000 + 0xd0 = 0x501240d0`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L572 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L572>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT2
@@ -1391,7 +1440,8 @@ BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT3
 
 `Address: 0x50124000 + 0xd4 = 0x501240d4`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L572 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L572>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT3
@@ -1414,7 +1464,8 @@ BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT4
 
 `Address: 0x50124000 + 0xd8 = 0x501240d8`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L572 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L572>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT4
@@ -1437,7 +1488,8 @@ BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT5
 
 `Address: 0x50124000 + 0xdc = 0x501240dc`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L572 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L572>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT5
@@ -1460,7 +1512,8 @@ BIO_BDMA_SFR_FILTER_BASE_0
 
 `Address: 0x50124000 + 0xe0 = 0x501240e0`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L593 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L593>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_FILTER_BASE_0
@@ -1484,7 +1537,8 @@ BIO_BDMA_SFR_FILTER_BOUNDS_0
 
 `Address: 0x50124000 + 0xe4 = 0x501240e4`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L594 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L594>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_FILTER_BOUNDS_0
@@ -1508,7 +1562,8 @@ BIO_BDMA_SFR_FILTER_BASE_1
 
 `Address: 0x50124000 + 0xe8 = 0x501240e8`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L595 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L595>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_FILTER_BASE_1
@@ -1532,7 +1587,8 @@ BIO_BDMA_SFR_FILTER_BOUNDS_1
 
 `Address: 0x50124000 + 0xec = 0x501240ec`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L596 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L596>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_FILTER_BOUNDS_1
@@ -1556,7 +1612,8 @@ BIO_BDMA_SFR_FILTER_BASE_2
 
 `Address: 0x50124000 + 0xf0 = 0x501240f0`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L597 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L597>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_FILTER_BASE_2
@@ -1580,7 +1637,8 @@ BIO_BDMA_SFR_FILTER_BOUNDS_2
 
 `Address: 0x50124000 + 0xf4 = 0x501240f4`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L598 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L598>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_FILTER_BOUNDS_2
@@ -1604,7 +1662,8 @@ BIO_BDMA_SFR_FILTER_BASE_3
 
 `Address: 0x50124000 + 0xf8 = 0x501240f8`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L599 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L599>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_FILTER_BASE_3
@@ -1628,7 +1687,8 @@ BIO_BDMA_SFR_FILTER_BOUNDS_3
 
 `Address: 0x50124000 + 0xfc = 0x501240fc`
 
-    See file:///F:/code/cram-nto/../../modules/bio_bdma/rtl/bio_bdma.sv
+    See `bio_bdma.sv#L600 <https://github.com/baochip/baochip-1x/blob/main/rtl/modul
+    es/bio_bdma/rtl/bio_bdma.sv#L600>`__ (line numbers are approximate)
 
     .. wavedrom::
         :caption: BIO_BDMA_SFR_FILTER_BOUNDS_3
