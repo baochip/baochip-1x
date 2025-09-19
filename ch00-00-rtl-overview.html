@@ -148,7 +148,7 @@
 <li>Human-readable <a href="https://ci.betrusted.io/bao1x/">SoC documentation</a></li>
 </ul>
 <p>Header generation is accomplished by running <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/scripts/headergen/rtl_to_svd.py"><code>rtl_to_svd.py</code></a> like this:</p>
-<pre><code>python3 ./rtl_to_svd.py --path ../../
+<pre><code class="language-python">python3 ./rtl_to_svd.py --path ../../
 </code></pre>
 <p>From the <code>rtl/scripts/headergen</code> directory. This invocation will automatically generate and place all of the documentation inside the <code>rtl/scripts/headergen/output</code> directory. <strong>Note</strong>: the script has a whole pile of dependencies, which are not well documented. Pull requests welcome to help fix that deficiency.</p>
 
