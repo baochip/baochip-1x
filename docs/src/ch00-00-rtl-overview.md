@@ -13,7 +13,7 @@ One use of the SoC RTL is automatic header generation and documentation extracti
 
 Header generation is accomplished by running [`rtl_to_svd.py`](https://github.com/baochip/baochip-1x/blob/main/rtl/scripts/headergen/rtl_to_svd.py) like this:
 
-```
+```python
 python3 ./rtl_to_svd.py --path ../../
 ```
 
