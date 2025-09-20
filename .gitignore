@@ -42,3 +42,10 @@ rtl/scripts/headergen/output/
 
 # local scripts used to help manage license headers
 license-mgmt/
+
+# verilator build artifacts - these are all generated files
+verilate/build/
+# this is an intermediate hex file for verilator use
+verilate/simspi.init
+# simulation stats log
+verilate/stats.txt
