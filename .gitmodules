@@ -7,3 +7,9 @@
 [submodule "deps/migen"]
 	path = deps/migen
 	url = https://github.com/buncram/migen.git
+[submodule "deps/xous-core"]
+	path = deps/xous-core
+	url = https://github.com/betrusted-io/xous-core.git
+[submodule "deps/nto-tests"]
+	path = deps/nto-tests
+	url = https://github.com/buncram/nto-tests.git
