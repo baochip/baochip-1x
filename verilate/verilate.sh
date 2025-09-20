@@ -129,12 +129,9 @@ else
 fi
 echo "******************** RUN SIM ***********************"
 
-#cp soc_oss/rtl/amba/apb_sfr_v0.1.sv build/sim/gateware/
-#cp soc_oss/rtl/common/template.sv build/sim/gateware/
-#cp soc_oss/rtl/common/amba_interface_def_v0.2.sv build/sim/gateware/
-#cp soc_oss/rtl/model/artisan_ram_def_v0.1.svh build/sim/gateware/
-#cp soc_oss/rtl/common/icg_v0.2.v build/sim/gateware/
-
+# This seems to be about the right amount of concurrency for this model. More threads don't speed things
+# up, and in some cases even slow things down because there just isn't enough work and you're spending
+# most of your time locking.
 THREADS=5
 
 # remember - trace-start is not 0!
