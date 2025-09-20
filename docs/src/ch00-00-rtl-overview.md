@@ -66,7 +66,7 @@ Thus, while the verilator models presented here are not perfectly cycle-accurate
 
 `GTKwave` was used for waveform viewing. A [custom fork](https://github.com/bunnie/gtkwave/tree/udp-send) (`udp-send`) of `v3.4.0` is required to support the "codezoom" feature documented here.
 
-Once you have built and installed these tools, you should be able to run the script at [`./verilate/verilate.sh`](../../verilate/verilate.sh). This shell script supports the following arguments:
+Once you have built and installed these tools, you should be able to run the script at [`./verilate/verilate.sh`](https://github.com/baochip/baochip-1x/blob/main/verilate/verilate.sh). This shell script supports the following arguments:
 
 - `-t [xous, iron]`. Defaults to `iron`. `iron` runs the code base in `deps/nto-tests`. `xous` runs the code base in `deps/xous-core` built for the `bao1x-sim` target.
 - `s [normal, fast]`. Defaults to `normal`. `fast` runs ~5x faster, but does not save a waveform file. However, it does print debug uart statements to the console. Thus `fast` is useful as a CI check that previously vetted simulations are still working, assuming you have populated your code with debug statements and checks for this.
@@ -85,7 +85,7 @@ Under the hood, the `verilate.sh` script will:
 
 On `nto-tests`, the simulation will automatically terminate in many cases due to some specialty tooling added to the SoC model. `xous-core` requires you to control-C out when you've collected enough data. Note that `verilator` has a little bit of a buffering delay on writing waveform data, so it's always a good idea to let it run for about 15 seconds longer than you need it to, to ensure that the aspect of interest is actually written to the waveform file.
 
-Once the simulation is done, you can view the results by running [`gtkw_run.sh`](../../verilate/gtkw_run.sh). This script will invoke GTKwave with a save file that will pre-populate some useful signals. Keep in mind there are literally tens of thousands of signals inside the chip, so what you see is just a small subset of what you can view. Think of it as a starting point for your debugging experience. It also configures GTKwave to pipe the necessary data to UDP so that you can run with `codezoom`.
+Once the simulation is done, you can view the results by running [`gtkw_run.sh`](https://github.com/baochip/baochip-1x/blob/main/verilate/gtkw_run.sh). This script will invoke GTKwave with a save file that will pre-populate some useful signals. Keep in mind there are literally tens of thousands of signals inside the chip, so what you see is just a small subset of what you can view. Think of it as a starting point for your debugging experience. It also configures GTKwave to pipe the necessary data to UDP so that you can run with `codezoom`.
 
 To use the `codezoom` feature, run `python3 ./codezoom.py --file ../listings/<your-crate.lst>` in the `verilate` directory, on the same host that you're running GTKwave on. Then, in GTKWave, select `View->Show Mouseover`. Once this is enabled, left-clicking on the "analog waveform" in the viewer (which is the Program Counter (PC) value) will cause the PC value to be piped into the `codezoom` python script. The script will then automatically show you the code at that PC value.
 
