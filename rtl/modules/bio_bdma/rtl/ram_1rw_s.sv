@@ -17,6 +17,110 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
+//////////////// BIST placeholders
+// These are port definitions used to make the RAM abstract model
+// simulation-compatible with the proprietary BIST (built-in-self-test)
+// system used for the RAM macros. For the purposes of model simulation
+// these interfaces merely need to exist and operate in a pass-through mode.
+
+interface rbif #(
+    parameter AW=14,
+    parameter DW=32,
+    parameter TW=16
+)();
+
+    wire                ramclk      ;
+    wire                ramcen      ;
+    wire  [AW-1:0]      ramaddr     ;
+    wire  [DW-1:0]      ramwen      ;
+    wire                ramgwen     ;
+    wire  [DW-1:0]      ramwdata    ;
+    wire  [DW-1:0]      ramrdata    ;
+
+    wire                ramclkb     ;
+    wire                ramcenb     ;
+    wire  [AW-1:0]      ramaddrb    ;
+    wire  [DW-1:0]      ramwenb     ;
+    wire                ramgwenb    ;
+    wire  [DW-1:0]      ramwdatab   ;
+    wire  [DW-1:0]      ramrdatab   ;
+
+    wire  [15:0]      ramtrm;
+
+  modport slave (
+    input   ramclk      ,
+    input   ramcen      ,
+    input   ramaddr     ,
+    input   ramwen      ,
+    input   ramgwen     ,
+    input   ramwdata    ,
+    output  ramrdata    ,
+    input   ramtrm
+    );
+endinterface
+
+// vendored in from artisan_ram_def.svh
+`define rf_sp_hde_inst_bio          \
+         .ema         ( rbs.ramtrm[15:13] ), \
+         .emaw        ( rbs.ramtrm[9:8]   ), \
+         .emas        ( rbs.ramtrm[7]     ), \
+         .wabl        ( rbs.ramtrm[6]     ), \
+         .wablm       ( rbs.ramtrm[4:3]   ), \
+         .rawl        ( rbs.ramtrm[2]     ), \
+         .rawlm       ( rbs.ramtrm[1:0]   ), \
+         .ret1n       (1'b1)
+
+module rbspmux#(
+    parameter AW=14,
+    parameter DW=32,
+    parameter bit TCM=1'b0
+) (
+         input logic cmsatpg,
+         input logic cmsbist,
+         rbif.slave rbs     ,
+         input  logic           clk     ,
+         output logic [DW-1:0]  q       ,
+         input  logic           cen     ,
+         input  logic           gwen    ,
+         input  logic [DW-1:0]  wen     ,
+         input  logic [AW-1:0]  a       ,
+         input  logic [DW-1:0]  d       ,
+         output logic           rb_clk  ,
+         input  logic [DW-1:0]  rb_q    ,
+         output logic           rb_cen  ,
+         output logic           rb_gwen ,
+         output logic [DW-1:0]  rb_wen  ,
+         output logic [AW-1:0]  rb_a    ,
+         output logic [DW-1:0]  rb_d
+   );
+
+    logic [DW-1:0]  undft_q       ;
+    logic           undft_cen     ;
+    logic           undft_gwen    ;
+    logic [DW-1:0]  undft_wen     ;
+    logic [AW-1:0]  undft_a       ;
+    logic [DW-1:0]  undft_d   ;
+
+    logic rb_clk_undft; CLKCELL_MUX2 c1 (.A(clk), .B(rbs.ramclk), .S(cmsbist), .Z(rb_clk_undft));
+    assign rb_clk = (TCM==1'b1)?rb_clk_undft : (cmsatpg ? 1'b0 : rb_clk_undft);
+//    assign rb_clk  = cmsatpg ? '1 : undft_clk  ;
+    assign rb_cen  = cmsatpg ? '1 : undft_cen  ; assign undft_cen  = cmsbist ? rbs.ramcen   : cen  ;
+    assign rb_gwen = cmsatpg ? '1 : undft_gwen ; assign undft_gwen = cmsbist ? rbs.ramgwen  : gwen ;
+    assign rb_wen  = cmsatpg ? '1 : undft_wen  ; assign undft_wen  = cmsbist ? rbs.ramwen   : wen  ;
+    assign rb_a    = cmsatpg ? '1 : undft_a    ; assign undft_a    = cmsbist ? rbs.ramaddr  : a    ;
+    assign rb_d    = cmsatpg ? '1 : undft_d    ; assign undft_d    = cmsbist ? rbs.ramwdata : d    ;
+
+//    assign undft_q = cmsatpg ? '0|^{ undft_cen, undft_gwen , undft_wen, undft_a, undft_d, rbs.ramtrm } : rb_q;
+//    `thereg( undft_q ) <= cen ^ gwen  ^ wen ^ a ^ d ^ rbs.ramtrm ;
+    always@(negedge clk) undft_q  <= cen ^ gwen  ^ wen ^ a ^ d ^ rbs.ramtrm ;
+
+
+    assign q            = cmsatpg ? undft_q : rb_q;
+    assign rbs.ramrdata = cmsatpg ? undft_q : rb_q;
+
+endmodule
+//////////////// end BIST placeholders
+
 // This is modeled on Single-Port High Density Register File for 22ULL spec
 // Clock speed target = 800MHz, Min Cycle clk ~0.6ns @ typical
 module Ram_1rw_s #(
