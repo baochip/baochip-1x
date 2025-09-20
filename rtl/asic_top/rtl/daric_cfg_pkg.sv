@@ -113,6 +113,7 @@ package daric_cfg;
 
     localparam IRQCNT = 256;
     localparam ERRCNT = 16;
+    /*
     localparam cm7cfg_t CM7CFG = {
         FPU         : CM7CFG_FPU     ,
         ICACHE      : 1     ,
@@ -124,12 +125,12 @@ package daric_cfg;
         ICACHESIZE  : 16    ,
         DCACHESIZE  : 16
     };
-
+    */
 
 //  tcm cfg:
 //  -- dtcm cfg is for 1 of the macro, there are 2 in total.
 //  -- rc is ramcount, means the ram entity count in parallel.
-
+    /*
     localparam CFGITCMSZ = 4'b1001; // 256KB
     localparam CFGDTCMSZ = 4'b0111; // 64 KB
 
@@ -193,6 +194,7 @@ package daric_cfg;
         isPRT:  '1,
         EVITVL:  15
     };
+    */
 
 // ░▒▓██▓▒░  ■■■■■■■■■■
 // ░▒▓██▓▒░    secsub
