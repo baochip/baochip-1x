@@ -39,3 +39,6 @@ todo.md
 
 # outputs of the documentation generator
 rtl/scripts/headergen/output/
+
+# local scripts used to help manage license headers
+license-mgmt/
