@@ -127,7 +127,8 @@ module duart (
     if( apbwr )  begin
         if( charbufclr ) begin
             charbufstring = charbufdat;
-            $display("[duart] %s", charbufstring );
+            if (charbufidx != 0) // this causes lone '\n' or '\r' to be skipped, effectively collapsing '\n\r' sequences to just '\n'
+                $display("[duart] %s", charbufstring );
             charbufdat = '0;
         end
     end
