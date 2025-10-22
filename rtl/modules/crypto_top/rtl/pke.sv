@@ -794,10 +794,14 @@ endgenerate
 `endif
     sync_pulse sync_reseed ( .clka(clk),    .resetn, .clkb(clkpke), .pulsea (maskseedupd), .pulseb( maskseedupd_sync ) );
 
-    drng_lfsr #( .LFSR_W(229),.LFSR_NODE({ 10'd228, 10'd225, 10'd219 }), .LFSR_OW(32), .LFSR_IW(32), .LFSR_IV('h55aa_aa55_5a5a_a5a5) )
+    // tapeout deviation (bunnie) - LFSR_IV is too long, causes verilator errors. Original value: 'h55aa_aa55_5a5a_a5a5, assume
+    // truncatetion to the LSB's.
+    drng_lfsr #( .LFSR_W(229),.LFSR_NODE({ 10'd228, 10'd225, 10'd219 }), .LFSR_OW(32), .LFSR_IW(32), .LFSR_IV('h5a5a_a5a5) )
         ua( .clk(clkpke), .sen(optsec), .resetn(resetn), .swr(maskseedupd_sync), .sdin(maskseed), .sdout(pkemaskdat[31:0]) );
 
-    drng_lfsr #( .LFSR_W(229),.LFSR_NODE({ 10'd228, 10'd225, 10'd219 }), .LFSR_OW(32), .LFSR_IW(32), .LFSR_IV('h5aa5_5aa5_a5a5_5a5a) )
+    // tapeout deviation (bunnie) - LFSR_IV is too long, causes verilator errors. Original value: 'h55aa_aa55_5a5a_a5a5, assume
+    // truncatetion to the LSB's.
+    drng_lfsr #( .LFSR_W(229),.LFSR_NODE({ 10'd228, 10'd225, 10'd219 }), .LFSR_OW(32), .LFSR_IW(32), .LFSR_IV('ha5a5_5a5a) )
         ub( .clk(clkpke), .sen(optsec), .resetn(resetn), .swr(maskseedupd_sync), .sdin(pkemaskdat[31:0]), .sdout(pkemaskdat[63:32]) );
 
 // tick
