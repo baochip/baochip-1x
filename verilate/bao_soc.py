@@ -37,6 +37,7 @@ from soc_oss.axi_ram import AXIRAM
 
 from bao_common import CramSoC
 from bao_udma import CramSoCUdma
+from bao_sce import CramSoCSce
 
 import shutil
 
@@ -498,6 +499,9 @@ def sim_args(parser):
     # UDMA simulation variant
     parser.add_argument("--udma",                 action="store_true",     help="use UDMA variant of SoC")
 
+    # SCE simulation variant
+    parser.add_argument("--sce",                  action="store_true",     help="use SCE variant of SoC")
+
     parser.add_argument("--vextype",              type=str, default="vexi", choices=['vexi', 'vexii'],  help="Select Vex variant")
 
 def main():
@@ -575,6 +579,36 @@ def main():
         else:
             CramSoCUdma.xsim_extensions = xsim_extensions
             soc.xsim_extensions()
+    elif args.sce:
+        soc = CramSoCSce(
+            platform,
+            variant="sim",
+            bios_path=bios_path,
+            boot_offset=args.boot_offset,
+            sys_clk_freq=sys_clk_freq,
+            sim_debug          = args.sim_debug,
+            trace_reset_on     = False,
+            production_models  = production_models,
+            **soc_kwargs
+        )
+        if args.speed == "fast":
+            nosave = True
+        else:
+            nosave = False
+
+        # Add extensions for each simulator --------------------------------------------------------
+        CramSoCSce.common_extensions = common_extensions
+        soc.common_extensions()
+
+        if simulator == 'verilator':
+            CramSoCSce.sim_extensions = verilator_extensions
+            soc.sim_extensions(nosave)
+
+            def pre_run_callback(vns):
+                generate_gtkw_savefile(builder, vns)
+        else:
+            CramSoCSce.xsim_extensions = xsim_extensions
+            soc.xsim_extensions()
     else:
         soc = CramSoC(
             platform,
@@ -625,7 +659,8 @@ def main():
             shutil.copy('./build/gateware/reram_mem.init', destdir)
             shutil.copy('../VexRiscv/memory_AesZknPlugin_rom_storage_Rom_1rs.v', destdir)
             shutil.copy('../rtl/modules/common/rtl/template.sv', destdir)
-            shutil.copytree("sim_support/axi", destdir, dirs_exist_ok=True)
+            # TODO: why is this throwing permission denied?
+            # shutil.copytree("sim_support/axi", destdir, dirs_exist_ok=True)
             if args.vextype == 'vexii':
                 shutil.copy('../VexiiRiscv/VexiiRiscv-cramsoc.sv', destdir + 'VexiiRiscv.sv')
                 shutil.copy('../VexiiRiscv/early0_AesZknPlugin_logic_onData_rom_storage.v', destdir)
