@@ -57,6 +57,27 @@ interface rbif #(
     output  ramrdata    ,
     input   ramtrm
     );
+
+  modport slavedp (
+    input   ramclk      ,
+    input   ramcen      ,
+    input   ramaddr     ,
+    input   ramwen      ,
+    input   ramgwen     ,
+    input   ramwdata    ,
+    output  ramrdata    ,
+
+    input   ramclkb     ,
+    input   ramcenb     ,
+    input   ramaddrb    ,
+    input   ramwenb     ,
+    input   ramgwenb    ,
+    input   ramwdatab   ,
+    output  ramrdatab   ,
+
+    input   ramtrm
+    );
+
 endinterface
 
 // vendored in from artisan_ram_def.svh
