@@ -32,7 +32,7 @@ class AXILite2AHBAdapter(Module):
         assert isinstance(s_axil,  AXILiteInterface)
         assert isinstance(m_ahb, ahb.AHBInterface)
         s_data_width = len(s_axil.w.data)
-        assert (s_data_width, 32)
+        # assert (s_data_width, 32)
         if s_data_width == 64:
             dw_param = 1
         else:
