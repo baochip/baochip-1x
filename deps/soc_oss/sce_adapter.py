@@ -21,7 +21,7 @@ from .apb import *
 from litex.soc.interconnect.csr import *
 
 class SceAdapter(Module):
-    def __init__(self, platform, s_ahb):
+    def __init__(self, platform, s_ahb, m_axi0, m_axi1):
         self.logger = logging.getLogger("SceAdapter")
 
         tie_one = Signal()
@@ -36,6 +36,7 @@ class SceAdapter(Module):
         sceerrs = Signal()
         secmode = Signal()
         sceuser = Signal(8)
+        vex_user = Signal(4, reset=4) # this is the AMBAID4_VEXD constant
 
         self.specials += Instance("soc_sce",
             # Parameters.
@@ -80,12 +81,75 @@ class SceAdapter(Module):
             o_hready               = s_ahb.readyout,      # Transfer done
             o_hresp                = s_ahb.resp,          # Transfer response
             # o_hruser               = Open(),
-
             # AHB NC wires
             i_hprot                = 0,         # Protection control
             i_hmaster              = 0,         # Master select. Should this be zero??
-            # i_hauser               = 0,
+            i_hauser               = vex_user,
             # i_hwuser               = 0,
+
+            # AXI Master interfaces
+            o_axi0_awvalid         = m_axi0.aw.valid,
+            i_axi0_awready         = m_axi0.aw.ready,
+            o_axi0_awid            = m_axi0.aw.id   ,
+            o_axi0_awaddr          = m_axi0.aw.addr ,
+            o_axi0_awsize          = m_axi0.aw.size ,
+            o_axi0_awprot          = m_axi0.aw.prot ,
+            o_axi0_awlen           = m_axi0.aw.len  ,
+            o_axi0_awburst         = m_axi0.aw.burst,
+            o_axi0_wvalid          = m_axi0.w.valid ,
+            i_axi0_wready          = m_axi0.w.ready ,
+            o_axi0_wdata           = m_axi0.w.data  ,
+            o_axi0_wstrb           = m_axi0.w.strb  ,
+            o_axi0_wlast           = m_axi0.w.last  ,
+            i_axi0_bvalid          = m_axi0.b.valid ,
+            o_axi0_bready          = m_axi0.b.ready ,
+            i_axi0_bresp           = m_axi0.b.resp  ,
+            i_axi0_bid             = m_axi0.b.id    ,
+            o_axi0_arvalid         = m_axi0.ar.valid,
+            i_axi0_arready         = m_axi0.ar.ready,
+            o_axi0_arid            = m_axi0.ar.id   ,
+            o_axi0_araddr          = m_axi0.ar.addr ,
+            o_axi0_arsize          = m_axi0.ar.size ,
+            o_axi0_arprot          = m_axi0.ar.prot ,
+            o_axi0_arlen           = m_axi0.ar.len  ,
+            o_axi0_arburst         = m_axi0.ar.burst,
+            i_axi0_rvalid          = m_axi0.r.valid ,
+            o_axi0_rready          = m_axi0.r.ready ,
+            i_axi0_rid             = m_axi0.r.id    ,
+            i_axi0_rdata           = m_axi0.r.data  ,
+            i_axi0_rresp           = m_axi0.r.resp  ,
+
+            o_axi1_awvalid         = m_axi1.aw.valid,
+            i_axi1_awready         = m_axi1.aw.ready,
+            o_axi1_awid            = m_axi1.aw.id   ,
+            o_axi1_awaddr          = m_axi1.aw.addr ,
+            o_axi1_awsize          = m_axi1.aw.size ,
+            o_axi1_awprot          = m_axi1.aw.prot ,
+            o_axi1_awlen           = m_axi1.aw.len  ,
+            o_axi1_awburst         = m_axi1.aw.burst,
+            o_axi1_wvalid          = m_axi1.w.valid ,
+            i_axi1_wready          = m_axi1.w.ready ,
+            o_axi1_wdata           = m_axi1.w.data  ,
+            o_axi1_wstrb           = m_axi1.w.strb  ,
+            o_axi1_wlast           = m_axi1.w.last  ,
+            i_axi1_bvalid          = m_axi1.b.valid ,
+            o_axi1_bready          = m_axi1.b.ready ,
+            i_axi1_bresp           = m_axi1.b.resp  ,
+            i_axi1_bid             = m_axi1.b.id    ,
+            o_axi1_arvalid         = m_axi1.ar.valid,
+            i_axi1_arready         = m_axi1.ar.ready,
+            o_axi1_arid            = m_axi1.ar.id   ,
+            o_axi1_araddr          = m_axi1.ar.addr ,
+            o_axi1_arsize          = m_axi1.ar.size ,
+            o_axi1_arprot          = m_axi1.ar.prot ,
+            o_axi1_arlen           = m_axi1.ar.len  ,
+            o_axi1_arburst         = m_axi1.ar.burst,
+            i_axi1_rvalid          = m_axi1.r.valid ,
+            o_axi1_rready          = m_axi1.r.ready ,
+            i_axi1_rid             = m_axi1.r.id    ,
+            i_axi1_rdata           = m_axi1.r.data  ,
+            i_axi1_rresp           = m_axi1.r.resp  ,
+
         )
 
         # Add Sources.

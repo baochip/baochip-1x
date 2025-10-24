@@ -36,6 +36,7 @@ from soc_oss.axil_ahb_adapter import AXILite2AHBAdapter
 from litex.soc.interconnect import ahb
 from soc_oss.ahb_axi_adapter import AHB2AxiAdapter
 from soc_oss.axi_axil_adapter import AXI2AXILiteAdapter
+from soc_oss.axil_axi_adapter import AXILite2AXIAdapter
 
 from math import ceil, log2
 
@@ -168,6 +169,27 @@ class CramSoCSce(SoCCore):
         self.submodules += AXIAdapter(platform, s_axi = dbus_axi, m_axi = dbus64_axi, convert_burst=True, convert_narrow_burst=True)
         ibus64_axi = AXIInterface(data_width=64, address_width=32, id_width=4, bursting=True)
 
+        sce_axi0 = AXIInterface(data_width=32, address_width=32, id_width=4, bursting=True)
+        sce_axi0_64 = AXIInterface(data_width=64, address_width=32, id_width=4, bursting=True)
+        self.submodules += AXIAdapter(platform, s_axi = sce_axi0, m_axi = sce_axi0_64, convert_burst=True, convert_narrow_burst=True)
+
+        # AXI in pclk domain to SCE
+        sce_axi1_p = AXIInterface(clock_domain="p", data_width=32, address_width=32, id_width=4, bursting=False)
+        sce_axil1_p = AXILiteInterface(clock_domain="p", name = "sce_axil1_p", bursting = False)
+        self.submodules += ClockDomainsRenamer({"sys" : "p"})(
+            AXI2AXILiteAdapter(platform, sce_axi1_p, sce_axil1_p)
+        )
+        # CDC on axilite domain
+        sce_axil1_sys = AXILiteInterface(name = "sce_axil1_sys", bursting = False)
+        self.submodules += AXILiteCDC(platform, sce_axil1_p, sce_axil1_sys)
+
+        # sce_axil1_sys -> sce_axi1 adapter
+        sce_axi1 = AXIInterface(data_width=32, address_width=32, id_width=4, bursting=False)
+        self.submodules += AXILite2AXIAdapter(platform, sce_axi1, sce_axil1_sys, axi_id=6) # AMBAID4_SCES; AMBAID4_SCEA = 4
+
+        sce_axi1_64 = AXIInterface(data_width=64, address_width=32, id_width=4, bursting=False)
+        self.submodules += AXIAdapter(platform, s_axi = sce_axi1, m_axi = sce_axi1_64, convert_burst=False, convert_narrow_burst=False)
+
         # 2) Add 2 X AXILiteSRAM to emulate ReRAM and SRAM; much smaller now just for testing
         if bios_path is not None:
             with open(bios_path, 'rb') as bios:
@@ -194,6 +216,15 @@ class CramSoCSce(SoCCore):
             b_reg  = AXIRegister.BYPASS,
             ar_reg = AXIRegister.BYPASS,
             r_reg  = AXIRegister.BYPASS,
+        )
+        mbus.add_slave(name = "sce0", s_axi=sce_axi0_64,
+        )
+        mbus.add_slave(name = "sce1", s_axi=sce_axi1_64,
+            aw_reg = AXIRegister.SIMPLE_BUFFER,
+            w_reg  = AXIRegister.SIMPLE_BUFFER,
+            b_reg  = AXIRegister.SIMPLE_BUFFER,
+            ar_reg = AXIRegister.SIMPLE_BUFFER,
+            r_reg  = AXIRegister.SIMPLE_BUFFER,
         )
         # Crossbar masters (from crossbar to RAM) -- added by platform extensions method
 
@@ -274,7 +305,7 @@ class CramSoCSce(SoCCore):
                     from soc_oss.sce_adapter import SceAdapter
                     clock_remap = {"pclk" : "p"}
                     self.submodules += ClockDomainsRenamer(clock_remap)(SceAdapter(platform,
-                        getattr(self, name +"_ahb")),
+                        getattr(self, name +"_ahb"), sce_axi0, sce_axi1_p),
                     )
 
                 else:
