@@ -169,7 +169,19 @@ class CramSoCSce(SoCCore):
         self.submodules += AXIAdapter(platform, s_axi = dbus_axi, m_axi = dbus64_axi, convert_burst=True, convert_narrow_burst=True)
         ibus64_axi = AXIInterface(data_width=64, address_width=32, id_width=4, bursting=True)
 
-        sce_axi0 = AXIInterface(data_width=32, address_width=32, id_width=4, bursting=True)
+        sce_axi0_p = AXIInterface(clock_domain="p", data_width=32, address_width=32, id_width=4, bursting=True)
+        sce_axil0_p = AXILiteInterface(clock_domain="p", name = "sce_axil0_p", bursting = False)
+        self.submodules += ClockDomainsRenamer({"sys" : "p"})(
+            AXI2AXILiteAdapter(platform, sce_axi0_p, sce_axil0_p)
+        )
+        # CDC on axilite domain
+        sce_axil0_sys = AXILiteInterface(name = "sce_axil0_sys", bursting = False)
+        self.submodules += AXILiteCDC(platform, sce_axil0_p, sce_axil0_sys)
+
+        # sce_axil0_sys -> sce_axi0 adapter
+        sce_axi0 = AXIInterface(data_width=32, address_width=32, id_width=4, bursting=False)
+        self.submodules += AXILite2AXIAdapter(platform, sce_axi0, sce_axil0_sys, axi_id=4) # AMBAID4_SCES; AMBAID4_SCEA = 4
+
         sce_axi0_64 = AXIInterface(data_width=64, address_width=32, id_width=4, bursting=True)
         self.submodules += AXIAdapter(platform, s_axi = sce_axi0, m_axi = sce_axi0_64, convert_burst=True, convert_narrow_burst=True)
 
@@ -305,7 +317,7 @@ class CramSoCSce(SoCCore):
                     from soc_oss.sce_adapter import SceAdapter
                     clock_remap = {"pclk" : "p"}
                     self.submodules += ClockDomainsRenamer(clock_remap)(SceAdapter(platform,
-                        getattr(self, name +"_ahb"), sce_axi0, sce_axi1_p),
+                        getattr(self, name +"_ahb"), sce_axi0_p, sce_axi1_p),
                     )
 
                 else:
