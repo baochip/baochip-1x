@@ -6,26 +6,39 @@ SPEED="normal"
 CPU="vexi"
 XOUS_PATH="../deps/xous-core"
 NTO_TESTS="../deps/nto-tests"
+EXTRA_ARGS=""
+VARIANT="normal"
 
 # not in github checkout but needed for listing outputs
 mkdir -p ../listings
 
 # Function to display the script usage
+# -a variant should also have "udma" added once that's debugged and working again
 function display_usage {
     echo "Usage: $0 [-t xous] [-s fast] [-c vexii]"
     echo "-t: Select target [xous, iron]"
+    echo "-a: Select variant [normal, sce]"
     echo "-s: Run fast (but don't save waveforms) [normal, fast]"
     echo "-c: Select cpu [vexi, vexii]"
 }
 
 # Parse command line options
-while getopts ":s:t:c:" opt; do
+while getopts ":s:t:c:a:" opt; do
     case $opt in
         t)
             TARGET=$OPTARG
             ;;
         s)
             SPEED=$OPTARG
+            ;;
+        a)
+            VARIANT=$OPTARG
+            if [ "$VARIANT" == "sce" ]; then
+                EXTRA_ARGS="--sce"
+            elif [ "$VARIANT" == "udma" ]; then
+                EXTRA_ARGS="--udma"
+            fi
+            EXTRA_ARGS="--sce"
             ;;
         c)
             CPU=$OPTARG
@@ -71,7 +84,7 @@ else
 fi
 
 echo "******************** BUILD SOC DEFS ***********************"
-python3 ./bao_soc.py --svd-only --vextype $CPU
+python3 ./bao_soc.py --svd-only --vextype $CPU $EXTRA_ARGS
 echo "Core+SoC build finished."
 
 echo "******************** BUILD KERNEL ***********************"
@@ -117,7 +130,16 @@ else
   cd $NTO_TESTS
   cp tests/link.x.straight tests/link.x
   # change --boot-offset in the cramy_soc.py commandline to match what is in link.x!!
-  cargo xtask boot-image --no-default-features --feature fast-fclk --feature quirks-pll --feature aes-zkn --feature bio-mul --feature reset-value-tests --feature bio-tests
+  if [ $VARIANT == "normal" ]
+  then
+    cargo xtask boot-image --no-default-features --feature fast-fclk --feature quirks-pll \
+    --feature aes-zkn --feature bio-mul --feature reset-value-tests --feature bio-tests
+  elif [ $VARIANT == "sce" ]
+  then
+    cargo xtask boot-image --no-default-features --feature fast-fclk --feature quirks-pll \
+      --feature aes-zkn --feature bio-mul --feature reset-value-tests --feature sha-tests
+  fi
+
   python3 ./merge_cm7.py --rv32=rv32.bin --cm7=cm7/mbox.bin --out-file=boot.bin
 
   riscv-none-elf-objdump -h target/riscv32imac-unknown-none-elf/release/tests > ../../listings/boot.lst
@@ -140,5 +162,5 @@ echo "Don't forget: finisher.v needs to have the XOUS variable defined according
 echo -e "\n\nRun with $THREADS threads" >> stats.txt
 date >> stats.txt
 # --udma for udma simulations...
-/usr/bin/time -a --output stats.txt python3 ./bao_soc.py --vextype $CPU --speed $SPEED --bios $BIOS  --boot-offset 0x000000 --gtkwave-savefile --threads $THREADS --jobs 20 --trace --trace-start 0 --trace-end 200000000000 --trace-fst # --sim-debug
+/usr/bin/time -a --output stats.txt python3 ./bao_soc.py --vextype $CPU --speed $SPEED --bios $BIOS  --boot-offset 0x000000 --gtkwave-savefile --threads $THREADS --jobs 20 --trace --trace-start 0 --trace-end 200000000000 --trace-fst $EXTRA_ARGS # --sim-debug
 echo "Core+SoC build finished."
