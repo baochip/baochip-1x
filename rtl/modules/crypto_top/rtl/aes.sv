@@ -277,7 +277,9 @@ module aes #(
 // ■■■■■■■■■■■■■■■
 
 
-    drng_lfsr #( .LFSR_W(229),.LFSR_NODE({ 10'd228, 10'd225, 10'd219 }), .LFSR_OW(32), .LFSR_IW(32), .LFSR_IV('h55aa_aa55_5a5a_a5a5) )
+// tapeout deviation (bunnie) - LFSR_IV is too long, causes verilator errors. Original value: 'h55aa_aa55_5a5a_a5a5, assume
+// truncatetion to the LSB's.
+    drng_lfsr #( .LFSR_W(229),.LFSR_NODE({ 10'd228, 10'd225, 10'd219 }), .LFSR_OW(32), .LFSR_IW(32), .LFSR_IV('h5a5a_a5a5) )
         ua( .clk(clk), .sen('1), .resetn(sysresetn), .swr(maskseedupd), .sdin(maskseed), .sdout(aesmaskdat) );
 
 

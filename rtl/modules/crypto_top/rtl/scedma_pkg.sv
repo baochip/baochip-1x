@@ -135,6 +135,7 @@ package scedma_pkg;
         bit[TRANSCNTW-1:0] transize ;
     }chcr_t;
 
+/*
     localparam chnlreq_t CHNLRES_NULL = {
             segcfg:    '0,
             segaddr:   '0,
@@ -149,6 +150,24 @@ package scedma_pkg;
             segready:     '1,
             segrdat:      '0,
             segrdatvld:   '1
+    };
+*/
+/* tapeout deviation:
+   verilator compatibility: verilator does not support the above parameter decl format */
+    localparam chnlreq_t CHNLRES_NULL = {
+            '0,
+            '0,
+            '0,
+            '0,
+            '0,
+            '0,
+            '0
+        };
+
+    localparam chnlres_t CHNLREP_NULL = {
+            '1,
+            '0,
+            '1
     };
 
 // ram define

@@ -472,6 +472,7 @@ module sce #(
             .intr           ()
         );
 
+/*
     pke pke(
             .clk            (clksub[2]),
             .clksce         (clk),
@@ -565,7 +566,7 @@ module sce #(
             .err            (alu_err),
             .intr           ()
         );
-
+*/
 endmodule
 
 // dummy crypto
