@@ -1,0 +1,312 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Fri Oct 24 07:24:47 2025
+[*]
+[dumpfile] "/mnt/f/code/baochip-1x/verilate/build/sim/gateware/sim.fst"
+[dumpfile_mtime] "Fri Oct 24 05:49:13 2025"
+[dumpfile_size] 23252630
+[savefile] "/mnt/f/code/baochip-1x/verilate/sce.gtkw"
+[timestart] 204932100
+[size] 2525 1961
+[pos] 830 19
+*-12.877808 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.sim.
+[treeopen] TOP.sim.axi_adapter_2.
+[treeopen] TOP.sim.axi_crossbar.
+[treeopen] TOP.sim.axi_crossbar.axi_crossbar_rd_inst.
+[treeopen] TOP.sim.axi_ram_1.
+[treeopen] TOP.sim.axil_cdc.
+[treeopen] TOP.sim.axil_cdc_1.
+[treeopen] TOP.sim.axil_cdc_2.
+[treeopen] TOP.sim.duart_top.
+[treeopen] TOP.sim.duart_top.u.
+[treeopen] TOP.sim.soc_sce.
+[treeopen] TOP.sim.soc_sce.sce.
+[treeopen] TOP.sim.soc_sce.sce.dma.
+[treeopen] TOP.sim.soc_sce.sce.dma.axim_gnl.
+[treeopen] TOP.sim.soc_sce.sce.dma.axim_sec.
+[treeopen] TOP.sim.soc_sce.sce.dma.sfr_sch_opt.
+[treeopen] TOP.sim.soc_sce.sce.dmaac.
+[treeopen] TOP.sim.soc_sce.sce.glbsfr.sfr_frdone.
+[treeopen] TOP.sim.soc_sce.sce.glbsfr.sfr_scemode.
+[treeopen] TOP.sim.soc_sce.sce.hash.hcore.
+[treeopen] TOP.sim.soc_sce.sce.hash.sfr_crfunc.
+[treeopen] TOP.sim.soc_sce.sce.sec.
+[treeopen] TOP.sim.soc_sce.sce_axi32[1].
+[treeopen] TOP.sim.soc_sce.sceifs.
+[sst_width] 433
+[signals_width] 536
+[sst_expanded] 1
+[sst_vpaned_height] 1021
+@22
+TOP.sim.simio_report[31:0]
+@820
+TOP.sim.duart_top.u.txdata[7:0]
+@200
+-cpu
+@22
+TOP.sim.cram_axi.VexRiscvAxi4.execute_INSTRUCTION[31:0]
+TOP.sim.cram_axi.VexRiscvAxi4.execute_PC[31:0]
+@8022
+TOP.sim.cram_axi.VexRiscvAxi4.execute_PC[31:0]
+@20000
+-
+-
+-
+@22
+TOP.sim.cram_axi.VexRiscvAxi4.MmuPlugin_satp_asid[8:0]
+TOP.sim.cram_axi.VexRiscvAxi4.decode_RegFilePlugin_regFileReadAddress1[4:0]
+TOP.sim.cram_axi.VexRiscvAxi4.decode_RegFilePlugin_regFileReadAddress2[4:0]
+TOP.sim.cram_axi.VexRiscvAxi4.execute_RS1[31:0]
+TOP.sim.cram_axi.VexRiscvAxi4.execute_RS2[31:0]
+@820
+TOP.sim.cram_axi.VexRiscvAxi4.execute_SRC1_CTRL_string[95:0]
+TOP.sim.cram_axi.VexRiscvAxi4.execute_SRC2_CTRL_string[23:0]
+TOP.sim.cram_axi.VexRiscvAxi4.execute_ALU_CTRL_string[63:0]
+TOP.sim.cram_axi.VexRiscvAxi4.execute_ALU_BITWISE_CTRL_string[39:0]
+TOP.sim.cram_axi.VexRiscvAxi4.MmuPlugin_shared_state_1_string[47:0]
+@22
+TOP.sim.cram_axi.cramsoc_dbus_axi_ar_payload_addr[31:0]
+@28
+TOP.sim.cram_axi.cramsoc_dbus_axi_ar_ready
+TOP.sim.cram_axi.cramsoc_dbus_axi_ar_valid
+@22
+TOP.sim.cram_axi.cramsoc_dbus_axi_r_payload_data[31:0]
+@28
+TOP.sim.cram_axi.cramsoc_dbus_axi_r_ready
+TOP.sim.cram_axi.cramsoc_dbus_axi_r_valid
+@22
+TOP.sim.cram_axi.cramsoc_dbus_axi_aw_payload_addr[31:0]
+@28
+TOP.sim.cram_axi.cramsoc_dbus_axi_aw_ready
+TOP.sim.cram_axi.cramsoc_dbus_axi_aw_valid
+@22
+TOP.sim.cram_axi.cramsoc_dbus_axi_w_payload_data[31:0]
+@28
+TOP.sim.cram_axi.cramsoc_dbus_axi_w_ready
+TOP.sim.cram_axi.cramsoc_dbus_axi_w_valid
+@200
+-sce
+@22
+TOP.sim.soc_sce.sce.truststate[255:0]
+@28
+TOP.sim.soc_sce.sce.sdma_busy[2:0]
+TOP.sim.soc_sce.sce.sdma_done[2:0]
+@22
+TOP.sim.soc_sce.sce.sceuser[0:7]
+@28
+TOP.sim.soc_sce.sce.secmode
+TOP.sim.soc_sce.sce.aes_busy
+TOP.sim.soc_sce.sce.alu_busy
+@22
+TOP.sim.soc_sce.sce.glb_busy[0:8]
+TOP.sim.soc_sce.sce.glb_done[0:7]
+@28
+TOP.sim.soc_sce.sce.glb_scemode[1:0]
+TOP.sim.soc_sce.sce.hash_busy
+TOP.sim.soc_sce.sce.hash_done
+TOP.sim.soc_sce.sce.hash_schdonex
+TOP.sim.soc_sce.sce.hash_schstartx
+TOP.sim.soc_sce.sce.hmac_fail
+@22
+TOP.sim.soc_sce.sce.hmac_kid[9:0]
+@28
+TOP.sim.soc_sce.sce.hmac_pass
+@200
+-ahb_debug
+@22
+TOP.sim.soc_sce.sce.ahbs0_sync.haddr[31:0]
+TOP.sim.soc_sce.sce.ahbs0_sync.hwdata[31:0]
+@28
+TOP.sim.soc_sce.sce.ahbs0_sync.htrans[1:0]
+TOP.sim.soc_sce.sce.ahbs0_sync.hwrite
+@22
+TOP.sim.soc_sce.sce.ahbs0.haddr[31:0]
+@28
+TOP.sim.soc_sce.sce.ahbs0.hsel
+TOP.sim.soc_sce.sce.ahbs0.htrans[1:0]
+TOP.sim.soc_sce.sce.ahbs0.hwrite
+TOP.sim.soc_sce.sce.sec.ahbs_lock
+TOP.sim.soc_sce.sce.sec.ahben
+TOP.sim.soc_sce.sce.sec.sceusersel
+@22
+TOP.sim.soc_sce.sce.sec.coreuser_vex[0:7]
+TOP.sim.soc_sce.sce.sec.sceuser[0:7]
+@28
+TOP.sim.soc_sce.sce.sec.mode_non
+@22
+TOP.sim.soc_sce.sce.sec.ahbs.hauser[7:0]
+@200
+-scedma0
+@22
+TOP.sim.soc_sce.sce_axi32[0].araddr[31:0]
+@28
+TOP.sim.soc_sce.sce_axi32[0].arready
+TOP.sim.soc_sce.sce_axi32[0].arvalid
+@22
+TOP.sim.soc_sce.sce_axi32[0].rdata[31:0]
+@28
+TOP.sim.soc_sce.sce_axi32[0].rready
+TOP.sim.soc_sce.sce_axi32[0].rvalid
+@200
+-scedma1
+@22
+TOP.sim.soc_sce.sce_axi32[1].araddr[31:0]
+@28
+TOP.sim.soc_sce.sce_axi32[1].arready
+TOP.sim.soc_sce.sce_axi32[1].arvalid
+@22
+TOP.sim.soc_sce.sce_axi32[1].rdata[31:0]
+@28
+TOP.sim.soc_sce.sce_axi32[1].rready
+TOP.sim.soc_sce.sce_axi32[1].rvalid
+@200
+-axi_adapter
+@28
+TOP.sim.axi_crossbar.clk
+TOP.sim.soc_sce.sce.dma.axim_sec.clk
+TOP.sim.soc_sce.sce.dma.axim_sec.arcp
+TOP.sim.soc_sce.sce.dma.axim_sec.arrdy
+TOP.sim.soc_sce.sce.dma.axim_sec.ardp
+TOP.sim.soc_sce.sce.dma.axim_sec.rvld
+TOP.sim.axi_axil_adapter.clk
+@22
+TOP.sim.axi_axil_adapter.s_axi_araddr[31:0]
+@28
+TOP.sim.axi_axil_adapter.s_axi_arready
+TOP.sim.axi_axil_adapter.s_axi_arvalid
+@22
+TOP.sim.axi_axil_adapter.s_axi_rdata[31:0]
+@28
+TOP.sim.axi_axil_adapter.s_axi_rready
+TOP.sim.axi_axil_adapter.s_axi_rvalid
+@22
+TOP.sim.axi_axil_adapter.m_axil_araddr[31:0]
+@28
+TOP.sim.axi_axil_adapter.m_axil_arready
+TOP.sim.axi_axil_adapter.m_axil_arvalid
+@22
+TOP.sim.axi_axil_adapter.m_axil_rdata[31:0]
+@28
+TOP.sim.axi_axil_adapter.m_axil_rready
+TOP.sim.axi_axil_adapter.m_axil_rvalid
+@29
+TOP.sim.axil_cdc.axil_cdc_rd_inst.m_clk
+@22
+TOP.sim.axil_cdc.axil_cdc_rd_inst.m_axil_araddr[31:0]
+@28
+TOP.sim.axil_cdc.axil_cdc_rd_inst.m_axil_arready
+TOP.sim.axil_cdc.axil_cdc_rd_inst.m_axil_arvalid
+@22
+TOP.sim.axil_cdc.axil_cdc_rd_inst.m_axil_rdata[31:0]
+@28
+TOP.sim.axil_cdc.axil_cdc_rd_inst.m_axil_rready
+TOP.sim.axil_cdc.axil_cdc_rd_inst.m_axil_rvalid
+TOP.sim.axil_cdc.axil_cdc_rd_inst.s_clk
+@22
+TOP.sim.axil_cdc.axil_cdc_rd_inst.s_axil_araddr[31:0]
+@28
+TOP.sim.axil_cdc.axil_cdc_rd_inst.s_axil_arready
+TOP.sim.axil_cdc.axil_cdc_rd_inst.s_axil_arvalid
+@22
+TOP.sim.axil_cdc.axil_cdc_rd_inst.s_axil_rdata[31:0]
+TOP.sim.soc_sce.sce_axi32[1].araddr[31:0]
+@28
+TOP.sim.soc_sce.sce_axi32[1].arready
+TOP.sim.soc_sce.sce_axi32[1].arvalid
+@22
+TOP.sim.soc_sce.sce.dma.axim_sec.axim.rid[4:0]
+TOP.sim.soc_sce.sce_axi32[1].arid[4:0]
+TOP.sim.soc_sce.sce_axi32[1].rdata[31:0]
+@28
+TOP.sim.soc_sce.sce_axi32[1].rready
+TOP.sim.soc_sce.sce_axi32[1].rvalid
+@22
+TOP.sim.soc_sce.sce_axi32[1].rid[4:0]
+@200
+-chix
+@22
+TOP.sim.soc_sce.sce.dma.chix.rpreq[105:0]
+TOP.sim.soc_sce.sce.dma.chix.rpres[33:0]
+TOP.sim.soc_sce.sce.dma.chix.thedat0[31:0]
+TOP.sim.soc_sce.sce.dma.chix.thedatreg[31:0]
+TOP.sim.soc_sce.sce.dma.chix.thedatxor00[31:0]
+TOP.sim.soc_sce.sce.dma.chix.thedatxor01[31:0]
+TOP.sim.soc_sce.sce.dma.chix.thedatxor10[31:0]
+TOP.sim.soc_sce.sce.dma.chix.thedatxor11[31:0]
+TOP.sim.soc_sce.sce.dma.chix.thedatxor[31:0]
+TOP.sim.soc_sce.sce.dma.chix.wpreq[105:0]
+TOP.sim.soc_sce.sce.dma.chix.wpres[33:0]
+@200
+-combohash
+@28
+TOP.sim.soc_sce.sce.hash.hcore.mfsm[2:0]
+@22
+TOP.sim.soc_sce.sce.hash.hcore.cfg_blkt0[7:0]
+@28
+TOP.sim.soc_sce.sce.hash.hcore.cfg_finalhash
+@22
+TOP.sim.soc_sce.sce.hash.hcore.cfg_hashtype[3:0]
+@28
+TOP.sim.soc_sce.sce.hash.hcore.done
+TOP.sim.soc_sce.sce.hash.hcore.start
+@22
+TOP.sim.soc_sce.sce.hash.hcore.sha2.hashrnd[7:0]
+@28
+TOP.sim.soc_sce.sce.hash.sfr_crfunc.apb_sfr.sfrlock
+TOP.sim.soc_sce.sce.hash.sfr_ar.ar
+@22
+TOP.sim.soc_sce.sce.hash.sfr_crfunc.cr[7:0]
+TOP.sim.soc_sce.sce.glbsfr.sfr_frdone.fr[7:0]
+TOP.sim.soc_sce.sce.glbsfr.sfr_frdone.apb_sfr.sfrdata[7:0]
+@28
+TOP.sim.soc_sce.sce.hash.chkdone
+TOP.sim.soc_sce.sce.hash.chkfail
+TOP.sim.soc_sce.sce.hash.chkpass
+TOP.sim.soc_sce.sce.hash.chkprepass
+@100000028
+TOP.sim.soc_sce.sce.hash.mfsm[7:0]
+@28
+TOP.sim.soc_sce.sce.hash.mfsmcheckscrt
+TOP.sim.soc_sce.sce.hash.mfsmdone
+TOP.sim.soc_sce.sce.hash.mfsmtog
+TOP.sim.soc_sce.sce.hash.tsmode
+@22
+TOP.sim.soc_sce.sce.hash.schxwpreq[105:0]
+@200
+-ts
+@28
+TOP.sim.soc_sce.sce.ts.hmac_fail
+@22
+TOP.sim.soc_sce.sce.ts.hmac_kid[9:0]
+@28
+TOP.sim.soc_sce.sce.ts.hmac_pass
+TOP.sim.soc_sce.sce.ts.scemode[1:0]
+@22
+TOP.sim.soc_sce.sce.ts.ts[255:0]
+@200
+-axim_sec
+@22
+TOP.sim.soc_sce.sce.dma.axim_sec.cr_axaddrstart[31:0]
+@28
+TOP.sim.soc_sce.sce.dma.axim_sec.cr_func
+@22
+TOP.sim.soc_sce.sce.dma.axim_sec.cr_opt[9:0]
+TOP.sim.soc_sce.sce.dma.axim_sec.cr_segid[7:0]
+TOP.sim.soc_sce.sce.dma.axim_sec.cr_segptrstart[11:0]
+TOP.sim.soc_sce.sce.dma.axim_sec.cr_transize[29:0]
+@28
+TOP.sim.soc_sce.sce.dma.axim_sec.done
+TOP.sim.soc_sce.sce.dma.axim_sec.scemode[1:0]
+TOP.sim.soc_sce.sce.dma.axim_sec.start
+@22
+TOP.sim.soc_sce.sce.dma.sfr_sch_opt.apb_sfr.sfrfr[9:0]
+@28
+TOP.sim.soc_sce.sce.dma.sfr_sch_opt.apb_sfr.sfrlock
+@22
+TOP.sim.soc_sce.sce.dma.sfr_sch_opt.apb_sfr.sfrpaddr[11:0]
+TOP.sim.soc_sce.sce.dma.sfr_sch_opt.apb_sfr.sfrprdata[9:0]
+TOP.sim.soc_sce.sce.dma.sfr_sch_opt.apb_sfr.sfrsr[9:0]
+[pattern_trace] 1
+[pattern_trace] 0
