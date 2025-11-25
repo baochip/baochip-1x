@@ -143,9 +143,10 @@
 in TSMC22ULL, it has a 400MHz Vexriscv RV32-IMAC CPU with Sv39 (virtual memory) support,
 along with 2MiB of integrated SRAM and 4MiB of integrated RRAM. RRAM is non-volatile
 memory analogous to FLASH.</p>
-<p>The full part number is BAO1X2S4F-WA, but the part will be referred to as the &quot;Baochip-1x&quot;
+<p>The full part number is BAO1X2S4F-WA, but the part is referred to as the &quot;Baochip-1x&quot;
 or the &quot;bao1x&quot; interchangeably.</p>
-<p>More docs to come.</p>
+<p>This book is a work in progress.</p>
+<p><img src="./images/soc-top-diagram.png" alt="SoC block diagram" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="chip-source-code-rtl"><a class="header" href="#chip-source-code-rtl">Chip Source Code: RTL</a></h1>
 <p>RTL (Register Transfer Logic) refers to the &quot;source code&quot; for the Baochip-1x. It is mostly written in verilog/systemverilog, with parts derived from SpinalHDL (Scala) and Litex (Python).</p>
 <p>While the RTL description of the Baochip-1x redacts some closed-source components, it is complete enough to be useful for automatic documentation generation and functional simulation. This chapter describes how to do both.</p>
