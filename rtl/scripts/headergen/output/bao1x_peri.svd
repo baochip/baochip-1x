@@ -18719,7 +18719,7 @@ es/bio_bdma/rtl/bio_bdma.sv#L506>`__ (line numbers are approximate)]]></descript
             <memoryRegion>
                 <name>AOPERI</name>
                 <baseAddress>0x40061000</baseAddress>
-                <size>0x00003000</size>
+                <size>0x00005000</size>
             </memoryRegion>
             <memoryRegion>
                 <name>SEG_LKEY</name>
@@ -18920,6 +18920,11 @@ es/bio_bdma/rtl/bio_bdma.sv#L506>`__ (line numbers are approximate)]]></descript
                 <name>BIO_FIFO3</name>
                 <baseAddress>0x5012C000</baseAddress>
                 <size>0x00001000</size>
+            </memoryRegion>
+            <memoryRegion>
+                <name>AORAM</name>
+                <baseAddress>0x50300000</baseAddress>
+                <size>0x00004000</size>
             </memoryRegion>
         </memoryRegions>
         <constants>
