@@ -1,6 +1,8 @@
 # Baochip 1x
 
-This repo contains the open source elements of the Baochip 1x.
+This repo contains the open source elements of the Baochip 1x. This repo focuses on the hardware elements of the Baochip 1x.
+
+Developers are referred to the official Rust SDK, located in the [Xous](https://github.com/betrusted-io/xous-core/) repo. There is a `vscode` extension named `baochip` which can automate build & flash for officially supported development boards.
 
 ## Code Organization
 
@@ -24,3 +26,7 @@ This repo revolves around an artifact that is fixed and unpatchable. Therefore, 
 - It is assumed that die revs, if any, will be limited and rare. `main` will track the latest die rev, but the previous `tapeout-*` branches will hold snapshots of the `rtl` directory as matching the older die rev, allowing users of older die revs to run simulation/docgen tools on the older revisions.
 
 Die rev numbering takes on the form of `XY` where `X` is an alphabetic character and `Y` is a numeric character. The alphabetic character represents a full-mask set; the numeric represents a metal-mask or final-test repair stepping.
+
+## Block Diagram
+
+![SoC block diagram](./docs/src/images/soc-top-diagram.png)
