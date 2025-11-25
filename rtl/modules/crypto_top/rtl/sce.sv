@@ -472,8 +472,10 @@ module sce #(
             .intr           ()
         );
 
-/*
-    pke pke(
+`ifdef FULL_CHIP // the full chip includes this code, but the verilator simulation doesn't include this
+// below a #() was added to assist with recogintion of the pke module using the regex
+
+    pke #() pke(
             .clk            (clksub[2]),
             .clksce         (clk),
             .clksceen       (1'b1),
@@ -566,7 +568,7 @@ module sce #(
             .err            (alu_err),
             .intr           ()
         );
-*/
+`endif
 endmodule
 
 // dummy crypto
