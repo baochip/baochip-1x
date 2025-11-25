@@ -2624,7 +2624,7 @@ def main():
             {
                 'socregion' : SoCRegion(
                             origin=0x4006_1000,
-                            size=0x3000,
+                            size=0x5000,
                             mode='rw',
                             cached=False
                         ),
@@ -2877,6 +2877,12 @@ def main():
             size=0x1000,
             mode='rw', cached=False
         )
+    # ---------- SPECIAL CASE - add AORAM
+    doc_soc.mem_regions['aoram'] = SoCRegion(
+        origin=0x5030_0000,
+        size=0x4000,
+        mode='rw', cached=False
+    )
     # copy the aliased registers - feeling a bit lazy, so just hard-coding this now.
     for i in range(4):
         csrs = []
