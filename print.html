@@ -143,9 +143,10 @@
 in TSMC22ULL, it has a 400MHz Vexriscv RV32-IMAC CPU with Sv39 (virtual memory) support,
 along with 2MiB of integrated SRAM and 4MiB of integrated RRAM. RRAM is non-volatile
 memory analogous to FLASH.</p>
-<p>The full part number is BAO1X2S4F-WA, but the part will be referred to as the &quot;Baochip-1x&quot;
+<p>The full part number is BAO1X2S4F-WA, but the part is referred to as the &quot;Baochip-1x&quot;
 or the &quot;bao1x&quot; interchangeably.</p>
-<p>More docs to come.</p>
+<p>This book is a work in progress.</p>
+<p><img src="./images/soc-top-diagram.png" alt="SoC block diagram" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="chip-source-code-rtl"><a class="header" href="#chip-source-code-rtl">Chip Source Code: RTL</a></h1>
 <p>RTL (Register Transfer Logic) refers to the &quot;source code&quot; for the Baochip-1x. It is mostly written in verilog/systemverilog, with parts derived from SpinalHDL (Scala) and Litex (Python).</p>
 <p>While the RTL description of the Baochip-1x redacts some closed-source components, it is complete enough to be useful for automatic documentation generation and functional simulation. This chapter describes how to do both.</p>
@@ -189,7 +190,9 @@ or the &quot;bao1x&quot; interchangeably.</p>
 <ul>
 <li><code>-t [xous, iron]</code>. Defaults to <code>iron</code>. <code>iron</code> runs the code base in <code>deps/nto-tests</code>. <code>xous</code> runs the code base in <code>deps/xous-core</code> built for the <code>bao1x-sim</code> target.</li>
 <li><code>s [normal, fast]</code>. Defaults to <code>normal</code>. <code>fast</code> runs ~5x faster, but does not save a waveform file. However, it does print debug uart statements to the console. Thus <code>fast</code> is useful as a CI check that previously vetted simulations are still working, assuming you have populated your code with debug statements and checks for this.</li>
+<li><code>a [normal, sce]</code>. Defaults to <code>normal</code>. <code>sce</code> runs a variant of the SoC that has just the SCE (secure crypto engine), but none of the other validation peripherals. Note that different &quot;views&quot; of the SoC are used to speed up simulation and reduce complexity of setting up models. <strong>HELP WANTED</strong> The current &quot;SCE&quot; view relies on a couple of out-of-tree AMBA IP to do some bus conversion and clock domain crossing. These are fairly generic IP blocks that I'm pretty sure already exist in the OSS world but it was more expedient to rely on the closed-source models to bring up the simulation. If there is a user that actually wants to run the SCE models, contact bunnie and if you have the initiative he'd appreciate any help with creating the missing models. The specific models missing as of the time of writing are: AHB to APB converter (it does exist in the tree already, but the code needs to be converted to refer to it), AHB to AHB sync (I think this is a CDC across AHB domain), and AHB to AHB &quot;sync error canc&quot; - not quite sure what this is but I think it probably is a reverse channel across the CDC for bus errors.</li>
 </ul>
+<p><strong>TODO</strong>: There is a &quot;udma&quot; model variant but it has bit-rotted and is not integrated into the &quot;user friendly&quot; framework. If someone needs/wants to run UDMA simulations, most of the work has been done but some dangling references need to be cleaned up. Drop bunnie a note if you end up being unable to solve the bit-rot issues in the UDMA model.</p>
 <p><code>nto-tests</code> is the actual test code used to validate the portions of the Baochip-1x that were contributed by bunnie. It runs in a &quot;baremetal&quot; environment and has about a dozen configurable tests.</p>
 <p><code>xous-core</code> is the Xous OS, which can be configured with &quot;shortcuts&quot; (through the <code>hwsim</code> and <code>verilator-only</code> features) that shorten simulation runtime. Most of the &quot;shortcuts&quot; involve skipping zero-initializations because verilator guarantees all memory is 0 by default (unlike real hardware where it could truly be any value).</p>
 <p>Under the hood, the <code>verilate.sh</code> script will:</p>
