@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
-[*] Fri Oct 24 07:24:47 2025
+[*] Mon Oct 27 07:17:45 2025
 [*]
 [dumpfile] "/mnt/f/code/baochip-1x/verilate/build/sim/gateware/sim.fst"
-[dumpfile_mtime] "Fri Oct 24 05:49:13 2025"
-[dumpfile_size] 23252630
+[dumpfile_mtime] "Mon Oct 27 07:17:44 2025"
+[dumpfile_size] 330
 [savefile] "/mnt/f/code/baochip-1x/verilate/sce.gtkw"
-[timestart] 204932100
+[timestart] 371610000
 [size] 2525 1961
-[pos] 830 19
-*-12.877808 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-15.613476 371694700 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.sim.
 [treeopen] TOP.sim.axi_adapter_2.
@@ -17,6 +17,7 @@
 [treeopen] TOP.sim.axi_crossbar.axi_crossbar_rd_inst.
 [treeopen] TOP.sim.axi_ram_1.
 [treeopen] TOP.sim.axil_cdc.
+[treeopen] TOP.sim.axil_cdc.axil_cdc_rd_inst.
 [treeopen] TOP.sim.axil_cdc_1.
 [treeopen] TOP.sim.axil_cdc_2.
 [treeopen] TOP.sim.duart_top.
@@ -28,9 +29,14 @@
 [treeopen] TOP.sim.soc_sce.sce.dma.axim_sec.
 [treeopen] TOP.sim.soc_sce.sce.dma.sfr_sch_opt.
 [treeopen] TOP.sim.soc_sce.sce.dmaac.
+[treeopen] TOP.sim.soc_sce.sce.dmamemc.
+[treeopen] TOP.sim.soc_sce.sce.genRAM[0].m.genram[0].genSCERAM.
+[treeopen] TOP.sim.soc_sce.sce.genRAM[0].m.u.
 [treeopen] TOP.sim.soc_sce.sce.glbsfr.sfr_frdone.
 [treeopen] TOP.sim.soc_sce.sce.glbsfr.sfr_scemode.
+[treeopen] TOP.sim.soc_sce.sce.hash.
 [treeopen] TOP.sim.soc_sce.sce.hash.hcore.
+[treeopen] TOP.sim.soc_sce.sce.hash.m.
 [treeopen] TOP.sim.soc_sce.sce.hash.sfr_crfunc.
 [treeopen] TOP.sim.soc_sce.sce.sec.
 [treeopen] TOP.sim.soc_sce.sce_axi32[1].
@@ -191,7 +197,6 @@ TOP.sim.axi_axil_adapter.m_axil_rdata[31:0]
 @28
 TOP.sim.axi_axil_adapter.m_axil_rready
 TOP.sim.axi_axil_adapter.m_axil_rvalid
-@29
 TOP.sim.axil_cdc.axil_cdc_rd_inst.m_clk
 @22
 TOP.sim.axil_cdc.axil_cdc_rd_inst.m_axil_araddr[31:0]
@@ -211,6 +216,9 @@ TOP.sim.axil_cdc.axil_cdc_rd_inst.s_axil_arready
 TOP.sim.axil_cdc.axil_cdc_rd_inst.s_axil_arvalid
 @22
 TOP.sim.axil_cdc.axil_cdc_rd_inst.s_axil_rdata[31:0]
+@28
+TOP.sim.axi_crossbar.clk
+@22
 TOP.sim.soc_sce.sce_axi32[1].araddr[31:0]
 @28
 TOP.sim.soc_sce.sce_axi32[1].arready
@@ -265,8 +273,14 @@ TOP.sim.soc_sce.sce.hash.chkdone
 TOP.sim.soc_sce.sce.hash.chkfail
 TOP.sim.soc_sce.sce.hash.chkpass
 TOP.sim.soc_sce.sce.hash.chkprepass
+@22
+TOP.sim.soc_sce.sce.hash.cr_func[7:0]
 @100000028
 TOP.sim.soc_sce.sce.hash.mfsm[7:0]
+@22
+TOP.sim.soc_sce.sce.hash.hashcnt[15:0]
+@23
+TOP.sim.soc_sce.sce.hash.opt_cnt[15:0]
 @28
 TOP.sim.soc_sce.sce.hash.mfsmcheckscrt
 TOP.sim.soc_sce.sce.hash.mfsmdone
@@ -274,6 +288,48 @@ TOP.sim.soc_sce.sce.hash.mfsmtog
 TOP.sim.soc_sce.sce.hash.tsmode
 @22
 TOP.sim.soc_sce.sce.hash.schxwpreq[105:0]
+TOP.sim.soc_sce.sce.hash.hcore.sha2.vregpre[575:0]
+TOP.sim.soc_sce.sce.hash.hcore.sha2.vregwr[0:8]
+@200
+-hram
+@22
+TOP.sim.soc_sce.sce.genRAM[0].m.u.ramm_ramaddr[11:0]
+@28
+TOP.sim.soc_sce.sce.genRAM[0].m.u.ramm_ramcs
+TOP.sim.soc_sce.sce.genRAM[0].m.u.ramm_ramen
+@22
+TOP.sim.soc_sce.sce.genRAM[0].m.u.ramm_ramrdata[31:0]
+@28
+TOP.sim.soc_sce.sce.genRAM[0].m.u.ramm_ramready
+@22
+TOP.sim.soc_sce.sce.genRAM[0].m.u.ramm_ramwdata[31:0]
+TOP.sim.soc_sce.sce.genRAM[0].m.u.ramm_ramwr[3:0]
+@200
+-hcore-mem
+@22
+TOP.sim.soc_sce.sce.hash.m.u.ramm_ramaddr[9:0]
+@28
+TOP.sim.soc_sce.sce.hash.m.u.ramm_ramcs
+TOP.sim.soc_sce.sce.hash.m.u.ramm_ramen
+@22
+TOP.sim.soc_sce.sce.hash.m.u.ramm_ramrdata[31:0]
+@28
+TOP.sim.soc_sce.sce.hash.m.u.ramm_ramready
+@22
+TOP.sim.soc_sce.sce.hash.m.u.ramm_ramwdata[31:0]
+TOP.sim.soc_sce.sce.hash.m.u.ramm_ramwr[3:0]
+@200
+-sceram
+@22
+TOP.sim.soc_sce.sce.genRAM[0].m.genram[0].genSCERAM.m.a[11:0]
+@28
+TOP.sim.soc_sce.sce.genRAM[0].m.genram[0].genSCERAM.m.cen
+@22
+TOP.sim.soc_sce.sce.genRAM[0].m.genram[0].genSCERAM.m.d[35:0]
+@28
+TOP.sim.soc_sce.sce.genRAM[0].m.genram[0].genSCERAM.m.gwen
+@22
+TOP.sim.soc_sce.sce.genRAM[0].m.genram[0].genSCERAM.m.q[35:0]
 @200
 -ts
 @28
