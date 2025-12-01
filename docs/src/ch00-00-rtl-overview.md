@@ -93,3 +93,19 @@ Once the simulation is done, you can view the results by running [`gtkw_run.sh`]
 To use the `codezoom` feature, run `python3 ./codezoom.py --file ../listings/<your-crate.lst>` in the `verilate` directory, on the same host that you're running GTKwave on. Then, in GTKWave, select `View->Show Mouseover`. Once this is enabled, left-clicking on the "analog waveform" in the viewer (which is the Program Counter (PC) value) will cause the PC value to be piped into the `codezoom` python script. The script will then automatically show you the code at that PC value.
 
 The script is "Xous-aware", which allows you to debug transitions between kernel and userspace for a single process. The process must correspond to the one specified by the `--file` argument; the kernel file is automatically set up and resolved by the helper scripts in the verilate direcotry. Clicking on the PC in unrelated processes will simply show you that PC offset in the file you specified to codezoom; thus the results for other processes are gibberish.
+
+### Example: Checking Constant Time Code with Verilator
+
+A use case for running code simulations is checking the constant-time properties of cryptographic code. Below is an example of a simulation of an AES library which uses the Zkn extensions to compute rounds of AES on the CPU. A technique called "chaffing" is employed, where alternate rounds compute either real then fake, or fake then real data to try and mask the power side channel of the computation.
+
+![chaffing overview](images/aes-chaffing-ct2.png)
+
+Above is an overview of the chaffing concept. In the image, call your attention to the waveform of `execute_IS_AES`. This is a signal that indicates that the instruction being executed is an AES instruction. Furthermore, observe the shape of the program counter waveform. There are two code paths, `real->chaff`, and `chaff->real`. `real->chaff` comes first in the code, and thus occupies a lower address in program memory; `chaff->real` comes later in the code, and requires a branch to reach it, and occupies the higher addresses in program memory.
+
+![chaffing failure](images/aes-chaffing-not-ct.png)
+
+Above is a simulation showing the initial cut at constant time code, where a branch delay penalty jumping to the higher address path was not compensated for correctly.
+
+![chaffing simulation](images/aes-chaffing-ct1.png)
+
+Above is the final simulation, confirming that the code is now in fact constant time, thanks to `nop` delays inserted into the pipeline on the branch-not-taken path. Because the Vex has no branch prediction, we don't have to worry about the branch predictor; however, if this was a more sophisticated architecture you could also examine the state of the branch predictor and confirm that it was "warmed up" correctly by prior code to ensure correct constant time execution.
