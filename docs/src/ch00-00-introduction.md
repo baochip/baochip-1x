@@ -12,3 +12,4 @@ This book is a work in progress.
 
 ![SoC block diagram](./images/soc-top-diagram.png)
 
+[Pinout spreadsheet](./other/baochip1x-pinout.ods) - downloadable as .ODS format
