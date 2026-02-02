@@ -133,7 +133,7 @@ else
   if [ $VARIANT == "normal" ]
   then
     cargo xtask boot-image --no-default-features --feature fast-fclk --feature quirks-pll \
-    --feature aes-zkn --feature bio-mul --feature reset-value-tests --feature bio-tests
+    --feature aes-zkn --feature bio-mul --feature reset-value-tests --feature bio-tests --feature aes-tests
   elif [ $VARIANT == "sce" ]
   then
     cargo xtask boot-image --no-default-features --feature fast-fclk --feature quirks-pll \

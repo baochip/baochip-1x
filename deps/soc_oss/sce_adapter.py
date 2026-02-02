@@ -52,7 +52,7 @@ class SceAdapter(Module):
             i_resetn = ~ResetSignal("pclk"),
             i_sysresetn = ~ResetSignal("pclk"),
 
-            i_scedevmode = tie_one,
+            i_scedevmode = tie_one, # when set to 0, core is hardened against attack - sec_mode locks out all config updates
             i_coreuser = 0,
             i_coreuser_vex = 0,
             o_sceuser = sceuser,
