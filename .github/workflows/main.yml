@@ -55,17 +55,17 @@ jobs:
         mdbook build docs
         cd docs
         cargo run --bin lfp src
-    - name: Validate references
-      run: bash docs/ci/validate.sh
     # This doesn't work because it flags all the indexed variables as broken links, and doesn't seems to be smart
     # enough to handle escaping patterns. Way too many false positives - just not worth it.
-    # - name: Check for broken links
-    #   run: |
-    #     cd docs
-    #     curl -sSLo linkcheck.sh \
-    #       https://raw.githubusercontent.com/rust-lang/rust/master/src/tools/linkchecker/linkcheck.sh
-    #     # Cannot use --all here because of the generated redirect pages aren't available.
-    #     sh linkcheck.sh book
+    # - name: Validate references
+    #   run: bash docs/ci/validate.sh
+    - name: Check for broken links
+      run: |
+        cd docs
+        curl -sSLo linkcheck.sh \
+          https://raw.githubusercontent.com/rust-lang/rust/master/src/tools/linkchecker/linkcheck.sh
+        # Cannot use --all here because of the generated redirect pages aren't available.
+        sh linkcheck.sh book
     - name: Deploy Book
       uses: peaceiris/actions-gh-pages@v3
       with:
