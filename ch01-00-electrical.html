@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>BIO - Coder&#x27;s guide to the Baochip 1x</title>
+        <title>Hardware specifications - Coder&#x27;s guide to the Baochip 1x</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch00-00-rtl-overview.html"><strong aria-hidden="true">1.</strong> RTL</a></li><li class="chapter-item expanded "><a href="ch01-00-bio-overview.html" class="active"><strong aria-hidden="true">2.</strong> BIO</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch00-00-rtl-overview.html"><strong aria-hidden="true">1.</strong> RTL</a></li><li class="chapter-item expanded "><a href="ch01-00-electrical.html" class="active"><strong aria-hidden="true">2.</strong> Hardware specifications</a></li><li class="chapter-item expanded "><a href="ch02-00-bio-overview.html"><strong aria-hidden="true">3.</strong> BIO</a></li><li class="chapter-item expanded "><a href="ch03-00-io-coniguration.html"><strong aria-hidden="true">4.</strong> IO Configuration</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,41 +137,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="bio"><a class="header" href="#bio">BIO</a></h1>
-<p>The BIO is the Baochip I/O block. It is a 100% open source, free-as-in-beer-and-as-in-speech I/O coprocessor.</p>
-<p>More docs to come.</p>
-<pre><code class="language-text">    FIFO - 8-deep fifo head/tail access. Cores halt on overflow/underflow.
-    - x16 r/w  `fifo[0]`
-    - x17 r/w  `fifo[1]`
-    - x18 r/w  `fifo[2]`
-    - x19 r/w  `fifo[3]`
-
-    Quantum - core will halt until host-configured clock divider pules occurs,
-    or an external event comes in on a host-specified GPIO pin.
-    - x20 -/w  halt to quantum
-
-    GPIO - note clear-on-0 semantics for bit-clear for data pins!
-    This is done so we can do a shift-and-move without an invert to
-    bitbang a data pin. Direction retains a more &quot;conventional&quot; meaning
-    where a write of `1` to either clear or set will cause the action,
-    as pin direction toggling is less likely to be in a tight inner loop.
-    - x21 r/w  write: (x26 &amp; x21) -&gt; gpio pins; read: gpio pins -&gt; x21
-    - x22 -/w  (x26 &amp; x22) -&gt; `1` will set corresponding pin on gpio
-    - x23 -/w  (x26 &amp; x23) -&gt; `0` will clear corresponding pin on gpio
-    - x24 -/w  (x26 &amp; x24) -&gt; `1` will make corresponding gpio pin an output
-    - x25 -/w  (x26 &amp; x25) -&gt; `1` will make corresponding gpio pin an input
-    - x26 r/w  mask GPIO action outputs
-
-    Events - operate on a shared event register. Bits `[31:24]` are hard-wired to FIFO
-    level flags, configured by the host; writes to bits `[31:24]` are ignored.
-    - x27 -/w  mask event sensitivity bits
-    - x28 -/w  `1` will set the corresponding event bit. Only `[23:0]` are wired up.
-    - x29 -/w  `1` will clear the corresponding event bit Only `[23:0]` are wired up.
-    - x30 r/-  halt until ((x27 &amp; events) != 0), and return unmasked `events` value
-
-    Core ID &amp; debug:
-    - x31 r/-  `[31:30]` -&gt; core ID; `[29:0]` -&gt; cpu clocks since reset
-</code></pre>
+                        <h1 id="hardware-specifications"><a class="header" href="#hardware-specifications">Hardware specifications</a></h1>
 
                     </main>
 
@@ -179,6 +145,9 @@
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="ch00-00-rtl-overview.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="ch02-00-bio-overview.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -188,6 +157,9 @@
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="ch00-00-rtl-overview.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="ch02-00-bio-overview.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
