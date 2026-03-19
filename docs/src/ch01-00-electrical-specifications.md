@@ -10,7 +10,7 @@
 ## Pinout
 
 ### Ball List
-```
+```text,ignore
 Ball Net Name
 A2	USB0PP
 A3	VDD33

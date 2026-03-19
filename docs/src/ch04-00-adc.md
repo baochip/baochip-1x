@@ -138,7 +138,7 @@ Base address: `0x5011_4000`
 
 | Bits | Field | Access | Description |
 |------|-------|--------|-------------|
-| [15:0] | RX_SADDR | R/W | RX buffer base address. Read: returns current buffer pointer value during transfer, else 0. Write: sets RX buffer base address. |
+| `[15:0]` | RX_SADDR | R/W | RX buffer base address. Read: returns current buffer pointer value during transfer, else 0. Write: sets RX buffer base address. |
 
 #### ADC_RX_SIZE — RX Buffer Size
 

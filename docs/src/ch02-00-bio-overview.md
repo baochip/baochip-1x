@@ -4,7 +4,7 @@
 To help you get started, the following resources are available in our GitHub repos.
 
 * For BIO developers: [Xous-native example libraries](https://github.com/betrusted-io/xous-core/tree/dev/libs/bio-lib). Start by copying one of these libraries as a template, and extending it!
-* For hardware engineers: The [RTL for the BIO] (https://github.com/baochip/baochip-1x/tree/main/rtl/modules/bio_bdma/rtl). It’s written in SystemVerilog and integrates into a host system using AHB (and AXI for the DMA if enabled).
+* For hardware engineers: The [RTL for the BIO](https://github.com/baochip/baochip-1x/tree/main/rtl/modules/bio_bdma/rtl). It’s written in SystemVerilog and integrates into a host system using AHB (and AXI for the DMA if enabled).
 * For verification engineers: [Unit tests for the BIO hardware](https://github.com/betrusted-io/xous-core/tree/dev/libs/xous-bio-bdma/src/bio_tests).
 
 There is also a [blog post](https://www.bunniestudios.com/blog/2026/bio-the-bao-i-o-coprocessor/) that discusses the trade-offs that went into designing the BIO, for those interested in peeking under the hood and understanding the thought process.
