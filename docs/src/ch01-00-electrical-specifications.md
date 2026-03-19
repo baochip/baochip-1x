@@ -1,13 +1,13 @@
 # Hardware Specifications
 
-## Pinout
-
-### Design Resources
+## Design Resources
 
 - KiCAD [Schematic symbol](other/baochip1x.kicad_sym)
 - KiCAD [Fooptrint](other/baochip1x.kicad_mod)
 - [Dabao reference design](https://github.com/baochip/dabao/) - a minimal, 2-layer reference design
 - The authoritative pinout for the Baochip-1x is contained in [this spreadsheet](other/baochip1x-pinout.ods). The spreadsheet's contents supersede any inconsistencies in the HTML version.
+
+## Pinout
 
 ### Ball List
 ```

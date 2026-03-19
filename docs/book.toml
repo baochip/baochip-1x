@@ -1,8 +1,9 @@
 [book]
 title = "Coder's guide to the Baochip 1x"
-author = "Andrew \"bunnie\" Huang and the Baochip community"
+authors = ["Andrew \"bunnie\" Huang and the Baochip community"]
 
 [output.html]
 # additional-css = ["ferris.css", "theme/2018-edition.css"]
 # additional-js = ["ferris.js"]
+additional-css = ["custom.css"]
 git-repository-url = "https://github.com/baochip/baochip-1x"
