@@ -230,7 +230,7 @@ or the &quot;bao1x&quot; interchangeably.</p>
 <p>The BIO design starts with a PicoRV32 configured as an RV32E. In this mode, instead of having a full complement of 32 registers (including the zero register), you get 16: only r0 - r15 are officially part of the RV32E specification. I then abuse r16 – r31 to map in a set of “register queues” as well as GPIO access and synchronization primitives. Below is a diagram of the final register set exposed on each of the four RV32E cores.</p>
 <p><img src="images/bio-diagram.png" alt="block diagram of BIO" /></p>
 <p>The buff-colored rectangles are registers with normal read/write semantics, while lavender-colored rectangles are registers that can block CPU execution based on various conditions. Here’s the description of the “high-bank” registers in text:</p>
-<pre><code>FIFO - 8-deep fifo head/tail access. Cores halt on overflow/underflow.
+<pre><code class="language-text ignore">FIFO - 8-deep fifo head/tail access. Cores halt on overflow/underflow.
 - x16 r/w  fifo[0]
 - x17 r/w  fifo[1]
 - x18 r/w  fifo[2]
@@ -273,7 +273,7 @@ Core ID &amp; debug:
 <h2 id="a-simple-bio-code-example"><a class="header" href="#a-simple-bio-code-example">A Simple BIO Code Example</a></h2>
 <p>To help illustrate the gist of how to use the FIFO-registers in the BIO, let’s look at an example DMA operation; we'll also assume that the whitelists have already been set up by the Vexriscv core. In this example, we decompose the DMA operation into two parts: one BIO core is used to fetch and store memory, and another BIO core is used to generate the addresses.</p>
 <p>The fetch/store BIO core code is quite simple: just a series of loads (lw) and stores (sw) with the address offset originating from x16 or x17 (FIFO0 and FIFO1, respectively):</p>
-<pre><code>bio_code!(dma_mc_copy_code, DMA_MC_COPY_START, DMA_MC_COPY_END,
+<pre><code class="language-rust ignore">bio_code!(dma_mc_copy_code, DMA_MC_COPY_START, DMA_MC_COPY_END,
   &quot;20:&quot;,
     &quot;lw a0, 0(x16)&quot;, // unrolled for more performance
     &quot;sw a0, 0(x17)&quot;,
@@ -289,7 +289,7 @@ Core ID &amp; debug:
 <p>This code snippet is wrapped in a Rust macro. Because the BIO uses a mostly stock RV32E, we can leverage existing RISC-V tools. In this case, the <code>bio_code!</code> macro annotates the Rust assembly code with the identifiers “DMA_MC_COPY_START” and “DMA_MC_COPY_END”. These identifiers enable a separate code-loader to identify the base and extent of the assembled binary block, so that it can be copied into the BIO memory at run-time.</p>
 <p>In the above example, the CPU will halt on the first instruction, because x16 is empty, awaiting an address to be generated for it.</p>
 <p>Meanwhile, a second CPU core runs the following code:</p>
-<pre><code>bio_code!(dma_mc_src_addr_code, DMA_MC_SRC_ADDR_START, DMA_MC_SRC_ADDR_END,
+<pre><code class="language-rust ignore">bio_code!(dma_mc_src_addr_code, DMA_MC_SRC_ADDR_START, DMA_MC_SRC_ADDR_END,
   &quot;20:&quot;,
     &quot;mv a0, x18&quot;,  // src address on FIFO x18
     &quot;li x29, 0x500&quot;, // clear done state
@@ -321,7 +321,7 @@ Core ID &amp; debug:
 <p>Speaking of SPI, let’s look at an example of an SPI bitbang implementation. In this case, two cores run in parallel, one to handle the shift-out + clock, and the other to handle shift-in. The mapping of the pins is set elsewhere in the code to receive on GPIO 7, transmit on GPIO 8, clock on GPIO 9, and chip select is on GPIO 10.</p>
 <p>Snap-to-quantum is used to ensure the edges line up. For this implementation, the quantum needs to run at twice the SPI clock rate (so 50MHz for a 25MHz SPI clock, which is achievable if the BIO cores run at 700MHz; note that on the PicoRV32, a typical instruction takes about three cycles to execute, as there is no pipelining).</p>
 <p>This first snippet is what runs on the core that manages TX + clock. The first few instructions set up bit masks and temporaries, and then the routine that shifts the actual bits are unrolled, so you don’t pay a branch/loop penalty between bits. Loop unrolling is ubiquitous in BIO code, because you have a roomy 4 kiB of code space per PicoRV32.</p>
-<pre><code>  &quot;82:&quot;, // machine 2 - tx on bit 8, clock on bit 9, chip select on bit 10
+<pre><code class="language-rust ignore">  &quot;82:&quot;, // machine 2 - tx on bit 8, clock on bit 9, chip select on bit 10
     &quot;li  x1, 0x700&quot;,       // setup output mask bits
     &quot;mv  x26, x1&quot;,         // mask
     &quot;mv  x24, x1&quot;,         // direction (1 = output)
@@ -360,7 +360,7 @@ Core ID &amp; debug:
 </code></pre>
 <p>The code continues onwards for each of the bits, but is truncated after bit One for brevity. You can see the full code at <a href="https://github.com/betrusted-io/xous-core/blob/e9c408fbcab1808201786be17c1a7d07817cdbc5/libs/xous-bio-bdma/src/bio_tests/spi.rs#L113-L457">our GitHub repo</a>.</p>
 <p>This second snippet runs in parallel on the core that manages RX.</p>
-<pre><code>    // wait until CS falls
+<pre><code class="language-rust ignore">    // wait until CS falls
   &quot;31:&quot;,
     &quot;and x8, x6, x21&quot;,
     &quot;bnez x8, 31b&quot;,
@@ -393,7 +393,7 @@ Core ID &amp; debug:
 </ul>
 <p>The build script compiles C code down to a <code>clang</code> intermediate assembly, which is then handed off to a Python script that translates it into a Rust macro which is checked into Xous as a buildable artifact using its pure-Rust toolchain. The Python script also checks the assembly code for certain motifs that can trigger erratum in the BIO core and automatically patches them. Thus, the only time a C toolchain is needed is if a developer needs to change the C code; re-using an existing C program requires only Rust. As a side-effect, this also paves an on-ramp for Zig developers to write BIO code.</p>
 <p>Here’s an example showing what C-for-BIO looks like:</p>
-<pre><code class="language-c">// pin is provided as the GPIO number to drive
+<pre><code class="language-c ignore">// pin is provided as the GPIO number to drive
 // strip is an array of u32's that contain GRB data
 // len is the length of the strip
 void ws2812c(uint32_t pin, uint32_t *strip, uint32_t len) {
