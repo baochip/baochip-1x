@@ -17,7 +17,7 @@ The BIO design starts with a PicoRV32 configured as an RV32E. In this mode, inst
 
 The buff-colored rectangles are registers with normal read/write semantics, while lavender-colored rectangles are registers that can block CPU execution based on various conditions. Here’s the description of the “high-bank” registers in text:
 
-```
+```text,ignore
 FIFO - 8-deep fifo head/tail access. Cores halt on overflow/underflow.
 - x16 r/w  fifo[0]
 - x17 r/w  fifo[1]
@@ -73,7 +73,7 @@ To help illustrate the gist of how to use the FIFO-registers in the BIO, let’s
 
 The fetch/store BIO core code is quite simple: just a series of loads (lw) and stores (sw) with the address offset originating from x16 or x17 (FIFO0 and FIFO1, respectively):
 
-```
+```rust,ignore
 bio_code!(dma_mc_copy_code, DMA_MC_COPY_START, DMA_MC_COPY_END,
   "20:",
     "lw a0, 0(x16)", // unrolled for more performance
@@ -94,7 +94,7 @@ In the above example, the CPU will halt on the first instruction, because x16 is
 
 Meanwhile, a second CPU core runs the following code:
 
-```
+```rust,ignore
 bio_code!(dma_mc_src_addr_code, DMA_MC_SRC_ADDR_START, DMA_MC_SRC_ADDR_END,
   "20:",
     "mv a0, x18",  // src address on FIFO x18
@@ -140,7 +140,7 @@ Snap-to-quantum is used to ensure the edges line up. For this implementation, th
 
 This first snippet is what runs on the core that manages TX + clock. The first few instructions set up bit masks and temporaries, and then the routine that shifts the actual bits are unrolled, so you don’t pay a branch/loop penalty between bits. Loop unrolling is ubiquitous in BIO code, because you have a roomy 4 kiB of code space per PicoRV32.
 
-```
+```rust,ignore
   "82:", // machine 2 - tx on bit 8, clock on bit 9, chip select on bit 10
     "li  x1, 0x700",       // setup output mask bits
     "mv  x26, x1",         // mask
@@ -183,7 +183,7 @@ The code continues onwards for each of the bits, but is truncated after bit One 
 
 This second snippet runs in parallel on the core that manages RX.
 
-```
+```rust,ignore
     // wait until CS falls
   "31:",
     "and x8, x6, x21",
@@ -225,7 +225,7 @@ The build script compiles C code down to a `clang` intermediate assembly, which 
 
 Here’s an example showing what C-for-BIO looks like:
 
-```c
+```c,ignore
 // pin is provided as the GPIO number to drive
 // strip is an array of u32's that contain GRB data
 // len is the length of the strip
