@@ -55,8 +55,10 @@ jobs:
         mdbook build docs
         cd docs
         cargo run --bin lfp src
-    - name: Validate references
-      run: bash docs/ci/validate.sh
+    # This doesn't work because it flags all the indexed variables as broken links, and doesn't seems to be smart
+    # enough to handle escaping patterns. Way too many false positives - just not worth it.
+    # - name: Validate references
+    #   run: bash docs/ci/validate.sh
     - name: Check for broken links
       run: |
         cd docs
