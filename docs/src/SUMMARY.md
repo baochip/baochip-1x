@@ -2,7 +2,7 @@
 
 ---
 
-## [Introduction](ch00-00-introduction.md)
+## [Introduction](README.md)
 
 - [RTL guide](ch00-00-rtl-overview.md)
 - [Hardware specifications (pinouts, voltages, packages drawings)](ch01-00-electrical-specifications.md)

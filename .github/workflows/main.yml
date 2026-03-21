@@ -17,7 +17,7 @@ jobs:
     - name: Install mdbook
       run: |
         mkdir bin
-        curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.14/mdbook-v0.4.14-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=bin
+        curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.5.2/mdbook-v0.5.2-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=bin
         echo "$(pwd)/bin" >> ${GITHUB_PATH}
     - name: Report versions
       run: |
@@ -41,7 +41,7 @@ jobs:
     - name: Install mdbook
       run: |
         mkdir bin
-        curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.14/mdbook-v0.4.14-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=bin
+        curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.5.2/mdbook-v0.5.2-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=bin
         echo "$(pwd)/bin" >> ${GITHUB_PATH}
     - name: Report versions
       run: |
@@ -65,15 +65,16 @@ jobs:
         curl -sSLo linkcheck.sh \
           https://raw.githubusercontent.com/rust-lang/rust/master/src/tools/linkchecker/linkcheck.sh
         # Cannot use --all here because of the generated redirect pages aren't available.
-
-        # Remove print.html before checking — it's a concatenation of all pages
-        # so every anchor ID appears duplicated, causing false "id is not unique" failures.
         rm -f book/print.html
-
         sh linkcheck.sh book
+
     - name: Deploy Book
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: gh-pages
         publish_dir: ./docs/book
+        enable_jekyll: false
+
+    - name: Verify build output
+      run: ls -la docs/book/

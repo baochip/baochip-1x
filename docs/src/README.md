@@ -10,7 +10,7 @@ or the "bao1x" interchangeably.
 
 This book is a work in progress.
 
-Please join the [Discord](https://discord.gg/YTCTZBTPNa) to request sections, or open a pull request to make edits and contributions. See [RTL](ch00-00-introduction.md) for where to find the source code for the chip.
+Please join the [Discord](https://discord.gg/YTCTZBTPNa) to request sections, or open a pull request to make edits and contributions. See [RTL](ch00-00-rtl-overview.md) for where to find the source code for the chip.
 
 ![SoC block diagram](./images/soc-top-diagram.png)
 
