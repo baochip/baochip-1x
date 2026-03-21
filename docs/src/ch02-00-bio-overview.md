@@ -673,7 +673,6 @@ This section documents the details of the BIO register set.
 | [BIO_BDMA_SFR_FILTER_BASE_3](#bio_bdma_sfr_filter_base_3) | [0x501240f8](#bio_bdma_sfr_filter_base_3) |
 | [BIO_BDMA_SFR_FILTER_BOUNDS_3](#bio_bdma_sfr_filter_bounds_3) | [0x501240fc](#bio_bdma_sfr_filter_bounds_3) |
 
-<a id="bio_bdma_sfr_ctrl"></a>
 ### BIO_BDMA_SFR_CTRL
 
 `Address: 0x50124000 + 0x0 = 0x50124000`
@@ -693,7 +692,6 @@ BIO core enable and clock control.
 The `CLKDIV_RESTART` is structured such that cores that are simultaneously restarted
 will have their clock dividers run in synchronous lock-step.
 
-<a id="bio_bdma_sfr_cfginfo"></a>
 ### BIO_BDMA_SFR_CFGINFO
 
 `Address: 0x50124000 + 0x4 = 0x50124004`
@@ -708,7 +706,6 @@ This register contains constants that identify the version of the core.
 | [15:8] | CONSTANT1 | constant value of 4: the number of cores |
 | [31:16] | CONSTANT2 | constant value of 4096: the amount of RAM per core |
 
-<a id="bio_bdma_sfr_config"></a>
 ### BIO_BDMA_SFR_CONFIG
 
 `Address: 0x50124000 + 0x8 = 0x50124008`
@@ -727,7 +724,6 @@ Configures various clocking modes, DMA filter ranges.
 | [7] | DISABLE_FILTER_MEM | When `1`, disables the host memory range whitelist filter. Setting this is strongly discouraged in secure applications. |
 | [9:8] | CLOCKING_MODE | Clock domain crossing synchronizer setup for host bus access. Defaults to `0b11` (isochronous operation). This reduces latency at the expense of possible metastability. Set `0b00` for a 2-stage synchronizer, or `0b01` or `0b10` for a 1-stage synchronizer |
 
-<a id="bio_bdma_sfr_flevel"></a>
 ### BIO_BDMA_SFR_FLEVEL
 
 `Address: 0x50124000 + 0xc = 0x5012400c`
@@ -743,7 +739,6 @@ Reports the number of entries currently in each of the respective FIFOs.
 | [11:8] | PCLK_REGFIFO_LEVEL2 | pclk_regfifo_level[2] read only status register |
 | [15:12] | PCLK_REGFIFO_LEVEL3 | pclk_regfifo_level[3] read only status register |
 
-<a id="bio_bdma_sfr_txf0"></a>
 ### BIO_BDMA_SFR_TXF0
 
 `Address: 0x50124000 + 0x10 = 0x50124010`
@@ -754,7 +749,6 @@ See [bio_bdma.sv#L493](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | FDIN | Writes insert data into FIFO0. Writes are dropped if the FIFO is full. |
 
-<a id="bio_bdma_sfr_txf1"></a>
 ### BIO_BDMA_SFR_TXF1
 
 `Address: 0x50124000 + 0x14 = 0x50124014`
@@ -765,7 +759,6 @@ See [bio_bdma.sv#L494](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | FDIN | Writes insert data into FIFO1. Writes are dropped if the FIFO is full. |
 
-<a id="bio_bdma_sfr_txf2"></a>
 ### BIO_BDMA_SFR_TXF2
 
 `Address: 0x50124000 + 0x18 = 0x50124018`
@@ -776,7 +769,6 @@ See [bio_bdma.sv#L495](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | FDIN | Writes insert data into FIFO2. Writes are dropped if the FIFO is full. |
 
-<a id="bio_bdma_sfr_txf3"></a>
 ### BIO_BDMA_SFR_TXF3
 
 `Address: 0x50124000 + 0x1c = 0x5012401c`
@@ -787,7 +779,6 @@ See [bio_bdma.sv#L496](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | FDIN | Writes insert data into FIFO3. Writes are dropped if the FIFO is full. |
 
-<a id="bio_bdma_sfr_rxf0"></a>
 ### BIO_BDMA_SFR_RXF0
 
 `Address: 0x50124000 + 0x20 = 0x50124020`
@@ -798,7 +789,6 @@ See [bio_bdma.sv#L497](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | FDOUT | Reads remove an entry from FIFO0 or returns the last value if empty. |
 
-<a id="bio_bdma_sfr_rxf1"></a>
 ### BIO_BDMA_SFR_RXF1
 
 `Address: 0x50124000 + 0x24 = 0x50124024`
@@ -809,7 +799,6 @@ See [bio_bdma.sv#L498](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | FDOUT | Reads remove an entry from FIFO1 or returns the last value if empty. |
 
-<a id="bio_bdma_sfr_rxf2"></a>
 ### BIO_BDMA_SFR_RXF2
 
 `Address: 0x50124000 + 0x28 = 0x50124028`
@@ -820,7 +809,6 @@ See [bio_bdma.sv#L499](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | FDOUT | Reads remove an entry from FIFO2 or returns the last value if empty. |
 
-<a id="bio_bdma_sfr_rxf3"></a>
 ### BIO_BDMA_SFR_RXF3
 
 `Address: 0x50124000 + 0x2c = 0x5012402c`
@@ -831,7 +819,6 @@ See [bio_bdma.sv#L500](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | FDOUT | Reads remove an entry from FIFO3 or returns the last value if empty. |
 
-<a id="bio_bdma_sfr_elevel"></a>
 ### BIO_BDMA_SFR_ELEVEL
 
 `Address: 0x50124000 + 0x30 = 0x50124030`
@@ -861,7 +848,6 @@ This register sets the constants for these event slots.
 | [27:24] | FIFO_EVENT_LEVEL6 | fifo_event_level[6] read/write control register |
 | [31:28] | FIFO_EVENT_LEVEL7 | fifo_event_level[7] read/write control register |
 
-<a id="bio_bdma_sfr_etype"></a>
 ### BIO_BDMA_SFR_ETYPE
 
 `Address: 0x50124000 + 0x34 = 0x50124034`
@@ -883,7 +869,6 @@ the second bit in the `FIFO_EVENT_GT_MASK field`.
 | [15:8] | FIFO_EVENT_EQ_MASK | fifo_event_eq_mask read/write control register |
 | [23:16] | FIFO_EVENT_GT_MASK | fifo_event_gt_mask read/write control register |
 
-<a id="bio_bdma_sfr_event_set"></a>
 ### BIO_BDMA_SFR_EVENT_SET
 
 `Address: 0x50124000 + 0x38 = 0x50124038`
@@ -898,7 +883,6 @@ a bit position here sets a bit in the event register.
 | --- | --- | --- |
 | [23:0] | SFR_EVENT_SET | sfr_event_set read/write control register |
 
-<a id="bio_bdma_sfr_event_clr"></a>
 ### BIO_BDMA_SFR_EVENT_CLR
 
 `Address: 0x50124000 + 0x3c = 0x5012403c`
@@ -913,7 +897,6 @@ a bit position here clears a bit in the event register.
 | --- | --- | --- |
 | [23:0] | SFR_EVENT_CLR | sfr_event_clr read/write control register |
 
-<a id="bio_bdma_sfr_event_status"></a>
 ### BIO_BDMA_SFR_EVENT_STATUS
 
 `Address: 0x50124000 + 0x40 = 0x50124040`
@@ -926,7 +909,6 @@ Reading this register returns the current value of the event register.
 | --- | --- | --- |
 | [31:0] | SFR_EVENT_STATUS | sfr_event_status read only status register |
 
-<a id="bio_bdma_sfr_extclock"></a>
 ### BIO_BDMA_SFR_EXTCLOCK
 
 `Address: 0x50124000 + 0x44 = 0x50124044`
@@ -943,7 +925,6 @@ Each of the four BIO cores can have its quantum derived from an external clock p
 | [18:14] | EXTCLK_GPIO_2 | Which BIO pin to use for BIO core 2's EXTCLK, if bit 2 is set. |
 | [23:19] | EXTCLK_GPIO_3 | Which BIO pin to use for BIO core 3's EXTCLK, if bit 3 is set. |
 
-<a id="bio_bdma_sfr_fifo_clr"></a>
 ### BIO_BDMA_SFR_FIFO_CLR
 
 `Address: 0x50124000 + 0x48 = 0x50124048`
@@ -956,7 +937,6 @@ Writing a `1` into a bit in this register causes the respective FIFO to have its
 | --- | --- | --- |
 | [3:0] | SFR_FIFO_CLR | sfr_fifo_clr read/write control register |
 
-<a id="bio_bdma_sfr_qdiv0"></a>
 ### BIO_BDMA_SFR_QDIV0
 
 `Address: 0x50124000 + 0x50 = 0x50124050`
@@ -993,7 +973,6 @@ pub(crate) fn compute_freq(&self, div_int: u16, div_frac: u8) -> u32 {
 | [1] | DIV_FRAC | div_frac read/write control register |
 | [2] | DIV_INT | div_int read/write control register |
 
-<a id="bio_bdma_sfr_qdiv1"></a>
 ### BIO_BDMA_SFR_QDIV1
 
 `Address: 0x50124000 + 0x54 = 0x50124054`
@@ -1008,7 +987,6 @@ Quantum divider for BIO core 1.
 | [1] | DIV_FRAC | div_frac read/write control register |
 | [2] | DIV_INT | div_int read/write control register |
 
-<a id="bio_bdma_sfr_qdiv2"></a>
 ### BIO_BDMA_SFR_QDIV2
 
 `Address: 0x50124000 + 0x58 = 0x50124058`
@@ -1023,7 +1001,6 @@ Quantum divider for BIO core 2.
 | [1] | DIV_FRAC | div_frac read/write control register |
 | [2] | DIV_INT | div_int read/write control register |
 
-<a id="bio_bdma_sfr_qdiv3"></a>
 ### BIO_BDMA_SFR_QDIV3
 
 `Address: 0x50124000 + 0x5c = 0x5012405c`
@@ -1038,7 +1015,6 @@ Quantum divider for BIO core 3.
 | [1] | DIV_FRAC | div_frac read/write control register |
 | [2] | DIV_INT | div_int read/write control register |
 
-<a id="bio_bdma_sfr_sync_bypass"></a>
 ### BIO_BDMA_SFR_SYNC_BYPASS
 
 `Address: 0x50124000 + 0x60 = 0x50124060`
@@ -1053,7 +1029,6 @@ This introduces a risk of metastability, but reduces the latency of capturing a 
 | --- | --- | --- |
 | [31:0] | SFR_SYNC_BYPASS | sfr_sync_bypass read/write control register |
 
-<a id="bio_bdma_sfr_io_oe_inv"></a>
 ### BIO_BDMA_SFR_IO_OE_INV
 
 `Address: 0x50124000 + 0x64 = 0x50124064`
@@ -1066,7 +1041,6 @@ Setting a bit in this field causes the output enable behavior to be inverted for
 | --- | --- | --- |
 | [31:0] | SFR_IO_OE_INV | sfr_io_oe_inv read/write control register |
 
-<a id="bio_bdma_sfr_io_o_inv"></a>
 ### BIO_BDMA_SFR_IO_O_INV
 
 `Address: 0x50124000 + 0x68 = 0x50124068`
@@ -1079,7 +1053,6 @@ Setting a bit in this field causes the output data behavior to be inverted for t
 | --- | --- | --- |
 | [31:0] | SFR_IO_O_INV | sfr_io_o_inv read/write control register |
 
-<a id="bio_bdma_sfr_io_i_inv"></a>
 ### BIO_BDMA_SFR_IO_I_INV
 
 `Address: 0x50124000 + 0x6c = 0x5012406c`
@@ -1092,7 +1065,6 @@ Setting a bit in this field causes the input data behavior to be inverted for th
 | --- | --- | --- |
 | [31:0] | SFR_IO_I_INV | sfr_io_i_inv read/write control register |
 
-<a id="bio_bdma_sfr_irqmask_0"></a>
 ### BIO_BDMA_SFR_IRQMASK_0
 
 `Address: 0x50124000 + 0x70 = 0x50124070`
@@ -1105,7 +1077,6 @@ Setting a bit in this field causes the respective bit in the event register for 
 | --- | --- | --- |
 | [31:0] | SFR_IRQMASK_0 | sfr_irqmask_0 read/write control register |
 
-<a id="bio_bdma_sfr_irqmask_1"></a>
 ### BIO_BDMA_SFR_IRQMASK_1
 
 `Address: 0x50124000 + 0x74 = 0x50124074`
@@ -1118,7 +1089,6 @@ Setting a bit in this field causes the respective bit in the event register for 
 | --- | --- | --- |
 | [31:0] | SFR_IRQMASK_1 | sfr_irqmask_1 read/write control register |
 
-<a id="bio_bdma_sfr_irqmask_2"></a>
 ### BIO_BDMA_SFR_IRQMASK_2
 
 `Address: 0x50124000 + 0x78 = 0x50124078`
@@ -1131,7 +1101,6 @@ Setting a bit in this field causes the respective bit in the event register for 
 | --- | --- | --- |
 | [31:0] | SFR_IRQMASK_2 | sfr_irqmask_2 read/write control register |
 
-<a id="bio_bdma_sfr_irqmask_3"></a>
 ### BIO_BDMA_SFR_IRQMASK_3
 
 `Address: 0x50124000 + 0x7c = 0x5012407c`
@@ -1144,7 +1113,6 @@ Setting a bit in this field causes the respective bit in the event register for 
 | --- | --- | --- |
 | [31:0] | SFR_IRQMASK_3 | sfr_irqmask_3 read/write control register |
 
-<a id="bio_bdma_sfr_irq_edge"></a>
 ### BIO_BDMA_SFR_IRQ_EDGE
 
 `Address: 0x50124000 + 0x80 = 0x50124080`
@@ -1157,17 +1125,14 @@ When a bit is set to `1`, it causes the corresponding fully-processed IRQ output
 | --- | --- | --- |
 | [3:0] | SFR_IRQ_EDGE | sfr_irq_edge read/write control register |
 
-<a id="bio_bdma_sfr_dbg_padout"></a>
 ### BIO_BDMA_SFR_DBG_PADOUT
 
 This register is buggy in the Baochip-1x and does nothing.
 
-<a id="bio_bdma_sfr_dbg_padoe"></a>
 ### BIO_BDMA_SFR_DBG_PADOE
 
 This regiser is buggy in the Baochip-1x and does nothing.
 
-<a id="bio_bdma_sfr_dbg0"></a>
 ### BIO_BDMA_SFR_DBG0
 
 `Address: 0x50124000 + 0x90 = 0x50124090`
@@ -1181,7 +1146,6 @@ Returns the latest program counter of BIO core 0 and if the core has encountered
 | [0] | DBG_PC | dbg_pc read only status register |
 | [1] | TRAP | trap read only status register |
 
-<a id="bio_bdma_sfr_dbg1"></a>
 ### BIO_BDMA_SFR_DBG1
 
 `Address: 0x50124000 + 0x94 = 0x50124094`
@@ -1195,7 +1159,6 @@ Returns the latest program counter of BIO core 1 and if the core has encountered
 | [0] | DBG_PC | dbg_pc read only status register |
 | [1] | TRAP | trap read only status register |
 
-<a id="bio_bdma_sfr_dbg2"></a>
 ### BIO_BDMA_SFR_DBG2
 
 `Address: 0x50124000 + 0x98 = 0x50124098`
@@ -1209,7 +1172,6 @@ Returns the latest program counter of BIO core 2 and if the core has encountered
 | [0] | DBG_PC | dbg_pc read only status register |
 | [1] | TRAP | trap read only status register |
 
-<a id="bio_bdma_sfr_dbg3"></a>
 ### BIO_BDMA_SFR_DBG3
 
 `Address: 0x50124000 + 0x9c = 0x5012409c`
@@ -1223,7 +1185,6 @@ Returns the latest program counter of BIO core 3 and if the core has encountered
 | [0] | DBG_PC | dbg_pc read only status register |
 | [1] | TRAP | trap read only status register |
 
-<a id="bio_bdma_sfr_mem_gutter"></a>
 ### BIO_BDMA_SFR_MEM_GUTTER
 
 `Address: 0x50124000 + 0xa0 = 0x501240a0`
@@ -1238,7 +1199,6 @@ This needs to map to a valid write location in physical memory so that the DMA t
 | --- | --- | --- |
 | [31:0] | SFR_MEM_GUTTER | sfr_mem_gutter read/write control register |
 
-<a id="bio_bdma_sfr_peri_gutter"></a>
 ### BIO_BDMA_SFR_PERI_GUTTER
 
 `Address: 0x50124000 + 0xa4 = 0x501240a4`
@@ -1253,7 +1213,6 @@ This needs to map to a valid write location in physical memory so that the DMA t
 | --- | --- | --- |
 | [31:0] | SFR_PERI_GUTTER | sfr_peri_gutter read/write control register |
 
-<a id="bio_bdma_sfr_dmareq_map_cr_evmap0"></a>
 ### BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP0
 
 `Address: 0x50124000 + 0xb0 = 0x501240b0`
@@ -1288,7 +1247,6 @@ The actual mapping of Baochip-1x events is poorly documented. Readers are referr
 | --- | --- | --- |
 | [31:0] | CR_EVMAP0 | cr_evmap read/write control register |
 
-<a id="bio_bdma_sfr_dmareq_map_cr_evmap1"></a>
 ### BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP1
 
 `Address: 0x50124000 + 0xb4 = 0x501240b4`
@@ -1299,7 +1257,6 @@ See [bio_bdma.sv#L571](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | CR_EVMAP1 | cr_evmap read/write control register |
 
-<a id="bio_bdma_sfr_dmareq_map_cr_evmap2"></a>
 ### BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP2
 
 `Address: 0x50124000 + 0xb8 = 0x501240b8`
@@ -1310,7 +1267,6 @@ See [bio_bdma.sv#L571](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | CR_EVMAP2 | cr_evmap read/write control register |
 
-<a id="bio_bdma_sfr_dmareq_map_cr_evmap3"></a>
 ### BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP3
 
 `Address: 0x50124000 + 0xbc = 0x501240bc`
@@ -1321,7 +1277,6 @@ See [bio_bdma.sv#L571](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | CR_EVMAP3 | cr_evmap read/write control register |
 
-<a id="bio_bdma_sfr_dmareq_map_cr_evmap4"></a>
 ### BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP4
 
 `Address: 0x50124000 + 0xc0 = 0x501240c0`
@@ -1332,7 +1287,6 @@ See [bio_bdma.sv#L571](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | CR_EVMAP4 | cr_evmap read/write control register |
 
-<a id="bio_bdma_sfr_dmareq_map_cr_evmap5"></a>
 ### BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP5
 
 `Address: 0x50124000 + 0xc4 = 0x501240c4`
@@ -1343,7 +1297,6 @@ See [bio_bdma.sv#L571](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | CR_EVMAP5 | cr_evmap read/write control register |
 
-<a id="bio_bdma_sfr_dmareq_stat_sr_evstat0"></a>
 ### BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT0
 
 `Address: 0x50124000 + 0xc8 = 0x501240c8`
@@ -1356,7 +1309,6 @@ The `STAT*` series of registers read back the current status of the event lines.
 | --- | --- | --- |
 | [31:0] | SR_EVSTAT0 | sr_evstat read only status register |
 
-<a id="bio_bdma_sfr_dmareq_stat_sr_evstat1"></a>
 ### BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT1
 
 `Address: 0x50124000 + 0xcc = 0x501240cc`
@@ -1367,7 +1319,6 @@ See [bio_bdma.sv#L572](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | SR_EVSTAT1 | sr_evstat read only status register |
 
-<a id="bio_bdma_sfr_dmareq_stat_sr_evstat2"></a>
 ### BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT2
 
 `Address: 0x50124000 + 0xd0 = 0x501240d0`
@@ -1378,7 +1329,6 @@ See [bio_bdma.sv#L572](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | SR_EVSTAT2 | sr_evstat read only status register |
 
-<a id="bio_bdma_sfr_dmareq_stat_sr_evstat3"></a>
 ### BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT3
 
 `Address: 0x50124000 + 0xd4 = 0x501240d4`
@@ -1389,7 +1339,6 @@ See [bio_bdma.sv#L572](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | SR_EVSTAT3 | sr_evstat read only status register |
 
-<a id="bio_bdma_sfr_dmareq_stat_sr_evstat4"></a>
 ### BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT4
 
 `Address: 0x50124000 + 0xd8 = 0x501240d8`
@@ -1400,7 +1349,6 @@ See [bio_bdma.sv#L572](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | SR_EVSTAT4 | sr_evstat read only status register |
 
-<a id="bio_bdma_sfr_dmareq_stat_sr_evstat5"></a>
 ### BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT5
 
 `Address: 0x50124000 + 0xdc = 0x501240dc`
@@ -1411,7 +1359,6 @@ See [bio_bdma.sv#L572](https://github.com/baochip/baochip-1x/blob/main/rtl/modul
 | --- | --- | --- |
 | [31:0] | SR_EVSTAT5 | sr_evstat read only status register |
 
-<a id="bio_bdma_sfr_filter_base_0"></a>
 ### BIO_BDMA_SFR_FILTER_BASE_0
 
 `Address: 0x50124000 + 0xe0 = 0x501240e0`
@@ -1430,7 +1377,6 @@ This register specifies the base of whitelist region 0.
 | --- | --- | --- |
 | [19:0] | FILTER_BASE | filter_base read/write control register, in pages |
 
-<a id="bio_bdma_sfr_filter_bounds_0"></a>
 ### BIO_BDMA_SFR_FILTER_BOUNDS_0
 
 `Address: 0x50124000 + 0xe4 = 0x501240e4`
@@ -1443,7 +1389,6 @@ This register specifies the bounds of whitelist region 0.
 | --- | --- | --- |
 | [19:0] | FILTER_BOUNDS | filter_bounds read/write control register, in pages |
 
-<a id="bio_bdma_sfr_filter_base_1"></a>
 ### BIO_BDMA_SFR_FILTER_BASE_1
 
 `Address: 0x50124000 + 0xe8 = 0x501240e8`
@@ -1456,7 +1401,6 @@ This register specifies the base of whitelist region 1.
 | --- | --- | --- |
 | [19:0] | FILTER_BASE | filter_base read/write control register, in pages |
 
-<a id="bio_bdma_sfr_filter_bounds_1"></a>
 ### BIO_BDMA_SFR_FILTER_BOUNDS_1
 
 `Address: 0x50124000 + 0xec = 0x501240ec`
@@ -1469,7 +1413,6 @@ This register specifies the bounds of whitelist region 1.
 | --- | --- | --- |
 | [19:0] | FILTER_BOUNDS | filter_bounds read/write control register, in pages |
 
-<a id="bio_bdma_sfr_filter_base_2"></a>
 ### BIO_BDMA_SFR_FILTER_BASE_2
 
 `Address: 0x50124000 + 0xf0 = 0x501240f0`
@@ -1482,7 +1425,6 @@ This register specifies the base of whitelist region 2.
 | --- | --- | --- |
 | [19:0] | FILTER_BASE | filter_base read/write control register, in pages |
 
-<a id="bio_bdma_sfr_filter_bounds_2"></a>
 ### BIO_BDMA_SFR_FILTER_BOUNDS_2
 
 `Address: 0x50124000 + 0xf4 = 0x501240f4`
@@ -1495,7 +1437,6 @@ This register specifies the bounds of whitelist region 2.
 | --- | --- | --- |
 | [19:0] | FILTER_BOUNDS | filter_bounds read/write control register, in pages |
 
-<a id="bio_bdma_sfr_filter_base_3"></a>
 ### BIO_BDMA_SFR_FILTER_BASE_3
 
 `Address: 0x50124000 + 0xf8 = 0x501240f8`
@@ -1508,7 +1449,6 @@ This register specifies the base of whitelist region 3.
 | --- | --- | --- |
 | [19:0] | FILTER_BASE | filter_base read/write control register, in pages |
 
-<a id="bio_bdma_sfr_filter_bounds_3"></a>
 ### BIO_BDMA_SFR_FILTER_BOUNDS_3
 
 `Address: 0x50124000 + 0xfc = 0x501240fc`
