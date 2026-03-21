@@ -1498,7 +1498,7 @@ Here, the `9` in the second digit of `0xa2f96` translates to register
 number x18, which triggers the bug. The fix is to create the constant
 with a sequence such as:
 
-```
+```assembly,ignore
 lui a1, 0xa2f06
 lui a2, 0x9      # can't use 0x90 because that triggers the bug
 slli a2, a2, 4   # shift 0x9 into place
@@ -1531,7 +1531,7 @@ and when I checked for gating, I looked at the output variables
 of the register file, and not the input. Turns out the inputs
 to the register file are very simple:
 
-```
+```verilog,ignore
 			decoded_rs1 <= mem_rdata_latched[19:15];
 			decoded_rs2 <= mem_rdata_latched[24:20];
 ```
