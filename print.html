@@ -830,6 +830,843 @@ void main(void) {
 </code></pre>
 <p>This is an example of bit-banging a WS2812C LED protocol. The source code is split between the <a href="https://github.com/betrusted-io/xous-core/blob/dev/libs/bio-lib/src/c/colorwheel/main.c">main</a> and <a href="https://github.com/betrusted-io/xous-core/blob/dev/libs/bio-lib/src/c/include/ws2812.h">header</a>. Here, we leverage the “quantum” feature to get exact pulse timings without resorting to cycle-counting. The “quantum” is set to a period of 150 ns, which evenly divides all of the required high/low timing patterns. So long as all the computation in the loop finishes before the next quantum, the timing requirements of the WS2812C are met.</p>
 <p>The nascent C library also includes a fixed-point math library, so the demo can compute color effects in addition to driving the LED string. The whole demo program, including the fixed point math library, uses only about 25% of the BIO memory: 1062 bytes out of the 4096 available. Have a look at the “<a href="https://github.com/betrusted-io/xous-core/tree/dev/libs/bio-lib/src/c/colorwheel">colorwheel</a>” demo for code, or the <a href="https://github.com/betrusted-io/xous-core/tree/dev/libs/bio-lib">README in bio-lib</a> for a reminder on how to use the C toolchain.</p>
+<h2 id="xous-support-for-bio"><a class="header" href="#xous-support-for-bio">Xous Support for BIO</a></h2>
+<h3 id="core-api"><a class="header" href="#core-api">Core API</a></h3>
+<p>Xous has an API for abstracting away most BIO configuration details. The API is centered around
+the <a href="https://github.com/betrusted-io/xous-core/blob/5b60713c02b303a25c4b493f4af3177364dff6e1/libs/bao1x-api/src/bio.rs#L27"><code>BioApi</code></a> trait, repeated here for your convenience.</p>
+<pre><code class="language-rust ignore">/// A platform-neutral API for the BIO. Intended to be usable in both baremetal and `std` environments
+pub trait BioApi&lt;'a&gt; {
+    /// Initializes a core with the given `code`, loading into `offset`, with a given
+    /// core configuration. This does not start the core running: that needs to be
+    /// done with a separate `set_core_state` call.
+    ///
+    /// Returns a `u32` which is the frequency in Hz of the actual quantum interval that
+    /// the core is running at. It's `None` if an external pin is configured as the quantum source.
+    fn init_core(
+        &amp;mut self,
+        core: BioCore,
+        code: (&amp;[u8], Option&lt;u32&gt;),
+        config: CoreConfig,
+    ) -&gt; Result&lt;Option&lt;u32&gt;, BioError&gt;;
+
+    /// Releases the core. As a side effect, the core is stopped.
+    fn de_init_core(&amp;mut self, core: BioCore) -&gt; Result&lt;(), BioError&gt;;
+
+    /// Updates the frequency of the cores, used to calculate dividers etc.
+    /// Returns the previous frequency used by the system. Setting this
+    /// allows the sleep/wake clock manager to do a best-effort rescaling of the
+    /// clock dividers for each core as DVFS is applied for power savings.
+    ///
+    /// This API call does not actually *set* the frequency of the BIO complex -
+    /// that is handled by the clock manager. This merely informs the BIO driver
+    /// that the clocks may have changed.
+    fn update_bio_freq(&amp;mut self, freq: u32) -&gt; u32;
+
+    /// Returns the frequency, in Hz, of the incoming clock to the BIO cores.
+    fn get_bio_freq(&amp;self) -&gt; u32;
+
+    /// Returns the currently running frequency of a given BIO core. This API
+    /// exists because `update_bio_freq()` call will result in the dividers being
+    /// adjusted in an attempt to maintain the target quantum; however, there will
+    /// often be some error between what was requested and the actual achievable
+    /// frequency of the quantum interval.
+    fn get_core_freq(&amp;self, core: BioCore) -&gt; Option&lt;u32&gt;;
+
+    /// The index of `which` corresponds to each of the cores, 0-3.
+    fn set_core_state(&amp;mut self, which: [CoreRunSetting; 4]) -&gt; Result&lt;(), BioError&gt;;
+
+    /// Returns a `usize` which should be turned into a CSR as *mut u32 by the caller
+    /// this can then be dereferenced using UTRA abstractions to access the following
+    /// registers:
+    ///   - SFR_FLEVEL
+    ///   - SFR_TXF#
+    ///   - SFR_RXF#
+    ///   - SFR_EVENT_SET
+    ///   - SFR_EVENT_CLR
+    ///   - SFR_EVENT_STATUS
+    ///
+    /// The handle can only access one of the FIFOs, but it has access to all the other
+    /// registers regardless of the FIFO.
+    ///
+    /// The handle has a `Drop` implementation that releases it when it goes out of scope.
+    ///
+    /// Safety: this has to be wrapped in an object that derives a CSR that also tracks
+    /// the lifetime of this object, to prevent `Drop` from being called at the wrong time.
+    ///
+    /// Returns `None` if no more handles are available
+    unsafe fn get_core_handle(&amp;self, fifo: Fifo) -&gt; Result&lt;Option&lt;CoreHandle&gt;, BioError&gt;;
+
+    /// This call sets up the BIO's IRQ routing. It doesn't actually claim the IRQ
+    /// or install the handler - that's up to the caller to do with Xous API calls.
+    fn setup_irq_config(&amp;mut self, config: IrqConfig) -&gt; Result&lt;(), BioError&gt;;
+
+    /// Allows BIO cores to DMA to/from the windows specified in `windows`. DMA filtering is
+    /// on by default with no windows allowed.
+    fn setup_dma_windows(&amp;mut self, windows: DmaFilterWindows) -&gt; Result&lt;(), BioError&gt;;
+
+    /// Sets up the BIO I/O configuration
+    fn setup_io_config(&amp;mut self, config: IoConfig) -&gt; Result&lt;(), BioError&gt;;
+
+    /// Sets up a FIFO event trigger
+    fn setup_fifo_event_triggers(&amp;mut self, config: FifoEventConfig) -&gt; Result&lt;(), BioError&gt;;
+
+    /// Returns a version code for the underlying hardware.
+    fn get_version(&amp;self) -&gt; u32;
+
+    fn debug(&amp;self, core: BioCore);
+}
+</code></pre>
+<h3 id="a-simple-api-example"><a class="header" href="#a-simple-api-example">A Simple API Example</a></h3>
+<p>Let's walk through the <a href="https://github.com/betrusted-io/xous-core/blob/dev/libs/bio-lib/src/captouch.rs"><code>Captouch</code></a> object implementation as an example of how to use the API.
+The BIO implements captouch sensoring by measuring the rise-time of a pin based on the
+parasitic capacitance of the pin charging up through the built-in pull-up resistor.</p>
+<p>The core of any BIO application consists of a structure like this:</p>
+<pre><code class="language-rust ignore">pub struct Captouch {
+    // --- common to all BIO implementations ---
+    // The &quot;shared state&quot; object. Implements `BioApi`.
+    bio_ss: Bio,
+    // BIO implementations have between zero and four handles. Each handle is a reservation to a virtual memory
+    // aperture that allows the host to interact with a BIO FIFO. It also tracks the lifetime of the virtual
+    // memory page and Drops it when it goes out of scope, hence, we must store it even if we don't interact with it.
+    _txrx_handle: CoreHandle,
+    // CoreCsr is a convenience object that manages CSR `view` of the handle. The handle is just a memory range;
+    // the CoreCsr gives it semantic meaning.
+    txrx: CoreCsr,
+    // Tracks the resources used by the object
+    resource_grant: ResourceGrant,
+
+    // --- specific to Captouch ---
+    threshold: u32,
+    baseline: u32,
+}
+</code></pre>
+<p>Two implementations are recommended for every BIO object. The first is a <code>Resources</code> implementation.
+This encodes what specific resources your BIO application expects to use.</p>
+<pre><code class="language-rust ignore">impl Resources for Captouch {
+    fn resource_spec() -&gt; ResourceSpec {
+        ResourceSpec {
+            // An ASCII name that is associated with the resource table, allowing us to track who claimed what.
+            claimer: &quot;Captouch&quot;.to_string(),
+            // A Vec whose length represents the number of cores required by the BIO code. The code can be locked
+            // to a specific core, or in this case, left as `Any`
+            cores: vec![CoreRequirement::Any],
+            // Which FIFOs are used in the BIO code. FIFOs are generally hard-coded into the BIO code.
+            fifos: vec![Fifo::Fifo3],
+            // Any static pin mappings required by the BIO code. These are pins that are defined in the static
+            // BIO code and thus immutable
+            static_pins: vec![],
+            // A count of the number of dynamically allocated pins that the code will expect to use.
+            dynamic_pin_count: 1,
+        }
+    }
+}
+</code></pre>
+<p>A <code>Drop</code> implementation allows the BIO object to release its resources automatically when it goes out
+of scope. This is boilerplate and can basically be copy-pasta between implementations.</p>
+<pre><code class="language-rust ignore">impl Drop for Captouch {
+    fn drop(&amp;mut self) {
+        for &amp;core in self.resource_grant.cores.iter() {
+            self.bio_ss.de_init_core(core).unwrap();
+        }
+        self.bio_ss.release_resources(self.resource_grant.grant_id).unwrap();
+    }
+}
+</code></pre>
+<p>Finally, there should be at least a <code>new()</code> implementation for the BIO object.</p>
+<pre><code class="language-rust ignore">impl Captouch {
+    // In this example, the user specifies the dynamic pin as an `arbitrary_int::u5`, and
+    // can also specify a mode for IO configuration. The three possible modes for IoConfig
+    // are `Overwrite`, where any previous pin configurations are overwritten on `new()`;
+    // `SetOnly` which will effectively &quot;OR&quot; in the new pin configs; and `ClearOnly` which
+    // will clear any pin configuration where the bit is set to `1`.
+    //
+    // If IoConfigMode is None, the system defaults to Overwrite mode.
+    pub fn new(pin: u5, io_mode: Option&lt;IoConfigMode&gt;) -&gt; Result&lt;Self, BioError&gt; {
+        // The `iox` object is the API for configuring IO pads
+        let iox = bao1x_api::iox::IoxHal::new();
+        // This call translates a BIO pin into the specific (Port, pin) tuple used in
+        // the GPIO subsystem. i.e. BIO pin 0 is PortB pin 0, BIO pin 18 is PortC pin 2, etc.
+        let port_config = bao1x_api::bio::bio_bit_to_port_and_pin(pin);
+        // This call is necessary to enable the Pull-ups and the Schmitt trigger on the pads.
+        // The BIO can't configure these bits directly, hence, they are part of the `new()` routine.
+        iox.setup_pin(
+            port_config.0,
+            port_config.1,
+            Some(IoxDir::Input),
+            Some(bao1x_api::IoxFunction::Gpio),
+            Some(IoxEnable::Enable),
+            Some(IoxEnable::Enable),
+            None,
+            None,
+        );
+
+        // Allocates the BIO shared state interface object
+        let mut bio_ss = Bio::new();
+
+        // Claim core resource and initialize it
+        let resource_grant = bio_ss.claim_resources(&amp;Self::resource_spec())?;
+        // The main thing that CoreConfig does is set the CLockMode. See the text below on how
+        // ClockMode works, but in this case, we're telling the system that the Quantum comes
+        // from an external pin that is the captouch pin.
+        let config =
+            CoreConfig { clock_mode: bao1x_api::bio::ClockMode::ExternalPin(BioPin::new(pin.as_u8())) };
+        // This line initializes the core that was granted to us in the resource grant. It also
+        // passes the actual captouch code, which is inside the `bio_code!` macro below.
+        bio_ss.init_core(resource_grant.cores[0], captouch_sense_code(), config)?;
+
+        // claim pin resource - this only claims the resource, it does not configure it
+        // this basically sends a message to the shared BIO resource manager that we're
+        // claiming the pin passed by the user.
+        bio_ss.claim_dynamic_pin(pin.as_u8(), &amp;Captouch::resource_spec().claimer)?;
+
+        // Now configure the claimed resource. This actually causes the IO mux subsystem to
+        // unmap the pin from the GPIO/AF subsystem, and dedicate it to the BIO subsystem.
+        let mut io_config = IoConfig::default();
+        io_config.mapped = 1 &lt;&lt; pin.as_u32();
+        io_config.mode = io_mode.unwrap_or(IoConfigMode::Overwrite);
+        bio_ss.setup_io_config(io_config).unwrap();
+
+        // After this call, the loaded code starts running on the BIO core.
+        bio_ss.set_core_run_state(&amp;resource_grant, true);
+
+        // The call below gets a handle to FIFO3. Again, this is a page of virtual memory that is now
+        // owned by our process. Owning the virtual memory page means we can quickly query the FIFO
+        // state, without having to send a message to the `bio_ss`. All the previous interactions
+        // with the `bio_ss` incurred a syscall and message delay penalty; once the FIFO is mapped
+        // into our memory space, we can access the FIFO by simply dereferencing a pointer.
+        //
+        // safety: fifo1 and fifo2 are stored in this object so they aren't Drop'd before the object is
+        // destroyed
+        let txrx_handle = unsafe { bio_ss.get_core_handle(Fifo::Fifo3) }?.expect(&quot;Didn't get FIFO3 handle&quot;);
+
+        // This converts the handle into an object with CSR-like semantic meanings. While not obvious
+        // from this example, one reason handles and CSRs are split is that we can now freely create and
+        // send handles around inside our process space. However, in this example, we just do something
+        // very simple with it so it seems like an unnecessary extra step.
+        let mut txrx = CoreCsr::from_handle(&amp;txrx_handle);
+        // Here we are using UTRA calls to access FIFO #3. We drop into the FIFO the pin number that the
+        // captouch code is expecting. This is put in exactly once; the BIO code remembers it and continues
+        // forward from here.
+        txrx.csr.wo(bio_bdma::SFR_TXF3, 1 &lt;&lt; pin.as_u32());
+
+        Ok(Self {
+            bio_ss,
+            txrx,
+            // safety: tx and rx are wrapped in CSR objects whose lifetime matches that of the handles
+            _txrx_handle: txrx_handle,
+            resource_grant,
+            threshold: DEFAULT_THRESHOLD,
+            baseline: 0,
+        })
+    }
+}
+
+bio_code!(
+    captouch_sense_code,
+    CAPTOUCH_SENSE_START,
+    CAPTOUCH_SENSE_END,
+
+    &quot;mv    x5, x19&quot;,         // Load pin mask into register x5.
+    &quot;mv    x26, x5&quot;,         // Set GPIO mask to our pin.
+&quot;10:&quot;, // start of sensor loop
+    &quot;mv    x24, x5&quot;,         // Configure pin as an OUTPUT.
+    &quot;mv    x23, x0&quot;,         // Drive pin LOW.
+
+    &quot;li    x6, 0x100&quot;,
+&quot;20:&quot;, // wait loop for &quot;low&quot; settling - this can be made much shorter if needed
+    // as it is, the sampling rate is about 236kHz, which is already quite high
+    &quot;addi  x6, x6, -1&quot;,
+    &quot;bne   x6, x0, 20b&quot;,
+
+    &quot;mv    x7,  x31&quot;,        // remember aclk time
+    &quot;mv    x25, x5&quot;,         // make it an input
+    // now, the pull-up on the pin will slowly charge the capacitance on the pin. We wait
+    // for the rising edge to be detected and that is our captouch interval
+    &quot;mv    x20, x0&quot;,         // wait for quantum: based on EXTCLK rising edge on the configured pin
+
+    &quot;mv    x8,  x31&quot;,        // remember aclk time
+
+    // mask out core ID
+    &quot;li    x10, 0x3FFFFFFF&quot;,  // x10 is re-used in roll-over computation below
+    &quot;and   x7, x7, x10&quot;,
+    &quot;and   x8, x8, x10&quot;,
+
+    // handle roll-over case: x7 is greater than x8 in the case of roll-over
+    &quot;bgtu  x7, x8, 30f&quot;,
+    &quot;sub   x9, x8, x7&quot;,      // total cycles is x8 - x7
+    &quot;j 40f&quot;,
+&quot;30:&quot;, // roll-over path
+    &quot;sub   x10, x10, x7&quot;,      // x10 now contains cycles from max versus start
+    &quot;add   x9, x10, x8&quot;,      // total cycles is x10 + x8 (masked)
+
+&quot;40:&quot;,
+    &quot;mv    x19, x9&quot;,         // report the delta-t
+    // the line below keeps us from blocking on the FIFO being full - we steal our own entry
+    // and cause the host to read the stale value in the FIFO.
+    &quot;mv    x0, x19&quot;,         // drain the FIFO entry - host will read the &quot;stale&quot; empty entry
+    &quot;j     10b&quot;
+);
+</code></pre>
+<p>Above is the minimum amount of code necessary to define a BIO function in Xous. There are more functions in the Captouch example; readers are referred to the <a href="https://github.com/betrusted-io/xous-core/blob/dev/libs/bio-lib/src/captouch.rs">implementation</a> to see all the different APIs, as the focus of this section is to walk through the creation of a BIO object in Xous, and not go into the function of captouch in detail.</p>
+<h2 id="bio-register-details"><a class="header" href="#bio-register-details">BIO Register Details</a></h2>
+<p>This section documents the details of the BIO register set.</p>
+<h1 id="bio_bdma"><a class="header" href="#bio_bdma">BIO_BDMA</a></h1>
+<h2 id="register-listing-for-bio_bdma"><a class="header" href="#register-listing-for-bio_bdma">Register Listing for BIO_BDMA</a></h2>
+<table><thead><tr><th>Register</th><th>Address</th></tr></thead><tbody>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_ctrl">BIO_BDMA_SFR_CTRL</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_ctrl">0x50124000</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_cfginfo">BIO_BDMA_SFR_CFGINFO</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_cfginfo">0x50124004</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_config">BIO_BDMA_SFR_CONFIG</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_config">0x50124008</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_flevel">BIO_BDMA_SFR_FLEVEL</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_flevel">0x5012400c</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_txf0">BIO_BDMA_SFR_TXF0</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_txf0">0x50124010</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_txf1">BIO_BDMA_SFR_TXF1</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_txf1">0x50124014</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_txf2">BIO_BDMA_SFR_TXF2</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_txf2">0x50124018</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_txf3">BIO_BDMA_SFR_TXF3</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_txf3">0x5012401c</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_rxf0">BIO_BDMA_SFR_RXF0</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_rxf0">0x50124020</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_rxf1">BIO_BDMA_SFR_RXF1</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_rxf1">0x50124024</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_rxf2">BIO_BDMA_SFR_RXF2</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_rxf2">0x50124028</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_rxf3">BIO_BDMA_SFR_RXF3</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_rxf3">0x5012402c</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_elevel">BIO_BDMA_SFR_ELEVEL</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_elevel">0x50124030</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_etype">BIO_BDMA_SFR_ETYPE</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_etype">0x50124034</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_event_set">BIO_BDMA_SFR_EVENT_SET</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_event_set">0x50124038</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_event_clr">BIO_BDMA_SFR_EVENT_CLR</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_event_clr">0x5012403c</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_event_status">BIO_BDMA_SFR_EVENT_STATUS</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_event_status">0x50124040</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_extclock">BIO_BDMA_SFR_EXTCLOCK</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_extclock">0x50124044</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_fifo_clr">BIO_BDMA_SFR_FIFO_CLR</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_fifo_clr">0x50124048</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_qdiv0">BIO_BDMA_SFR_QDIV0</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_qdiv0">0x50124050</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_qdiv1">BIO_BDMA_SFR_QDIV1</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_qdiv1">0x50124054</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_qdiv2">BIO_BDMA_SFR_QDIV2</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_qdiv2">0x50124058</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_qdiv3">BIO_BDMA_SFR_QDIV3</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_qdiv3">0x5012405c</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_sync_bypass">BIO_BDMA_SFR_SYNC_BYPASS</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_sync_bypass">0x50124060</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_io_oe_inv">BIO_BDMA_SFR_IO_OE_INV</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_io_oe_inv">0x50124064</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_io_o_inv">BIO_BDMA_SFR_IO_O_INV</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_io_o_inv">0x50124068</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_io_i_inv">BIO_BDMA_SFR_IO_I_INV</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_io_i_inv">0x5012406c</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_irqmask_0">BIO_BDMA_SFR_IRQMASK_0</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_irqmask_0">0x50124070</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_irqmask_1">BIO_BDMA_SFR_IRQMASK_1</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_irqmask_1">0x50124074</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_irqmask_2">BIO_BDMA_SFR_IRQMASK_2</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_irqmask_2">0x50124078</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_irqmask_3">BIO_BDMA_SFR_IRQMASK_3</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_irqmask_3">0x5012407c</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_irq_edge">BIO_BDMA_SFR_IRQ_EDGE</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_irq_edge">0x50124080</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dbg_padout">BIO_BDMA_SFR_DBG_PADOUT</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dbg_padout">0x50124084</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dbg_padoe">BIO_BDMA_SFR_DBG_PADOE</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dbg_padoe">0x50124088</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dbg0">BIO_BDMA_SFR_DBG0</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dbg0">0x50124090</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dbg1">BIO_BDMA_SFR_DBG1</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dbg1">0x50124094</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dbg2">BIO_BDMA_SFR_DBG2</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dbg2">0x50124098</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dbg3">BIO_BDMA_SFR_DBG3</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dbg3">0x5012409c</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_mem_gutter">BIO_BDMA_SFR_MEM_GUTTER</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_mem_gutter">0x501240a0</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_peri_gutter">BIO_BDMA_SFR_PERI_GUTTER</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_peri_gutter">0x501240a4</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_map_cr_evmap0">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP0</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_map_cr_evmap0">0x501240b0</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_map_cr_evmap1">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP1</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_map_cr_evmap1">0x501240b4</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_map_cr_evmap2">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP2</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_map_cr_evmap2">0x501240b8</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_map_cr_evmap3">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP3</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_map_cr_evmap3">0x501240bc</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_map_cr_evmap4">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP4</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_map_cr_evmap4">0x501240c0</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_map_cr_evmap5">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP5</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_map_cr_evmap5">0x501240c4</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_stat_sr_evstat0">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT0</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_stat_sr_evstat0">0x501240c8</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_stat_sr_evstat1">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT1</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_stat_sr_evstat1">0x501240cc</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_stat_sr_evstat2">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT2</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_stat_sr_evstat2">0x501240d0</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_stat_sr_evstat3">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT3</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_stat_sr_evstat3">0x501240d4</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_stat_sr_evstat4">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT4</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_stat_sr_evstat4">0x501240d8</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_stat_sr_evstat5">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT5</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_dmareq_stat_sr_evstat5">0x501240dc</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_base_0">BIO_BDMA_SFR_FILTER_BASE_0</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_base_0">0x501240e0</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_bounds_0">BIO_BDMA_SFR_FILTER_BOUNDS_0</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_bounds_0">0x501240e4</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_base_1">BIO_BDMA_SFR_FILTER_BASE_1</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_base_1">0x501240e8</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_bounds_1">BIO_BDMA_SFR_FILTER_BOUNDS_1</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_bounds_1">0x501240ec</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_base_2">BIO_BDMA_SFR_FILTER_BASE_2</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_base_2">0x501240f0</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_bounds_2">BIO_BDMA_SFR_FILTER_BOUNDS_2</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_bounds_2">0x501240f4</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_base_3">BIO_BDMA_SFR_FILTER_BASE_3</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_base_3">0x501240f8</a></td></tr>
+<tr><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_bounds_3">BIO_BDMA_SFR_FILTER_BOUNDS_3</a></td><td><a href="ch02-00-bio-overview.html#bio_bdma_sfr_filter_bounds_3">0x501240fc</a></td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_ctrl"><a class="header" href="#bio_bdma_sfr_ctrl">BIO_BDMA_SFR_CTRL</a></h3>
+<p><code>Address: 0x50124000 + 0x0 = 0x50124000</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L488">bio_bdma.sv#L488</a> (line numbers are approximate)</p>
+<p>BIO core enable and clock control.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[3:0]</td><td>EN</td><td><code>1</code> enables the respective BIO core</td></tr>
+<tr><td>[7:4]</td><td>RESTART</td><td><code>1</code> resets the BIO core and causes it to run from location 0x0</td></tr>
+<tr><td>[11:8]</td><td>CLKDIV_RESTART</td><td><code>1</code> resets the clock divider</td></tr>
+</tbody></table>
+<p><code>RESTART</code> and <code>CLKDIV_RESTART</code> self-clear to 0 after being written with a 1.</p>
+<p>The <code>CLKDIV_RESTART</code> is structured such that cores that are simultaneously restarted
+will have their clock dividers run in synchronous lock-step.</p>
+<h3 id="bio_bdma_sfr_cfginfo"><a class="header" href="#bio_bdma_sfr_cfginfo">BIO_BDMA_SFR_CFGINFO</a></h3>
+<p><code>Address: 0x50124000 + 0x4 = 0x50124004</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L489">bio_bdma.sv#L489</a> (line numbers are approximate)</p>
+<p>This register contains constants that identify the version of the core.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[7:0]</td><td>CONSTANT0</td><td>constant value of 8: the version number of the RTL</td></tr>
+<tr><td>[15:8]</td><td>CONSTANT1</td><td>constant value of 4: the number of cores</td></tr>
+<tr><td>[31:16]</td><td>CONSTANT2</td><td>constant value of 4096: the amount of RAM per core</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_config"><a class="header" href="#bio_bdma_sfr_config">BIO_BDMA_SFR_CONFIG</a></h3>
+<p><code>Address: 0x50124000 + 0x8 = 0x50124008</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L490">bio_bdma.sv#L490</a> (line numbers are approximate)</p>
+<p>Configures various clocking modes, DMA filter ranges.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[1:0]</td><td>SNAP_OUTPUT_TO_WHICH</td><td>All BIO outputs snap to the quantum clock divider of the core number specified here</td></tr>
+<tr><td>[2]</td><td>SNAP_OUTPUT_TO_QUANTUM</td><td>When <code>1</code>, enables output snapping for all outputs</td></tr>
+<tr><td>[4:3]</td><td>SNAP_INPUT_TO_WHICH</td><td>All BIO inputs snap to the quantum clock divider of the core number specified here</td></tr>
+<tr><td>[5]</td><td>SNAP_INPUT_TO_QUANTUM</td><td>When <code>1</code>, enables input snapping for all inputs</td></tr>
+<tr><td>[6]</td><td>DISABLE_FILTER_PERI</td><td>When <code>1</code>, disables the host peripheral range whitelist filter. Setting this is strongly discouraged in secure applications.</td></tr>
+<tr><td>[7]</td><td>DISABLE_FILTER_MEM</td><td>When <code>1</code>, disables the host memory range whitelist filter. Setting this is strongly discouraged in secure applications.</td></tr>
+<tr><td>[9:8]</td><td>CLOCKING_MODE</td><td>Clock domain crossing synchronizer setup for host bus access. Defaults to <code>0b11</code> (isochronous operation). This reduces latency at the expense of possible metastability. Set <code>0b00</code> for a 2-stage synchronizer, or <code>0b01</code> or <code>0b10</code> for a 1-stage synchronizer</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_flevel"><a class="header" href="#bio_bdma_sfr_flevel">BIO_BDMA_SFR_FLEVEL</a></h3>
+<p><code>Address: 0x50124000 + 0xc = 0x5012400c</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L492">bio_bdma.sv#L492</a> (line numbers are approximate)</p>
+<p>Reports the number of entries currently in each of the respective FIFOs.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[3:0]</td><td>PCLK_REGFIFO_LEVEL0</td><td>pclk_regfifo_level[0] read only status register</td></tr>
+<tr><td>[7:4]</td><td>PCLK_REGFIFO_LEVEL1</td><td>pclk_regfifo_level[1] read only status register</td></tr>
+<tr><td>[11:8]</td><td>PCLK_REGFIFO_LEVEL2</td><td>pclk_regfifo_level[2] read only status register</td></tr>
+<tr><td>[15:12]</td><td>PCLK_REGFIFO_LEVEL3</td><td>pclk_regfifo_level[3] read only status register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_txf0"><a class="header" href="#bio_bdma_sfr_txf0">BIO_BDMA_SFR_TXF0</a></h3>
+<p><code>Address: 0x50124000 + 0x10 = 0x50124010</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L493">bio_bdma.sv#L493</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>FDIN</td><td>Writes insert data into FIFO0. Writes are dropped if the FIFO is full.</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_txf1"><a class="header" href="#bio_bdma_sfr_txf1">BIO_BDMA_SFR_TXF1</a></h3>
+<p><code>Address: 0x50124000 + 0x14 = 0x50124014</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L494">bio_bdma.sv#L494</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>FDIN</td><td>Writes insert data into FIFO1. Writes are dropped if the FIFO is full.</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_txf2"><a class="header" href="#bio_bdma_sfr_txf2">BIO_BDMA_SFR_TXF2</a></h3>
+<p><code>Address: 0x50124000 + 0x18 = 0x50124018</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L495">bio_bdma.sv#L495</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>FDIN</td><td>Writes insert data into FIFO2. Writes are dropped if the FIFO is full.</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_txf3"><a class="header" href="#bio_bdma_sfr_txf3">BIO_BDMA_SFR_TXF3</a></h3>
+<p><code>Address: 0x50124000 + 0x1c = 0x5012401c</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L496">bio_bdma.sv#L496</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>FDIN</td><td>Writes insert data into FIFO3. Writes are dropped if the FIFO is full.</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_rxf0"><a class="header" href="#bio_bdma_sfr_rxf0">BIO_BDMA_SFR_RXF0</a></h3>
+<p><code>Address: 0x50124000 + 0x20 = 0x50124020</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L497">bio_bdma.sv#L497</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>FDOUT</td><td>Reads remove an entry from FIFO0 or returns the last value if empty.</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_rxf1"><a class="header" href="#bio_bdma_sfr_rxf1">BIO_BDMA_SFR_RXF1</a></h3>
+<p><code>Address: 0x50124000 + 0x24 = 0x50124024</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L498">bio_bdma.sv#L498</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>FDOUT</td><td>Reads remove an entry from FIFO1 or returns the last value if empty.</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_rxf2"><a class="header" href="#bio_bdma_sfr_rxf2">BIO_BDMA_SFR_RXF2</a></h3>
+<p><code>Address: 0x50124000 + 0x28 = 0x50124028</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L499">bio_bdma.sv#L499</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>FDOUT</td><td>Reads remove an entry from FIFO2 or returns the last value if empty.</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_rxf3"><a class="header" href="#bio_bdma_sfr_rxf3">BIO_BDMA_SFR_RXF3</a></h3>
+<p><code>Address: 0x50124000 + 0x2c = 0x5012402c</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L500">bio_bdma.sv#L500</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>FDOUT</td><td>Reads remove an entry from FIFO3 or returns the last value if empty.</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_elevel"><a class="header" href="#bio_bdma_sfr_elevel">BIO_BDMA_SFR_ELEVEL</a></h3>
+<p><code>Address: 0x50124000 + 0x30 = 0x50124030</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L502">bio_bdma.sv#L502</a> (line numbers are approximate)</p>
+<p>The BIO has eight FIFO event slots, configured as follows:</p>
+<ul>
+<li>FIFO0 - event slots 0 &amp; 1</li>
+<li>FIFO1 - event slots 2 &amp; 3</li>
+<li>FIFO2 - event slots 4 &amp; 5</li>
+<li>FIFO3 - event slots 6 &amp; 7</li>
+</ul>
+<p>Basically each FIFO has two slots. Each slot can be configured with a constant for the
+event comparison, along with a trigger on less than, equal to, or greater than the constant.</p>
+<p>This register sets the constants for these event slots.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[3:0]</td><td>FIFO_EVENT_LEVEL0</td><td>fifo_event_level[0] read/write control register</td></tr>
+<tr><td>[7:4]</td><td>FIFO_EVENT_LEVEL1</td><td>fifo_event_level[1] read/write control register</td></tr>
+<tr><td>[11:8]</td><td>FIFO_EVENT_LEVEL2</td><td>fifo_event_level[2] read/write control register</td></tr>
+<tr><td>[15:12]</td><td>FIFO_EVENT_LEVEL3</td><td>fifo_event_level[3] read/write control register</td></tr>
+<tr><td>[19:16]</td><td>FIFO_EVENT_LEVEL4</td><td>fifo_event_level[4] read/write control register</td></tr>
+<tr><td>[23:20]</td><td>FIFO_EVENT_LEVEL5</td><td>fifo_event_level[5] read/write control register</td></tr>
+<tr><td>[27:24]</td><td>FIFO_EVENT_LEVEL6</td><td>fifo_event_level[6] read/write control register</td></tr>
+<tr><td>[31:28]</td><td>FIFO_EVENT_LEVEL7</td><td>fifo_event_level[7] read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_etype"><a class="header" href="#bio_bdma_sfr_etype">BIO_BDMA_SFR_ETYPE</a></h3>
+<p><code>Address: 0x50124000 + 0x34 = 0x50124034</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L503">bio_bdma.sv#L503</a> (line numbers are approximate)</p>
+<p>This register sets the event mask types for each of the 8 event slots. A <code>1</code> in
+the corresponding bit position causes the event to be asserted in the case that
+the inequality is true.</p>
+<p>For example, if we want an event to be asserted on FIFO1 if greater than four entries
+are in it, we could configure slot 2 with the number 4 (put <code>0b0100</code> into bits [11:8] of
+the <code>BIO_BDMA_SFR_ELEVEL</code>), and set bit 18 of this register, which corresponds to
+the second bit in the <code>FIFO_EVENT_GT_MASK field</code>.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[7:0]</td><td>FIFO_EVENT_LT_MASK</td><td>fifo_event_lt_mask read/write control register</td></tr>
+<tr><td>[15:8]</td><td>FIFO_EVENT_EQ_MASK</td><td>fifo_event_eq_mask read/write control register</td></tr>
+<tr><td>[23:16]</td><td>FIFO_EVENT_GT_MASK</td><td>fifo_event_gt_mask read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_event_set"><a class="header" href="#bio_bdma_sfr_event_set">BIO_BDMA_SFR_EVENT_SET</a></h3>
+<p><code>Address: 0x50124000 + 0x38 = 0x50124038</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L504">bio_bdma.sv#L504</a> (line numbers are approximate)</p>
+<p>The lower 24 bits of the event register are free-form and the host or any BIO core
+can set these to trigger an event condition in any other core. Writing a <code>1</code> into
+a bit position here sets a bit in the event register.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[23:0]</td><td>SFR_EVENT_SET</td><td>sfr_event_set read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_event_clr"><a class="header" href="#bio_bdma_sfr_event_clr">BIO_BDMA_SFR_EVENT_CLR</a></h3>
+<p><code>Address: 0x50124000 + 0x3c = 0x5012403c</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L505">bio_bdma.sv#L505</a> (line numbers are approximate)</p>
+<p>The lower 24 bits of the event register are free-form and the host or any BIO core
+can set these to trigger an event condition in any other core. Writing a <code>1</code> into
+a bit position here clears a bit in the event register.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[23:0]</td><td>SFR_EVENT_CLR</td><td>sfr_event_clr read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_event_status"><a class="header" href="#bio_bdma_sfr_event_status">BIO_BDMA_SFR_EVENT_STATUS</a></h3>
+<p><code>Address: 0x50124000 + 0x40 = 0x50124040</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L506">bio_bdma.sv#L506</a> (line numbers are approximate)</p>
+<p>Reading this register returns the current value of the event register.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SFR_EVENT_STATUS</td><td>sfr_event_status read only status register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_extclock"><a class="header" href="#bio_bdma_sfr_extclock">BIO_BDMA_SFR_EXTCLOCK</a></h3>
+<p><code>Address: 0x50124000 + 0x44 = 0x50124044</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L508">bio_bdma.sv#L508</a> (line numbers are approximate)</p>
+<p>Each of the four BIO cores can have its quantum derived from an external clock pin.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[3:0]</td><td>USE_EXTCLK</td><td>Setting a bit to <code>1</code> in this register causes the respective BIO core to get its quantum from the pin specified in the upper bits of this register.</td></tr>
+<tr><td>[8:4]</td><td>EXTCLK_GPIO_0</td><td>Which BIO pin to use for BIO core 0's EXTCLK, if bit 0 is set.</td></tr>
+<tr><td>[13:9]</td><td>EXTCLK_GPIO_1</td><td>Which BIO pin to use for BIO core 1's EXTCLK, if bit 1 is set.</td></tr>
+<tr><td>[18:14]</td><td>EXTCLK_GPIO_2</td><td>Which BIO pin to use for BIO core 2's EXTCLK, if bit 2 is set.</td></tr>
+<tr><td>[23:19]</td><td>EXTCLK_GPIO_3</td><td>Which BIO pin to use for BIO core 3's EXTCLK, if bit 3 is set.</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_fifo_clr"><a class="header" href="#bio_bdma_sfr_fifo_clr">BIO_BDMA_SFR_FIFO_CLR</a></h3>
+<p><code>Address: 0x50124000 + 0x48 = 0x50124048</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L509">bio_bdma.sv#L509</a> (line numbers are approximate)</p>
+<p>Writing a <code>1</code> into a bit in this register causes the respective FIFO to have its status set to empty. It does not clear the contents of the FIFO - it merely causes the pointers to indicate that the FIFO is now empty.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[3:0]</td><td>SFR_FIFO_CLR</td><td>sfr_fifo_clr read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_qdiv0"><a class="header" href="#bio_bdma_sfr_qdiv0">BIO_BDMA_SFR_QDIV0</a></h3>
+<p><code>Address: 0x50124000 + 0x50 = 0x50124050</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L511">bio_bdma.sv#L511</a> (line numbers are approximate)</p>
+<p>Quantum divider for BIO core 0. The actual clock frequency depends on the assumed value of FCLK. Adjusting FCLK requires adjusting the dividers accordingly. Xous has <a href="https://github.com/betrusted-io/xous-core/blob/5b60713c02b303a25c4b493f4af3177364dff6e1/libs/bao1x-hal/src/bio_hw.rs#L359">helper APIs</a> to handle these cases.</p>
+<p>The division is done per the following Rust code:</p>
+<pre><code class="language-rust ignore">pub(crate) fn compute_freq(&amp;self, div_int: u16, div_frac: u8) -&gt; u32 {
+    // Compute divisor: div_int + div_frac/256 = (256*div_int + div_frac)/256
+    let divisor = (div_int as u32) * 256 + (div_frac as u32);
+
+    // Handle division by zero
+    if divisor == 0 {
+        return self.fclk_freq_hz;
+    }
+
+    // Calculate: fclk / ((256*div_int + div_frac)/256) = (fclk * 256) / divisor
+    // Use u64 to avoid overflow since fclk can be up to 700M
+    let numerator = (self.fclk_freq_hz as u64) * 256;
+
+    // Perform division with rounding to nearest
+    let result = (numerator + (divisor as u64) / 2) / (divisor as u64);
+
+    result as u32
+}
+</code></pre>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[0]</td><td>UNUSED_DIV</td><td>unused_div read/write control register</td></tr>
+<tr><td>[1]</td><td>DIV_FRAC</td><td>div_frac read/write control register</td></tr>
+<tr><td>[2]</td><td>DIV_INT</td><td>div_int read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_qdiv1"><a class="header" href="#bio_bdma_sfr_qdiv1">BIO_BDMA_SFR_QDIV1</a></h3>
+<p><code>Address: 0x50124000 + 0x54 = 0x50124054</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L512">bio_bdma.sv#L512</a> (line numbers are approximate)</p>
+<p>Quantum divider for BIO core 1.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[0]</td><td>UNUSED_DIV</td><td>unused_div read/write control register</td></tr>
+<tr><td>[1]</td><td>DIV_FRAC</td><td>div_frac read/write control register</td></tr>
+<tr><td>[2]</td><td>DIV_INT</td><td>div_int read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_qdiv2"><a class="header" href="#bio_bdma_sfr_qdiv2">BIO_BDMA_SFR_QDIV2</a></h3>
+<p><code>Address: 0x50124000 + 0x58 = 0x50124058</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L513">bio_bdma.sv#L513</a> (line numbers are approximate)</p>
+<p>Quantum divider for BIO core 2.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[0]</td><td>UNUSED_DIV</td><td>unused_div read/write control register</td></tr>
+<tr><td>[1]</td><td>DIV_FRAC</td><td>div_frac read/write control register</td></tr>
+<tr><td>[2]</td><td>DIV_INT</td><td>div_int read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_qdiv3"><a class="header" href="#bio_bdma_sfr_qdiv3">BIO_BDMA_SFR_QDIV3</a></h3>
+<p><code>Address: 0x50124000 + 0x5c = 0x5012405c</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L514">bio_bdma.sv#L514</a> (line numbers are approximate)</p>
+<p>Quantum divider for BIO core 3.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[0]</td><td>UNUSED_DIV</td><td>unused_div read/write control register</td></tr>
+<tr><td>[1]</td><td>DIV_FRAC</td><td>div_frac read/write control register</td></tr>
+<tr><td>[2]</td><td>DIV_INT</td><td>div_int read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_sync_bypass"><a class="header" href="#bio_bdma_sfr_sync_bypass">BIO_BDMA_SFR_SYNC_BYPASS</a></h3>
+<p><code>Address: 0x50124000 + 0x60 = 0x50124060</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L516">bio_bdma.sv#L516</a> (line numbers are approximate)</p>
+<p>When a bit in this register is set, the two-stage clock synchronizer on a BIO input pin is skipped.</p>
+<p>This introduces a risk of metastability, but reduces the latency of capturing a GPIO input.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SFR_SYNC_BYPASS</td><td>sfr_sync_bypass read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_io_oe_inv"><a class="header" href="#bio_bdma_sfr_io_oe_inv">BIO_BDMA_SFR_IO_OE_INV</a></h3>
+<p><code>Address: 0x50124000 + 0x64 = 0x50124064</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L517">bio_bdma.sv#L517</a> (line numbers are approximate)</p>
+<p>Setting a bit in this field causes the output enable behavior to be inverted for that BIO bit. This is applied to the signals as they are sent to the I/O block, and thus affects all BIO cores.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SFR_IO_OE_INV</td><td>sfr_io_oe_inv read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_io_o_inv"><a class="header" href="#bio_bdma_sfr_io_o_inv">BIO_BDMA_SFR_IO_O_INV</a></h3>
+<p><code>Address: 0x50124000 + 0x68 = 0x50124068</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L518">bio_bdma.sv#L518</a> (line numbers are approximate)</p>
+<p>Setting a bit in this field causes the output data behavior to be inverted for that BIO bit. This is applied to the signals as they are sent to the I/O block, and thus affects all BIO cores.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SFR_IO_O_INV</td><td>sfr_io_o_inv read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_io_i_inv"><a class="header" href="#bio_bdma_sfr_io_i_inv">BIO_BDMA_SFR_IO_I_INV</a></h3>
+<p><code>Address: 0x50124000 + 0x6c = 0x5012406c</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L519">bio_bdma.sv#L519</a> (line numbers are approximate)</p>
+<p>Setting a bit in this field causes the input data behavior to be inverted for that BIO bit. This is applied to the signals as they are sent to the I/O block, and thus affects all BIO cores.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SFR_IO_I_INV</td><td>sfr_io_i_inv read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_irqmask_0"><a class="header" href="#bio_bdma_sfr_irqmask_0">BIO_BDMA_SFR_IRQMASK_0</a></h3>
+<p><code>Address: 0x50124000 + 0x70 = 0x50124070</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L521">bio_bdma.sv#L521</a> (line numbers are approximate)</p>
+<p>Setting a bit in this field causes the respective bit in the event register for the BIO to trigger PIOIRQ0 when the event bit is set. See <a href="https://ci.betrusted.io/bao1x-cpu/irqarray18.html#irqarray18-ev-enable">IRQARRAY18</a> for the corresponding system IRQ interface.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SFR_IRQMASK_0</td><td>sfr_irqmask_0 read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_irqmask_1"><a class="header" href="#bio_bdma_sfr_irqmask_1">BIO_BDMA_SFR_IRQMASK_1</a></h3>
+<p><code>Address: 0x50124000 + 0x74 = 0x50124074</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L522">bio_bdma.sv#L522</a> (line numbers are approximate)</p>
+<p>Setting a bit in this field causes the respective bit in the event register for the BIO to trigger PIOIRQ1 when the event bit is set. See <a href="https://ci.betrusted.io/bao1x-cpu/irqarray18.html#irqarray18-ev-enable">IRQARRAY18</a> for the corresponding system IRQ interface.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SFR_IRQMASK_1</td><td>sfr_irqmask_1 read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_irqmask_2"><a class="header" href="#bio_bdma_sfr_irqmask_2">BIO_BDMA_SFR_IRQMASK_2</a></h3>
+<p><code>Address: 0x50124000 + 0x78 = 0x50124078</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L523">bio_bdma.sv#L523</a> (line numbers are approximate)</p>
+<p>Setting a bit in this field causes the respective bit in the event register for the BIO to trigger PIOIRQ2 when the event bit is set. See <a href="https://ci.betrusted.io/bao1x-cpu/irqarray18.html#irqarray18-ev-enable">IRQARRAY18</a> for the corresponding system IRQ interface.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SFR_IRQMASK_2</td><td>sfr_irqmask_2 read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_irqmask_3"><a class="header" href="#bio_bdma_sfr_irqmask_3">BIO_BDMA_SFR_IRQMASK_3</a></h3>
+<p><code>Address: 0x50124000 + 0x7c = 0x5012407c</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L524">bio_bdma.sv#L524</a> (line numbers are approximate)</p>
+<p>Setting a bit in this field causes the respective bit in the event register for the BIO to trigger PIOIRQ3 when the event bit is set. See <a href="https://ci.betrusted.io/bao1x-cpu/irqarray18.html#irqarray18-ev-enable">IRQARRAY18</a> for the corresponding system IRQ interface.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SFR_IRQMASK_3</td><td>sfr_irqmask_3 read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_irq_edge"><a class="header" href="#bio_bdma_sfr_irq_edge">BIO_BDMA_SFR_IRQ_EDGE</a></h3>
+<p><code>Address: 0x50124000 + 0x80 = 0x50124080</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L525">bio_bdma.sv#L525</a> (line numbers are approximate)</p>
+<p>When a bit is set to <code>1</code>, it causes the corresponding fully-processed IRQ output to only output a pulse on the rising edge of the interrupt event for that line.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[3:0]</td><td>SFR_IRQ_EDGE</td><td>sfr_irq_edge read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dbg_padout"><a class="header" href="#bio_bdma_sfr_dbg_padout">BIO_BDMA_SFR_DBG_PADOUT</a></h3>
+<p>This register is buggy in the Baochip-1x and does nothing.</p>
+<h3 id="bio_bdma_sfr_dbg_padoe"><a class="header" href="#bio_bdma_sfr_dbg_padoe">BIO_BDMA_SFR_DBG_PADOE</a></h3>
+<p>This regiser is buggy in the Baochip-1x and does nothing.</p>
+<h3 id="bio_bdma_sfr_dbg0"><a class="header" href="#bio_bdma_sfr_dbg0">BIO_BDMA_SFR_DBG0</a></h3>
+<p><code>Address: 0x50124000 + 0x90 = 0x50124090</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L529">bio_bdma.sv#L529</a> (line numbers are approximate)</p>
+<p>Returns the latest program counter of BIO core 0 and if the core has encountered a trap condition. Note that the PC is only approximate because the core runs much faster than the register interface.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[0]</td><td>DBG_PC</td><td>dbg_pc read only status register</td></tr>
+<tr><td>[1]</td><td>TRAP</td><td>trap read only status register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dbg1"><a class="header" href="#bio_bdma_sfr_dbg1">BIO_BDMA_SFR_DBG1</a></h3>
+<p><code>Address: 0x50124000 + 0x94 = 0x50124094</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L530">bio_bdma.sv#L530</a> (line numbers are approximate)</p>
+<p>Returns the latest program counter of BIO core 1 and if the core has encountered a trap condition. Note that the PC is only approximate because the core runs much faster than the register interface.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[0]</td><td>DBG_PC</td><td>dbg_pc read only status register</td></tr>
+<tr><td>[1]</td><td>TRAP</td><td>trap read only status register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dbg2"><a class="header" href="#bio_bdma_sfr_dbg2">BIO_BDMA_SFR_DBG2</a></h3>
+<p><code>Address: 0x50124000 + 0x98 = 0x50124098</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L531">bio_bdma.sv#L531</a> (line numbers are approximate)</p>
+<p>Returns the latest program counter of BIO core 2 and if the core has encountered a trap condition. Note that the PC is only approximate because the core runs much faster than the register interface.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[0]</td><td>DBG_PC</td><td>dbg_pc read only status register</td></tr>
+<tr><td>[1]</td><td>TRAP</td><td>trap read only status register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dbg3"><a class="header" href="#bio_bdma_sfr_dbg3">BIO_BDMA_SFR_DBG3</a></h3>
+<p><code>Address: 0x50124000 + 0x9c = 0x5012409c</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L532">bio_bdma.sv#L532</a> (line numbers are approximate)</p>
+<p>Returns the latest program counter of BIO core 3 and if the core has encountered a trap condition. Note that the PC is only approximate because the core runs much faster than the register interface.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[0]</td><td>DBG_PC</td><td>dbg_pc read only status register</td></tr>
+<tr><td>[1]</td><td>TRAP</td><td>trap read only status register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_mem_gutter"><a class="header" href="#bio_bdma_sfr_mem_gutter">BIO_BDMA_SFR_MEM_GUTTER</a></h3>
+<p><code>Address: 0x50124000 + 0xa0 = 0x501240a0</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L535">bio_bdma.sv#L535</a> (line numbers are approximate)</p>
+<p>Sets the physical address for the DMA &quot;gutter&quot; on memory-range accesses. Any attempt to access addresses that are not in the whitelist are routed to the gutter.</p>
+<p>This needs to map to a valid write location in physical memory so that the DMA transaction completes with an acknowledge. On Xous, this is mapped to the very highest word in physical RAM.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SFR_MEM_GUTTER</td><td>sfr_mem_gutter read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_peri_gutter"><a class="header" href="#bio_bdma_sfr_peri_gutter">BIO_BDMA_SFR_PERI_GUTTER</a></h3>
+<p><code>Address: 0x50124000 + 0xa4 = 0x501240a4</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L536">bio_bdma.sv#L536</a> (line numbers are approximate)</p>
+<p>Sets the physical address for the DMA &quot;gutter&quot; on peripheral-range accesses. Any attempt to access addresses that are not in the whitelist are routed to the gutter.</p>
+<p>This needs to map to a valid write location in physical memory so that the DMA transaction completes with an acknowledge. On Xous, this maps to the the <code>NULL</code> location, which is a region that always returns 0 regardless of what is written or read to.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SFR_PERI_GUTTER</td><td>sfr_peri_gutter read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dmareq_map_cr_evmap0"><a class="header" href="#bio_bdma_sfr_dmareq_map_cr_evmap0">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP0</a></h3>
+<p><code>Address: 0x50124000 + 0xb0 = 0x501240b0</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L571">bio_bdma.sv#L571</a> (line numbers are approximate)</p>
+<p>The following registers configure the mapping of system interrupts onto the event register inside the
+BIO.</p>
+<p>There are up to 192 event sources in Baochip-1x. These registers map these to one of the 24 event bits.</p>
+<p>When an event comes in, it will set the event bit. A core can halt and wait on the event
+by setting x27 to mask for the event bit, and then accessing x30.</p>
+<p>The 192 sources are masked with a control register, and then muxed 8:1 down to each event bit.
+The mask is configured by a bank of 6x 32-bit registers.</p>
+<p>If the event goes high, it will set the event bit. The event bit setting is only level sensitive:
+the responding core is repsonible for clearing the event generating condition before waiting
+on the event register again (it can do this because it has access to the peripheral bus).</p>
+<p>In order to help differentiate which bit was set in a multi-bit event scenario, the incoming
+events are also readable as a bank of status registers, mapped again 1:1 into 6x 32-bit registers.</p>
+<p>NOTE NOTE NOTE: the ordering of the SFR registers to word position is reversed, so the higher-number
+register maps to the lower-numbered 32-bit word of the event map.</p>
+<p>The actual mapping of Baochip-1x events is poorly documented. Readers are referred to this
+<a href="https://github.com/baochip/baochip-1x/blob/f2e1d7f06ed5538f1cf6765b5845fab4c5a2ff2e/verilate/bao_core.py#L1062-L1131">event map</a>, or to the RTL itself to determine the event mappings.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>CR_EVMAP0</td><td>cr_evmap read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dmareq_map_cr_evmap1"><a class="header" href="#bio_bdma_sfr_dmareq_map_cr_evmap1">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP1</a></h3>
+<p><code>Address: 0x50124000 + 0xb4 = 0x501240b4</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L571">bio_bdma.sv#L571</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>CR_EVMAP1</td><td>cr_evmap read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dmareq_map_cr_evmap2"><a class="header" href="#bio_bdma_sfr_dmareq_map_cr_evmap2">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP2</a></h3>
+<p><code>Address: 0x50124000 + 0xb8 = 0x501240b8</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L571">bio_bdma.sv#L571</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>CR_EVMAP2</td><td>cr_evmap read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dmareq_map_cr_evmap3"><a class="header" href="#bio_bdma_sfr_dmareq_map_cr_evmap3">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP3</a></h3>
+<p><code>Address: 0x50124000 + 0xbc = 0x501240bc</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L571">bio_bdma.sv#L571</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>CR_EVMAP3</td><td>cr_evmap read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dmareq_map_cr_evmap4"><a class="header" href="#bio_bdma_sfr_dmareq_map_cr_evmap4">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP4</a></h3>
+<p><code>Address: 0x50124000 + 0xc0 = 0x501240c0</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L571">bio_bdma.sv#L571</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>CR_EVMAP4</td><td>cr_evmap read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dmareq_map_cr_evmap5"><a class="header" href="#bio_bdma_sfr_dmareq_map_cr_evmap5">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP5</a></h3>
+<p><code>Address: 0x50124000 + 0xc4 = 0x501240c4</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L571">bio_bdma.sv#L571</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>CR_EVMAP5</td><td>cr_evmap read/write control register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dmareq_stat_sr_evstat0"><a class="header" href="#bio_bdma_sfr_dmareq_stat_sr_evstat0">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT0</a></h3>
+<p><code>Address: 0x50124000 + 0xc8 = 0x501240c8</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L572">bio_bdma.sv#L572</a> (line numbers are approximate)</p>
+<p>The <code>STAT*</code> series of registers read back the current status of the event lines. This is useful for debugging the event configuration.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SR_EVSTAT0</td><td>sr_evstat read only status register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dmareq_stat_sr_evstat1"><a class="header" href="#bio_bdma_sfr_dmareq_stat_sr_evstat1">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT1</a></h3>
+<p><code>Address: 0x50124000 + 0xcc = 0x501240cc</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L572">bio_bdma.sv#L572</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SR_EVSTAT1</td><td>sr_evstat read only status register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dmareq_stat_sr_evstat2"><a class="header" href="#bio_bdma_sfr_dmareq_stat_sr_evstat2">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT2</a></h3>
+<p><code>Address: 0x50124000 + 0xd0 = 0x501240d0</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L572">bio_bdma.sv#L572</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SR_EVSTAT2</td><td>sr_evstat read only status register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dmareq_stat_sr_evstat3"><a class="header" href="#bio_bdma_sfr_dmareq_stat_sr_evstat3">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT3</a></h3>
+<p><code>Address: 0x50124000 + 0xd4 = 0x501240d4</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L572">bio_bdma.sv#L572</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SR_EVSTAT3</td><td>sr_evstat read only status register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dmareq_stat_sr_evstat4"><a class="header" href="#bio_bdma_sfr_dmareq_stat_sr_evstat4">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT4</a></h3>
+<p><code>Address: 0x50124000 + 0xd8 = 0x501240d8</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L572">bio_bdma.sv#L572</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SR_EVSTAT4</td><td>sr_evstat read only status register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_dmareq_stat_sr_evstat5"><a class="header" href="#bio_bdma_sfr_dmareq_stat_sr_evstat5">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT5</a></h3>
+<p><code>Address: 0x50124000 + 0xdc = 0x501240dc</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L572">bio_bdma.sv#L572</a> (line numbers are approximate)</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[31:0]</td><td>SR_EVSTAT5</td><td>sr_evstat read only status register</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_filter_base_0"><a class="header" href="#bio_bdma_sfr_filter_base_0">BIO_BDMA_SFR_FILTER_BASE_0</a></h3>
+<p><code>Address: 0x50124000 + 0xe0 = 0x501240e0</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L593">bio_bdma.sv#L593</a> (line numbers are approximate)</p>
+<p>The DMA white list can consist of up to four address ranges, defined by a <code>(base, bounds)</code> pair. The <code>base</code> is a physical address specified in units of 4 kiB pages, and <code>bounds</code> is the length of the region, also in pages.</p>
+<p>Note that the memory space for the Baochip-1x is divided into a memory space, and a peripheral space. Addresses from 0x6000_0000-0x8000_0000 are considered to be memory space, and addresses from 0x4000_0000 - 0x6000_0000 are considered to be peripheral space. All other addresses can lead to undefined behavior.</p>
+<p>By default, all base/bounds are set to 0, which effectively disables BIO DMA access to the rest of the system. Thus, these registers <em>must</em> be configured before attempting to use the BIO to access either memory or peripheral regions in the Baochip-1x.</p>
+<p>This register specifies the base of whitelist region 0.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[19:0]</td><td>FILTER_BASE</td><td>filter_base read/write control register, in pages</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_filter_bounds_0"><a class="header" href="#bio_bdma_sfr_filter_bounds_0">BIO_BDMA_SFR_FILTER_BOUNDS_0</a></h3>
+<p><code>Address: 0x50124000 + 0xe4 = 0x501240e4</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L594">bio_bdma.sv#L594</a> (line numbers are approximate)</p>
+<p>This register specifies the bounds of whitelist region 0.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[19:0]</td><td>FILTER_BOUNDS</td><td>filter_bounds read/write control register, in pages</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_filter_base_1"><a class="header" href="#bio_bdma_sfr_filter_base_1">BIO_BDMA_SFR_FILTER_BASE_1</a></h3>
+<p><code>Address: 0x50124000 + 0xe8 = 0x501240e8</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L595">bio_bdma.sv#L595</a> (line numbers are approximate)</p>
+<p>This register specifies the base of whitelist region 1.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[19:0]</td><td>FILTER_BASE</td><td>filter_base read/write control register, in pages</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_filter_bounds_1"><a class="header" href="#bio_bdma_sfr_filter_bounds_1">BIO_BDMA_SFR_FILTER_BOUNDS_1</a></h3>
+<p><code>Address: 0x50124000 + 0xec = 0x501240ec</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L596">bio_bdma.sv#L596</a> (line numbers are approximate)</p>
+<p>This register specifies the bounds of whitelist region 1.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[19:0]</td><td>FILTER_BOUNDS</td><td>filter_bounds read/write control register, in pages</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_filter_base_2"><a class="header" href="#bio_bdma_sfr_filter_base_2">BIO_BDMA_SFR_FILTER_BASE_2</a></h3>
+<p><code>Address: 0x50124000 + 0xf0 = 0x501240f0</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L597">bio_bdma.sv#L597</a> (line numbers are approximate)</p>
+<p>This register specifies the base of whitelist region 2.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[19:0]</td><td>FILTER_BASE</td><td>filter_base read/write control register, in pages</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_filter_bounds_2"><a class="header" href="#bio_bdma_sfr_filter_bounds_2">BIO_BDMA_SFR_FILTER_BOUNDS_2</a></h3>
+<p><code>Address: 0x50124000 + 0xf4 = 0x501240f4</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L598">bio_bdma.sv#L598</a> (line numbers are approximate)</p>
+<p>This register specifies the bounds of whitelist region 2.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[19:0]</td><td>FILTER_BOUNDS</td><td>filter_bounds read/write control register, in pages</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_filter_base_3"><a class="header" href="#bio_bdma_sfr_filter_base_3">BIO_BDMA_SFR_FILTER_BASE_3</a></h3>
+<p><code>Address: 0x50124000 + 0xf8 = 0x501240f8</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L599">bio_bdma.sv#L599</a> (line numbers are approximate)</p>
+<p>This register specifies the base of whitelist region 3.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[19:0]</td><td>FILTER_BASE</td><td>filter_base read/write control register, in pages</td></tr>
+</tbody></table>
+<h3 id="bio_bdma_sfr_filter_bounds_3"><a class="header" href="#bio_bdma_sfr_filter_bounds_3">BIO_BDMA_SFR_FILTER_BOUNDS_3</a></h3>
+<p><code>Address: 0x50124000 + 0xfc = 0x501240fc</code></p>
+<p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L600">bio_bdma.sv#L600</a> (line numbers are approximate)</p>
+<p>This register specifies the bounds of whitelist region 3.</p>
+<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>[19:0]</td><td>FILTER_BOUNDS</td><td>filter_bounds read/write control register, in pages</td></tr>
+</tbody></table>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="io-configuration"><a class="header" href="#io-configuration">I/O Configuration</a></h1>
 <h2 id="muxing-overview"><a class="header" href="#muxing-overview">Muxing Overview</a></h2>
 <p>Baochip-1x I/O pads can be configured to numerous functions. The diagram below illustrates the overall scheme for banking.</p>
