@@ -1,44 +1,64 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>RTL guide - Coder&#x27;s guide to the Baochip 1x</title>
+
+
         <!-- Custom HTML head -->
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="custom.css">
+        <link rel="stylesheet" href="custom-616f5484.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-af668345.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-e2e6b695.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -51,57 +71,70 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme;
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
 
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="spacer"></li><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch00-00-rtl-overview.html" class="active"><strong aria-hidden="true">1.</strong> RTL guide</a></li><li class="chapter-item expanded "><a href="ch01-00-electrical-specifications.html"><strong aria-hidden="true">2.</strong> Hardware specifications (pinouts, voltages, packages drawings)</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="ch00-01-autogenerated.html"><strong aria-hidden="true">3.</strong> Autogenerated registers</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="ch02-00-bio-overview.html"><strong aria-hidden="true">4.</strong> BIO I/O co-processor</a></li><li class="chapter-item expanded "><a href="ch03-00-io-configuration.html"><strong aria-hidden="true">5.</strong> IO Configuration</a></li><li class="chapter-item expanded "><a href="ch04-00-adc.html"><strong aria-hidden="true">6.</strong> ADC</a></li><li class="chapter-item expanded "><a href="ch05-00-usb.html"><strong aria-hidden="true">7.</strong> USB</a></li></ol>
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
-                        </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
                         </button>
                     </div>
 
@@ -109,37 +142,44 @@
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
                         <a href="https://github.com/baochip/baochip-1x" title="Git repository" aria-label="Git repository">
-                            <i id="git-repository-button" class="fa fa-github"></i>
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
                         </a>
+
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
                     </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="chip-source-code-rtl"><a class="header" href="#chip-source-code-rtl">Chip Source Code: RTL</a></h1>
-<p>RTL (Register Transfer Logic) refers to the &quot;source code&quot; for the Baochip-1x. It is mostly written in verilog/systemverilog, with parts derived from SpinalHDL (Scala) and Litex (Python).</p>
+<p>RTL (Register Transfer Logic) refers to the “source code” for the Baochip-1x. It is mostly written in verilog/systemverilog, with parts derived from SpinalHDL (Scala) and Litex (Python).</p>
 <p>While the RTL description of the Baochip-1x redacts some closed-source components, it is complete enough to be useful for automatic documentation generation and functional simulation. This chapter describes how to do both.</p>
 <h2 id="automatic-documentation--header-generation"><a class="header" href="#automatic-documentation--header-generation">Automatic Documentation &amp; Header Generation</a></h2>
 <p>The following artifacts can be extracted directly from the RTL:</p>
@@ -155,37 +195,37 @@
 <p>This invocation will automatically generate and place all of the documentation inside the <code>rtl/scripts/headergen/output</code> directory. This directory is what is made available at the <a href="https://ci.betrusted.io/bao1x/">baochip on-line register docs</a>. <strong>Note</strong>: the script has a whole pile of dependencies, which are not well documented. Pull requests to this documentation are welcome to help fix that deficiency.</p>
 <p>Furthermore, the SVD file generated by this script is exported to <code>xous-core</code> and then run through <code>svd2utra</code> to generate the <a href="https://github.com/betrusted-io/xous-core/blob/main/utralib/src/generated/bao1x.rs">UTRA header file</a> abstractions found in Xous.</p>
 <h2 id="simulation-with-verilator"><a class="header" href="#simulation-with-verilator">Simulation with Verilator</a></h2>
-<p>Verilator is an open source verilog simulator that's capable of doing a fairly accurate simulation of the Baochip-1x SoC. The simulator favors performance over accuracy; in particular, it is incapable of representing the <code>X</code> (unknown) logic state. This isn't a liability for end users because during tape-out, the SoC was thoroughly vetted for <code>X</code> propagatation issues using a more accurate but slower proprietary simulator (VCS).</p>
-<p>The upshot is that verilator is an extremely powerful tool for debugging software on the Baochip-1x. Below is a screenshot of a typical debugging session using verilator. In this example, we're examining some details of the BIO executing code. Note how we can view the debug UART output on the third line (<code>txdata</code>). The stepped, upward-sloping line is the program counter value plotted as an &quot;analog&quot; waveform (the code is just stepping through a the print of the string &quot;multiverse&quot;). You can also see the details of the register file accesses on the CPU, data on the AXI bus, GPIO pin state changes, and also which instruction is running on the BIO core and its respective execution state near the bottom. This is just a tiny portion of the visibility you can have into the machine function - literally thousands of waveforms are accessible in this tool.</p>
-<p><img src="images/waveform-example2.png" alt="Verilator screenshot" /></p>
+<p>Verilator is an open source verilog simulator that’s capable of doing a fairly accurate simulation of the Baochip-1x SoC. The simulator favors performance over accuracy; in particular, it is incapable of representing the <code>X</code> (unknown) logic state. This isn’t a liability for end users because during tape-out, the SoC was thoroughly vetted for <code>X</code> propagatation issues using a more accurate but slower proprietary simulator (VCS).</p>
+<p>The upshot is that verilator is an extremely powerful tool for debugging software on the Baochip-1x. Below is a screenshot of a typical debugging session using verilator. In this example, we’re examining some details of the BIO executing code. Note how we can view the debug UART output on the third line (<code>txdata</code>). The stepped, upward-sloping line is the program counter value plotted as an “analog” waveform (the code is just stepping through a the print of the string “multiverse”). You can also see the details of the register file accesses on the CPU, data on the AXI bus, GPIO pin state changes, and also which instruction is running on the BIO core and its respective execution state near the bottom. This is just a tiny portion of the visibility you can have into the machine function - literally thousands of waveforms are accessible in this tool.</p>
+<p><img src="images/waveform-example2.png" alt="Verilator screenshot"></p>
 <p>Verilator captures the entire state evolution of the Baochip-1x as it runs your code, so you can go forward and backward in execution history, and you can inspect every register, bus, and signal inside the chip.</p>
-<p>The waveform viewer shown above is GTKWave, <a href="https://github.com/bunnie/gtkwave/tree/udp-send">built from a fork</a> that adds the &quot;codezoom&quot; feature. Codezoom allows you to hover over a the program counter trace of a verilator simulation and automatically resolve the assembly code that's running on the CPU. It works by forwarding some hard-coded trace parameters over UDP to the localhost, which can be picked up by a Python script. Clicking on a waveform &quot;show mouseover&quot; turned on looks like this (note the current PC value is displayed in a hover window):</p>
-<p><img src="images/waveform-example.png" alt="Verilator screenshot" /></p>
+<p>The waveform viewer shown above is GTKWave, <a href="https://github.com/bunnie/gtkwave/tree/udp-send">built from a fork</a> that adds the “codezoom” feature. Codezoom allows you to hover over a the program counter trace of a verilator simulation and automatically resolve the assembly code that’s running on the CPU. It works by forwarding some hard-coded trace parameters over UDP to the localhost, which can be picked up by a Python script. Clicking on a waveform “show mouseover” turned on looks like this (note the current PC value is displayed in a hover window):</p>
+<p><img src="images/waveform-example.png" alt="Verilator screenshot"></p>
 <p>And this results in the codezoom script showing you what instruction is at that program counter value in real time:</p>
-<p><img src="images/codezoom-example.png" alt="codezoom screenshot" /></p>
-<p>Here's a video of it in action (<a href="https://bunniefoo.com/baochip/codezoom.mp4">download the video</a>):</p>
-<video controls width="1024">
+<p><img src="images/codezoom-example.png" alt="codezoom screenshot"></p>
+<p>Here’s a video of it in action (<a href="https://bunniefoo.com/baochip/codezoom.mp4">download the video</a>):</p>
+<video controls="" width="1024">
   <source src="https://bunniefoo.com/baochip/codezoom.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 <p>This is particularly handy for tracing own hard-to-catch bugs, especially ones that change when instrumentation is applied that may affect timing of execution.</p>
 <h3 id="methodology"><a class="header" href="#methodology">Methodology</a></h3>
 <p>Verilator does not literally run the top level RTL file that describes the Baochip-1x, because some portions such as the AXI bus fabric, analog/mixed-signal IP (PLL, USB, regulators, ADC) and details of the built-in self test routines are closed source. Instead, a version of the chip is created in Litex, a Python framework for describing SoCs, which uses the same Vexriscv core complex and general bus architecture as the Baochip-1x. Select peripherals of the SoC are ported into this framework, and simulation stubs are created that target these peripherals. Currently the best-supported and tested stub is for the BIO, but there are also frameworks for debugging UDMA peripherals (although these have almost certainly bit-rotted by now).</p>
-<p>Verilator is fast enough to boot the Xous OS in a reasonable amount of time (a couple minutes without waveform tracing; about 15 minutes with). This speed is over 10x faster than simulations run using the &quot;gold standard&quot; VCS tool; what you gain in speed you lose in accuracy (verilator is purely functional and does not consider timing or X-propagation).</p>
-<p>Thus in the tape-out flow, verilator flow was to &quot;rough out&quot; IP blocks, assist with code development, and run large, complicated CI tests that would be impractical to run using the VCS tool. A select subset of tests are then run using VCS on the full SoC with all the proprietary blocks and detailed timing models of the chip that consider process, voltage and temperature. The VCS test cases are chosen to exercise correct power-on reset initialization (a significant challenge on real silicon, due to the <code>x</code> state being &quot;real&quot;) and maximal coverage for minimum runtime. Once the blocks pass test on VCS, the code meets verilator's assumptions, allowing it to be used as a fast, open-source code simulator.</p>
+<p>Verilator is fast enough to boot the Xous OS in a reasonable amount of time (a couple minutes without waveform tracing; about 15 minutes with). This speed is over 10x faster than simulations run using the “gold standard” VCS tool; what you gain in speed you lose in accuracy (verilator is purely functional and does not consider timing or X-propagation).</p>
+<p>Thus in the tape-out flow, verilator flow was to “rough out” IP blocks, assist with code development, and run large, complicated CI tests that would be impractical to run using the VCS tool. A select subset of tests are then run using VCS on the full SoC with all the proprietary blocks and detailed timing models of the chip that consider process, voltage and temperature. The VCS test cases are chosen to exercise correct power-on reset initialization (a significant challenge on real silicon, due to the <code>x</code> state being “real”) and maximal coverage for minimum runtime. Once the blocks pass test on VCS, the code meets verilator’s assumptions, allowing it to be used as a fast, open-source code simulator.</p>
 <p>Thus, while the verilator models presented here are not perfectly cycle-accurate, they were accurate enough for chip development and reflects an important and significant portion of the actual development flow used in building and validating the Baochip-1x.</p>
 <h3 id="setting-up-verilator"><a class="header" href="#setting-up-verilator">Setting up Verilator</a></h3>
 <p><code>Verilator 5.007 devel rev v5.006-30-g7f3e178b6</code> was used for simulation. Newer versions may work just fine, but they have not been tested. If your OS has a verilator package, be sure to run <code>verilator --version</code> and check that it is recent enough. Verilator is open source and you can <a href="https://github.com/verilator/verilator">download &amp; build it from github</a>.</p>
-<p><code>GTKwave</code> was used for waveform viewing. A <a href="https://github.com/bunnie/gtkwave/tree/udp-send">custom fork</a> (<code>udp-send</code>) of <code>v3.4.0</code> is required to support the &quot;codezoom&quot; feature documented here.</p>
+<p><code>GTKwave</code> was used for waveform viewing. A <a href="https://github.com/bunnie/gtkwave/tree/udp-send">custom fork</a> (<code>udp-send</code>) of <code>v3.4.0</code> is required to support the “codezoom” feature documented here.</p>
 <p>Once you have built and installed these tools, you should be able to run the script at <a href="https://github.com/baochip/baochip-1x/blob/main/verilate/verilate.sh"><code>./verilate/verilate.sh</code></a>. This shell script supports the following arguments:</p>
 <ul>
 <li><code>-t [xous, iron]</code>. Defaults to <code>iron</code>. <code>iron</code> runs the code base in <code>deps/nto-tests</code>. <code>xous</code> runs the code base in <code>deps/xous-core</code> built for the <code>bao1x-sim</code> target.</li>
 <li><code>s [normal, fast]</code>. Defaults to <code>normal</code>. <code>fast</code> runs ~5x faster, but does not save a waveform file. However, it does print debug uart statements to the console. Thus <code>fast</code> is useful as a CI check that previously vetted simulations are still working, assuming you have populated your code with debug statements and checks for this.</li>
-<li><code>a [normal, sce]</code>. Defaults to <code>normal</code>. <code>sce</code> runs a variant of the SoC that has just the SCE (secure crypto engine), but none of the other validation peripherals. Note that different &quot;views&quot; of the SoC are used to speed up simulation and reduce complexity of setting up models. <strong>HELP WANTED</strong> The current &quot;SCE&quot; view relies on a couple of out-of-tree AMBA IP to do some bus conversion and clock domain crossing. These are fairly generic IP blocks that I'm pretty sure already exist in the OSS world but it was more expedient to rely on the closed-source models to bring up the simulation. If there is a user that actually wants to run the SCE models, contact bunnie and if you have the initiative he'd appreciate any help with creating the missing models. The specific models missing as of the time of writing are: AHB to APB converter (it does exist in the tree already, but the code needs to be converted to refer to it), AHB to AHB sync (I think this is a CDC across AHB domain), and AHB to AHB &quot;sync error canc&quot; - not quite sure what this is but I think it probably is a reverse channel across the CDC for bus errors.</li>
+<li><code>a [normal, sce]</code>. Defaults to <code>normal</code>. <code>sce</code> runs a variant of the SoC that has just the SCE (secure crypto engine), but none of the other validation peripherals. Note that different “views” of the SoC are used to speed up simulation and reduce complexity of setting up models. <strong>HELP WANTED</strong> The current “SCE” view relies on a couple of out-of-tree AMBA IP to do some bus conversion and clock domain crossing. These are fairly generic IP blocks that I’m pretty sure already exist in the OSS world but it was more expedient to rely on the closed-source models to bring up the simulation. If there is a user that actually wants to run the SCE models, contact bunnie and if you have the initiative he’d appreciate any help with creating the missing models. The specific models missing as of the time of writing are: AHB to APB converter (it does exist in the tree already, but the code needs to be converted to refer to it), AHB to AHB sync (I think this is a CDC across AHB domain), and AHB to AHB “sync error canc” - not quite sure what this is but I think it probably is a reverse channel across the CDC for bus errors.</li>
 </ul>
-<p><strong>TODO</strong>: There is a &quot;udma&quot; model variant but it has bit-rotted and is not integrated into the &quot;user friendly&quot; framework. If someone needs/wants to run UDMA simulations, most of the work has been done but some dangling references need to be cleaned up. Drop bunnie a note if you end up being unable to solve the bit-rot issues in the UDMA model.</p>
-<p><code>nto-tests</code> is the actual test code used to validate the portions of the Baochip-1x that were contributed by bunnie. It runs in a &quot;baremetal&quot; environment and has about a dozen configurable tests.</p>
-<p><code>xous-core</code> is the Xous OS, which can be configured with &quot;shortcuts&quot; (through the <code>hwsim</code> and <code>verilator-only</code> features) that shorten simulation runtime. Most of the &quot;shortcuts&quot; involve skipping zero-initializations because verilator guarantees all memory is 0 by default (unlike real hardware where it could truly be any value).</p>
+<p><strong>TODO</strong>: There is a “udma” model variant but it has bit-rotted and is not integrated into the “user friendly” framework. If someone needs/wants to run UDMA simulations, most of the work has been done but some dangling references need to be cleaned up. Drop bunnie a note if you end up being unable to solve the bit-rot issues in the UDMA model.</p>
+<p><code>nto-tests</code> is the actual test code used to validate the portions of the Baochip-1x that were contributed by bunnie. It runs in a “baremetal” environment and has about a dozen configurable tests.</p>
+<p><code>xous-core</code> is the Xous OS, which can be configured with “shortcuts” (through the <code>hwsim</code> and <code>verilator-only</code> features) that shorten simulation runtime. Most of the “shortcuts” involve skipping zero-initializations because verilator guarantees all memory is 0 by default (unlike real hardware where it could truly be any value).</p>
 <p>Under the hood, the <code>verilate.sh</code> script will:</p>
 <ul>
 <li>Build an SVD SoC description from LiteX</li>
@@ -194,29 +234,31 @@
 <li>Extract assembly code listings usable with codezoom (placed in the <code>listings</code> directory)</li>
 <li>Invoke the SoC description again with Litex, this time using its built-in Verilator support to invoke the simulation</li>
 </ul>
-<p>On <code>nto-tests</code>, the simulation will automatically terminate in many cases due to some specialty tooling added to the SoC model. <code>xous-core</code> requires you to control-C out when you've collected enough data. Note that <code>verilator</code> has a little bit of a buffering delay on writing waveform data, so it's always a good idea to let it run for about 15 seconds longer than you need it to, to ensure that the aspect of interest is actually written to the waveform file.</p>
+<p>On <code>nto-tests</code>, the simulation will automatically terminate in many cases due to some specialty tooling added to the SoC model. <code>xous-core</code> requires you to control-C out when you’ve collected enough data. Note that <code>verilator</code> has a little bit of a buffering delay on writing waveform data, so it’s always a good idea to let it run for about 15 seconds longer than you need it to, to ensure that the aspect of interest is actually written to the waveform file.</p>
 <p>Once the simulation is done, you can view the results by running <a href="https://github.com/baochip/baochip-1x/blob/main/verilate/gtkw_run.sh"><code>gtkw_run.sh</code></a>. This script will invoke GTKwave with a save file that will pre-populate some useful signals. Keep in mind there are literally tens of thousands of signals inside the chip, so what you see is just a small subset of what you can view. Think of it as a starting point for your debugging experience. It also configures GTKwave to pipe the necessary data to UDP so that you can run with <code>codezoom</code>.</p>
-<p>To use the <code>codezoom</code> feature, run <code>python3 ./codezoom.py --file ../listings/&lt;your-crate.lst&gt;</code> in the <code>verilate</code> directory, on the same host that you're running GTKwave on. Then, in GTKWave, select <code>View-&gt;Show Mouseover</code>. Once this is enabled, left-clicking on the &quot;analog waveform&quot; in the viewer (which is the Program Counter (PC) value) will cause the PC value to be piped into the <code>codezoom</code> python script. The script will then automatically show you the code at that PC value.</p>
-<p>The script is &quot;Xous-aware&quot;, which allows you to debug transitions between kernel and userspace for a single process. The process must correspond to the one specified by the <code>--file</code> argument; the kernel file is automatically set up and resolved by the helper scripts in the verilate direcotry. Clicking on the PC in unrelated processes will simply show you that PC offset in the file you specified to codezoom; thus the results for other processes are gibberish.</p>
+<p>To use the <code>codezoom</code> feature, run <code>python3 ./codezoom.py --file ../listings/&lt;your-crate.lst&gt;</code> in the <code>verilate</code> directory, on the same host that you’re running GTKwave on. Then, in GTKWave, select <code>View-&gt;Show Mouseover</code>. Once this is enabled, left-clicking on the “analog waveform” in the viewer (which is the Program Counter (PC) value) will cause the PC value to be piped into the <code>codezoom</code> python script. The script will then automatically show you the code at that PC value.</p>
+<p>The script is “Xous-aware”, which allows you to debug transitions between kernel and userspace for a single process. The process must correspond to the one specified by the <code>--file</code> argument; the kernel file is automatically set up and resolved by the helper scripts in the verilate direcotry. Clicking on the PC in unrelated processes will simply show you that PC offset in the file you specified to codezoom; thus the results for other processes are gibberish.</p>
 <h3 id="example-checking-constant-time-code-with-verilator"><a class="header" href="#example-checking-constant-time-code-with-verilator">Example: Checking Constant Time Code with Verilator</a></h3>
-<p>A use case for running code simulations is checking the constant-time properties of cryptographic code. Below is an example of a simulation of an AES library which uses the Zkn extensions to compute rounds of AES on the CPU. A technique called &quot;chaffing&quot; is employed, where alternate rounds compute either real then fake, or fake then real data to try and mask the power side channel of the computation.</p>
-<p><img src="images/aes-chaffing-ct2.png" alt="chaffing overview" /></p>
+<p>A use case for running code simulations is checking the constant-time properties of cryptographic code. Below is an example of a simulation of an AES library which uses the Zkn extensions to compute rounds of AES on the CPU. A technique called “chaffing” is employed, where alternate rounds compute either real then fake, or fake then real data to try and mask the power side channel of the computation.</p>
+<p><img src="images/aes-chaffing-ct2.png" alt="chaffing overview"></p>
 <p>Above is an overview of the chaffing concept. In the image, call your attention to the waveform of <code>execute_IS_AES</code>. This is a signal that indicates that the instruction being executed is an AES instruction. Furthermore, observe the shape of the program counter waveform. There are two code paths, <code>real-&gt;chaff</code>, and <code>chaff-&gt;real</code>. <code>real-&gt;chaff</code> comes first in the code, and thus occupies a lower address in program memory; <code>chaff-&gt;real</code> comes later in the code, and requires a branch to reach it, and occupies the higher addresses in program memory.</p>
-<p><img src="images/aes-chaffing-not-ct.png" alt="chaffing failure" /></p>
+<p><img src="images/aes-chaffing-not-ct.png" alt="chaffing failure"></p>
 <p>Above is a simulation showing the initial cut at constant time code, where a branch delay penalty jumping to the higher address path was not compensated for correctly.</p>
-<p><img src="images/aes-chaffing-ct1.png" alt="chaffing simulation" /></p>
-<p>Above is the final simulation, confirming that the code is now in fact constant time, thanks to <code>nop</code> delays inserted into the pipeline on the branch-not-taken path. Because the Vex has no branch prediction, we don't have to worry about the branch predictor; however, if this was a more sophisticated architecture you could also examine the state of the branch predictor and confirm that it was &quot;warmed up&quot; correctly by prior code to ensure correct constant time execution.</p>
+<p><img src="images/aes-chaffing-ct1.png" alt="chaffing simulation"></p>
+<p>Above is the final simulation, confirming that the code is now in fact constant time, thanks to <code>nop</code> delays inserted into the pipeline on the branch-not-taken path. Because the Vex has no branch prediction, we don’t have to worry about the branch predictor; however, if this was a more sophisticated architecture you could also examine the state of the branch predictor and confirm that it was “warmed up” correctly by prior code to ensure correct constant time execution.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
-                            <a rel="next" href="ch01-00-electrical-specifications.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+
+                            <a rel="next prefetch" href="ch01-00-electrical-specifications.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
@@ -224,25 +266,41 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
-                    <a rel="next" href="ch01-00-electrical-specifications.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+
+                    <a rel="next prefetch" href="ch01-00-electrical-specifications.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
-        <script type="text/javascript">
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
             window.playground_copyable = true;
         </script>
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
+
+
+
+    </div>
     </body>
 </html>

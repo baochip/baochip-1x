@@ -1,44 +1,64 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>BIO I/O co-processor - Coder&#x27;s guide to the Baochip 1x</title>
+
+
         <!-- Custom HTML head -->
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="custom.css">
+        <link rel="stylesheet" href="custom-616f5484.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-af668345.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-e2e6b695.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -51,57 +71,70 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme;
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
 
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="spacer"></li><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch00-00-rtl-overview.html"><strong aria-hidden="true">1.</strong> RTL guide</a></li><li class="chapter-item expanded "><a href="ch01-00-electrical-specifications.html"><strong aria-hidden="true">2.</strong> Hardware specifications (pinouts, voltages, packages drawings)</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="ch00-01-autogenerated.html"><strong aria-hidden="true">3.</strong> Autogenerated registers</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="ch02-00-bio-overview.html" class="active"><strong aria-hidden="true">4.</strong> BIO I/O co-processor</a></li><li class="chapter-item expanded "><a href="ch03-00-io-configuration.html"><strong aria-hidden="true">5.</strong> IO Configuration</a></li><li class="chapter-item expanded "><a href="ch04-00-adc.html"><strong aria-hidden="true">6.</strong> ADC</a></li><li class="chapter-item expanded "><a href="ch05-00-usb.html"><strong aria-hidden="true">7.</strong> USB</a></li></ol>
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
-                        </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
                         </button>
                     </div>
 
@@ -109,34 +142,41 @@
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
                         <a href="https://github.com/baochip/baochip-1x" title="Git repository" aria-label="Git repository">
-                            <i id="git-repository-button" class="fa fa-github"></i>
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
                         </a>
+
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
                     </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="bio"><a class="header" href="#bio">BIO</a></h1>
 <h2 id="resources"><a class="header" href="#resources">Resources</a></h2>
@@ -149,7 +189,7 @@
 <p>There is also a <a href="https://www.bunniestudios.com/blog/2026/bio-the-bao-i-o-coprocessor/">blog post</a> that discusses the trade-offs that went into designing the BIO, for those interested in peeking under the hood and understanding the thought process.</p>
 <h2 id="design-of-the-bio"><a class="header" href="#design-of-the-bio">Design of the BIO</a></h2>
 <p>The BIO design starts with a PicoRV32 configured as an RV32E. In this mode, instead of having a full complement of 32 registers (including the zero register), you get 16: only r0 - r15 are officially part of the RV32E specification. I then abuse r16 – r31 to map in a set of “register queues” as well as GPIO access and synchronization primitives. Below is a diagram of the final register set exposed on each of the four RV32E cores.</p>
-<p><img src="images/bio-diagram.png" alt="block diagram of BIO" /></p>
+<p><img src="images/bio-diagram.png" alt="block diagram of BIO"></p>
 <p>The buff-colored rectangles are registers with normal read/write semantics, while lavender-colored rectangles are registers that can block CPU execution based on various conditions. Here’s the description of the “high-bank” registers in text:</p>
 <pre><code class="language-text ignore">FIFO - 8-deep fifo head/tail access. Cores halt on overflow/underflow.
 - x16 r/w  fifo[0]
@@ -163,7 +203,7 @@ or an external event comes in on a host-specified GPIO pin.
 
 GPIO - note clear-on-0 semantics for bit-clear for data pins!
   This is done so we can do a shift-and-move without an invert to
-  bitbang a data pin. Direction retains a more &quot;conventional&quot; meaning
+  bitbang a data pin. Direction retains a more "conventional" meaning
   where a write of `1` to either clear or set will cause the action,
   as pin direction toggling is less likely to be in a tight inner loop.
 - x21 r/w  write: (x26 &amp; x21) -&gt; gpio pins; read: gpio pins -&gt; x21
@@ -185,45 +225,43 @@ Core ID &amp; debug:
 </code></pre>
 <p>The most interesting aspect of the extended register set are the blocking registers. These are registers where the current instruction being executed may not retire until certain FIFO-related conditions are met. For example, reading any of x16-x19 attempts to dequeue a value from one of the shared FIFOs. If the target FIFO is empty, then, the CPU execution would halt until a value appeared in the FIFO. Likewise, writing to x16-x19 completes only if the FIFO has space. Once the FIFO is full, execution halts until at least one entry is drained by another consumer.</p>
 <p>An important objective for any I/O processor is to meet hard real-time guarantees. A simple example would be guaranteeing the timely sequencing of events at regular intervals. To assist with this, registers x20 and x30 are wired up in a way that they can stop CPU execution until an asynchronous condition is met.</p>
-<p><img src="images/bio-quantum-halt.png" alt="bio quantum halt concept" />
+<p><img src="images/bio-quantum-halt.png" alt="bio quantum halt concept">
 <em>Above: illustration of how an access to x20 can be used to automatically schedule CPU operations at quantum intervals.</em></p>
 <p>In the case of x20, the CPU will halt until a “quantum” of time has passed (either defined by an internal fractional clock divider, or an external clock source from a GPIO pin). In the case of x30, the CPU would halt until an “event” condition (such as a FIFO reaching a certain fullness) is met.</p>
 <p>The “halt to quantum” register can eliminate the need to do cycle-counting in code when the quantum is guaranteed to be longer than the longest code path between writes to the quantum register. This will often be the case for protocols that operate at single-MHz speeds or below.</p>
 <p>The BIO is also capable of doing DMA via the “BDMA” extension. This extension allows the load/store units of the PicoRV32 cores access the SoC’s bus, with a “dumb” priority resolver in case of contending accesses (lowest numbered core always wins; other cores halt). Adding this capability allows the BIO to also act as a smart DMA engine for shuttling data to and from main memory, but it does add about 50% to the size of the base BIO core. It’s not as fast as the fastest DMA engines, but it can implement fairly complicated data access transformations, such as scatter-gather, rotations and shuffle/interleave with some amount of smarts to handle exceptions and special cases.</p>
 <p>As a side-note, access to main memory is blocked by a whitelist, which by default is empty. So, before attempting to use the BDMA feature, one must first declare which regions of memory the BIO is allowed to access. This also helps prevent abuse of the BDMA as a method for bypassing host CPU security features.</p>
 <h2 id="a-simple-bio-code-example"><a class="header" href="#a-simple-bio-code-example">A Simple BIO Code Example</a></h2>
-<p>To help illustrate the gist of how to use the FIFO-registers in the BIO, let’s look at an example DMA operation; we'll also assume that the whitelists have already been set up by the Vexriscv core. In this example, we decompose the DMA operation into two parts: one BIO core is used to fetch and store memory, and another BIO core is used to generate the addresses.</p>
+<p>To help illustrate the gist of how to use the FIFO-registers in the BIO, let’s look at an example DMA operation; we’ll also assume that the whitelists have already been set up by the Vexriscv core. In this example, we decompose the DMA operation into two parts: one BIO core is used to fetch and store memory, and another BIO core is used to generate the addresses.</p>
 <p>The fetch/store BIO core code is quite simple: just a series of loads (lw) and stores (sw) with the address offset originating from x16 or x17 (FIFO0 and FIFO1, respectively):</p>
 <pre><code class="language-rust ignore">bio_code!(dma_mc_copy_code, DMA_MC_COPY_START, DMA_MC_COPY_END,
-  &quot;20:&quot;,
-    &quot;lw a0, 0(x16)&quot;, // unrolled for more performance
-    &quot;sw a0, 0(x17)&quot;,
-    &quot;lw a0, 0(x16)&quot;,
-    &quot;sw a0, 0(x17)&quot;,
-    &quot;lw a0, 0(x16)&quot;,
-    &quot;sw a0, 0(x17)&quot;,
-    &quot;lw a0, 0(x16)&quot;,
-    &quot;sw a0, 0(x17)&quot;,
-    &quot;j 20b&quot;
-);
-</code></pre>
+  "20:",
+    "lw a0, 0(x16)", // unrolled for more performance
+    "sw a0, 0(x17)",
+    "lw a0, 0(x16)",
+    "sw a0, 0(x17)",
+    "lw a0, 0(x16)",
+    "sw a0, 0(x17)",
+    "lw a0, 0(x16)",
+    "sw a0, 0(x17)",
+    "j 20b"
+);</code></pre>
 <p>This code snippet is wrapped in a Rust macro. Because the BIO uses a mostly stock RV32E, we can leverage existing RISC-V tools. In this case, the <code>bio_code!</code> macro annotates the Rust assembly code with the identifiers “DMA_MC_COPY_START” and “DMA_MC_COPY_END”. These identifiers enable a separate code-loader to identify the base and extent of the assembled binary block, so that it can be copied into the BIO memory at run-time.</p>
 <p>In the above example, the CPU will halt on the first instruction, because x16 is empty, awaiting an address to be generated for it.</p>
 <p>Meanwhile, a second CPU core runs the following code:</p>
 <pre><code class="language-rust ignore">bio_code!(dma_mc_src_addr_code, DMA_MC_SRC_ADDR_START, DMA_MC_SRC_ADDR_END,
-  &quot;20:&quot;,
-    &quot;mv a0, x18&quot;,  // src address on FIFO x18
-    &quot;li x29, 0x500&quot;, // clear done state
-    &quot;li x28, 0x400&quot;, // partial done
-    &quot;mv a1, x18&quot;,  // # bytes to copy on FIFO x18
-    &quot;add a2, a1, a0&quot;,
-  &quot;21:&quot;,
-    &quot;mv x16, a0&quot;,
-    &quot;addi a0, a0, 4&quot;,
-    &quot;bne a0, a2, 21b&quot;,
-    &quot;j 20b&quot;
-);
-</code></pre>
+  "20:",
+    "mv a0, x18",  // src address on FIFO x18
+    "li x29, 0x500", // clear done state
+    "li x28, 0x400", // partial done
+    "mv a1, x18",  // # bytes to copy on FIFO x18
+    "add a2, a1, a0",
+  "21:",
+    "mv x16, a0",
+    "addi a0, a0, 4",
+    "bne a0, a2, 21b",
+    "j 20b"
+);</code></pre>
 <p>This code causes the CPU to wait until the parameters of the DMA are issued by the host, in this case, by enqueuing the source address into FIFO2 (which appear in-order into x18), followed by the # of bytes to copy. Once these pieces of data are made available, the core will generate as many addresses as it can, filling x16 with source addresses, until either x16 becomes full and the generator blocks, or the number of bytes to copy, has been met.</p>
 <p>A third CPU is used to run a very similar block of code which reads the destination address from FIFO3 and generates the write addresses into x17.</p>
 <p>This simple example shows how we can take three simple CPU cores and effectively cause them to execute in parallel, leading to a higher DMA bandwidth than a single core could achieve.</p>
@@ -242,66 +280,64 @@ Core ID &amp; debug:
 <p>Speaking of SPI, let’s look at an example of an SPI bitbang implementation. In this case, two cores run in parallel, one to handle the shift-out + clock, and the other to handle shift-in. The mapping of the pins is set elsewhere in the code to receive on GPIO 7, transmit on GPIO 8, clock on GPIO 9, and chip select is on GPIO 10.</p>
 <p>Snap-to-quantum is used to ensure the edges line up. For this implementation, the quantum needs to run at twice the SPI clock rate (so 50MHz for a 25MHz SPI clock, which is achievable if the BIO cores run at 700MHz; note that on the PicoRV32, a typical instruction takes about three cycles to execute, as there is no pipelining).</p>
 <p>This first snippet is what runs on the core that manages TX + clock. The first few instructions set up bit masks and temporaries, and then the routine that shifts the actual bits are unrolled, so you don’t pay a branch/loop penalty between bits. Loop unrolling is ubiquitous in BIO code, because you have a roomy 4 kiB of code space per PicoRV32.</p>
-<pre><code class="language-rust ignore">  &quot;82:&quot;, // machine 2 - tx on bit 8, clock on bit 9, chip select on bit 10
-    &quot;li  x1, 0x700&quot;,       // setup output mask bits
-    &quot;mv  x26, x1&quot;,         // mask
-    &quot;mv  x24, x1&quot;,         // direction (1 = output)
-    &quot;li  x2, 0x100&quot;,       // bitmask for output data
-    &quot;not x3, x2&quot;,
-    &quot;li  x4, 0x200&quot;,       // bitmask for clock
-    &quot;not x5, x4&quot;,
-    &quot;li  x6, 0x400&quot;,       // bitmask for chip select
-    &quot;not x7, x6&quot;,
-    &quot;mv  x21, x6&quot;,         // setup GPIO with CS high, clock low, data low
-    &quot;mv  x20, x0&quot;,         // halt to quantum, make sure this takes effect
+<pre><code class="language-rust ignore">  "82:", // machine 2 - tx on bit 8, clock on bit 9, chip select on bit 10
+    "li  x1, 0x700",       // setup output mask bits
+    "mv  x26, x1",         // mask
+    "mv  x24, x1",         // direction (1 = output)
+    "li  x2, 0x100",       // bitmask for output data
+    "not x3, x2",
+    "li  x4, 0x200",       // bitmask for clock
+    "not x5, x4",
+    "li  x6, 0x400",       // bitmask for chip select
+    "not x7, x6",
+    "mv  x21, x6",         // setup GPIO with CS high, clock low, data low
+    "mv  x20, x0",         // halt to quantum, make sure this takes effect
 
-  &quot;20:&quot;,  // main loop
-    &quot;mv  x15, x16&quot;,        // load data to transmit from fifo 0 - halts until data is available
-    &quot;mv  x23, x7&quot;,         // drop CS
-    &quot;slli x15, x15, 8&quot;,    // shift so the LSB is at bit 8
-    &quot;mv  x20, x0&quot;,         // wait quantum for CS hold time
+  "20:",  // main loop
+    "mv  x15, x16",        // load data to transmit from fifo 0 - halts until data is available
+    "mv  x23, x7",         // drop CS
+    "slli x15, x15, 8",    // shift so the LSB is at bit 8
+    "mv  x20, x0",         // wait quantum for CS hold time
 
     // bit 0
-    &quot;and x22, x15, x2&quot;,    // set data bit, if it's 1
-    &quot;or  x23, x15, x3&quot;,    // clear data bit, if it's 0
-    &quot;mv  x20, x0&quot;,         // wait quantum for data setup
+    "and x22, x15, x2",    // set data bit, if it's 1
+    "or  x23, x15, x3",    // clear data bit, if it's 0
+    "mv  x20, x0",         // wait quantum for data setup
 
-    &quot;mv  x22, x4&quot;,         // clock rise
-    &quot;srli x15, x15, 1&quot;,
-    &quot;mv  x20, x0&quot;,         // wait quantum for data hold
+    "mv  x22, x4",         // clock rise
+    "srli x15, x15, 1",
+    "mv  x20, x0",         // wait quantum for data hold
 
     // bit 1
-    &quot;and x22, x15, x2&quot;,    // set data bit, if it's 1
-    &quot;or  x23, x15, x3&quot;,    // clear data bit, if it's 0
-    &quot;mv  x23, x5&quot;,         // clock fall
-    &quot;mv  x20, x0&quot;,         // wait quantum for data setup
-    &quot;mv  x22, x4&quot;,         // clock rise
-    &quot;srli x15, x15, 1&quot;,
-    &quot;mv  x20, x0&quot;,         // wait quantum for data hold
-</code></pre>
+    "and x22, x15, x2",    // set data bit, if it's 1
+    "or  x23, x15, x3",    // clear data bit, if it's 0
+    "mv  x23, x5",         // clock fall
+    "mv  x20, x0",         // wait quantum for data setup
+    "mv  x22, x4",         // clock rise
+    "srli x15, x15, 1",
+    "mv  x20, x0",         // wait quantum for data hold</code></pre>
 <p>The code continues onwards for each of the bits, but is truncated after bit One for brevity. You can see the full code at <a href="https://github.com/betrusted-io/xous-core/blob/e9c408fbcab1808201786be17c1a7d07817cdbc5/libs/xous-bio-bdma/src/bio_tests/spi.rs#L113-L457">our GitHub repo</a>.</p>
 <p>This second snippet runs in parallel on the core that manages RX.</p>
 <pre><code class="language-rust ignore">    // wait until CS falls
-  &quot;31:&quot;,
-    &quot;and x8, x6, x21&quot;,
-    &quot;bnez x8, 31b&quot;,
+  "31:",
+    "and x8, x6, x21",
+    "bnez x8, 31b",
 
     // bit 0
-    &quot;srli x14, x14, 1&quot;,    // shift bit into place
+    "srli x14, x14, 1",    // shift bit into place
     // wait until clock rises
-    &quot;mv x20, zero&quot;,        // halts until rising edge on bit 9 (configured by host)
-    &quot;and x9, x2, x21&quot;,     // mask the bit
-    &quot;slli x9, x9, 7&quot;,      // move to MSB
-    &quot;or x14, x9, x14&quot;,     // OR into the result
+    "mv x20, zero",        // halts until rising edge on bit 9 (configured by host)
+    "and x9, x2, x21",     // mask the bit
+    "slli x9, x9, 7",      // move to MSB
+    "or x14, x9, x14",     // OR into the result
 
     // bit 1
-    &quot;srli x14, x14, 1&quot;,    // shift bit into place
+    "srli x14, x14, 1",    // shift bit into place
     // wait until clock rises
-    &quot;mv x20, zero&quot;,        // halts until rising edge on bit 9 (configured by host)
-    &quot;and x9, x2, x21&quot;,     // mask the bit
-    &quot;slli x9, x9, 7&quot;,      // move to MSB
-    &quot;or x14, x9, x14&quot;,     // OR into the result
-</code></pre>
+    "mv x20, zero",        // halts until rising edge on bit 9 (configured by host)
+    "and x9, x2, x21",     // mask the bit
+    "slli x9, x9, 7",      // move to MSB
+    "or x14, x9, x14",     // OR into the result</code></pre>
 <p>This code similarly goes on for the rest of the bits and is truncated for brevity.</p>
 <p>Note here that the “snap to quantum” source for x20 is simply the clock signal generated by the TX, so the RX is automatically triggered in a manner synchronous to the SPI clock signal.</p>
 <h2 id="coding-for-bio-in-c"><a class="header" href="#coding-for-bio-in-c">Coding for BIO in C</a></h2>
@@ -473,16 +509,15 @@ pub trait BioApi&lt;'a&gt; {
     fn get_version(&amp;self) -&gt; u32;
 
     fn debug(&amp;self, core: BioCore);
-}
-</code></pre>
+}</code></pre>
 <h3 id="a-simple-api-example"><a class="header" href="#a-simple-api-example">A Simple API Example</a></h3>
-<p>Let's walk through the <a href="https://github.com/betrusted-io/xous-core/blob/dev/libs/bio-lib/src/captouch.rs"><code>Captouch</code></a> object implementation as an example of how to use the API.
+<p>Let’s walk through the <a href="https://github.com/betrusted-io/xous-core/blob/dev/libs/bio-lib/src/captouch.rs"><code>Captouch</code></a> object implementation as an example of how to use the API.
 The BIO implements captouch sensoring by measuring the rise-time of a pin based on the
 parasitic capacitance of the pin charging up through the built-in pull-up resistor.</p>
 <p>The core of any BIO application consists of a structure like this:</p>
 <pre><code class="language-rust ignore">pub struct Captouch {
     // --- common to all BIO implementations ---
-    // The &quot;shared state&quot; object. Implements `BioApi`.
+    // The "shared state" object. Implements `BioApi`.
     bio_ss: Bio,
     // BIO implementations have between zero and four handles. Each handle is a reservation to a virtual memory
     // aperture that allows the host to interact with a BIO FIFO. It also tracks the lifetime of the virtual
@@ -497,15 +532,14 @@ parasitic capacitance of the pin charging up through the built-in pull-up resist
     // --- specific to Captouch ---
     threshold: u32,
     baseline: u32,
-}
-</code></pre>
+}</code></pre>
 <p>Two implementations are recommended for every BIO object. The first is a <code>Resources</code> implementation.
 This encodes what specific resources your BIO application expects to use.</p>
 <pre><code class="language-rust ignore">impl Resources for Captouch {
     fn resource_spec() -&gt; ResourceSpec {
         ResourceSpec {
             // An ASCII name that is associated with the resource table, allowing us to track who claimed what.
-            claimer: &quot;Captouch&quot;.to_string(),
+            claimer: "Captouch".to_string(),
             // A Vec whose length represents the number of cores required by the BIO code. The code can be locked
             // to a specific core, or in this case, left as `Any`
             cores: vec![CoreRequirement::Any],
@@ -518,8 +552,7 @@ This encodes what specific resources your BIO application expects to use.</p>
             dynamic_pin_count: 1,
         }
     }
-}
-</code></pre>
+}</code></pre>
 <p>A <code>Drop</code> implementation allows the BIO object to release its resources automatically when it goes out
 of scope. This is boilerplate and can basically be copy-pasta between implementations.</p>
 <pre><code class="language-rust ignore">impl Drop for Captouch {
@@ -529,14 +562,13 @@ of scope. This is boilerplate and can basically be copy-pasta between implementa
         }
         self.bio_ss.release_resources(self.resource_grant.grant_id).unwrap();
     }
-}
-</code></pre>
+}</code></pre>
 <p>Finally, there should be at least a <code>new()</code> implementation for the BIO object.</p>
 <pre><code class="language-rust ignore">impl Captouch {
     // In this example, the user specifies the dynamic pin as an `arbitrary_int::u5`, and
     // can also specify a mode for IO configuration. The three possible modes for IoConfig
     // are `Overwrite`, where any previous pin configurations are overwritten on `new()`;
-    // `SetOnly` which will effectively &quot;OR&quot; in the new pin configs; and `ClearOnly` which
+    // `SetOnly` which will effectively "OR" in the new pin configs; and `ClearOnly` which
     // will clear any pin configuration where the bit is set to `1`.
     //
     // If IoConfigMode is None, the system defaults to Overwrite mode.
@@ -596,7 +628,7 @@ of scope. This is boilerplate and can basically be copy-pasta between implementa
         //
         // safety: fifo1 and fifo2 are stored in this object so they aren't Drop'd before the object is
         // destroyed
-        let txrx_handle = unsafe { bio_ss.get_core_handle(Fifo::Fifo3) }?.expect(&quot;Didn't get FIFO3 handle&quot;);
+        let txrx_handle = unsafe { bio_ss.get_core_handle(Fifo::Fifo3) }?.expect("Didn't get FIFO3 handle");
 
         // This converts the handle into an object with CSR-like semantic meanings. While not obvious
         // from this example, one reason handles and CSRs are split is that we can now freely create and
@@ -625,53 +657,57 @@ bio_code!(
     CAPTOUCH_SENSE_START,
     CAPTOUCH_SENSE_END,
 
-    &quot;mv    x5, x19&quot;,         // Load pin mask into register x5.
-    &quot;mv    x26, x5&quot;,         // Set GPIO mask to our pin.
-&quot;10:&quot;, // start of sensor loop
-    &quot;mv    x24, x5&quot;,         // Configure pin as an OUTPUT.
-    &quot;mv    x23, x0&quot;,         // Drive pin LOW.
+    "mv    x5, x19",         // Load pin mask into register x5.
+    "mv    x26, x5",         // Set GPIO mask to our pin.
+"10:", // start of sensor loop
+    "mv    x24, x5",         // Configure pin as an OUTPUT.
+    "mv    x23, x0",         // Drive pin LOW.
 
-    &quot;li    x6, 0x100&quot;,
-&quot;20:&quot;, // wait loop for &quot;low&quot; settling - this can be made much shorter if needed
+    "li    x6, 0x100",
+"20:", // wait loop for "low" settling - this can be made much shorter if needed
     // as it is, the sampling rate is about 236kHz, which is already quite high
-    &quot;addi  x6, x6, -1&quot;,
-    &quot;bne   x6, x0, 20b&quot;,
+    "addi  x6, x6, -1",
+    "bne   x6, x0, 20b",
 
-    &quot;mv    x7,  x31&quot;,        // remember aclk time
-    &quot;mv    x25, x5&quot;,         // make it an input
+    "mv    x7,  x31",        // remember aclk time
+    "mv    x25, x5",         // make it an input
     // now, the pull-up on the pin will slowly charge the capacitance on the pin. We wait
     // for the rising edge to be detected and that is our captouch interval
-    &quot;mv    x20, x0&quot;,         // wait for quantum: based on EXTCLK rising edge on the configured pin
+    "mv    x20, x0",         // wait for quantum: based on EXTCLK rising edge on the configured pin
 
-    &quot;mv    x8,  x31&quot;,        // remember aclk time
+    "mv    x8,  x31",        // remember aclk time
 
     // mask out core ID
-    &quot;li    x10, 0x3FFFFFFF&quot;,  // x10 is re-used in roll-over computation below
-    &quot;and   x7, x7, x10&quot;,
-    &quot;and   x8, x8, x10&quot;,
+    "li    x10, 0x3FFFFFFF",  // x10 is re-used in roll-over computation below
+    "and   x7, x7, x10",
+    "and   x8, x8, x10",
 
     // handle roll-over case: x7 is greater than x8 in the case of roll-over
-    &quot;bgtu  x7, x8, 30f&quot;,
-    &quot;sub   x9, x8, x7&quot;,      // total cycles is x8 - x7
-    &quot;j 40f&quot;,
-&quot;30:&quot;, // roll-over path
-    &quot;sub   x10, x10, x7&quot;,      // x10 now contains cycles from max versus start
-    &quot;add   x9, x10, x8&quot;,      // total cycles is x10 + x8 (masked)
+    "bgtu  x7, x8, 30f",
+    "sub   x9, x8, x7",      // total cycles is x8 - x7
+    "j 40f",
+"30:", // roll-over path
+    "sub   x10, x10, x7",      // x10 now contains cycles from max versus start
+    "add   x9, x10, x8",      // total cycles is x10 + x8 (masked)
 
-&quot;40:&quot;,
-    &quot;mv    x19, x9&quot;,         // report the delta-t
+"40:",
+    "mv    x19, x9",         // report the delta-t
     // the line below keeps us from blocking on the FIFO being full - we steal our own entry
     // and cause the host to read the stale value in the FIFO.
-    &quot;mv    x0, x19&quot;,         // drain the FIFO entry - host will read the &quot;stale&quot; empty entry
-    &quot;j     10b&quot;
-);
-</code></pre>
+    "mv    x0, x19",         // drain the FIFO entry - host will read the "stale" empty entry
+    "j     10b"
+);</code></pre>
 <p>Above is the minimum amount of code necessary to define a BIO function in Xous. There are more functions in the Captouch example; readers are referred to the <a href="https://github.com/betrusted-io/xous-core/blob/dev/libs/bio-lib/src/captouch.rs">implementation</a> to see all the different APIs, as the focus of this section is to walk through the creation of a BIO object in Xous, and not go into the function of captouch in detail.</p>
 <h2 id="bio-register-details"><a class="header" href="#bio-register-details">BIO Register Details</a></h2>
 <p>This section documents the details of the BIO register set.</p>
 <h1 id="bio_bdma"><a class="header" href="#bio_bdma">BIO_BDMA</a></h1>
 <h2 id="register-listing-for-bio_bdma"><a class="header" href="#register-listing-for-bio_bdma">Register Listing for BIO_BDMA</a></h2>
-<table><thead><tr><th>Register</th><th>Address</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register</th><th>Address</th></tr>
+</thead>
+<tbody>
 <tr><td><a href="#bio_bdma_sfr_ctrl">BIO_BDMA_SFR_CTRL</a></td><td><a href="#bio_bdma_sfr_ctrl">0x50124000</a></td></tr>
 <tr><td><a href="#bio_bdma_sfr_cfginfo">BIO_BDMA_SFR_CFGINFO</a></td><td><a href="#bio_bdma_sfr_cfginfo">0x50124004</a></td></tr>
 <tr><td><a href="#bio_bdma_sfr_config">BIO_BDMA_SFR_CONFIG</a></td><td><a href="#bio_bdma_sfr_config">0x50124008</a></td></tr>
@@ -732,16 +768,25 @@ bio_code!(
 <tr><td><a href="#bio_bdma_sfr_filter_bounds_2">BIO_BDMA_SFR_FILTER_BOUNDS_2</a></td><td><a href="#bio_bdma_sfr_filter_bounds_2">0x501240f4</a></td></tr>
 <tr><td><a href="#bio_bdma_sfr_filter_base_3">BIO_BDMA_SFR_FILTER_BASE_3</a></td><td><a href="#bio_bdma_sfr_filter_base_3">0x501240f8</a></td></tr>
 <tr><td><a href="#bio_bdma_sfr_filter_bounds_3">BIO_BDMA_SFR_FILTER_BOUNDS_3</a></td><td><a href="#bio_bdma_sfr_filter_bounds_3">0x501240fc</a></td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_ctrl"><a class="header" href="#bio_bdma_sfr_ctrl">BIO_BDMA_SFR_CTRL</a></h3>
 <p><code>Address: 0x50124000 + 0x0 = 0x50124000</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L488">bio_bdma.sv#L488</a> (line numbers are approximate)</p>
 <p>BIO core enable and clock control.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[3:0]</td><td>EN</td><td><code>1</code> enables the respective BIO core</td></tr>
 <tr><td>[7:4]</td><td>RESTART</td><td><code>1</code> resets the BIO core and causes it to run from location 0x0</td></tr>
 <tr><td>[11:8]</td><td>CLKDIV_RESTART</td><td><code>1</code> resets the clock divider</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><code>RESTART</code> and <code>CLKDIV_RESTART</code> self-clear to 0 after being written with a 1.</p>
 <p>The <code>CLKDIV_RESTART</code> is structured such that cores that are simultaneously restarted
 will have their clock dividers run in synchronous lock-step.</p>
@@ -749,16 +794,28 @@ will have their clock dividers run in synchronous lock-step.</p>
 <p><code>Address: 0x50124000 + 0x4 = 0x50124004</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L489">bio_bdma.sv#L489</a> (line numbers are approximate)</p>
 <p>This register contains constants that identify the version of the core.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[7:0]</td><td>CONSTANT0</td><td>constant value of 8: the version number of the RTL</td></tr>
 <tr><td>[15:8]</td><td>CONSTANT1</td><td>constant value of 4: the number of cores</td></tr>
 <tr><td>[31:16]</td><td>CONSTANT2</td><td>constant value of 4096: the amount of RAM per core</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_config"><a class="header" href="#bio_bdma_sfr_config">BIO_BDMA_SFR_CONFIG</a></h3>
 <p><code>Address: 0x50124000 + 0x8 = 0x50124008</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L490">bio_bdma.sv#L490</a> (line numbers are approximate)</p>
 <p>Configures various clocking modes, DMA filter ranges.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[1:0]</td><td>SNAP_OUTPUT_TO_WHICH</td><td>All BIO outputs snap to the quantum clock divider of the core number specified here</td></tr>
 <tr><td>[2]</td><td>SNAP_OUTPUT_TO_QUANTUM</td><td>When <code>1</code>, enables output snapping for all outputs</td></tr>
 <tr><td>[4:3]</td><td>SNAP_INPUT_TO_WHICH</td><td>All BIO inputs snap to the quantum clock divider of the core number specified here</td></tr>
@@ -766,65 +823,130 @@ will have their clock dividers run in synchronous lock-step.</p>
 <tr><td>[6]</td><td>DISABLE_FILTER_PERI</td><td>When <code>1</code>, disables the host peripheral range whitelist filter. Setting this is strongly discouraged in secure applications.</td></tr>
 <tr><td>[7]</td><td>DISABLE_FILTER_MEM</td><td>When <code>1</code>, disables the host memory range whitelist filter. Setting this is strongly discouraged in secure applications.</td></tr>
 <tr><td>[9:8]</td><td>CLOCKING_MODE</td><td>Clock domain crossing synchronizer setup for host bus access. Defaults to <code>0b11</code> (isochronous operation). This reduces latency at the expense of possible metastability. Set <code>0b00</code> for a 2-stage synchronizer, or <code>0b01</code> or <code>0b10</code> for a 1-stage synchronizer</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_flevel"><a class="header" href="#bio_bdma_sfr_flevel">BIO_BDMA_SFR_FLEVEL</a></h3>
 <p><code>Address: 0x50124000 + 0xc = 0x5012400c</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L492">bio_bdma.sv#L492</a> (line numbers are approximate)</p>
 <p>Reports the number of entries currently in each of the respective FIFOs.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[3:0]</td><td>PCLK_REGFIFO_LEVEL0</td><td>pclk_regfifo_level[0] read only status register</td></tr>
 <tr><td>[7:4]</td><td>PCLK_REGFIFO_LEVEL1</td><td>pclk_regfifo_level[1] read only status register</td></tr>
 <tr><td>[11:8]</td><td>PCLK_REGFIFO_LEVEL2</td><td>pclk_regfifo_level[2] read only status register</td></tr>
 <tr><td>[15:12]</td><td>PCLK_REGFIFO_LEVEL3</td><td>pclk_regfifo_level[3] read only status register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_txf0"><a class="header" href="#bio_bdma_sfr_txf0">BIO_BDMA_SFR_TXF0</a></h3>
 <p><code>Address: 0x50124000 + 0x10 = 0x50124010</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L493">bio_bdma.sv#L493</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>FDIN</td><td>Writes insert data into FIFO0. Writes are dropped if the FIFO is full.</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_txf1"><a class="header" href="#bio_bdma_sfr_txf1">BIO_BDMA_SFR_TXF1</a></h3>
 <p><code>Address: 0x50124000 + 0x14 = 0x50124014</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L494">bio_bdma.sv#L494</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>FDIN</td><td>Writes insert data into FIFO1. Writes are dropped if the FIFO is full.</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_txf2"><a class="header" href="#bio_bdma_sfr_txf2">BIO_BDMA_SFR_TXF2</a></h3>
 <p><code>Address: 0x50124000 + 0x18 = 0x50124018</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L495">bio_bdma.sv#L495</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>FDIN</td><td>Writes insert data into FIFO2. Writes are dropped if the FIFO is full.</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_txf3"><a class="header" href="#bio_bdma_sfr_txf3">BIO_BDMA_SFR_TXF3</a></h3>
 <p><code>Address: 0x50124000 + 0x1c = 0x5012401c</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L496">bio_bdma.sv#L496</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>FDIN</td><td>Writes insert data into FIFO3. Writes are dropped if the FIFO is full.</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_rxf0"><a class="header" href="#bio_bdma_sfr_rxf0">BIO_BDMA_SFR_RXF0</a></h3>
 <p><code>Address: 0x50124000 + 0x20 = 0x50124020</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L497">bio_bdma.sv#L497</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>FDOUT</td><td>Reads remove an entry from FIFO0 or returns the last value if empty.</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_rxf1"><a class="header" href="#bio_bdma_sfr_rxf1">BIO_BDMA_SFR_RXF1</a></h3>
 <p><code>Address: 0x50124000 + 0x24 = 0x50124024</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L498">bio_bdma.sv#L498</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>FDOUT</td><td>Reads remove an entry from FIFO1 or returns the last value if empty.</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_rxf2"><a class="header" href="#bio_bdma_sfr_rxf2">BIO_BDMA_SFR_RXF2</a></h3>
 <p><code>Address: 0x50124000 + 0x28 = 0x50124028</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L499">bio_bdma.sv#L499</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>FDOUT</td><td>Reads remove an entry from FIFO2 or returns the last value if empty.</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_rxf3"><a class="header" href="#bio_bdma_sfr_rxf3">BIO_BDMA_SFR_RXF3</a></h3>
 <p><code>Address: 0x50124000 + 0x2c = 0x5012402c</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L500">bio_bdma.sv#L500</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>FDOUT</td><td>Reads remove an entry from FIFO3 or returns the last value if empty.</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_elevel"><a class="header" href="#bio_bdma_sfr_elevel">BIO_BDMA_SFR_ELEVEL</a></h3>
 <p><code>Address: 0x50124000 + 0x30 = 0x50124030</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L502">bio_bdma.sv#L502</a> (line numbers are approximate)</p>
@@ -838,7 +960,12 @@ will have their clock dividers run in synchronous lock-step.</p>
 <p>Basically each FIFO has two slots. Each slot can be configured with a constant for the
 event comparison, along with a trigger on less than, equal to, or greater than the constant.</p>
 <p>This register sets the constants for these event slots.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[3:0]</td><td>FIFO_EVENT_LEVEL0</td><td>fifo_event_level[0] read/write control register</td></tr>
 <tr><td>[7:4]</td><td>FIFO_EVENT_LEVEL1</td><td>fifo_event_level[1] read/write control register</td></tr>
 <tr><td>[11:8]</td><td>FIFO_EVENT_LEVEL2</td><td>fifo_event_level[2] read/write control register</td></tr>
@@ -847,7 +974,9 @@ event comparison, along with a trigger on less than, equal to, or greater than t
 <tr><td>[23:20]</td><td>FIFO_EVENT_LEVEL5</td><td>fifo_event_level[5] read/write control register</td></tr>
 <tr><td>[27:24]</td><td>FIFO_EVENT_LEVEL6</td><td>fifo_event_level[6] read/write control register</td></tr>
 <tr><td>[31:28]</td><td>FIFO_EVENT_LEVEL7</td><td>fifo_event_level[7] read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_etype"><a class="header" href="#bio_bdma_sfr_etype">BIO_BDMA_SFR_ETYPE</a></h3>
 <p><code>Address: 0x50124000 + 0x34 = 0x50124034</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L503">bio_bdma.sv#L503</a> (line numbers are approximate)</p>
@@ -858,54 +987,96 @@ the inequality is true.</p>
 are in it, we could configure slot 2 with the number 4 (put <code>0b0100</code> into bits [11:8] of
 the <code>BIO_BDMA_SFR_ELEVEL</code>), and set bit 18 of this register, which corresponds to
 the second bit in the <code>FIFO_EVENT_GT_MASK field</code>.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[7:0]</td><td>FIFO_EVENT_LT_MASK</td><td>fifo_event_lt_mask read/write control register</td></tr>
 <tr><td>[15:8]</td><td>FIFO_EVENT_EQ_MASK</td><td>fifo_event_eq_mask read/write control register</td></tr>
 <tr><td>[23:16]</td><td>FIFO_EVENT_GT_MASK</td><td>fifo_event_gt_mask read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_event_set"><a class="header" href="#bio_bdma_sfr_event_set">BIO_BDMA_SFR_EVENT_SET</a></h3>
 <p><code>Address: 0x50124000 + 0x38 = 0x50124038</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L504">bio_bdma.sv#L504</a> (line numbers are approximate)</p>
 <p>The lower 24 bits of the event register are free-form and the host or any BIO core
 can set these to trigger an event condition in any other core. Writing a <code>1</code> into
 a bit position here sets a bit in the event register.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[23:0]</td><td>SFR_EVENT_SET</td><td>sfr_event_set read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_event_clr"><a class="header" href="#bio_bdma_sfr_event_clr">BIO_BDMA_SFR_EVENT_CLR</a></h3>
 <p><code>Address: 0x50124000 + 0x3c = 0x5012403c</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L505">bio_bdma.sv#L505</a> (line numbers are approximate)</p>
 <p>The lower 24 bits of the event register are free-form and the host or any BIO core
 can set these to trigger an event condition in any other core. Writing a <code>1</code> into
 a bit position here clears a bit in the event register.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[23:0]</td><td>SFR_EVENT_CLR</td><td>sfr_event_clr read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_event_status"><a class="header" href="#bio_bdma_sfr_event_status">BIO_BDMA_SFR_EVENT_STATUS</a></h3>
 <p><code>Address: 0x50124000 + 0x40 = 0x50124040</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L506">bio_bdma.sv#L506</a> (line numbers are approximate)</p>
 <p>Reading this register returns the current value of the event register.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SFR_EVENT_STATUS</td><td>sfr_event_status read only status register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_extclock"><a class="header" href="#bio_bdma_sfr_extclock">BIO_BDMA_SFR_EXTCLOCK</a></h3>
 <p><code>Address: 0x50124000 + 0x44 = 0x50124044</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L508">bio_bdma.sv#L508</a> (line numbers are approximate)</p>
 <p>Each of the four BIO cores can have its quantum derived from an external clock pin.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[3:0]</td><td>USE_EXTCLK</td><td>Setting a bit to <code>1</code> in this register causes the respective BIO core to get its quantum from the pin specified in the upper bits of this register.</td></tr>
-<tr><td>[8:4]</td><td>EXTCLK_GPIO_0</td><td>Which BIO pin to use for BIO core 0's EXTCLK, if bit 0 is set.</td></tr>
-<tr><td>[13:9]</td><td>EXTCLK_GPIO_1</td><td>Which BIO pin to use for BIO core 1's EXTCLK, if bit 1 is set.</td></tr>
-<tr><td>[18:14]</td><td>EXTCLK_GPIO_2</td><td>Which BIO pin to use for BIO core 2's EXTCLK, if bit 2 is set.</td></tr>
-<tr><td>[23:19]</td><td>EXTCLK_GPIO_3</td><td>Which BIO pin to use for BIO core 3's EXTCLK, if bit 3 is set.</td></tr>
-</tbody></table>
+<tr><td>[8:4]</td><td>EXTCLK_GPIO_0</td><td>Which BIO pin to use for BIO core 0’s EXTCLK, if bit 0 is set.</td></tr>
+<tr><td>[13:9]</td><td>EXTCLK_GPIO_1</td><td>Which BIO pin to use for BIO core 1’s EXTCLK, if bit 1 is set.</td></tr>
+<tr><td>[18:14]</td><td>EXTCLK_GPIO_2</td><td>Which BIO pin to use for BIO core 2’s EXTCLK, if bit 2 is set.</td></tr>
+<tr><td>[23:19]</td><td>EXTCLK_GPIO_3</td><td>Which BIO pin to use for BIO core 3’s EXTCLK, if bit 3 is set.</td></tr>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_fifo_clr"><a class="header" href="#bio_bdma_sfr_fifo_clr">BIO_BDMA_SFR_FIFO_CLR</a></h3>
 <p><code>Address: 0x50124000 + 0x48 = 0x50124048</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L509">bio_bdma.sv#L509</a> (line numbers are approximate)</p>
 <p>Writing a <code>1</code> into a bit in this register causes the respective FIFO to have its status set to empty. It does not clear the contents of the FIFO - it merely causes the pointers to indicate that the FIFO is now empty.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[3:0]</td><td>SFR_FIFO_CLR</td><td>sfr_fifo_clr read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_qdiv0"><a class="header" href="#bio_bdma_sfr_qdiv0">BIO_BDMA_SFR_QDIV0</a></h3>
 <p><code>Address: 0x50124000 + 0x50 = 0x50124050</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L511">bio_bdma.sv#L511</a> (line numbers are approximate)</p>
@@ -928,104 +1099,194 @@ a bit position here clears a bit in the event register.</p>
     let result = (numerator + (divisor as u64) / 2) / (divisor as u64);
 
     result as u32
-}
-</code></pre>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+}</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[7:0]</td><td>UNUSED_DIV</td><td>unused_div read/write control register</td></tr>
 <tr><td>[15:8]</td><td>DIV_FRAC</td><td>div_frac read/write control register</td></tr>
 <tr><td>[31:16]</td><td>DIV_INT</td><td>div_int read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_qdiv1"><a class="header" href="#bio_bdma_sfr_qdiv1">BIO_BDMA_SFR_QDIV1</a></h3>
 <p><code>Address: 0x50124000 + 0x54 = 0x50124054</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L512">bio_bdma.sv#L512</a> (line numbers are approximate)</p>
 <p>Quantum divider for BIO core 1.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[7:0]</td><td>UNUSED_DIV</td><td>unused_div read/write control register</td></tr>
 <tr><td>[15:8]</td><td>DIV_FRAC</td><td>div_frac read/write control register</td></tr>
 <tr><td>[31:16]</td><td>DIV_INT</td><td>div_int read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_qdiv2"><a class="header" href="#bio_bdma_sfr_qdiv2">BIO_BDMA_SFR_QDIV2</a></h3>
 <p><code>Address: 0x50124000 + 0x58 = 0x50124058</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L513">bio_bdma.sv#L513</a> (line numbers are approximate)</p>
 <p>Quantum divider for BIO core 2.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[7:0]</td><td>UNUSED_DIV</td><td>unused_div read/write control register</td></tr>
 <tr><td>[15:8]</td><td>DIV_FRAC</td><td>div_frac read/write control register</td></tr>
 <tr><td>[31:16]</td><td>DIV_INT</td><td>div_int read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_qdiv3"><a class="header" href="#bio_bdma_sfr_qdiv3">BIO_BDMA_SFR_QDIV3</a></h3>
 <p><code>Address: 0x50124000 + 0x5c = 0x5012405c</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L514">bio_bdma.sv#L514</a> (line numbers are approximate)</p>
 <p>Quantum divider for BIO core 3.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[7:0]</td><td>UNUSED_DIV</td><td>unused_div read/write control register</td></tr>
 <tr><td>[15:8]</td><td>DIV_FRAC</td><td>div_frac read/write control register</td></tr>
 <tr><td>[31:16]</td><td>DIV_INT</td><td>div_int read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_sync_bypass"><a class="header" href="#bio_bdma_sfr_sync_bypass">BIO_BDMA_SFR_SYNC_BYPASS</a></h3>
 <p><code>Address: 0x50124000 + 0x60 = 0x50124060</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L516">bio_bdma.sv#L516</a> (line numbers are approximate)</p>
 <p>When a bit in this register is set, the two-stage clock synchronizer on a BIO input pin is skipped.</p>
 <p>This introduces a risk of metastability, but reduces the latency of capturing a GPIO input.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SFR_SYNC_BYPASS</td><td>sfr_sync_bypass read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_io_oe_inv"><a class="header" href="#bio_bdma_sfr_io_oe_inv">BIO_BDMA_SFR_IO_OE_INV</a></h3>
 <p><code>Address: 0x50124000 + 0x64 = 0x50124064</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L517">bio_bdma.sv#L517</a> (line numbers are approximate)</p>
 <p>Setting a bit in this field causes the output enable behavior to be inverted for that BIO bit. This is applied to the signals as they are sent to the I/O block, and thus affects all BIO cores.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SFR_IO_OE_INV</td><td>sfr_io_oe_inv read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_io_o_inv"><a class="header" href="#bio_bdma_sfr_io_o_inv">BIO_BDMA_SFR_IO_O_INV</a></h3>
 <p><code>Address: 0x50124000 + 0x68 = 0x50124068</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L518">bio_bdma.sv#L518</a> (line numbers are approximate)</p>
 <p>Setting a bit in this field causes the output data behavior to be inverted for that BIO bit. This is applied to the signals as they are sent to the I/O block, and thus affects all BIO cores.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SFR_IO_O_INV</td><td>sfr_io_o_inv read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_io_i_inv"><a class="header" href="#bio_bdma_sfr_io_i_inv">BIO_BDMA_SFR_IO_I_INV</a></h3>
 <p><code>Address: 0x50124000 + 0x6c = 0x5012406c</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L519">bio_bdma.sv#L519</a> (line numbers are approximate)</p>
 <p>Setting a bit in this field causes the input data behavior to be inverted for that BIO bit. This is applied to the signals as they are sent to the I/O block, and thus affects all BIO cores.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SFR_IO_I_INV</td><td>sfr_io_i_inv read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_irqmask_0"><a class="header" href="#bio_bdma_sfr_irqmask_0">BIO_BDMA_SFR_IRQMASK_0</a></h3>
 <p><code>Address: 0x50124000 + 0x70 = 0x50124070</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L521">bio_bdma.sv#L521</a> (line numbers are approximate)</p>
 <p>Setting a bit in this field causes the respective bit in the event register for the BIO to trigger PIOIRQ0 when the event bit is set. See <a href="https://ci.betrusted.io/bao1x-cpu/irqarray18.html#irqarray18-ev-enable">IRQARRAY18</a> for the corresponding system IRQ interface.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SFR_IRQMASK_0</td><td>sfr_irqmask_0 read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_irqmask_1"><a class="header" href="#bio_bdma_sfr_irqmask_1">BIO_BDMA_SFR_IRQMASK_1</a></h3>
 <p><code>Address: 0x50124000 + 0x74 = 0x50124074</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L522">bio_bdma.sv#L522</a> (line numbers are approximate)</p>
 <p>Setting a bit in this field causes the respective bit in the event register for the BIO to trigger PIOIRQ1 when the event bit is set. See <a href="https://ci.betrusted.io/bao1x-cpu/irqarray18.html#irqarray18-ev-enable">IRQARRAY18</a> for the corresponding system IRQ interface.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SFR_IRQMASK_1</td><td>sfr_irqmask_1 read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_irqmask_2"><a class="header" href="#bio_bdma_sfr_irqmask_2">BIO_BDMA_SFR_IRQMASK_2</a></h3>
 <p><code>Address: 0x50124000 + 0x78 = 0x50124078</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L523">bio_bdma.sv#L523</a> (line numbers are approximate)</p>
 <p>Setting a bit in this field causes the respective bit in the event register for the BIO to trigger PIOIRQ2 when the event bit is set. See <a href="https://ci.betrusted.io/bao1x-cpu/irqarray18.html#irqarray18-ev-enable">IRQARRAY18</a> for the corresponding system IRQ interface.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SFR_IRQMASK_2</td><td>sfr_irqmask_2 read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_irqmask_3"><a class="header" href="#bio_bdma_sfr_irqmask_3">BIO_BDMA_SFR_IRQMASK_3</a></h3>
 <p><code>Address: 0x50124000 + 0x7c = 0x5012407c</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L524">bio_bdma.sv#L524</a> (line numbers are approximate)</p>
 <p>Setting a bit in this field causes the respective bit in the event register for the BIO to trigger PIOIRQ3 when the event bit is set. See <a href="https://ci.betrusted.io/bao1x-cpu/irqarray18.html#irqarray18-ev-enable">IRQARRAY18</a> for the corresponding system IRQ interface.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SFR_IRQMASK_3</td><td>sfr_irqmask_3 read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_irq_edge"><a class="header" href="#bio_bdma_sfr_irq_edge">BIO_BDMA_SFR_IRQ_EDGE</a></h3>
 <p><code>Address: 0x50124000 + 0x80 = 0x50124080</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L525">bio_bdma.sv#L525</a> (line numbers are approximate)</p>
 <p>When a bit is set to <code>1</code>, it causes the corresponding fully-processed IRQ output to only output a pulse on the rising edge of the interrupt event for that line.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[3:0]</td><td>SFR_IRQ_EDGE</td><td>sfr_irq_edge read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dbg_padout"><a class="header" href="#bio_bdma_sfr_dbg_padout">BIO_BDMA_SFR_DBG_PADOUT</a></h3>
 <p>This register is buggy in the Baochip-1x and does nothing.</p>
 <h3 id="bio_bdma_sfr_dbg_padoe"><a class="header" href="#bio_bdma_sfr_dbg_padoe">BIO_BDMA_SFR_DBG_PADOE</a></h3>
@@ -1034,50 +1295,92 @@ a bit position here clears a bit in the event register.</p>
 <p><code>Address: 0x50124000 + 0x90 = 0x50124090</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L529">bio_bdma.sv#L529</a> (line numbers are approximate)</p>
 <p>Returns the latest program counter of BIO core 0 and if the core has encountered a trap condition. Note that the PC is only approximate because the core runs much faster than the register interface.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[0]</td><td>DBG_PC</td><td>dbg_pc read only status register</td></tr>
 <tr><td>[1]</td><td>TRAP</td><td>trap read only status register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dbg1"><a class="header" href="#bio_bdma_sfr_dbg1">BIO_BDMA_SFR_DBG1</a></h3>
 <p><code>Address: 0x50124000 + 0x94 = 0x50124094</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L530">bio_bdma.sv#L530</a> (line numbers are approximate)</p>
 <p>Returns the latest program counter of BIO core 1 and if the core has encountered a trap condition. Note that the PC is only approximate because the core runs much faster than the register interface.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[0]</td><td>DBG_PC</td><td>dbg_pc read only status register</td></tr>
 <tr><td>[1]</td><td>TRAP</td><td>trap read only status register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dbg2"><a class="header" href="#bio_bdma_sfr_dbg2">BIO_BDMA_SFR_DBG2</a></h3>
 <p><code>Address: 0x50124000 + 0x98 = 0x50124098</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L531">bio_bdma.sv#L531</a> (line numbers are approximate)</p>
 <p>Returns the latest program counter of BIO core 2 and if the core has encountered a trap condition. Note that the PC is only approximate because the core runs much faster than the register interface.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[0]</td><td>DBG_PC</td><td>dbg_pc read only status register</td></tr>
 <tr><td>[1]</td><td>TRAP</td><td>trap read only status register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dbg3"><a class="header" href="#bio_bdma_sfr_dbg3">BIO_BDMA_SFR_DBG3</a></h3>
 <p><code>Address: 0x50124000 + 0x9c = 0x5012409c</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L532">bio_bdma.sv#L532</a> (line numbers are approximate)</p>
 <p>Returns the latest program counter of BIO core 3 and if the core has encountered a trap condition. Note that the PC is only approximate because the core runs much faster than the register interface.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[0]</td><td>DBG_PC</td><td>dbg_pc read only status register</td></tr>
 <tr><td>[1]</td><td>TRAP</td><td>trap read only status register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_mem_gutter"><a class="header" href="#bio_bdma_sfr_mem_gutter">BIO_BDMA_SFR_MEM_GUTTER</a></h3>
 <p><code>Address: 0x50124000 + 0xa0 = 0x501240a0</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L535">bio_bdma.sv#L535</a> (line numbers are approximate)</p>
-<p>Sets the physical address for the DMA &quot;gutter&quot; on memory-range accesses. Any attempt to access addresses that are not in the whitelist are routed to the gutter.</p>
+<p>Sets the physical address for the DMA “gutter” on memory-range accesses. Any attempt to access addresses that are not in the whitelist are routed to the gutter.</p>
 <p>This needs to map to a valid write location in physical memory so that the DMA transaction completes with an acknowledge. On Xous, this is mapped to the very highest word in physical RAM.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SFR_MEM_GUTTER</td><td>sfr_mem_gutter read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_peri_gutter"><a class="header" href="#bio_bdma_sfr_peri_gutter">BIO_BDMA_SFR_PERI_GUTTER</a></h3>
 <p><code>Address: 0x50124000 + 0xa4 = 0x501240a4</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L536">bio_bdma.sv#L536</a> (line numbers are approximate)</p>
-<p>Sets the physical address for the DMA &quot;gutter&quot; on peripheral-range accesses. Any attempt to access addresses that are not in the whitelist are routed to the gutter.</p>
+<p>Sets the physical address for the DMA “gutter” on peripheral-range accesses. Any attempt to access addresses that are not in the whitelist are routed to the gutter.</p>
 <p>This needs to map to a valid write location in physical memory so that the DMA transaction completes with an acknowledge. On Xous, this maps to the the <code>NULL</code> location, which is a region that always returns 0 regardless of what is written or read to.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SFR_PERI_GUTTER</td><td>sfr_peri_gutter read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dmareq_map_cr_evmap0"><a class="header" href="#bio_bdma_sfr_dmareq_map_cr_evmap0">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP0</a></h3>
 <p><code>Address: 0x50124000 + 0xb0 = 0x501240b0</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L571">bio_bdma.sv#L571</a> (line numbers are approximate)</p>
@@ -1097,76 +1400,160 @@ events are also readable as a bank of status registers, mapped again 1:1 into 6x
 register maps to the lower-numbered 32-bit word of the event map.</p>
 <p>The actual mapping of Baochip-1x events is poorly documented. Readers are referred to this
 <a href="https://github.com/baochip/baochip-1x/blob/f2e1d7f06ed5538f1cf6765b5845fab4c5a2ff2e/verilate/bao_core.py#L1062-L1131">event map</a>, or to the RTL itself to determine the event mappings.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>CR_EVMAP0</td><td>cr_evmap read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dmareq_map_cr_evmap1"><a class="header" href="#bio_bdma_sfr_dmareq_map_cr_evmap1">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP1</a></h3>
 <p><code>Address: 0x50124000 + 0xb4 = 0x501240b4</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L571">bio_bdma.sv#L571</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>CR_EVMAP1</td><td>cr_evmap read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dmareq_map_cr_evmap2"><a class="header" href="#bio_bdma_sfr_dmareq_map_cr_evmap2">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP2</a></h3>
 <p><code>Address: 0x50124000 + 0xb8 = 0x501240b8</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L571">bio_bdma.sv#L571</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>CR_EVMAP2</td><td>cr_evmap read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dmareq_map_cr_evmap3"><a class="header" href="#bio_bdma_sfr_dmareq_map_cr_evmap3">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP3</a></h3>
 <p><code>Address: 0x50124000 + 0xbc = 0x501240bc</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L571">bio_bdma.sv#L571</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>CR_EVMAP3</td><td>cr_evmap read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dmareq_map_cr_evmap4"><a class="header" href="#bio_bdma_sfr_dmareq_map_cr_evmap4">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP4</a></h3>
 <p><code>Address: 0x50124000 + 0xc0 = 0x501240c0</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L571">bio_bdma.sv#L571</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>CR_EVMAP4</td><td>cr_evmap read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dmareq_map_cr_evmap5"><a class="header" href="#bio_bdma_sfr_dmareq_map_cr_evmap5">BIO_BDMA_SFR_DMAREQ_MAP_CR_EVMAP5</a></h3>
 <p><code>Address: 0x50124000 + 0xc4 = 0x501240c4</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L571">bio_bdma.sv#L571</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>CR_EVMAP5</td><td>cr_evmap read/write control register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dmareq_stat_sr_evstat0"><a class="header" href="#bio_bdma_sfr_dmareq_stat_sr_evstat0">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT0</a></h3>
 <p><code>Address: 0x50124000 + 0xc8 = 0x501240c8</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L572">bio_bdma.sv#L572</a> (line numbers are approximate)</p>
 <p>The <code>STAT*</code> series of registers read back the current status of the event lines. This is useful for debugging the event configuration.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SR_EVSTAT0</td><td>sr_evstat read only status register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dmareq_stat_sr_evstat1"><a class="header" href="#bio_bdma_sfr_dmareq_stat_sr_evstat1">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT1</a></h3>
 <p><code>Address: 0x50124000 + 0xcc = 0x501240cc</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L572">bio_bdma.sv#L572</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SR_EVSTAT1</td><td>sr_evstat read only status register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dmareq_stat_sr_evstat2"><a class="header" href="#bio_bdma_sfr_dmareq_stat_sr_evstat2">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT2</a></h3>
 <p><code>Address: 0x50124000 + 0xd0 = 0x501240d0</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L572">bio_bdma.sv#L572</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SR_EVSTAT2</td><td>sr_evstat read only status register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dmareq_stat_sr_evstat3"><a class="header" href="#bio_bdma_sfr_dmareq_stat_sr_evstat3">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT3</a></h3>
 <p><code>Address: 0x50124000 + 0xd4 = 0x501240d4</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L572">bio_bdma.sv#L572</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SR_EVSTAT3</td><td>sr_evstat read only status register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dmareq_stat_sr_evstat4"><a class="header" href="#bio_bdma_sfr_dmareq_stat_sr_evstat4">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT4</a></h3>
 <p><code>Address: 0x50124000 + 0xd8 = 0x501240d8</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L572">bio_bdma.sv#L572</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SR_EVSTAT4</td><td>sr_evstat read only status register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_dmareq_stat_sr_evstat5"><a class="header" href="#bio_bdma_sfr_dmareq_stat_sr_evstat5">BIO_BDMA_SFR_DMAREQ_STAT_SR_EVSTAT5</a></h3>
 <p><code>Address: 0x50124000 + 0xdc = 0x501240dc</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L572">bio_bdma.sv#L572</a> (line numbers are approximate)</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[31:0]</td><td>SR_EVSTAT5</td><td>sr_evstat read only status register</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_filter_base_0"><a class="header" href="#bio_bdma_sfr_filter_base_0">BIO_BDMA_SFR_FILTER_BASE_0</a></h3>
 <p><code>Address: 0x50124000 + 0xe0 = 0x501240e0</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L593">bio_bdma.sv#L593</a> (line numbers are approximate)</p>
@@ -1174,69 +1561,127 @@ register maps to the lower-numbered 32-bit word of the event map.</p>
 <p>Note that the memory space for the Baochip-1x is divided into a memory space, and a peripheral space. Addresses from 0x6000_0000-0x8000_0000 are considered to be memory space, and addresses from 0x4000_0000 - 0x6000_0000 are considered to be peripheral space. All other addresses can lead to undefined behavior.</p>
 <p>By default, all base/bounds are set to 0, which effectively disables BIO DMA access to the rest of the system. Thus, these registers <em>must</em> be configured before attempting to use the BIO to access either memory or peripheral regions in the Baochip-1x.</p>
 <p>This register specifies the base of whitelist region 0.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[19:0]</td><td>FILTER_BASE</td><td>filter_base read/write control register, in pages</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_filter_bounds_0"><a class="header" href="#bio_bdma_sfr_filter_bounds_0">BIO_BDMA_SFR_FILTER_BOUNDS_0</a></h3>
 <p><code>Address: 0x50124000 + 0xe4 = 0x501240e4</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L594">bio_bdma.sv#L594</a> (line numbers are approximate)</p>
 <p>This register specifies the bounds of whitelist region 0.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[19:0]</td><td>FILTER_BOUNDS</td><td>filter_bounds read/write control register, in pages</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_filter_base_1"><a class="header" href="#bio_bdma_sfr_filter_base_1">BIO_BDMA_SFR_FILTER_BASE_1</a></h3>
 <p><code>Address: 0x50124000 + 0xe8 = 0x501240e8</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L595">bio_bdma.sv#L595</a> (line numbers are approximate)</p>
 <p>This register specifies the base of whitelist region 1.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[19:0]</td><td>FILTER_BASE</td><td>filter_base read/write control register, in pages</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_filter_bounds_1"><a class="header" href="#bio_bdma_sfr_filter_bounds_1">BIO_BDMA_SFR_FILTER_BOUNDS_1</a></h3>
 <p><code>Address: 0x50124000 + 0xec = 0x501240ec</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L596">bio_bdma.sv#L596</a> (line numbers are approximate)</p>
 <p>This register specifies the bounds of whitelist region 1.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[19:0]</td><td>FILTER_BOUNDS</td><td>filter_bounds read/write control register, in pages</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_filter_base_2"><a class="header" href="#bio_bdma_sfr_filter_base_2">BIO_BDMA_SFR_FILTER_BASE_2</a></h3>
 <p><code>Address: 0x50124000 + 0xf0 = 0x501240f0</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L597">bio_bdma.sv#L597</a> (line numbers are approximate)</p>
 <p>This register specifies the base of whitelist region 2.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[19:0]</td><td>FILTER_BASE</td><td>filter_base read/write control register, in pages</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_filter_bounds_2"><a class="header" href="#bio_bdma_sfr_filter_bounds_2">BIO_BDMA_SFR_FILTER_BOUNDS_2</a></h3>
 <p><code>Address: 0x50124000 + 0xf4 = 0x501240f4</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L598">bio_bdma.sv#L598</a> (line numbers are approximate)</p>
 <p>This register specifies the bounds of whitelist region 2.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[19:0]</td><td>FILTER_BOUNDS</td><td>filter_bounds read/write control register, in pages</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_filter_base_3"><a class="header" href="#bio_bdma_sfr_filter_base_3">BIO_BDMA_SFR_FILTER_BASE_3</a></h3>
 <p><code>Address: 0x50124000 + 0xf8 = 0x501240f8</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L599">bio_bdma.sv#L599</a> (line numbers are approximate)</p>
 <p>This register specifies the base of whitelist region 3.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[19:0]</td><td>FILTER_BASE</td><td>filter_base read/write control register, in pages</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="bio_bdma_sfr_filter_bounds_3"><a class="header" href="#bio_bdma_sfr_filter_bounds_3">BIO_BDMA_SFR_FILTER_BOUNDS_3</a></h3>
 <p><code>Address: 0x50124000 + 0xfc = 0x501240fc</code></p>
 <p>See <a href="https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L600">bio_bdma.sv#L600</a> (line numbers are approximate)</p>
 <p>This register specifies the bounds of whitelist region 3.</p>
-<table><thead><tr><th>Field</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td>[19:0]</td><td>FILTER_BOUNDS</td><td>filter_bounds read/write control register, in pages</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="ch00-01-autogenerated.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
-                            <a rel="next" href="ch03-00-io-configuration.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+
+                            <a rel="next prefetch" href="ch03-00-io-configuration.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
@@ -1244,25 +1689,41 @@ register maps to the lower-numbered 32-bit word of the event map.</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="ch00-01-autogenerated.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
-                    <a rel="next" href="ch03-00-io-configuration.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+
+                    <a rel="next prefetch" href="ch03-00-io-configuration.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
-        <script type="text/javascript">
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
             window.playground_copyable = true;
         </script>
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
+
+
+
+    </div>
     </body>
 </html>
