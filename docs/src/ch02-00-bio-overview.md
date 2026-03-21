@@ -1143,8 +1143,8 @@ Returns the latest program counter of BIO core 0 and if the core has encountered
 
 | Field | Name | Description |
 | --- | --- | --- |
-| [0] | DBG_PC | dbg_pc read only status register |
-| [1] | TRAP | trap read only status register |
+| [11:0] | DBG_PC | dbg_pc read only status register |
+| [12] | TRAP | trap read only status register |
 
 ### BIO_BDMA_SFR_DBG1
 
@@ -1156,8 +1156,8 @@ Returns the latest program counter of BIO core 1 and if the core has encountered
 
 | Field | Name | Description |
 | --- | --- | --- |
-| [0] | DBG_PC | dbg_pc read only status register |
-| [1] | TRAP | trap read only status register |
+| [11:0] | DBG_PC | dbg_pc read only status register |
+| [12] | TRAP | trap read only status register |
 
 ### BIO_BDMA_SFR_DBG2
 
@@ -1169,8 +1169,8 @@ Returns the latest program counter of BIO core 2 and if the core has encountered
 
 | Field | Name | Description |
 | --- | --- | --- |
-| [0] | DBG_PC | dbg_pc read only status register |
-| [1] | TRAP | trap read only status register |
+| [11:0] | DBG_PC | dbg_pc read only status register |
+| [12] | TRAP | trap read only status register |
 
 ### BIO_BDMA_SFR_DBG3
 
@@ -1182,8 +1182,8 @@ Returns the latest program counter of BIO core 3 and if the core has encountered
 
 | Field | Name | Description |
 | --- | --- | --- |
-| [0] | DBG_PC | dbg_pc read only status register |
-| [1] | TRAP | trap read only status register |
+| [11:0] | DBG_PC | dbg_pc read only status register |
+| [12] | TRAP | trap read only status register |
 
 ### BIO_BDMA_SFR_MEM_GUTTER
 
