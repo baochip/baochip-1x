@@ -65,10 +65,16 @@ jobs:
         curl -sSLo linkcheck.sh \
           https://raw.githubusercontent.com/rust-lang/rust/master/src/tools/linkchecker/linkcheck.sh
         # Cannot use --all here because of the generated redirect pages aren't available.
+        rm -f book/print.html
         sh linkcheck.sh book
+
     - name: Deploy Book
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: gh-pages
         publish_dir: ./docs/book
+        enable_jekyll: false
+
+    - name: Verify build output
+      run: ls -la docs/book/
