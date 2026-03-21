@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-514e6236.js";
+            window.path_to_searchindex_js = "searchindex-4ca5de37.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-e2e6b695.js"></script>
@@ -1560,6 +1560,7 @@ register maps to the lower-numbered 32-bit word of the event map.</p>
 <p>The DMA white list can consist of up to four address ranges, defined by a <code>(base, bounds)</code> pair. The <code>base</code> is a physical address specified in units of 4 kiB pages, and <code>bounds</code> is the length of the region, also in pages.</p>
 <p>Note that the memory space for the Baochip-1x is divided into a memory space, and a peripheral space. Addresses from 0x6000_0000-0x8000_0000 are considered to be memory space, and addresses from 0x4000_0000 - 0x6000_0000 are considered to be peripheral space. All other addresses can lead to undefined behavior.</p>
 <p>By default, all base/bounds are set to 0, which effectively disables BIO DMA access to the rest of the system. Thus, these registers <em>must</em> be configured before attempting to use the BIO to access either memory or peripheral regions in the Baochip-1x.</p>
+<p>NOTE: there is a bug in the Baochip-1x which prevents the <code>FILTER</code> series of registers from being read back. Writes succeed, but the value returned when inspecting the FILTER registers is undefined.</p>
 <p>This register specifies the base of whitelist region 0.</p>
 <div class="table-wrapper">
 <table>
@@ -1669,6 +1670,70 @@ register maps to the lower-numbered 32-bit word of the event map.</p>
 </tbody>
 </table>
 </div>
+<h2 id="erratum"><a class="header" href="#erratum">ERRATUM</a></h2>
+<ul>
+<li>BUG 1: (“phantom rs1”): For lui/auipc/jal (U&amp;J type instructions),
+the 5-bit field at instruction bits [19:15] is not gated off. If that field
+decodes to register 16-19 (x16-x19) for just these instruction types,
+a spurious pending read is made from the corresponding FIFO,
+which affects correctnes and can block execution.</li>
+<li>BUG 2: (“phantom rs2”): For non-R/S/B-type instructions, the 5-bit
+field at instruction bits [24:20] should be gated off but isn’t.
+When that field equals 20 (0b10100), a spurious <code>quantum</code> signal
+triggers, which can affect the instruction fetch pipeline.</li>
+</ul>
+<h3 id="automated-work-arounds"><a class="header" href="#automated-work-arounds">Automated Work-Arounds</a></h3>
+<p>For coders compiling from C, these erratum are transparently
+patched by the <code>clang2rustasm.py</code> script. Thus these erratum
+are primarily a challenge to coders hand-writing in assembly.</p>
+<p>For assembly hand-coders, there is a script called <code>erratum_check.py</code>
+which will inspect code inside a <code>bio_code!</code> macro for patterns
+that match the above bugs. It can also auto-patch, if you so desire,
+using <code>--autopatch</code>.</p>
+<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
+<p>The primary pitfalls happen in dealing with immediates, as follows.</p>
+<p>Bug 1 example:</p>
+<p><code>lui a1, 0xa2f96</code></p>
+<p>Here, the <code>9</code> in the second digit of <code>0xa2f96</code> translates to register
+number x18, which triggers the bug. The fix is to create the constant
+with a sequence such as:</p>
+<pre><code>lui a1, 0xa2f06
+lui a2, 0x9      # can't use 0x90 because that triggers the bug
+slli a2, a2, 4   # shift 0x9 into place
+add a1, a1, a2   # Final result. Note that a2 is side-effected.
+</code></pre>
+<p>Bug 2 example:</p>
+<p><code>slli x1, x2, 20</code></p>
+<p>Workaround (splitting the shift):</p>
+<p><code>slli x1, x2, 19</code>
+<code>slli x1, x1, 1</code></p>
+<p>Add, xor, andi, ori are also affected, and the fix requires
+using a temporary variable to compose an intermediate.</p>
+<p>Loads are affected, but not stores. Loads with an offset of
+20 (or containing any coding of 0x14 in the bit field) are
+worked around by pre-decrementing the source register, adding
+the the decrement to the offset, and then re-incrementing the
+source register.</p>
+<h3 id="root-cause"><a class="header" href="#root-cause">Root Cause</a></h3>
+<p>The root cause was a misunderstanding of the register field
+decoders in the PicoRV. I got confused over the register names
+and when I checked for gating, I looked at the output variables
+of the register file, and not the input. Turns out the inputs
+to the register file are very simple:</p>
+<pre><code>			decoded_rs1 &lt;= mem_rdata_latched[19:15];
+			decoded_rs2 &lt;= mem_rdata_latched[24:20];
+</code></pre>
+<p>The good news is that on the write-side, there is an additional
+signal that detects writes, so the bug is not triggered for write
+pattern. While hand-coded test cases were used to check the function
+of the implementation, coverage was limited. Realistic code-freeze
+dates would have informed deeper investment in automated test tooling, but,
+management issues are not the topic of this readme.</p>
+<p>The hardware fix would be to extract the intermediate signals that indicate
+the decoded instruction type and use them to gate the <code>quantum</code>
+and FIFO access lines. However, this would require a full mask
+spin and at a couple million dollars. That’s just not going to happen;
+thus, I get to live with owning this bug for the rest of my life.</p>
 
                     </main>
 
