@@ -969,9 +969,9 @@ pub(crate) fn compute_freq(&self, div_int: u16, div_frac: u8) -> u32 {
 
 | Field | Name | Description |
 | --- | --- | --- |
-| [0] | UNUSED_DIV | unused_div read/write control register |
-| [1] | DIV_FRAC | div_frac read/write control register |
-| [2] | DIV_INT | div_int read/write control register |
+| [7:0] | UNUSED_DIV | unused_div read/write control register |
+| [15:8] | DIV_FRAC | div_frac read/write control register |
+| [31:16] | DIV_INT | div_int read/write control register |
 
 ### BIO_BDMA_SFR_QDIV1
 
@@ -983,9 +983,9 @@ Quantum divider for BIO core 1.
 
 | Field | Name | Description |
 | --- | --- | --- |
-| [0] | UNUSED_DIV | unused_div read/write control register |
-| [1] | DIV_FRAC | div_frac read/write control register |
-| [2] | DIV_INT | div_int read/write control register |
+| [7:0] | UNUSED_DIV | unused_div read/write control register |
+| [15:8] | DIV_FRAC | div_frac read/write control register |
+| [31:16] | DIV_INT | div_int read/write control register |
 
 ### BIO_BDMA_SFR_QDIV2
 
@@ -997,9 +997,9 @@ Quantum divider for BIO core 2.
 
 | Field | Name | Description |
 | --- | --- | --- |
-| [0] | UNUSED_DIV | unused_div read/write control register |
-| [1] | DIV_FRAC | div_frac read/write control register |
-| [2] | DIV_INT | div_int read/write control register |
+| [7:0] | UNUSED_DIV | unused_div read/write control register |
+| [15:8] | DIV_FRAC | div_frac read/write control register |
+| [31:16] | DIV_INT | div_int read/write control register |
 
 ### BIO_BDMA_SFR_QDIV3
 
@@ -1011,9 +1011,9 @@ Quantum divider for BIO core 3.
 
 | Field | Name | Description |
 | --- | --- | --- |
-| [0] | UNUSED_DIV | unused_div read/write control register |
-| [1] | DIV_FRAC | div_frac read/write control register |
-| [2] | DIV_INT | div_int read/write control register |
+| [7:0] | UNUSED_DIV | unused_div read/write control register |
+| [15:8] | DIV_FRAC | div_frac read/write control register |
+| [31:16] | DIV_INT | div_int read/write control register |
 
 ### BIO_BDMA_SFR_SYNC_BYPASS
 
