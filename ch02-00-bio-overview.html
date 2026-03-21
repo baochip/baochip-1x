@@ -1697,7 +1697,7 @@ using <code>--autopatch</code>.</p>
 <p>Here, the <code>9</code> in the second digit of <code>0xa2f96</code> translates to register
 number x18, which triggers the bug. The fix is to create the constant
 with a sequence such as:</p>
-<pre><code>lui a1, 0xa2f06
+<pre><code class="language-assembly ignore">lui a1, 0xa2f06
 lui a2, 0x9      # can't use 0x90 because that triggers the bug
 slli a2, a2, 4   # shift 0x9 into place
 add a1, a1, a2   # Final result. Note that a2 is side-effected.
@@ -1720,7 +1720,7 @@ decoders in the PicoRV. I got confused over the register names
 and when I checked for gating, I looked at the output variables
 of the register file, and not the input. Turns out the inputs
 to the register file are very simple:</p>
-<pre><code>			decoded_rs1 &lt;= mem_rdata_latched[19:15];
+<pre><code class="language-verilog ignore">			decoded_rs1 &lt;= mem_rdata_latched[19:15];
 			decoded_rs2 &lt;= mem_rdata_latched[24:20];
 </code></pre>
 <p>The good news is that on the write-side, there is an additional
