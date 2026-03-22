@@ -465,8 +465,16 @@ Thus one can create multiple `CoreCsr` copies on a single `CoreHandle` and
 allow the CSR views to go out of scope without invoking `Drop`, so long as the `CoreHandle` is stored
 in a structure that lasts the lifetime of the BIO object.
 
-This API could likely be improved to be more explicit about the split of functions, so expect some
-changes in the future.
+One would be correct to observe that this causes some of the safety guarantees of Rust to be lost:
+with two views of the same `CoreCsr` object, nothing prevents someone from say, trying to have two
+process-local threads compete to shove data into a FIFO. However, forcing the object to be wrapped
+in an `Arc<Mutex<>>` or some similar shared memory locking method means that we pay a heavy price
+for memory accesses all the time, even when there is no risk of concurrency issues.
+
+This API could likely be improved to be more explicit about the split of functions - for example,
+`CoreCsr` could be split into individual, specific register access objects that each "owns" a
+specific register, thus giving some static checks on concurrency/borrow issues. Thus expect some
+possible changes to the API in the future.
 
 #### Implementations
 
