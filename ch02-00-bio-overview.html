@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-b6995530.js";
+            window.path_to_searchindex_js = "searchindex-9318a281.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-e2e6b695.js"></script>
@@ -567,8 +567,15 @@ concurrently do both.</p>
 <p>Thus one can create multiple <code>CoreCsr</code> copies on a single <code>CoreHandle</code> and
 allow the CSR views to go out of scope without invoking <code>Drop</code>, so long as the <code>CoreHandle</code> is stored
 in a structure that lasts the lifetime of the BIO object.</p>
-<p>This API could likely be improved to be more explicit about the split of functions, so expect some
-changes in the future.</p>
+<p>One would be correct to observe that this causes some of the safety guarantees of Rust to be lost:
+with two views of the same <code>CoreCsr</code> object, nothing prevents someone from say, trying to have two
+process-local threads compete to shove data into a FIFO. However, forcing the object to be wrapped
+in an <code>Arc&lt;Mutex&lt;&gt;&gt;</code> or some similar shared memory locking method means that we pay a heavy price
+for memory accesses all the time, even when there is no risk of concurrency issues.</p>
+<p>This API could likely be improved to be more explicit about the split of functions - for example,
+<code>CoreCsr</code> could be split into individual, specific register access objects that each “owns” a
+specific register, thus giving some static checks on concurrency/borrow issues. Thus expect some
+possible changes to the API in the future.</p>
 <h4 id="implementations"><a class="header" href="#implementations">Implementations</a></h4>
 <p>Two implementations are recommended for every BIO object. The first is a <code>Resources</code> implementation.
 This encodes what specific resources your BIO application expects to use.</p>
