@@ -397,6 +397,7 @@ pub trait BioApi<'a> {
 ### A Simple API Example
 
 Let's walk through the [`Captouch`](https://github.com/betrusted-io/xous-core/blob/dev/libs/bio-lib/src/captouch.rs) object implementation as an example of how to use the API.
+
 The BIO implements captouch sensoring by measuring the rise-time of a pin based on the
 parasitic capacitance of the pin charging up through the built-in pull-up resistor.
 
@@ -422,6 +423,52 @@ pub struct Captouch {
     baseline: u32,
 }
 ```
+
+#### Concept: Page-Aliased Register Access
+
+Xous processes all run in their own virtual address space, and only one process can "own" a physical
+page of memory. This means that shared hardware resources in general must be "owned" by a centralized
+server. In this case, the BIO hardware is owned by the `bao1x_hal_service` process. Thus, all methods
+on the `BioApi` trait must be translated into messages that are handled by the corresponding server in
+the `bao1x_hal_service` process.
+
+The performance overhead of serializing requests and switching memory spaces is fine for infrequent
+operations, such as loading code into the BIO and configuring its clocks. However, the overhead is
+unacceptable for interacting with FIFOs and events. To address this, a set of "page aliases" are
+introduced for each of the four FIFOs. This aliases a subset of the registers available in the BIO
+to separate pages of memory, so that these pages can be mapped into the memory space of a client
+process. The subset of registers are:
+
+- `SFR_FLEVEL`: the data level of all the FIFOs
+- `SFR_TXF#`: The `Tx` end of the FIFO (i.e., data going to the BIO) corresponding only to the number of the handle. In other words, if you have handle 2, then you only have TXF2.
+- `SFR_RXF#`: Similar to the `Tx` handle but for `Rx`, i.e., data coming from the BIO.
+- `SFR_EVENT_SET`: A register for setting event bits in the shared event register of the BIO.
+- `SFR_EVENT_CLR`: A register for clearing event bits in the shared event register of the BIO.
+- `SFR_EVENT_STATUS`: A register reflecting the current state of the aggregate event bits. Recall that the top 8 bits of the event register correspond to the FIFO event level slot, the lower 24 bits are free-form event flags.
+
+Accessing any other registers in the `utra::bio_bdma` definition set leads to undefined behavior.
+
+A page alias is tracked by the `CoreHandle` object. A `CoreHandle` is created by calling `get_core_handle()`
+in the `BioApi` trait. Internally, it checks with a central server to ensure that the handle is free,
+and if it is free, locally requests a virtual memory range from the OS, thus locking down the physical
+resource underneath it.
+
+`CoreHandle` implements a `Drop` trait, and it can't be serialized or shared. When `CoreHandle`
+goes out of scope, it will unmap the virtual memory aperture to the FIFO that it points to.
+
+`CoreCsr` "launders" the `CoreHandle` memory range through a `usize` cast, thus making it possible
+to create multiple copies of the handle. The registers mapped inside the `CoreHandle` has both the
+functions of tracking FIFO state as well as event management, and it is possible to safely and
+concurrently do both.
+
+Thus one can create multiple `CoreCsr` copies on a single `CoreHandle` and
+allow the CSR views to go out of scope without invoking `Drop`, so long as the `CoreHandle` is stored
+in a structure that lasts the lifetime of the BIO object.
+
+This API could likely be improved to be more explicit about the split of functions, so expect some
+changes in the future.
+
+#### Implementations
 
 Two implementations are recommended for every BIO object. The first is a `Resources` implementation.
 This encodes what specific resources your BIO application expects to use.
@@ -601,6 +648,30 @@ bio_code!(
 
 Above is the minimum amount of code necessary to define a BIO function in Xous. There are more functions in the Captouch example; readers are referred to the [implementation](https://github.com/betrusted-io/xous-core/blob/dev/libs/bio-lib/src/captouch.rs) to see all the different APIs, as the focus of this section is to walk through the creation of a BIO object in Xous, and not go into the function of captouch in detail.
 
+#### `ClockMode`
+
+The following enum describes the valid options for `ClockMode`:
+
+```rust,ignore
+pub enum ClockMode {
+    /// Fixed divider - (int, frac)
+    FixedDivider(u16, u8),
+    /// Target frequency - fractional allowed. Attempts to adjust to target based on
+    /// changing CPU clock. Fractional component means the "average" frequency is achieved
+    /// by occasionally skipping clocks. This means there is jitter in the edge timing.
+    TargetFreqFrac(u32),
+    /// Target frequency - integer dividers only allowed. The absolute error of the
+    /// frequency may be larger, but the jitter is smaller. Attempts to adjust to the
+    /// target based on changing CPU clock.
+    TargetFreqInt(u32),
+    /// Use external pin as quantum source
+    ExternalPin(BioPin),
+}
+```
+
+All frequencies are specified in Hz. The `TargetFreq*` calls automatically adjust the dividers based upon the current clock speed of the BIO core. The `FixeDivider` call uses a fixed set of dividers, and the resulting clock will scale depending upon the current clock speed of the BIO.
+
+The clock for the BIO is `FCLK`. The current `FCLK` value can be read through the `ClockManager` API, using the [`get_fclk()`](https://github.com/betrusted-io/xous-core/blob/54ed7a1e8df7632a5af89d2dfe5ae5a08819c6f8/services/bao1x-hal-service/src/lib.rs#L196) call.
 
 ## BIO Register Details
 
@@ -1047,7 +1118,10 @@ Setting a bit in this field causes the output enable behavior to be inverted for
 
 See [bio_bdma.sv#L518](https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L518) (line numbers are approximate)
 
-Setting a bit in this field causes the output data behavior to be inverted for that BIO bit. This is applied to the signals as they are sent to the I/O block, and thus affects all BIO cores.
+Bits set to `1` this register will cause teh corresponding BIO output value to be inverted
+compared to the value written into the GPIO register.
+
+This is applied to the signals as they are sent to the I/O block, and thus affects all BIO cores.
 
 | Field | Name | Description |
 | --- | --- | --- |
@@ -1059,7 +1133,9 @@ Setting a bit in this field causes the output data behavior to be inverted for t
 
 See [bio_bdma.sv#L519](https://github.com/baochip/baochip-1x/blob/main/rtl/modules/bio_bdma/rtl/bio_bdma.sv#L519) (line numbers are approximate)
 
-Setting a bit in this field causes the input data behavior to be inverted for that BIO bit. This is applied to the signals as they are sent to the I/O block, and thus affects all BIO cores.
+Bits set to `1` in this register causes the input data to be inverted for the corresponding GPIO input bit.
+
+This is applied to the signals as they are sent to the I/O block, and thus affects all BIO cores.
 
 | Field | Name | Description |
 | --- | --- | --- |
