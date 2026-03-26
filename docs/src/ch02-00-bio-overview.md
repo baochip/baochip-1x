@@ -9,6 +9,8 @@ To help you get started, the following resources are available in our GitHub rep
 
 There is also a [blog post](https://www.bunniestudios.com/blog/2026/bio-the-bao-i-o-coprocessor/) that discusses the trade-offs that went into designing the BIO, for those interested in peeking under the hood and understanding the thought process.
 
+For Japanese speakers, there's an introduction that's been [translated into Japanese](https://medium.com/ecosystembymakers/bio-bao-i-o-70f0b157f8e0).
+
 ## Design of the BIO
 
 The BIO design starts with a PicoRV32 configured as an RV32E. In this mode, instead of having a full complement of 32 registers (including the zero register), you get 16: only r0 - r15 are officially part of the RV32E specification. I then abuse r16 – r31 to map in a set of “register queues” as well as GPIO access and synchronization primitives. Below is a diagram of the final register set exposed on each of the four RV32E cores.
