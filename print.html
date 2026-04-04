@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-c17139ac.js";
+            window.path_to_searchindex_js = "searchindex-0726f49d.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-e2e6b695.js"></script>
+        <script src="toc-729a221c.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3591,6 +3591,848 @@ thus, I get to live with owning this bug for the rest of my life.</p>
 </tbody>
 </table>
 </div>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="clock-generation"><a class="header" href="#clock-generation">Clock Generation</a></h1>
+<p>If you are using Xous, refer to the <code>Xous API</code> section first. There are a number of wrappers and convenience functions provided that work in both baremetal and in Xous mode that can help configure and manage the clocks.</p>
+<p>A a couple unusual things to be aware of as you read this section:</p>
+<ul>
+<li>The CPU is not the fastest clock in the system (<code>aclk</code>). The BIO’s clock is the fastest clock (<code>fclk</code>). Thus the frequency requested of the clock generators is for the BIO, not the CPU; the CPU is divided down off of the BIO clock.</li>
+<li>There are still unvalidated/less well characterized portions of the clock subsystem. If the docs don’t make sense, that’s part of the reason why. However, most of the clock subsystem’s <a href="https://github.com/baochip/baochip-1x/tree/main/rtl/modules/sysctrl/rtl">source code is available</a> so you can read the source to work through ambiguities.</li>
+</ul>
+<h2 id="clock-generation-unit-cgu"><a class="header" href="#clock-generation-unit-cgu">Clock Generation Unit (CGU)</a></h2>
+<h3 id="cgu-introduction"><a class="header" href="#cgu-introduction">CGU Introduction</a></h3>
+<p><img src="images/clock-generation-cgu-block-diagram.png" alt="CGU block diagram showing clock sources, PLLs, and clock distribution tree"></p>
+<h3 id="cgu-main-features"><a class="header" href="#cgu-main-features">CGU Main Features</a></h3>
+<ul>
+<li>Generation and dispatching of clocks for the complete device.</li>
+<li>2 separate PLLs using integer or fractional ratios.</li>
+<li>2 external oscillators: XTAL 48 MHz, 32.768 kHz.</li>
+<li>2 internal oscillators: OSC 32 MHz, 32 kHz.</li>
+<li>Clock source can be switched by the <code>CGUSEL1</code> register.</li>
+<li>Write <code>0x32</code> to the <code>CGUSET</code> register to make FD and <code>CGUSEL0</code> configuration effective.</li>
+</ul>
+<p><strong>Maximum frequency of each bus:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bus</th><th>Max Frequency</th></tr>
+</thead>
+<tbody>
+<tr><td>FCLK</td><td>700 MHz</td></tr>
+<tr><td>ACLK</td><td>350 MHz</td></tr>
+<tr><td>HCLK</td><td>175 MHz</td></tr>
+<tr><td>ICLK</td><td>87.5 MHz</td></tr>
+<tr><td>PCLK</td><td>43.75 MHz</td></tr>
+<tr><td>AOCLK</td><td>2 MHz</td></tr>
+<tr><td>PKECLK</td><td>175 MHz</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Frequency Division (FD) register encoding:</strong></p>
+<p>The FD register uses the same encoding for both normal and low-power throttle fields:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>Clock ratio</th></tr>
+</thead>
+<tbody>
+<tr><td><code>0xFF</code></td><td>CLKTOP × 1/1</td></tr>
+<tr><td><code>0x7F</code></td><td>CLKTOP × 1/2</td></tr>
+<tr><td><code>0x3F</code></td><td>CLKTOP × 1/4</td></tr>
+<tr><td><code>0x1F</code></td><td>CLKTOP × 1/8</td></tr>
+<tr><td><code>0x0F</code></td><td>CLKTOP × 1/16</td></tr>
+<tr><td><code>0x07</code></td><td>CLKTOP × 1/32</td></tr>
+<tr><td><code>0x03</code></td><td>CLKTOP × 1/64</td></tr>
+<tr><td><code>0x01</code></td><td>CLKTOP × 1/128</td></tr>
+<tr><td><code>0x00</code></td><td>No clock</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Bit [7:0]: Normal mode throttle</li>
+<li>Bit [15:0]: Low power mode throttle (not available on RV32 variant)</li>
+</ul>
+<p><strong>Frequency sensor mechanism:</strong></p>
+<ul>
+<li>Set <code>CGUFSCR</code> to the frequency sensor reference in MHz (OSC or XTAL, based on the <code>clksys</code> source selection).</li>
+<li>Calculation formula: <code>FS frequency = Value × (CLKSYS / CGUFSCR)</code>, where Value is read from the <code>CGUFSFREQ*</code> registers.</li>
+<li>Sensors available for: OSC (32 MHz), XTAL, PLL0, PLL1.</li>
+<li>Frequency validity status: see <code>CGUFSVLD</code> register.</li>
+</ul>
+<p><strong>CGU clock cipher security:</strong> see <code>CGUSEC</code>, <code>CGU_SEED</code>, <code>CGU_SEEDAR</code> registers.</p>
+<p><strong>CGU clock sub-gates:</strong> see <code>CGUACLKGR</code>, <code>CGUHCLKGR</code>, <code>CGUICLKGR</code>, <code>CGUPCLKGR</code>. For uDMA sub-gates, see the uDMA section.</p>
+<h3 id="cgu-registers"><a class="header" href="#cgu-registers">CGU Registers</a></h3>
+<p>Base address: <code>0x4004_0000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register Name</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>CGUSEC</td><td>0x0000</td><td>32</td><td>CR</td><td>R/W</td><td>0x00008000</td><td>CGU security control</td></tr>
+<tr><td>CGULP</td><td>0x0004</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>CGU low power control</td></tr>
+<tr><td>CGU_SEED</td><td>0x0008</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Clock cipher seed</td></tr>
+<tr><td>CGU_SEEDAR</td><td>0x000C</td><td>32</td><td>AR</td><td>W</td><td>—</td><td>Write <code>0x5A</code> to update the seed</td></tr>
+<tr><td>CGUSEL0</td><td>0x0010</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>CLKTOP source select</td></tr>
+<tr><td>CGUFD_FCLK</td><td>0x0014</td><td>32</td><td>CR</td><td>R/W</td><td>0x00007F7F</td><td>FCLK freq-div setting</td></tr>
+<tr><td>CGUFD_ACLK</td><td>0x0018</td><td>32</td><td>CR</td><td>R/W</td><td>0x00007F7F</td><td>ACLK freq-div setting</td></tr>
+<tr><td>CGUFD_HCLK</td><td>0x001C</td><td>32</td><td>CR</td><td>R/W</td><td>0x00007F7F</td><td>HCLK freq-div setting</td></tr>
+<tr><td>CGUFD_ICLK</td><td>0x0020</td><td>32</td><td>CR</td><td>R/W</td><td>0x00007F7F</td><td>ICLK freq-div setting</td></tr>
+<tr><td>CGUFD_PCLK</td><td>0x0024</td><td>32</td><td>CR</td><td>R/W</td><td>0x00007F7F</td><td>PCLK freq-div setting</td></tr>
+<tr><td>CGUFD_AOCLK</td><td>0x0028</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000F0F</td><td>AOCLK freq-div setting</td></tr>
+<tr><td>CGUSET</td><td>0x002C</td><td>32</td><td>AR</td><td>W</td><td>—</td><td>CGUSEL0 / CGUFD_* enable — write <code>0x32</code></td></tr>
+<tr><td>CGUSEL1</td><td>0x0030</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>CLKSYS source select</td></tr>
+<tr><td>CGUFD_PKECLK</td><td>0x0034</td><td>32</td><td>CR</td><td>R/W</td><td>0x000000FF</td><td>PKECLK freq-div setting</td></tr>
+<tr><td>CGUFD_AORAM</td><td>0x0038</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000F0F</td><td>AORAM freq-div setting</td></tr>
+<tr><td>CGUFD_PER</td><td>0x003C</td><td>32</td><td>CR</td><td>R/W</td><td>0x00FFFFFF</td><td>CLKPER freq-div setting</td></tr>
+<tr><td>CGUFSFREQ0</td><td>0x0040</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Frequency sensor: FCLK / CLKPKE</td></tr>
+<tr><td>CGUFSFREQ1</td><td>0x0044</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Frequency sensor: CLKAO / CLKAORAM</td></tr>
+<tr><td>CGUFSFREQ2</td><td>0x0048</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Frequency sensor: OSC / XTAL</td></tr>
+<tr><td>CGUFSFREQ3</td><td>0x004C</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Frequency sensor: PLL output 0 / output 1</td></tr>
+<tr><td>CGUFSVLD</td><td>0x0050</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Frequency valid status</td></tr>
+<tr><td>CGUFSCR</td><td>0x0054</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000020</td><td>Frequency sensor reference (MHz)</td></tr>
+<tr><td>CGUACLKGR</td><td>0x0060</td><td>32</td><td>CR</td><td>R/W</td><td>0x000000FF</td><td>ACLK group sub-gate</td></tr>
+<tr><td>CGUHCLKGR</td><td>0x0064</td><td>32</td><td>CR</td><td>R/W</td><td>0x000000FF</td><td>HCLK group sub-gate</td></tr>
+<tr><td>CGUICLKGR</td><td>0x0068</td><td>32</td><td>CR</td><td>R/W</td><td>0x000000FF</td><td>ICLK group sub-gate</td></tr>
+<tr><td>CGUPCLKGR</td><td>0x006C</td><td>32</td><td>CR</td><td>R/W</td><td>0x000000FF</td><td>PCLK group sub-gate</td></tr>
+<tr><td>CGUOWR</td><td>0x00C0</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>CGU one-way register</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="register-descriptions-3"><a class="header" href="#register-descriptions-3">Register Descriptions</a></h3>
+<h4 id="cgusec--cgu-security-control-register"><a class="header" href="#cgusec--cgu-security-control-register">CGUSEC — CGU Security Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_8000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[3:0]</td><td>clkcipher level (clktop)</td><td>Clock cipher speed for clktop. <code>0xF</code> = full speed, <code>0x0</code> = slowest (does not stop)</td></tr>
+<tr><td>[4]</td><td>clkcipher enable (clktop)</td><td>Enable clock cipher for clktop</td></tr>
+<tr><td>[11:8]</td><td>clkcipher level (clkpke)</td><td>Clock cipher speed for clkpke. <code>0xF</code> = full speed, <code>0x0</code> = slowest (does not stop)</td></tr>
+<tr><td>[12]</td><td>clkcipher enable (clkpke)</td><td>Enable clock cipher for clkpke</td></tr>
+</tbody>
+</table>
+</div>
+<p>The clock cipher scrambles the system clock by skipping pulses according to the state of an LFSR configured by <code>CGU_SEED</code>. This feature can harden the system against side channel analysis, at the expense of performance (because clock pulses are skipped, computation strictly takes longer with the cipher is on).</p>
+<p>This feature has not yet been thoroughly characterized. It’s not recommended to turn it on for <code>clktop</code> as instability has been observed in some settings.</p>
+<h4 id="cgulp--cgu-low-power-control-register"><a class="header" href="#cgulp--cgu-low-power-control-register">CGULP — CGU Low Power Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>fdlpen</td><td>Low-power FD setting enable. Only valid outside deep power-down.</td></tr>
+<tr><td>[1]</td><td>iplpen</td><td>Low-power IP disable</td></tr>
+<tr><td>[2]</td><td>deepen</td><td>Power-down enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgu_seed--clock-cipher-seed-register"><a class="header" href="#cgu_seed--clock-cipher-seed-register">CGU_SEED — Clock Cipher Seed Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>cipher seed</td><td>Value of the clock cipher seed</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgu_seedar--clock-cipher-seed-activation-register"><a class="header" href="#cgu_seedar--clock-cipher-seed-activation-register">CGU_SEEDAR — Clock Cipher Seed Activation Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x000C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Type:</strong> AR (action register, write-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write <code>0x5A</code> to commit the seed value from <code>CGU_SEED</code></td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgusel0--clktop-source-select-register"><a class="header" href="#cgusel0--clktop-source-select-register">CGUSEL0 — CLKTOP Source Select Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0010</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>nm</td><td>CLKTOP / CLKPKE source for normal mode: <code>0</code> = clksys, <code>1</code> = clkpll</td></tr>
+<tr><td>[1]</td><td>lp</td><td>CLKTOP source for low-power mode: <code>0</code> = clksys, <code>1</code> = clkpll</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_fclk--fclk-frequency-divider-cpu-max-700-mhz"><a class="header" href="#cgufd_fclk--fclk-frequency-divider-cpu-max-700-mhz">CGUFD_FCLK — FCLK Frequency Divider (CPU, max 700 MHz)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0014</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_7F7F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Low-power setting</td><td>FD value for low-power mode</td></tr>
+<tr><td>[23:16]</td><td>Min cycle</td><td>Minimum clock cycles: <code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_aclk--aclk-frequency-divider-axi-bus--qfc--sram--vex-max-350-mhz"><a class="header" href="#cgufd_aclk--aclk-frequency-divider-axi-bus--qfc--sram--vex-max-350-mhz">CGUFD_ACLK — ACLK Frequency Divider (AXI bus / QFC / SRAM / VEX, max 350 MHz)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0018</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_7F7F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Low-power setting</td><td>FD value for low-power mode</td></tr>
+<tr><td>[23:16]</td><td>Min cycle</td><td><code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_hclk--hclk-frequency-divider-dma--sce--ahb-max-175-mhz"><a class="header" href="#cgufd_hclk--hclk-frequency-divider-dma--sce--ahb-max-175-mhz">CGUFD_HCLK — HCLK Frequency Divider (DMA / SCE / AHB, max 175 MHz)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x001C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_7F7F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Low-power setting</td><td>FD value for low-power mode</td></tr>
+<tr><td>[23:16]</td><td>Min cycle</td><td><code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_iclk--iclk-frequency-divider-interface-max-875-mhz"><a class="header" href="#cgufd_iclk--iclk-frequency-divider-interface-max-875-mhz">CGUFD_ICLK — ICLK Frequency Divider (interface, max 87.5 MHz)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0020</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_7F7F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Low-power setting</td><td>FD value for low-power mode</td></tr>
+<tr><td>[23:16]</td><td>Min cycle</td><td><code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_pclk--pclk-frequency-divider-pclk--sysctrl--timer--wdt--sec-max-4375-mhz"><a class="header" href="#cgufd_pclk--pclk-frequency-divider-pclk--sysctrl--timer--wdt--sec-max-4375-mhz">CGUFD_PCLK — PCLK Frequency Divider (PCLK / sysctrl / timer / WDT / SEC, max 43.75 MHz)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0024</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_7F7F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Low-power setting</td><td>FD value for low-power mode</td></tr>
+<tr><td>[23:16]</td><td>Min cycle</td><td><code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_aoclk--aoclk-frequency-divider"><a class="header" href="#cgufd_aoclk--aoclk-frequency-divider">CGUFD_AOCLK — AOCLK Frequency Divider</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0028</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0F0F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Low-power setting</td><td>FD value for low-power mode</td></tr>
+<tr><td>[23:16]</td><td>Min cycle</td><td><code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> Keep CLKAO close to 1 MHz. The clock has one additional register output stage, so the frequency is divided by a further 2.</p>
+</blockquote>
+<h4 id="cguset--cgu-settings-enable-register"><a class="header" href="#cguset--cgu-settings-enable-register">CGUSET — CGU Settings Enable Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x002C</code></li>
+<li><strong>Type:</strong> AR (action register, write-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write <code>0x32</code> to commit any pending <code>CGUSEL0</code> / <code>CGUFD_*</code> changes</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgusel1--clksys-source-select-register"><a class="header" href="#cgusel1--clksys-source-select-register">CGUSEL1 — CLKSYS Source Select Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0030</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>SEL</td><td>CLKSYS source: <code>0</code> = internal OSC, <code>1</code> = XTAL</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_pkeclk--pkeclk-frequency-divider-pke-max-300-mhz"><a class="header" href="#cgufd_pkeclk--pkeclk-frequency-divider-pke-max-300-mhz">CGUFD_PKECLK — PKECLK Frequency Divider (PKE, max 300 MHz)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0034</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_003F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>PKE clock frequency divider, sourced from PLL1</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_aoram--aoram-frequency-divider"><a class="header" href="#cgufd_aoram--aoram-frequency-divider">CGUFD_AORAM — AORAM Frequency Divider</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0038</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0F0F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Min cycle</td><td><code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> The clock has one additional register output stage, so the frequency is divided by a further 2.</p>
+</blockquote>
+<h4 id="cgufd_per--clkper-frequency-divider"><a class="header" href="#cgufd_per--clkper-frequency-divider">CGUFD_PER — CLKPER Frequency Divider</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x003C</code></li>
+<li><strong>Reset value:</strong> <code>0x00FF_FFFF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>clkper fd</td><td>CLKPER divider (normal mode). See encoding table below.</td></tr>
+<tr><td>[15:8]</td><td>clkper fd (LP)</td><td>CLKPER divider for low-power mode. Same encoding as [7:0].</td></tr>
+<tr><td>[23:16]</td><td>Min cycle of clktop</td><td><code>0x00</code> = 1 clk. Fperclk max = Fclktop / (min_cycle + 1) × 2</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<p>CLKPER divider encoding:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>Fperclk</th></tr>
+</thead>
+<tbody>
+<tr><td><code>0xFF</code></td><td>Fclktop / 2</td></tr>
+<tr><td><code>0x7F</code></td><td>Fclktop / 4</td></tr>
+<tr><td><code>0x3F</code></td><td>Fclktop / 8</td></tr>
+<tr><td><code>0x1F</code></td><td>Fclktop / 16</td></tr>
+<tr><td><code>0x0F</code></td><td>Fclktop / 32</td></tr>
+<tr><td><code>0x07</code></td><td>Fclktop / 64</td></tr>
+<tr><td><code>0x03</code></td><td>Fclktop / 128</td></tr>
+<tr><td><code>0x01</code></td><td>Fclktop / 256</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufsfreq0--frequency-sensor-fclk--clkpke"><a class="header" href="#cgufsfreq0--frequency-sensor-fclk--clkpke">CGUFSFREQ0 — Frequency Sensor: FCLK / CLKPKE</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0040</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R (read-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:16]</td><td>FCLK</td><td>Measured FCLK frequency value</td></tr>
+<tr><td>[15:0]</td><td>CLKPKE</td><td>Measured CLKPKE frequency value</td></tr>
+</tbody>
+</table>
+</div>
+<p>Calculation: <code>frequency = Value × (CLKSYS / CGUFSCR)</code></p>
+<h4 id="cgufsfreq1--frequency-sensor-clkao--clkaoram"><a class="header" href="#cgufsfreq1--frequency-sensor-clkao--clkaoram">CGUFSFREQ1 — Frequency Sensor: CLKAO / CLKAORAM</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0044</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R (read-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:16]</td><td>CLKAO</td><td>Measured CLKAO frequency value</td></tr>
+<tr><td>[15:0]</td><td>CLKAORAM</td><td>Measured CLKAORAM frequency value</td></tr>
+</tbody>
+</table>
+</div>
+<p>Calculation: <code>frequency = Value × (CLKSYS / CGUFSCR)</code></p>
+<h4 id="cgufsfreq2--frequency-sensor-osc--xtal"><a class="header" href="#cgufsfreq2--frequency-sensor-osc--xtal">CGUFSFREQ2 — Frequency Sensor: OSC / XTAL</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0048</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R (read-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:16]</td><td>OSC</td><td>Measured internal OSC frequency value</td></tr>
+<tr><td>[15:0]</td><td>XTAL</td><td>Measured XTAL frequency value</td></tr>
+</tbody>
+</table>
+</div>
+<p>Calculation: <code>frequency = Value × (CLKSYS / CGUFSCR)</code></p>
+<h4 id="cgufsfreq3--frequency-sensor-pll-output-0--output-1"><a class="header" href="#cgufsfreq3--frequency-sensor-pll-output-0--output-1">CGUFSFREQ3 — Frequency Sensor: PLL Output 0 / Output 1</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x004C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R (read-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:16]</td><td>Output0</td><td>Measured PLL output 0 frequency value</td></tr>
+<tr><td>[15:0]</td><td>Output1</td><td>Measured PLL output 1 frequency value</td></tr>
+</tbody>
+</table>
+</div>
+<p>Calculation: <code>PLL frequency = Value × (CLKSYS / CGUFSCR)</code></p>
+<h4 id="cgufsvld--frequency-valid-register"><a class="header" href="#cgufsvld--frequency-valid-register">CGUFSVLD — Frequency Valid Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0050</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R (read-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td><code>0x0F</code> = frequency measurement valid; any other value = invalid</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufscr--frequency-sensor-reference-register"><a class="header" href="#cgufscr--frequency-sensor-reference-register">CGUFSCR — Frequency Sensor Reference Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0054</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0030</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>Reference</td><td>Frequency sensor reference in MHz (OSC or XTAL). Default 48 MHz. Replace with actual value if not accurate.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cguaclkgr--aclk-group-sub-gate-register"><a class="header" href="#cguaclkgr--aclk-group-sub-gate-register">CGUACLKGR — ACLK Group Sub-Gate Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0060</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_00FF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[4]</td><td>QFC</td><td>QFC clock enable</td></tr>
+<tr><td>[5]</td><td>Mbox</td><td>Mailbox clock enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cguhclkgr--hclk-group-sub-gate-register"><a class="header" href="#cguhclkgr--hclk-group-sub-gate-register">CGUHCLKGR — HCLK Group Sub-Gate Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0064</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_00FF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>SCE</td><td>SCE clock enable</td></tr>
+<tr><td>[4]</td><td>MDMA</td><td>MDMA clock enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cguiclkgr--iclk-group-sub-gate-register"><a class="header" href="#cguiclkgr--iclk-group-sub-gate-register">CGUICLKGR — ICLK Group Sub-Gate Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0068</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_00FF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[4]</td><td>UDC</td><td>UDC clock enable</td></tr>
+<tr><td>[7]</td><td>Bio_bdma</td><td>Bio BDMA clock enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgupclkgr--pclk-group-sub-gate-register"><a class="header" href="#cgupclkgr--pclk-group-sub-gate-register">CGUPCLKGR — PCLK Group Sub-Gate Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x006C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_00FF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7]</td><td>mesh</td><td>Mesh clock enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cguowr--cgu-one-way-register"><a class="header" href="#cguowr--cgu-one-way-register">CGUOWR — CGU One-Way Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x00C0</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Write <code>1</code> to set a bit; the bit resets to <code>0</code> on device reset.</p>
+<hr>
+<h2 id="pll--ip-control-ipc"><a class="header" href="#pll--ip-control-ipc">PLL / IP Control (IPC)</a></h2>
+<h3 id="ipc-main-features"><a class="header" href="#ipc-main-features">IPC Main Features</a></h3>
+<ul>
+<li><strong>PLL parameter configuration:</strong>
+<ul>
+<li>Reference clock frequency range: 10 MHz to 1200 MHz.</li>
+<li>PFD frequency range: 10 MHz to 100 MHz.</li>
+<li>VCO frequency range: 1 GHz to 3 GHz.</li>
+<li>Low jitter output.</li>
+<li>Lock detector to indicate frequency-locked state.</li>
+</ul>
+</li>
+<li>OSC, PLL, RRAM, PMU, XTAL 48 MHz low-power mode enable.</li>
+<li>OSC cipher level setting.</li>
+<li>IP low-power mode flow start.</li>
+</ul>
+<h3 id="pll-introduction"><a class="header" href="#pll-introduction">PLL Introduction</a></h3>
+<p>The PLL integrates a Phase Frequency Detector (PFD), a Low Pass Filter (LPF), a Voltage Controlled Oscillator (VCO), and other associated circuitry. All fundamental building blocks and fully programmable dividers are integrated in the core.</p>
+<p><img src="images/clock-generation-pll-block-diagram.png" alt="PLL block diagram showing PFD, LPF, VCO, feedback divider, and post-divider stages"></p>
+<p><strong>Output frequency calculation:</strong></p>
+<pre><code>Fvco = Fref × (N + F) ÷ M
+</code></pre>
+<ul>
+<li><strong>N</strong> — integer feedback divider ratio, set by <code>fbdiv[11:0]</code>. Range: 10, 12, 13 … 500.</li>
+<li><strong>F</strong> — fractional feedback divider ratio, set by <code>frac[23:0]</code>. F = <code>frac[23:0]</code> / 2²⁴ = 0 to 0.99999994.</li>
+<li><strong>M</strong> — pre-divider ratio, set by <code>prediv[4:0]</code>. Range: 1, 2 … 31.</li>
+</ul>
+<p>Note: fractional divider does not seem to be functional. Setting it seems to have no effect. It is currently recommended to not set the fractional bits.</p>
+<p><strong>Post-dividers:</strong></p>
+<pre><code>Fclko0 = Fvco ÷ (Q0_0 × Q1_0)
+</code></pre>
+<ul>
+<li><strong>Q0_0</strong> — Post_div0_0 ratio, set by <code>postdiv0_0[2:0]</code>. Range: 0, 2 … 7.</li>
+<li><strong>Q1_0</strong> — Post_div1_0 ratio, set by <code>postdiv1_0[2:0]</code>. Range: 0, 2 … 7.</li>
+</ul>
+<p>Fclko1 is calculated the same way as Fclko0.</p>
+<h3 id="ipc-registers"><a class="header" href="#ipc-registers">IPC Registers</a></h3>
+<p>Base address: <code>0x4004_0090</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register Name</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>IPCAR</td><td>0x0000</td><td>32</td><td>AR</td><td>W</td><td>0x00000000</td><td>Activate configuration / IP flow</td></tr>
+<tr><td>IPCEN</td><td>0x0004</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000001</td><td>IPC enable</td></tr>
+<tr><td>IPCLPEN</td><td>0x0008</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000001</td><td>IPC low-power enable</td></tr>
+<tr><td>IPCOSC</td><td>0x000C</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>OSC control</td></tr>
+<tr><td>IPCPLL_MN</td><td>0x0010</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>PLL M and N parameters</td></tr>
+<tr><td>IPCPLL_F</td><td>0x0014</td><td>32</td><td>CR</td><td>R/W</td><td>0x000000FF</td><td>PLL fractional parameter</td></tr>
+<tr><td>IPCPLL_Q</td><td>0x0018</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>PLL post-divider parameters</td></tr>
+<tr><td>IPCCR</td><td>0x001C</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000053</td><td>IPC control register</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="register-descriptions-1-1"><a class="header" href="#register-descriptions-1-1">Register Descriptions</a></h3>
+<h4 id="ipcar--ipc-action-register"><a class="header" href="#ipcar--ipc-action-register">IPCAR — IPC Action Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Type:</strong> AR (action register, write-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td><code>0x32</code> = commit PLL configuration; <code>0x57</code> = start IP flow</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ipcen--ipc-enable-register"><a class="header" href="#ipcen--ipc-enable-register">IPCEN — IPC Enable Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0001</code></li>
+</ul>
+<p>Enables the IP control block. Default on at reset.</p>
+<h4 id="ipclpen--ipc-low-power-enable-register"><a class="header" href="#ipclpen--ipc-low-power-enable-register">IPCLPEN — IPC Low-Power Enable Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0001</code></li>
+</ul>
+<p>Separate configuration bits for sleep and deep-sleep conditions:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>OSC</td><td>OSC sleep: <code>0</code> = no sleep, <code>1</code> = sleep</td></tr>
+<tr><td>[1]</td><td>PLL</td><td>PLL sleep: <code>0</code> = no sleep, <code>1</code> = sleep</td></tr>
+<tr><td>[2]</td><td>RRAM</td><td>RRAM sleep: <code>0</code> = no sleep, <code>1</code> = sleep</td></tr>
+<tr><td>[3]</td><td>PMU</td><td>PMU sleep: <code>0</code> = no sleep, <code>1</code> = sleep</td></tr>
+<tr><td>[4]</td><td>PMU_IBIASENA / XTAL (deep sleep)</td><td><code>0</code> = no sleep, <code>1</code> = sleep</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ipcosc--osc-control-register"><a class="header" href="#ipcosc--osc-control-register">IPCOSC — OSC Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x000C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[3:0]</td><td>cipher level</td><td>OSC cipher level</td></tr>
+<tr><td>[4]</td><td>en</td><td>OSC cipher enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ipcpll_mn--pll-integer-divider-parameters"><a class="header" href="#ipcpll_mn--pll-integer-divider-parameters">IPCPLL_MN — PLL Integer Divider Parameters</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0010</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[11:0]</td><td>N (fbdiv)</td><td>12-bit integer feedback divider ratio</td></tr>
+<tr><td>[16:12]</td><td>M (prediv)</td><td>5-bit pre-divider ratio</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ipcpll_f--pll-fractional-divider-parameter"><a class="header" href="#ipcpll_f--pll-fractional-divider-parameter">IPCPLL_F — PLL Fractional Divider Parameter</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0014</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_00FF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[23:0]</td><td>F (frac)</td><td>24-bit fractional feedback divider value</td></tr>
+<tr><td>[24]</td><td>frac enable</td><td>Fractional divider enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ipcpll_q--pll-post-divider-parameters"><a class="header" href="#ipcpll_q--pll-post-divider-parameters">IPCPLL_Q — PLL Post-Divider Parameters</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0018</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[2:0]</td><td>pll0_q0</td><td>PLL0 post-divider 0 (Q0_0). 3-bit, divider value 1–8. <code>3'b000</code> = ÷1, <code>3'b111</code> = ÷8. PLL0 drives clktop.</td></tr>
+<tr><td>[6:4]</td><td>pll0_q1</td><td>PLL0 post-divider 1 (Q1_0). Same encoding as pll0_q0.</td></tr>
+<tr><td>[10:8]</td><td>pll1_q0</td><td>PLL1 post-divider 0. PLL1 drives clkper.</td></tr>
+<tr><td>[14:12]</td><td>pll1_q1</td><td>PLL1 post-divider 1.</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> <code>Fclko = Fvco ÷ (Q0 × Q1)</code></p>
+</blockquote>
+<h4 id="ipccr--ipc-control-register"><a class="header" href="#ipccr--ipc-control-register">IPCCR — IPC Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x001C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0053</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[2:0]</td><td>cpi_bias</td><td>PLL charge pump current. Higher value = greater current. Default <code>3'b011</code>.</td></tr>
+<tr><td>[5:3]</td><td>cpp_bias</td><td>PLL proportional path current. Higher value = greater current. Default <code>3'b010</code>.</td></tr>
+<tr><td>[7:6]</td><td>gvco_bias</td><td>PLL integral path current. Higher value = greater current. Default <code>2'b01</code>.</td></tr>
+<tr><td>[8]</td><td>pad_reton</td><td>Pad retention control</td></tr>
+<tr><td>[15:9]</td><td>IP control</td><td>Reserved / TBD</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="xous-api"><a class="header" href="#xous-api">Xous API</a></h2>
+<h3 id="general-structure"><a class="header" href="#general-structure">General Structure</a></h3>
+<p>The clock manager is buried in <code>bao1x-hal-service</code> inside the suspend/resume <code>susres</code> service. The hardware manager is created <a href="https://github.com/betrusted-io/xous-core/blob/53dccf0df2341ddfd6d5947d8cf7c49e94f4834e/services/bao1x-hal-service/src/servers/susres.rs#L36">here</a>.</p>
+<p>The hardware manager shares the same API that is available in bare metal contexts. Thus, within the <code>susres</code> service, you have all the low level API knobs to turn to adjust clocks.</p>
+<p>However, as of the time of writing of the documentation, few of these APIs have been brought up to the userspace level, because the current abstraction for clock management consists of three possible states:</p>
+<ul>
+<li>normal run - CPU runs at 350MHz.</li>
+<li>wfi sleep - system is down-clocked to 48MHz, and the CPU clock is halted until an interrupt is received.</li>
+<li>deep sleep - system clock is halted, CPU power domains are turned off; SRAM contents are lost. System can wake on KPC interrupt or reset.</li>
+</ul>
+<p>To put the system into WFI sleep, you can add this to Cargo.toml:</p>
+<pre><code class="language-toml ignore">   susres = { package = "xous-api-susres", version = "0.9" }
+</code></pre>
+<p>and then use this code stub:</p>
+<pre><code class="language-rust ignore">  let xns = xous_names::XousNames::new().unwrap();
+  let susres = susres::Susres::new_without_hook(&amp;xns).unwrap();
+  susres.initiate_suspend().unwrap();</code></pre>
+<p>The deep sleep API has not been formalized in the <code>susres</code> framework. To enter it, you can directly create a deep sleep opcode to the susres server as follows:</p>
+<pre><code class="language-rust ignore">  let xns = xous_names::XousNames::new().unwrap();
+  let xns
+      .request_connection_blocking(susres::api::SERVER_NAME_SUSRES)
+      .expect("Can't connect to SUSRES");
+  xous::send_message(
+      conn,
+      xous::Message::new_blocking_scalar(
+          susres::api::Opcode::PlatformSpecific.to_usize().unwrap(),
+          bao1x_hal_service::api::ClockOp::DeepSleep.to_usize().unwrap(),
+          0,
+          0,
+          0,
+      ),
+  ).unwrap();</code></pre>
+<p>The call above grabs a connection directly to the <code>susres</code> server (which exists at a “well-known name”), and then synthesizes a platform-specific opcode to trigger deep sleep.</p>
+<p>More clock management APIs need to be created - suggestions and PRs are welcome.</p>
+<h3 id="clock-setup"><a class="header" href="#clock-setup">Clock Setup</a></h3>
+<p>On boot, the clocks are set up in a baremetal context by the bootloader. The call that does this is in <code>libs/bao1x-hal/src/clocks.rs</code>.</p>
+<p>The key API call to set up clocks is currently:</p>
+<pre><code class="language-rust ignore">pub unsafe fn init_clock_asic&lt;F&gt;(
+    freq_hz: u32,
+    cgu_base: usize,
+    ao_sysctl_base: usize,
+    duart_base: Option&lt;usize&gt;,
+    delay_at_sysfreq: F,
+    fast_bio: bool,
+) -&gt; u32
+where
+    F: Fn(usize, u32)</code></pre>
+<p>This call sets up the clocks to a known, stable default state for the system.</p>
+<p>Arguments:</p>
+<ul>
+<li><code>freq_hz</code> is the desired frequency of the <code>fclk</code> clock. This is the fastest clock in the system and is the rate at which the BIO runs. All other clocks are scaled off of this.</li>
+<li><code>cgu_base</code> is the address for the CGU register bank (in virtual memory contexts, this addess is not fixed)</li>
+<li><code>ao_sysctl_base</code> is the address for the always-on/system control register bank</li>
+<li><code>duart_base</code> is an optional argument for the DUART register base, if debugging is desired</li>
+<li><code>delay_at_sysfreq</code> is a function that defines a delay function. It has the form of <code>f(ms, freq)</code>, so it will delay for <code>ms</code> milliseconds at a clock frequency of <code>freq</code> hertz. This is needed to time delays between power mode transitions.</li>
+<li><code>fast_bio</code> when true, indicates that the BIO is clocked at 2x the CPU clock</li>
+</ul>
+<p>The function returnts the actual frequency achieved for the peripheral clock subsystem in hertz. This number is required by many of the peripheral drivers to compute downstream clock dividers for things like baud rates.</p>
+<h3 id="pll-programming"><a class="header" href="#pll-programming">PLL Programming</a></h3>
+<p>The PLL has a large parameter space. In order to assist with finding PLL settings, a function called <code>find_pll_params</code> is provided inside <code>libs/bao1x-api/src/clocks.rs</code>. This will search a couple hundred possible configurations to determine the optimal configuration for the PLL at a given frequency.</p>
+<p>Because the search is so computationally intensive, a list of the most common clock settings are provided in <code>COMMON_CLOCKS</code>. This has pre-settings for the following VCO frequencies:</p>
+<ul>
+<li>700 MHz</li>
+<li>696 MHz (lower VCO frequency can save some pawer)</li>
+<li>400 MHz</li>
+<li>350 MHz</li>
+<li>200 MHz</li>
+<li>100 MHz</li>
+<li>800 MHz (overclocking, use will void your warranty; use at your own risk)</li>
+</ul>
+<h3 id="frequency-divider-programming"><a class="header" href="#frequency-divider-programming">Frequency Divider Programming</a></h3>
+<p>The values provided in the freqeuncy divider tables are the recommended integer-division frequency dividers. Sub-integer values are possible, but what happens is the system only achieves the target frequency as a time-average: the time between rising clock edges is dithered to achieve an effective frequency rate.</p>
+<p>The following functions are provided as a convenience for programmers that need to set the dividers:</p>
+<ul>
+<li><code>fd_from_frequency(desired_freq_hz: u32, in_freq_hz: u32) -&gt; u32</code> takes in the desired output frequency (<code>desired_freq_hz</code>), the input frequency to the divider (<code>in_freq_hz</code>), and outputs the <code>fd</code> value for the respective divider.</li>
+<li><code>divide_by_fd(fd: u32, in_freq_hz: u32) -&gt; u32</code> takes in an <code>fd</code> setting, the input frequency to the divider as <code>in_freq_hz</code>, and returns the average frequency of the divider</li>
+<li><code>fd_to_ratio(fd: u32) -&gt; f32</code> given an <code>fd</code> setting, returns a floating point number that can be multiplied by an input frequency to determine the average output frequency</li>
+<li><code>divide_ratio_to_fd(ratio: f32, round_freq_up: bool) -&gt; u8</code> given a desired ratio (should be less than or equal to 1.0), returns the nearest <code>fd</code> value that tries to achieve that divider. The flag instructs the code to either round the frequency target up or down from the target ratio if the exact <code>fd</code> cannot be achieved.</li>
+</ul>
 
                     </main>
 

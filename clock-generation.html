@@ -1,0 +1,1073 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Clocks - Coder&#x27;s guide to the Baochip 1x</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="custom-616f5484.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-0726f49d.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-729a221c.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Coder&#x27;s guide to the Baochip 1x</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/baochip/baochip-1x" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="clock-generation"><a class="header" href="#clock-generation">Clock Generation</a></h1>
+<p>If you are using Xous, refer to the <code>Xous API</code> section first. There are a number of wrappers and convenience functions provided that work in both baremetal and in Xous mode that can help configure and manage the clocks.</p>
+<p>A a couple unusual things to be aware of as you read this section:</p>
+<ul>
+<li>The CPU is not the fastest clock in the system (<code>aclk</code>). The BIO’s clock is the fastest clock (<code>fclk</code>). Thus the frequency requested of the clock generators is for the BIO, not the CPU; the CPU is divided down off of the BIO clock.</li>
+<li>There are still unvalidated/less well characterized portions of the clock subsystem. If the docs don’t make sense, that’s part of the reason why. However, most of the clock subsystem’s <a href="https://github.com/baochip/baochip-1x/tree/main/rtl/modules/sysctrl/rtl">source code is available</a> so you can read the source to work through ambiguities.</li>
+</ul>
+<h2 id="clock-generation-unit-cgu"><a class="header" href="#clock-generation-unit-cgu">Clock Generation Unit (CGU)</a></h2>
+<h3 id="cgu-introduction"><a class="header" href="#cgu-introduction">CGU Introduction</a></h3>
+<p><img src="images/clock-generation-cgu-block-diagram.png" alt="CGU block diagram showing clock sources, PLLs, and clock distribution tree"></p>
+<h3 id="cgu-main-features"><a class="header" href="#cgu-main-features">CGU Main Features</a></h3>
+<ul>
+<li>Generation and dispatching of clocks for the complete device.</li>
+<li>2 separate PLLs using integer or fractional ratios.</li>
+<li>2 external oscillators: XTAL 48 MHz, 32.768 kHz.</li>
+<li>2 internal oscillators: OSC 32 MHz, 32 kHz.</li>
+<li>Clock source can be switched by the <code>CGUSEL1</code> register.</li>
+<li>Write <code>0x32</code> to the <code>CGUSET</code> register to make FD and <code>CGUSEL0</code> configuration effective.</li>
+</ul>
+<p><strong>Maximum frequency of each bus:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bus</th><th>Max Frequency</th></tr>
+</thead>
+<tbody>
+<tr><td>FCLK</td><td>700 MHz</td></tr>
+<tr><td>ACLK</td><td>350 MHz</td></tr>
+<tr><td>HCLK</td><td>175 MHz</td></tr>
+<tr><td>ICLK</td><td>87.5 MHz</td></tr>
+<tr><td>PCLK</td><td>43.75 MHz</td></tr>
+<tr><td>AOCLK</td><td>2 MHz</td></tr>
+<tr><td>PKECLK</td><td>175 MHz</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Frequency Division (FD) register encoding:</strong></p>
+<p>The FD register uses the same encoding for both normal and low-power throttle fields:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>Clock ratio</th></tr>
+</thead>
+<tbody>
+<tr><td><code>0xFF</code></td><td>CLKTOP × 1/1</td></tr>
+<tr><td><code>0x7F</code></td><td>CLKTOP × 1/2</td></tr>
+<tr><td><code>0x3F</code></td><td>CLKTOP × 1/4</td></tr>
+<tr><td><code>0x1F</code></td><td>CLKTOP × 1/8</td></tr>
+<tr><td><code>0x0F</code></td><td>CLKTOP × 1/16</td></tr>
+<tr><td><code>0x07</code></td><td>CLKTOP × 1/32</td></tr>
+<tr><td><code>0x03</code></td><td>CLKTOP × 1/64</td></tr>
+<tr><td><code>0x01</code></td><td>CLKTOP × 1/128</td></tr>
+<tr><td><code>0x00</code></td><td>No clock</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Bit [7:0]: Normal mode throttle</li>
+<li>Bit [15:0]: Low power mode throttle (not available on RV32 variant)</li>
+</ul>
+<p><strong>Frequency sensor mechanism:</strong></p>
+<ul>
+<li>Set <code>CGUFSCR</code> to the frequency sensor reference in MHz (OSC or XTAL, based on the <code>clksys</code> source selection).</li>
+<li>Calculation formula: <code>FS frequency = Value × (CLKSYS / CGUFSCR)</code>, where Value is read from the <code>CGUFSFREQ*</code> registers.</li>
+<li>Sensors available for: OSC (32 MHz), XTAL, PLL0, PLL1.</li>
+<li>Frequency validity status: see <code>CGUFSVLD</code> register.</li>
+</ul>
+<p><strong>CGU clock cipher security:</strong> see <code>CGUSEC</code>, <code>CGU_SEED</code>, <code>CGU_SEEDAR</code> registers.</p>
+<p><strong>CGU clock sub-gates:</strong> see <code>CGUACLKGR</code>, <code>CGUHCLKGR</code>, <code>CGUICLKGR</code>, <code>CGUPCLKGR</code>. For uDMA sub-gates, see the uDMA section.</p>
+<h3 id="cgu-registers"><a class="header" href="#cgu-registers">CGU Registers</a></h3>
+<p>Base address: <code>0x4004_0000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register Name</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>CGUSEC</td><td>0x0000</td><td>32</td><td>CR</td><td>R/W</td><td>0x00008000</td><td>CGU security control</td></tr>
+<tr><td>CGULP</td><td>0x0004</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>CGU low power control</td></tr>
+<tr><td>CGU_SEED</td><td>0x0008</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Clock cipher seed</td></tr>
+<tr><td>CGU_SEEDAR</td><td>0x000C</td><td>32</td><td>AR</td><td>W</td><td>—</td><td>Write <code>0x5A</code> to update the seed</td></tr>
+<tr><td>CGUSEL0</td><td>0x0010</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>CLKTOP source select</td></tr>
+<tr><td>CGUFD_FCLK</td><td>0x0014</td><td>32</td><td>CR</td><td>R/W</td><td>0x00007F7F</td><td>FCLK freq-div setting</td></tr>
+<tr><td>CGUFD_ACLK</td><td>0x0018</td><td>32</td><td>CR</td><td>R/W</td><td>0x00007F7F</td><td>ACLK freq-div setting</td></tr>
+<tr><td>CGUFD_HCLK</td><td>0x001C</td><td>32</td><td>CR</td><td>R/W</td><td>0x00007F7F</td><td>HCLK freq-div setting</td></tr>
+<tr><td>CGUFD_ICLK</td><td>0x0020</td><td>32</td><td>CR</td><td>R/W</td><td>0x00007F7F</td><td>ICLK freq-div setting</td></tr>
+<tr><td>CGUFD_PCLK</td><td>0x0024</td><td>32</td><td>CR</td><td>R/W</td><td>0x00007F7F</td><td>PCLK freq-div setting</td></tr>
+<tr><td>CGUFD_AOCLK</td><td>0x0028</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000F0F</td><td>AOCLK freq-div setting</td></tr>
+<tr><td>CGUSET</td><td>0x002C</td><td>32</td><td>AR</td><td>W</td><td>—</td><td>CGUSEL0 / CGUFD_* enable — write <code>0x32</code></td></tr>
+<tr><td>CGUSEL1</td><td>0x0030</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>CLKSYS source select</td></tr>
+<tr><td>CGUFD_PKECLK</td><td>0x0034</td><td>32</td><td>CR</td><td>R/W</td><td>0x000000FF</td><td>PKECLK freq-div setting</td></tr>
+<tr><td>CGUFD_AORAM</td><td>0x0038</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000F0F</td><td>AORAM freq-div setting</td></tr>
+<tr><td>CGUFD_PER</td><td>0x003C</td><td>32</td><td>CR</td><td>R/W</td><td>0x00FFFFFF</td><td>CLKPER freq-div setting</td></tr>
+<tr><td>CGUFSFREQ0</td><td>0x0040</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Frequency sensor: FCLK / CLKPKE</td></tr>
+<tr><td>CGUFSFREQ1</td><td>0x0044</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Frequency sensor: CLKAO / CLKAORAM</td></tr>
+<tr><td>CGUFSFREQ2</td><td>0x0048</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Frequency sensor: OSC / XTAL</td></tr>
+<tr><td>CGUFSFREQ3</td><td>0x004C</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Frequency sensor: PLL output 0 / output 1</td></tr>
+<tr><td>CGUFSVLD</td><td>0x0050</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Frequency valid status</td></tr>
+<tr><td>CGUFSCR</td><td>0x0054</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000020</td><td>Frequency sensor reference (MHz)</td></tr>
+<tr><td>CGUACLKGR</td><td>0x0060</td><td>32</td><td>CR</td><td>R/W</td><td>0x000000FF</td><td>ACLK group sub-gate</td></tr>
+<tr><td>CGUHCLKGR</td><td>0x0064</td><td>32</td><td>CR</td><td>R/W</td><td>0x000000FF</td><td>HCLK group sub-gate</td></tr>
+<tr><td>CGUICLKGR</td><td>0x0068</td><td>32</td><td>CR</td><td>R/W</td><td>0x000000FF</td><td>ICLK group sub-gate</td></tr>
+<tr><td>CGUPCLKGR</td><td>0x006C</td><td>32</td><td>CR</td><td>R/W</td><td>0x000000FF</td><td>PCLK group sub-gate</td></tr>
+<tr><td>CGUOWR</td><td>0x00C0</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>CGU one-way register</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="register-descriptions"><a class="header" href="#register-descriptions">Register Descriptions</a></h3>
+<h4 id="cgusec--cgu-security-control-register"><a class="header" href="#cgusec--cgu-security-control-register">CGUSEC — CGU Security Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_8000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[3:0]</td><td>clkcipher level (clktop)</td><td>Clock cipher speed for clktop. <code>0xF</code> = full speed, <code>0x0</code> = slowest (does not stop)</td></tr>
+<tr><td>[4]</td><td>clkcipher enable (clktop)</td><td>Enable clock cipher for clktop</td></tr>
+<tr><td>[11:8]</td><td>clkcipher level (clkpke)</td><td>Clock cipher speed for clkpke. <code>0xF</code> = full speed, <code>0x0</code> = slowest (does not stop)</td></tr>
+<tr><td>[12]</td><td>clkcipher enable (clkpke)</td><td>Enable clock cipher for clkpke</td></tr>
+</tbody>
+</table>
+</div>
+<p>The clock cipher scrambles the system clock by skipping pulses according to the state of an LFSR configured by <code>CGU_SEED</code>. This feature can harden the system against side channel analysis, at the expense of performance (because clock pulses are skipped, computation strictly takes longer with the cipher is on).</p>
+<p>This feature has not yet been thoroughly characterized. It’s not recommended to turn it on for <code>clktop</code> as instability has been observed in some settings.</p>
+<h4 id="cgulp--cgu-low-power-control-register"><a class="header" href="#cgulp--cgu-low-power-control-register">CGULP — CGU Low Power Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>fdlpen</td><td>Low-power FD setting enable. Only valid outside deep power-down.</td></tr>
+<tr><td>[1]</td><td>iplpen</td><td>Low-power IP disable</td></tr>
+<tr><td>[2]</td><td>deepen</td><td>Power-down enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgu_seed--clock-cipher-seed-register"><a class="header" href="#cgu_seed--clock-cipher-seed-register">CGU_SEED — Clock Cipher Seed Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>cipher seed</td><td>Value of the clock cipher seed</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgu_seedar--clock-cipher-seed-activation-register"><a class="header" href="#cgu_seedar--clock-cipher-seed-activation-register">CGU_SEEDAR — Clock Cipher Seed Activation Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x000C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Type:</strong> AR (action register, write-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write <code>0x5A</code> to commit the seed value from <code>CGU_SEED</code></td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgusel0--clktop-source-select-register"><a class="header" href="#cgusel0--clktop-source-select-register">CGUSEL0 — CLKTOP Source Select Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0010</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>nm</td><td>CLKTOP / CLKPKE source for normal mode: <code>0</code> = clksys, <code>1</code> = clkpll</td></tr>
+<tr><td>[1]</td><td>lp</td><td>CLKTOP source for low-power mode: <code>0</code> = clksys, <code>1</code> = clkpll</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_fclk--fclk-frequency-divider-cpu-max-700-mhz"><a class="header" href="#cgufd_fclk--fclk-frequency-divider-cpu-max-700-mhz">CGUFD_FCLK — FCLK Frequency Divider (CPU, max 700 MHz)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0014</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_7F7F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Low-power setting</td><td>FD value for low-power mode</td></tr>
+<tr><td>[23:16]</td><td>Min cycle</td><td>Minimum clock cycles: <code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_aclk--aclk-frequency-divider-axi-bus--qfc--sram--vex-max-350-mhz"><a class="header" href="#cgufd_aclk--aclk-frequency-divider-axi-bus--qfc--sram--vex-max-350-mhz">CGUFD_ACLK — ACLK Frequency Divider (AXI bus / QFC / SRAM / VEX, max 350 MHz)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0018</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_7F7F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Low-power setting</td><td>FD value for low-power mode</td></tr>
+<tr><td>[23:16]</td><td>Min cycle</td><td><code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_hclk--hclk-frequency-divider-dma--sce--ahb-max-175-mhz"><a class="header" href="#cgufd_hclk--hclk-frequency-divider-dma--sce--ahb-max-175-mhz">CGUFD_HCLK — HCLK Frequency Divider (DMA / SCE / AHB, max 175 MHz)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x001C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_7F7F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Low-power setting</td><td>FD value for low-power mode</td></tr>
+<tr><td>[23:16]</td><td>Min cycle</td><td><code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_iclk--iclk-frequency-divider-interface-max-875-mhz"><a class="header" href="#cgufd_iclk--iclk-frequency-divider-interface-max-875-mhz">CGUFD_ICLK — ICLK Frequency Divider (interface, max 87.5 MHz)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0020</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_7F7F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Low-power setting</td><td>FD value for low-power mode</td></tr>
+<tr><td>[23:16]</td><td>Min cycle</td><td><code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_pclk--pclk-frequency-divider-pclk--sysctrl--timer--wdt--sec-max-4375-mhz"><a class="header" href="#cgufd_pclk--pclk-frequency-divider-pclk--sysctrl--timer--wdt--sec-max-4375-mhz">CGUFD_PCLK — PCLK Frequency Divider (PCLK / sysctrl / timer / WDT / SEC, max 43.75 MHz)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0024</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_7F7F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Low-power setting</td><td>FD value for low-power mode</td></tr>
+<tr><td>[23:16]</td><td>Min cycle</td><td><code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_aoclk--aoclk-frequency-divider"><a class="header" href="#cgufd_aoclk--aoclk-frequency-divider">CGUFD_AOCLK — AOCLK Frequency Divider</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0028</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0F0F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Low-power setting</td><td>FD value for low-power mode</td></tr>
+<tr><td>[23:16]</td><td>Min cycle</td><td><code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> Keep CLKAO close to 1 MHz. The clock has one additional register output stage, so the frequency is divided by a further 2.</p>
+</blockquote>
+<h4 id="cguset--cgu-settings-enable-register"><a class="header" href="#cguset--cgu-settings-enable-register">CGUSET — CGU Settings Enable Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x002C</code></li>
+<li><strong>Type:</strong> AR (action register, write-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write <code>0x32</code> to commit any pending <code>CGUSEL0</code> / <code>CGUFD_*</code> changes</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgusel1--clksys-source-select-register"><a class="header" href="#cgusel1--clksys-source-select-register">CGUSEL1 — CLKSYS Source Select Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0030</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>SEL</td><td>CLKSYS source: <code>0</code> = internal OSC, <code>1</code> = XTAL</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_pkeclk--pkeclk-frequency-divider-pke-max-300-mhz"><a class="header" href="#cgufd_pkeclk--pkeclk-frequency-divider-pke-max-300-mhz">CGUFD_PKECLK — PKECLK Frequency Divider (PKE, max 300 MHz)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0034</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_003F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>PKE clock frequency divider, sourced from PLL1</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufd_aoram--aoram-frequency-divider"><a class="header" href="#cgufd_aoram--aoram-frequency-divider">CGUFD_AORAM — AORAM Frequency Divider</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0038</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0F0F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>Normal setting</td><td>FD value for normal mode</td></tr>
+<tr><td>[15:8]</td><td>Min cycle</td><td><code>0x00</code> = 1 clk, <code>0xFF</code> = max freq (based on clktop)</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> The clock has one additional register output stage, so the frequency is divided by a further 2.</p>
+</blockquote>
+<h4 id="cgufd_per--clkper-frequency-divider"><a class="header" href="#cgufd_per--clkper-frequency-divider">CGUFD_PER — CLKPER Frequency Divider</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x003C</code></li>
+<li><strong>Reset value:</strong> <code>0x00FF_FFFF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:0]</td><td>clkper fd</td><td>CLKPER divider (normal mode). See encoding table below.</td></tr>
+<tr><td>[15:8]</td><td>clkper fd (LP)</td><td>CLKPER divider for low-power mode. Same encoding as [7:0].</td></tr>
+<tr><td>[23:16]</td><td>Min cycle of clktop</td><td><code>0x00</code> = 1 clk. Fperclk max = Fclktop / (min_cycle + 1) × 2</td></tr>
+<tr><td>[31:24]</td><td>Min cycle (LP)</td><td>Minimum clock cycles for low-power mode</td></tr>
+</tbody>
+</table>
+</div>
+<p>CLKPER divider encoding:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>Fperclk</th></tr>
+</thead>
+<tbody>
+<tr><td><code>0xFF</code></td><td>Fclktop / 2</td></tr>
+<tr><td><code>0x7F</code></td><td>Fclktop / 4</td></tr>
+<tr><td><code>0x3F</code></td><td>Fclktop / 8</td></tr>
+<tr><td><code>0x1F</code></td><td>Fclktop / 16</td></tr>
+<tr><td><code>0x0F</code></td><td>Fclktop / 32</td></tr>
+<tr><td><code>0x07</code></td><td>Fclktop / 64</td></tr>
+<tr><td><code>0x03</code></td><td>Fclktop / 128</td></tr>
+<tr><td><code>0x01</code></td><td>Fclktop / 256</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufsfreq0--frequency-sensor-fclk--clkpke"><a class="header" href="#cgufsfreq0--frequency-sensor-fclk--clkpke">CGUFSFREQ0 — Frequency Sensor: FCLK / CLKPKE</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0040</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R (read-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:16]</td><td>FCLK</td><td>Measured FCLK frequency value</td></tr>
+<tr><td>[15:0]</td><td>CLKPKE</td><td>Measured CLKPKE frequency value</td></tr>
+</tbody>
+</table>
+</div>
+<p>Calculation: <code>frequency = Value × (CLKSYS / CGUFSCR)</code></p>
+<h4 id="cgufsfreq1--frequency-sensor-clkao--clkaoram"><a class="header" href="#cgufsfreq1--frequency-sensor-clkao--clkaoram">CGUFSFREQ1 — Frequency Sensor: CLKAO / CLKAORAM</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0044</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R (read-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:16]</td><td>CLKAO</td><td>Measured CLKAO frequency value</td></tr>
+<tr><td>[15:0]</td><td>CLKAORAM</td><td>Measured CLKAORAM frequency value</td></tr>
+</tbody>
+</table>
+</div>
+<p>Calculation: <code>frequency = Value × (CLKSYS / CGUFSCR)</code></p>
+<h4 id="cgufsfreq2--frequency-sensor-osc--xtal"><a class="header" href="#cgufsfreq2--frequency-sensor-osc--xtal">CGUFSFREQ2 — Frequency Sensor: OSC / XTAL</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0048</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R (read-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:16]</td><td>OSC</td><td>Measured internal OSC frequency value</td></tr>
+<tr><td>[15:0]</td><td>XTAL</td><td>Measured XTAL frequency value</td></tr>
+</tbody>
+</table>
+</div>
+<p>Calculation: <code>frequency = Value × (CLKSYS / CGUFSCR)</code></p>
+<h4 id="cgufsfreq3--frequency-sensor-pll-output-0--output-1"><a class="header" href="#cgufsfreq3--frequency-sensor-pll-output-0--output-1">CGUFSFREQ3 — Frequency Sensor: PLL Output 0 / Output 1</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x004C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R (read-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:16]</td><td>Output0</td><td>Measured PLL output 0 frequency value</td></tr>
+<tr><td>[15:0]</td><td>Output1</td><td>Measured PLL output 1 frequency value</td></tr>
+</tbody>
+</table>
+</div>
+<p>Calculation: <code>PLL frequency = Value × (CLKSYS / CGUFSCR)</code></p>
+<h4 id="cgufsvld--frequency-valid-register"><a class="header" href="#cgufsvld--frequency-valid-register">CGUFSVLD — Frequency Valid Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0050</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R (read-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td><code>0x0F</code> = frequency measurement valid; any other value = invalid</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgufscr--frequency-sensor-reference-register"><a class="header" href="#cgufscr--frequency-sensor-reference-register">CGUFSCR — Frequency Sensor Reference Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0054</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0030</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>Reference</td><td>Frequency sensor reference in MHz (OSC or XTAL). Default 48 MHz. Replace with actual value if not accurate.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cguaclkgr--aclk-group-sub-gate-register"><a class="header" href="#cguaclkgr--aclk-group-sub-gate-register">CGUACLKGR — ACLK Group Sub-Gate Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0060</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_00FF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[4]</td><td>QFC</td><td>QFC clock enable</td></tr>
+<tr><td>[5]</td><td>Mbox</td><td>Mailbox clock enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cguhclkgr--hclk-group-sub-gate-register"><a class="header" href="#cguhclkgr--hclk-group-sub-gate-register">CGUHCLKGR — HCLK Group Sub-Gate Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0064</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_00FF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>SCE</td><td>SCE clock enable</td></tr>
+<tr><td>[4]</td><td>MDMA</td><td>MDMA clock enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cguiclkgr--iclk-group-sub-gate-register"><a class="header" href="#cguiclkgr--iclk-group-sub-gate-register">CGUICLKGR — ICLK Group Sub-Gate Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0068</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_00FF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[4]</td><td>UDC</td><td>UDC clock enable</td></tr>
+<tr><td>[7]</td><td>Bio_bdma</td><td>Bio BDMA clock enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cgupclkgr--pclk-group-sub-gate-register"><a class="header" href="#cgupclkgr--pclk-group-sub-gate-register">CGUPCLKGR — PCLK Group Sub-Gate Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x006C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_00FF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7]</td><td>mesh</td><td>Mesh clock enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cguowr--cgu-one-way-register"><a class="header" href="#cguowr--cgu-one-way-register">CGUOWR — CGU One-Way Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x00C0</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Write <code>1</code> to set a bit; the bit resets to <code>0</code> on device reset.</p>
+<hr>
+<h2 id="pll--ip-control-ipc"><a class="header" href="#pll--ip-control-ipc">PLL / IP Control (IPC)</a></h2>
+<h3 id="ipc-main-features"><a class="header" href="#ipc-main-features">IPC Main Features</a></h3>
+<ul>
+<li><strong>PLL parameter configuration:</strong>
+<ul>
+<li>Reference clock frequency range: 10 MHz to 1200 MHz.</li>
+<li>PFD frequency range: 10 MHz to 100 MHz.</li>
+<li>VCO frequency range: 1 GHz to 3 GHz.</li>
+<li>Low jitter output.</li>
+<li>Lock detector to indicate frequency-locked state.</li>
+</ul>
+</li>
+<li>OSC, PLL, RRAM, PMU, XTAL 48 MHz low-power mode enable.</li>
+<li>OSC cipher level setting.</li>
+<li>IP low-power mode flow start.</li>
+</ul>
+<h3 id="pll-introduction"><a class="header" href="#pll-introduction">PLL Introduction</a></h3>
+<p>The PLL integrates a Phase Frequency Detector (PFD), a Low Pass Filter (LPF), a Voltage Controlled Oscillator (VCO), and other associated circuitry. All fundamental building blocks and fully programmable dividers are integrated in the core.</p>
+<p><img src="images/clock-generation-pll-block-diagram.png" alt="PLL block diagram showing PFD, LPF, VCO, feedback divider, and post-divider stages"></p>
+<p><strong>Output frequency calculation:</strong></p>
+<pre><code>Fvco = Fref × (N + F) ÷ M
+</code></pre>
+<ul>
+<li><strong>N</strong> — integer feedback divider ratio, set by <code>fbdiv[11:0]</code>. Range: 10, 12, 13 … 500.</li>
+<li><strong>F</strong> — fractional feedback divider ratio, set by <code>frac[23:0]</code>. F = <code>frac[23:0]</code> / 2²⁴ = 0 to 0.99999994.</li>
+<li><strong>M</strong> — pre-divider ratio, set by <code>prediv[4:0]</code>. Range: 1, 2 … 31.</li>
+</ul>
+<p>Note: fractional divider does not seem to be functional. Setting it seems to have no effect. It is currently recommended to not set the fractional bits.</p>
+<p><strong>Post-dividers:</strong></p>
+<pre><code>Fclko0 = Fvco ÷ (Q0_0 × Q1_0)
+</code></pre>
+<ul>
+<li><strong>Q0_0</strong> — Post_div0_0 ratio, set by <code>postdiv0_0[2:0]</code>. Range: 0, 2 … 7.</li>
+<li><strong>Q1_0</strong> — Post_div1_0 ratio, set by <code>postdiv1_0[2:0]</code>. Range: 0, 2 … 7.</li>
+</ul>
+<p>Fclko1 is calculated the same way as Fclko0.</p>
+<h3 id="ipc-registers"><a class="header" href="#ipc-registers">IPC Registers</a></h3>
+<p>Base address: <code>0x4004_0090</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register Name</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>IPCAR</td><td>0x0000</td><td>32</td><td>AR</td><td>W</td><td>0x00000000</td><td>Activate configuration / IP flow</td></tr>
+<tr><td>IPCEN</td><td>0x0004</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000001</td><td>IPC enable</td></tr>
+<tr><td>IPCLPEN</td><td>0x0008</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000001</td><td>IPC low-power enable</td></tr>
+<tr><td>IPCOSC</td><td>0x000C</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>OSC control</td></tr>
+<tr><td>IPCPLL_MN</td><td>0x0010</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>PLL M and N parameters</td></tr>
+<tr><td>IPCPLL_F</td><td>0x0014</td><td>32</td><td>CR</td><td>R/W</td><td>0x000000FF</td><td>PLL fractional parameter</td></tr>
+<tr><td>IPCPLL_Q</td><td>0x0018</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>PLL post-divider parameters</td></tr>
+<tr><td>IPCCR</td><td>0x001C</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000053</td><td>IPC control register</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="register-descriptions-1"><a class="header" href="#register-descriptions-1">Register Descriptions</a></h3>
+<h4 id="ipcar--ipc-action-register"><a class="header" href="#ipcar--ipc-action-register">IPCAR — IPC Action Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Type:</strong> AR (action register, write-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td><code>0x32</code> = commit PLL configuration; <code>0x57</code> = start IP flow</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ipcen--ipc-enable-register"><a class="header" href="#ipcen--ipc-enable-register">IPCEN — IPC Enable Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0001</code></li>
+</ul>
+<p>Enables the IP control block. Default on at reset.</p>
+<h4 id="ipclpen--ipc-low-power-enable-register"><a class="header" href="#ipclpen--ipc-low-power-enable-register">IPCLPEN — IPC Low-Power Enable Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0001</code></li>
+</ul>
+<p>Separate configuration bits for sleep and deep-sleep conditions:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>OSC</td><td>OSC sleep: <code>0</code> = no sleep, <code>1</code> = sleep</td></tr>
+<tr><td>[1]</td><td>PLL</td><td>PLL sleep: <code>0</code> = no sleep, <code>1</code> = sleep</td></tr>
+<tr><td>[2]</td><td>RRAM</td><td>RRAM sleep: <code>0</code> = no sleep, <code>1</code> = sleep</td></tr>
+<tr><td>[3]</td><td>PMU</td><td>PMU sleep: <code>0</code> = no sleep, <code>1</code> = sleep</td></tr>
+<tr><td>[4]</td><td>PMU_IBIASENA / XTAL (deep sleep)</td><td><code>0</code> = no sleep, <code>1</code> = sleep</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ipcosc--osc-control-register"><a class="header" href="#ipcosc--osc-control-register">IPCOSC — OSC Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x000C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[3:0]</td><td>cipher level</td><td>OSC cipher level</td></tr>
+<tr><td>[4]</td><td>en</td><td>OSC cipher enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ipcpll_mn--pll-integer-divider-parameters"><a class="header" href="#ipcpll_mn--pll-integer-divider-parameters">IPCPLL_MN — PLL Integer Divider Parameters</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0010</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[11:0]</td><td>N (fbdiv)</td><td>12-bit integer feedback divider ratio</td></tr>
+<tr><td>[16:12]</td><td>M (prediv)</td><td>5-bit pre-divider ratio</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ipcpll_f--pll-fractional-divider-parameter"><a class="header" href="#ipcpll_f--pll-fractional-divider-parameter">IPCPLL_F — PLL Fractional Divider Parameter</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0014</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_00FF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[23:0]</td><td>F (frac)</td><td>24-bit fractional feedback divider value</td></tr>
+<tr><td>[24]</td><td>frac enable</td><td>Fractional divider enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ipcpll_q--pll-post-divider-parameters"><a class="header" href="#ipcpll_q--pll-post-divider-parameters">IPCPLL_Q — PLL Post-Divider Parameters</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0018</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[2:0]</td><td>pll0_q0</td><td>PLL0 post-divider 0 (Q0_0). 3-bit, divider value 1–8. <code>3'b000</code> = ÷1, <code>3'b111</code> = ÷8. PLL0 drives clktop.</td></tr>
+<tr><td>[6:4]</td><td>pll0_q1</td><td>PLL0 post-divider 1 (Q1_0). Same encoding as pll0_q0.</td></tr>
+<tr><td>[10:8]</td><td>pll1_q0</td><td>PLL1 post-divider 0. PLL1 drives clkper.</td></tr>
+<tr><td>[14:12]</td><td>pll1_q1</td><td>PLL1 post-divider 1.</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> <code>Fclko = Fvco ÷ (Q0 × Q1)</code></p>
+</blockquote>
+<h4 id="ipccr--ipc-control-register"><a class="header" href="#ipccr--ipc-control-register">IPCCR — IPC Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x001C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0053</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[2:0]</td><td>cpi_bias</td><td>PLL charge pump current. Higher value = greater current. Default <code>3'b011</code>.</td></tr>
+<tr><td>[5:3]</td><td>cpp_bias</td><td>PLL proportional path current. Higher value = greater current. Default <code>3'b010</code>.</td></tr>
+<tr><td>[7:6]</td><td>gvco_bias</td><td>PLL integral path current. Higher value = greater current. Default <code>2'b01</code>.</td></tr>
+<tr><td>[8]</td><td>pad_reton</td><td>Pad retention control</td></tr>
+<tr><td>[15:9]</td><td>IP control</td><td>Reserved / TBD</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="xous-api"><a class="header" href="#xous-api">Xous API</a></h2>
+<h3 id="general-structure"><a class="header" href="#general-structure">General Structure</a></h3>
+<p>The clock manager is buried in <code>bao1x-hal-service</code> inside the suspend/resume <code>susres</code> service. The hardware manager is created <a href="https://github.com/betrusted-io/xous-core/blob/53dccf0df2341ddfd6d5947d8cf7c49e94f4834e/services/bao1x-hal-service/src/servers/susres.rs#L36">here</a>.</p>
+<p>The hardware manager shares the same API that is available in bare metal contexts. Thus, within the <code>susres</code> service, you have all the low level API knobs to turn to adjust clocks.</p>
+<p>However, as of the time of writing of the documentation, few of these APIs have been brought up to the userspace level, because the current abstraction for clock management consists of three possible states:</p>
+<ul>
+<li>normal run - CPU runs at 350MHz.</li>
+<li>wfi sleep - system is down-clocked to 48MHz, and the CPU clock is halted until an interrupt is received.</li>
+<li>deep sleep - system clock is halted, CPU power domains are turned off; SRAM contents are lost. System can wake on KPC interrupt or reset.</li>
+</ul>
+<p>To put the system into WFI sleep, you can add this to Cargo.toml:</p>
+<pre><code class="language-toml ignore">   susres = { package = "xous-api-susres", version = "0.9" }
+</code></pre>
+<p>and then use this code stub:</p>
+<pre><code class="language-rust ignore">  let xns = xous_names::XousNames::new().unwrap();
+  let susres = susres::Susres::new_without_hook(&amp;xns).unwrap();
+  susres.initiate_suspend().unwrap();</code></pre>
+<p>The deep sleep API has not been formalized in the <code>susres</code> framework. To enter it, you can directly create a deep sleep opcode to the susres server as follows:</p>
+<pre><code class="language-rust ignore">  let xns = xous_names::XousNames::new().unwrap();
+  let xns
+      .request_connection_blocking(susres::api::SERVER_NAME_SUSRES)
+      .expect("Can't connect to SUSRES");
+  xous::send_message(
+      conn,
+      xous::Message::new_blocking_scalar(
+          susres::api::Opcode::PlatformSpecific.to_usize().unwrap(),
+          bao1x_hal_service::api::ClockOp::DeepSleep.to_usize().unwrap(),
+          0,
+          0,
+          0,
+      ),
+  ).unwrap();</code></pre>
+<p>The call above grabs a connection directly to the <code>susres</code> server (which exists at a “well-known name”), and then synthesizes a platform-specific opcode to trigger deep sleep.</p>
+<p>More clock management APIs need to be created - suggestions and PRs are welcome.</p>
+<h3 id="clock-setup"><a class="header" href="#clock-setup">Clock Setup</a></h3>
+<p>On boot, the clocks are set up in a baremetal context by the bootloader. The call that does this is in <code>libs/bao1x-hal/src/clocks.rs</code>.</p>
+<p>The key API call to set up clocks is currently:</p>
+<pre><code class="language-rust ignore">pub unsafe fn init_clock_asic&lt;F&gt;(
+    freq_hz: u32,
+    cgu_base: usize,
+    ao_sysctl_base: usize,
+    duart_base: Option&lt;usize&gt;,
+    delay_at_sysfreq: F,
+    fast_bio: bool,
+) -&gt; u32
+where
+    F: Fn(usize, u32)</code></pre>
+<p>This call sets up the clocks to a known, stable default state for the system.</p>
+<p>Arguments:</p>
+<ul>
+<li><code>freq_hz</code> is the desired frequency of the <code>fclk</code> clock. This is the fastest clock in the system and is the rate at which the BIO runs. All other clocks are scaled off of this.</li>
+<li><code>cgu_base</code> is the address for the CGU register bank (in virtual memory contexts, this addess is not fixed)</li>
+<li><code>ao_sysctl_base</code> is the address for the always-on/system control register bank</li>
+<li><code>duart_base</code> is an optional argument for the DUART register base, if debugging is desired</li>
+<li><code>delay_at_sysfreq</code> is a function that defines a delay function. It has the form of <code>f(ms, freq)</code>, so it will delay for <code>ms</code> milliseconds at a clock frequency of <code>freq</code> hertz. This is needed to time delays between power mode transitions.</li>
+<li><code>fast_bio</code> when true, indicates that the BIO is clocked at 2x the CPU clock</li>
+</ul>
+<p>The function returnts the actual frequency achieved for the peripheral clock subsystem in hertz. This number is required by many of the peripheral drivers to compute downstream clock dividers for things like baud rates.</p>
+<h3 id="pll-programming"><a class="header" href="#pll-programming">PLL Programming</a></h3>
+<p>The PLL has a large parameter space. In order to assist with finding PLL settings, a function called <code>find_pll_params</code> is provided inside <code>libs/bao1x-api/src/clocks.rs</code>. This will search a couple hundred possible configurations to determine the optimal configuration for the PLL at a given frequency.</p>
+<p>Because the search is so computationally intensive, a list of the most common clock settings are provided in <code>COMMON_CLOCKS</code>. This has pre-settings for the following VCO frequencies:</p>
+<ul>
+<li>700 MHz</li>
+<li>696 MHz (lower VCO frequency can save some pawer)</li>
+<li>400 MHz</li>
+<li>350 MHz</li>
+<li>200 MHz</li>
+<li>100 MHz</li>
+<li>800 MHz (overclocking, use will void your warranty; use at your own risk)</li>
+</ul>
+<h3 id="frequency-divider-programming"><a class="header" href="#frequency-divider-programming">Frequency Divider Programming</a></h3>
+<p>The values provided in the freqeuncy divider tables are the recommended integer-division frequency dividers. Sub-integer values are possible, but what happens is the system only achieves the target frequency as a time-average: the time between rising clock edges is dithered to achieve an effective frequency rate.</p>
+<p>The following functions are provided as a convenience for programmers that need to set the dividers:</p>
+<ul>
+<li><code>fd_from_frequency(desired_freq_hz: u32, in_freq_hz: u32) -&gt; u32</code> takes in the desired output frequency (<code>desired_freq_hz</code>), the input frequency to the divider (<code>in_freq_hz</code>), and outputs the <code>fd</code> value for the respective divider.</li>
+<li><code>divide_by_fd(fd: u32, in_freq_hz: u32) -&gt; u32</code> takes in an <code>fd</code> setting, the input frequency to the divider as <code>in_freq_hz</code>, and returns the average frequency of the divider</li>
+<li><code>fd_to_ratio(fd: u32) -&gt; f32</code> given an <code>fd</code> setting, returns a floating point number that can be multiplied by an input frequency to determine the average output frequency</li>
+<li><code>divide_ratio_to_fd(ratio: f32, round_freq_up: bool) -&gt; u8</code> given a desired ratio (should be less than or equal to 1.0), returns the nearest <code>fd</code> value that tries to achieve that divider. The flag instructs the code to either round the frequency target up or down from the target ratio if the exact <code>fd</code> cannot be achieved.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch05-00-usb.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch05-00-usb.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
