@@ -774,7 +774,7 @@
 <p>The PLL integrates a Phase Frequency Detector (PFD), a Low Pass Filter (LPF), a Voltage Controlled Oscillator (VCO), and other associated circuitry. All fundamental building blocks and fully programmable dividers are integrated in the core.</p>
 <p><img src="images/clock-generation-pll-block-diagram.png" alt="PLL block diagram showing PFD, LPF, VCO, feedback divider, and post-divider stages"></p>
 <p><strong>Output frequency calculation:</strong></p>
-<pre><code>Fvco = Fref × (N + F) ÷ M
+<pre><code class="language-text ignore">Fvco = Fref × (N + F) ÷ M
 </code></pre>
 <ul>
 <li><strong>N</strong> — integer feedback divider ratio, set by <code>fbdiv[11:0]</code>. Range: 10, 12, 13 … 500.</li>
@@ -783,7 +783,7 @@
 </ul>
 <p>Note: fractional divider does not seem to be functional. Setting it seems to have no effect. It is currently recommended to not set the fractional bits.</p>
 <p><strong>Post-dividers:</strong></p>
-<pre><code>Fclko0 = Fvco ÷ (Q0_0 × Q1_0)
+<pre><code class="language-text ignore">Fclko0 = Fvco ÷ (Q0_0 × Q1_0)
 </code></pre>
 <ul>
 <li><strong>Q0_0</strong> — Post_div0_0 ratio, set by <code>postdiv0_0[2:0]</code>. Range: 0, 2 … 7.</li>
