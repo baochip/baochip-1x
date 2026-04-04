@@ -435,7 +435,7 @@ The PLL integrates a Phase Frequency Detector (PFD), a Low Pass Filter (LPF), a 
 
 **Output frequency calculation:**
 
-```
+```text,ignore
 Fvco = Fref × (N + F) ÷ M
 ```
 
@@ -447,7 +447,7 @@ Note: fractional divider does not seem to be functional. Setting it seems to hav
 
 **Post-dividers:**
 
-```
+```text,ignore
 Fclko0 = Fvco ÷ (Q0_0 × Q1_0)
 ```
 
