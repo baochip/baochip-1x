@@ -20,3 +20,4 @@
 - [IO Configuration](ch03-00-io-configuration.md)
 - [ADC](ch04-00-adc.md)
 - [USB](ch05-00-usb.md)
+- [Clocks](clock-generation.md)
