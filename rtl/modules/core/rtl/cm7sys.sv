@@ -734,12 +734,37 @@ module cm7sys
 //    assign corecm7pc[31:0]  = {cm7top_IADDR[31:3],3'h0};//cm7top.u_cortexm7.u_top_sys.u_core.u_cm7_dpu.u_dpu_prog_flow.pc_r_ex1[31:1] * 2;
     assign corecm7pc[31:0]  = pcptr;
 
+
+// eco16c:
+//before eco
+/*
     genvar gvi;
     generate
         for( gvi = 0; gvi < PM_COREUSERCNT; gvi++ ) begin: GENCOREUSER
             `theregrn( coreuserreg0[PM_COREUSERCNT-gvi-1] ) <= ( corecm7pc >= coreusermap[gvi].start_addr) & ( corecm7pc < coreusermap[gvi].end_addr);
         end
     endgenerate
+*/
+//after eco
+    genvar gvi;
+    logic [PM_COREUSERCNT-1:0] coreuserreg0pre;
+    // PM_COREUSERCNT = 8 in daric
+
+    generate
+        for( gvi = 1; gvi < PM_COREUSERCNT; gvi++ ) begin: GENCOREUSER
+            assign coreuserreg0pre[PM_COREUSERCNT-gvi-1] = ( corecm7pc >= coreusermap[gvi].start_addr) & ( corecm7pc < coreusermap[gvi].end_addr);
+        end
+    endgenerate
+
+    // all program out of reram will be identified as fw1
+//    assign coreuserreg0pre[7] = (coreuserreg0[6:4] == 0 );
+    assign coreuserreg0pre[7] = ~|coreuserreg0pre[6:4];
+
+    `theregrn( coreuserreg0 ) <= coreuserreg0pre;
+
+
+// end of eco16c
+
 
     `theregrn( coreuserreg1 ) <= coreuserreg0;
     assign coreuser_change = ~(coreuserreg1==coreuserreg0);
