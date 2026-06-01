@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-8b37090e.js";
+            window.path_to_searchindex_js = "searchindex-ac08f7ad.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-fa115614.js"></script>
@@ -351,7 +351,7 @@
 <li>On wake-up, the CPU resumes execution from the next instruction.</li>
 </ol>
 <p>As of Xous 0.10.1, the above sequence is already implemented and accessible via an API call to enter suspend via the Suspend/Resume manager:</p>
-<pre><code class="language-Rust">    let xns = xous_names::XousNames::new().unwrap();
+<pre><code class="language-Rust ignore">    let xns = xous_names::XousNames::new().unwrap();
     let susres = susres::Susres::new_without_hook(&amp;xns).unwrap();
     susres.initiate_suspend().unwrap();
 </code></pre>
@@ -369,9 +369,7 @@
 <li>On wake-up, the PMU powers on the SoC domain. The ReRAM IFR is re-read, RAMs reset to zero, and the CPU restarts from the beginning.</li>
 </ol>
 <p>As of Xous 0.10.1, the above sequence is already implemented via an API call to enter power-down mode that requires a PlatformSpecific call:</p>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>    use num_traits::ToPrimitive;
+<pre><code class="language-rust ignore">    use num_traits::ToPrimitive;
 
     let xns = xous_names::XousNames::new().unwrap();
     let susres_conn =
@@ -386,8 +384,7 @@
             0,
         ),
     )
-    .ok();
-<span class="boring">}</span></code></pre>
+    .ok();</code></pre>
 <p>You’ll need these crates to make the above call:</p>
 <pre><code class="language-toml">   xous = "0.9.70"
    susres = { package = "xous-api-susres", version = "0.9.68" }
