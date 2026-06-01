@@ -165,7 +165,7 @@ Wake-up from power-down is triggered by asserting RESET, or by asserting PF0 or 
 
 As of Xous 0.10.1, the above sequence is already implemented and accessible via an API call to enter suspend via the Suspend/Resume manager:
 
-```Rust
+```Rust,ignore
     let xns = xous_names::XousNames::new().unwrap();
     let susres = susres::Susres::new_without_hook(&xns).unwrap();
     susres.initiate_suspend().unwrap();
@@ -189,7 +189,7 @@ To access the `xous_names` and `susres` APIs, you will need this in your `Cargo.
 
 As of Xous 0.10.1, the above sequence is already implemented via an API call to enter power-down mode that requires a PlatformSpecific call:
 
-```rust
+```rust,ignore
     use num_traits::ToPrimitive;
 
     let xns = xous_names::XousNames::new().unwrap();
