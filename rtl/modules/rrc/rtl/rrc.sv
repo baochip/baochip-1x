@@ -271,7 +271,7 @@ module rrc #(
     bit [63:0] trc_regif_dout_s1;
     bit rrcar_suicide;
 
-    ahb_cr #(.A('h00), .DW(32))                 sfr_rrccr       (.cr(rrccr), .hrdata32(), .resetn(coreresetn), .sfrlock(1'b0), .*);
+    ahb_cr_ECO #(.A('h00), .DW(32))                 sfr_rrccr       (.cr(rrccr), .hrdata32(), .resetn(coreresetn), .sfrlock(1'b0), .*);
     ahb_cr #(.A('h04), .DW(5), .IV('h7))        sfr_rrcfd       (.cr(rrcfd), .hrdata32(), .resetn(coreresetn), .sfrlock(1'b0), .*);
     ahb_sr #(.A('h08), .DW(10))                 sfr_rrcsr       (.sr(rrcsr), .hrdata32(), .resetn(coreresetn), .sfrlock(1'b0), .*);
     ahb_fr #(.A('h0C), .DW(5))                  sfr_rrcfr       (.fr(rrcfr), .hrdata32(), .resetn(coreresetn), .sfrlock(1'b0), .*);
@@ -368,7 +368,9 @@ module rrc #(
     assign acram_rdbusy_pre = ahb_read_acram ? 1'b1 :
                                 ahbarray.hready ? 1'b0 : acram_rdbusy;
 
-    assign ahb_read_acram = ahb_array_trans & ahbarray.hsel & !ahbarray.hwrite & (keysel_ahb | datasel_ahb);
+//#eco16e:
+//    assign ahb_read_acram = ahb_array_trans & ahbarray.hsel & !ahbarray.hwrite & (keysel_ahb | datasel_ahb);
+    assign ahb_read_acram = ahb_array_trans & ahbarray.hsel & (keysel_ahb | datasel_ahb);
     assign keysel_ahb = ( ahbarray.haddr[31:16] == PM_KEY_REGION );
     assign datasel_ahb = ( ahbarray.haddr[31:16] == PM_DATA_REGION );
 
@@ -640,8 +642,6 @@ module rrc #(
   //    coreuser    [7]:fw1,    [6]:fw0,            [5]:boot1           [4]:boot0
 
     localparam PM_CODE_REGION_BORDER = 20'h603D_A;
-    localparam PM_CFGD_REGION = {16'h603D,3'b110};
-    localparam PM_CFGK_REGION = {16'h603D,3'b110};
 
     bit [3:0]  userid_c;
     bit vex_mm_reg;
@@ -715,14 +715,18 @@ module rrc #(
                                 ahb_read_flag & scesel & (sce_rd_dis_k | (!sce_sec_op) | (keytype_in != keytype_k)) |
                                 ahb_write_flag & scesel & (sce_wr_dis_k | (!sce_sec_op) | (keytype_in != keytype_k)) |
                                 (!trustkey[akeyid] & (haddr_reg[15:6] != 10'h0))) & data_op & keysel & (userid_k[7:4] != 4'h0);
-    assign key_access_error = key_access_error_pre & rrccr[10];
+//#eco16
+//    assign key_access_error = key_access_error_pre & rrccr[10];
+    assign key_access_error = key_access_error_pre;
 
     assign data_access_error_pre = (((coreuser_in[7:4] & userid_k[7:4])==0) & (ahb_write_flag | ahb_read_flag) |
                                 ahb_read_flag & ((core_rd_dis_d & (cm7sel|vexsel)) | cm7sel&(!pri_op) | vexsel&(!vex_mm_reg)) |
                                 ahb_write_flag & ((core_wr_dis_d & (cm7sel|vexsel)) | cm7sel&(!pri_op) | vexsel&(!vex_mm_reg)) |
                                 ahb_read_flag & scesel & (sce_rd_dis_d | (!(sce_exc_op | sce_sec_op)) | (keytype_in != keytype_d)) |
                                 ahb_write_flag & scesel & (sce_wr_dis_d | (!(sce_exc_op | sce_sec_op)) | (keytype_in != keytype_d)) ) & data_op & datasel & (userid_d[7:4] != 4'h0);
-    assign data_access_error = data_access_error_pre & rrccr[11];
+//#eco16
+//    assign data_access_error = data_access_error_pre & rrccr[11];
+    assign data_access_error = data_access_error_pre;
 
     assign boot0_code_dis = user_code_cfg_boot0[2] & ahb_read_flag & coreuser_in[5] |           //master boot1 read
                                 user_code_cfg_boot0[3] & ahb_write_flag & coreuser_in[5] |      //master boot1 write
@@ -770,11 +774,22 @@ module rrc #(
                                         ahb_write_flag & scesel & (sce_wr_dis_d | (!(sce_exc_op | sce_sec_op)))) & data_op & codesel;
 
     assign code_access_error_pre = (code_access_error_inst |code_access_error_data);
+//#eco16
     assign code_access_error = code_access_error_pre & rrccr[12];
+//    assign code_access_error = code_access_error_pre;
 
     assign info_access_error_pre = (((brdatreg[axi_yadr][255:248] == PM_WRITE_DIS) | cm7sel&(!pri_op) | vexsel&(!vex_mm_reg) | scesel) & ahb_write_flag |
                                     ((brdatreg[axi_yadr][247:240] == PM_READ_DIS) | cm7sel&(!pri_op) | vexsel&(!vex_mm_reg) | scesel) & ahb_read_flag ) & axi_info & data_op;
-    assign info_access_error = info_access_error_pre & rrccr[14];
+//#eco16
+//    assign info_access_error = info_access_error_pre & rrccr[14];
+    assign info_access_error = info_access_error_pre;
+
+
+
+//#eco16, fix PM_CFGK_REGION typo by ignore haddr_reg[13]
+/*
+    localparam PM_CFGD_REGION = {16'h603D,3'b110};
+    localparam PM_CFGK_REGION = {16'h603D,3'b110};
 
     assign cfg_rd_dis = data_cfg_rd_dis[haddr_reg[12:5]] & (haddr_reg[31:13] == PM_CFGD_REGION) |
                             key_cfg_rd_dis[haddr_reg[12:5]] & (haddr_reg[31:13] == PM_CFGK_REGION) ;
@@ -787,7 +802,27 @@ module rrc #(
 
     assign cfg_access_error_pre = (((cfg_rd_dis & (cm7sel|vexsel)) | cfg_prev_dis) & ahb_read_flag |
                                     ((cfg_wr_dis  & (cm7sel|vexsel)) | cfg_prev_dis) & ahb_write_flag ) & data_op;
-    assign cfg_access_error = cfg_access_error_pre & rrccr[13];
+*/
+    localparam PM_CFGD_REGION = {16'h603D,2'b11};
+    localparam PM_CFGK_REGION = {16'h603D,2'b11};
+
+    assign cfg_rd_dis = data_cfg_rd_dis[haddr_reg[12:5]] & (haddr_reg[31:14] == PM_CFGD_REGION) |
+                            key_cfg_rd_dis[haddr_reg[12:5]] & (haddr_reg[31:14] == PM_CFGK_REGION) ;
+
+    assign cfg_wr_dis = data_cfg_wr_dis[haddr_reg[12:5]] & (haddr_reg[31:14] == PM_CFGD_REGION) |
+                            key_cfg_wr_dis[haddr_reg[12:5]] & (haddr_reg[31:14] == PM_CFGK_REGION) ;
+
+    assign cfg_prev_dis = (((!(coreuser_in[5] | coreuser_in[4])) & (cm7sel|vexsel)) | cm7sel&(!pri_op) | vexsel&(!vex_mm_reg) | scesel)
+                             & ((haddr_reg[31:14] == PM_CFGD_REGION) | (haddr_reg[31:14] == PM_CFGK_REGION));
+
+    assign cfg_access_error_pre = (((cfg_rd_dis & (cm7sel|vexsel)) | cfg_prev_dis) & ahb_read_flag |
+                                    ((cfg_wr_dis  & (cm7sel|vexsel)) | cfg_prev_dis) & ahb_write_flag ) & data_op;
+
+
+
+//#eco16
+//    assign cfg_access_error = cfg_access_error_pre & rrccr[13];
+    assign cfg_access_error = cfg_access_error_pre;// & rrccr[13];
 
     assign cmd_user_write_dis = (key_access_error | data_access_error | info_access_error | code_access_error | cfg_access_error) & ahb_write_flag;
     assign cmd_user_read_dis = (key_access_error | data_access_error | info_access_error | code_access_error | cfg_access_error) & ahb_read_flag;
@@ -1100,3 +1135,147 @@ module rrc #(
         );
 
 endmodule : rrc
+
+module ahb_cr_ECO
+#(
+      parameter A=0,
+      parameter AW=12,
+      parameter DW=16,
+      parameter IV=32'h0,
+      parameter SFRCNT=1,
+//      parameter SRMASK=32'h0,               // set write 1 to clr ( for status reg )
+      parameter RMASK=32'hffff_ffff        // read mask to remove undefined bit
+//      parameter REXTMASK=32'h0              // read ext mask
+)(
+        input  logic                          hclk        ,
+        input  logic                          resetn      ,
+        ahbif.slavein                       ahbs        ,
+        input  bit                          sfrlock     ,
+//        input  bit   [AW-1:0]               sfrhaddr    ,
+//        input  bit   [0:SFRCNT-1][DW-1:0]   sfrhrdataext,
+//        input  bit   [0:SFRCNT-1][DW-1:0]   sfrsr       ,
+        output logic [31:0]                 hrdata32    ,
+        output logic [0:SFRCNT-1][DW-1:0]   cr
+);
+
+
+    logic[DW-1:0] hrdata;
+    assign hrdata32 = hrdata | 32'h0;
+
+    ahb_sfr2_ECO #(
+            .AW          ( AW            ),
+            .DW          ( DW            ),
+            .IV          ( IV            ),
+            .SFRCNT      ( SFRCNT        ),
+            .RMASK       ( RMASK         ),      // read mask to remove undefined bit
+            .FRMASK      ( 32'h0         ),      // set write 1 to clr ( for status reg )
+            .SRMASK      ( 32'h0         )       // read ext mask
+         )ahb_sfr(
+            .hclk        (hclk           ),
+            .resetn      (resetn         ),
+            .ahbs        (ahbs           ),
+            .sfrlock     (sfrlock|'0     ),
+            .sfrhaddr    (A[AW-1:0]      ),
+            .sfrsr       ('0             ),
+            .sfrfr       ('0             ),
+            .sfrhrdata   (hrdata         ),
+            .sfrdata     (cr             )
+         );
+
+endmodule
+
+
+
+// ahb_sfr basic
+
+    module ahb_sfr2_ECO #(
+      parameter AW=12,
+      parameter DW=32,
+      parameter [DW-1:0] IV='0,
+      parameter SFRCNT=1,
+      parameter RMASK=32'hffff_ffff,    // read mask to remove undefined bit
+      parameter FRMASK=32'h0,               // set write 1 to clr ( for status reg )
+      parameter SRMASK=32'h0              // read ext mask
+     )(
+        input  logic                          hclk        ,
+        input  logic                          resetn      ,
+        ahbif.slavein                       ahbs        ,
+        input  bit                          sfrlock     ,
+        input  bit   [AW-1:0]               sfrhaddr    ,
+        input  bit   [0:SFRCNT-1][DW-1:0]   sfrsr       ,
+        input  bit   [0:SFRCNT-1][DW-1:0]   sfrfr       ,
+        output logic [DW-1:0]               sfrhrdata   ,
+        output logic [0:SFRCNT-1][DW-1:0]   sfrdata
+     );
+
+  wire  [AW-1:0]         reg_addr;
+  wire                   reg_read_en;
+  wire                   reg_write_en, reg_write_en0;
+  wire  [3:0]            reg_byte_strobe;
+  wire  [31:0]           reg_wdata;
+  wire  [31:0]           reg_rdata;
+
+  ahbs_trans
+   #(.ADDRWIDTH (AW))
+    strans (
+      .hclk         (hclk),
+      .hresetn      (resetn),
+
+      // Input slave port: 32 bit data bus interface
+      .hsels        (ahbs.hsel),
+      .haddrs       (ahbs.haddr[AW-1:0]),
+      .htranss      (ahbs.htrans),
+      .hsizes       (ahbs.hsize),
+      .hwrites      (ahbs.hwrite),
+      .hreadys      (ahbs.hreadym),
+      .hwdatas      (ahbs.hwdata),
+
+      .hreadyouts   (),
+      .hresps       (),
+      .hrdatas      (),
+
+      // Register interface
+      .addr         (reg_addr),
+      .read_en      (reg_read_en),
+      .write_en     (reg_write_en0),
+      .byte_strobe  (reg_byte_strobe),
+      .wdata        (reg_wdata),
+      .rdata        (reg_rdata)
+  );
+
+
+    bit [0:SFRCNT-1][DW-1:0] sfrhrdata0, sfrhrdatas;
+    bit [0:SFRCNT-1][DW-1:0] sfrdatarr;//={SFRCNT{IV}};
+    bit [0:SFRCNT-1][DW-1:0] sfrdatasr;//{SFRCNT{IV}};
+    bit [0:SFRCNT-1]           sfrsel ;
+//    assign ahbrd = ahbs    .psel & ahbs    .penable & ~ahbs    .pwrite;
+    assign reg_write_en = ~sfrlock & reg_write_en0;
+//    bit [DW-1:0]    sIV = IV;
+
+    genvar i;
+    generate
+    for( i = 0; i < SFRCNT; i = i + 1) begin: GenRnd
+        `theregfull( hclk, resetn, sfrdatarr[i], IV ) <= ( sfrsel[i] & reg_write_en ) ? reg_wdata|32'h0000_1000 : sfrdatarr[i];
+        `theregfull( hclk, resetn, sfrdatasr[i], '0 ) <= ( sfrsel[i] & reg_write_en ) ? ( ~reg_wdata & sfrdatasr[i] ) : ( sfrdatasr[i] | sfrfr[i] );
+        assign sfrdata[i] = ~FRMASK & sfrdatarr[i] | FRMASK & sfrdatasr[i];
+        assign sfrsel[i] = ( reg_addr == sfrhaddr[AW-1:0] + 4*i );
+        assign sfrhrdata0[i] = sfrdata[i] & ~SRMASK |  sfrsr[i] & SRMASK;
+        assign sfrhrdatas[i] = reg_read_en & sfrsel[i] ? sfrhrdata0[i] & RMASK : 0;
+    end
+    endgenerate
+
+    assign sfrhrdata = fnsfrhrdata(sfrhrdatas);
+
+    function bit[DW-1:0]    fnsfrhrdata ( bit [0:SFRCNT-1][DW-1:0] fnsfrhrdatas );
+        bit [DW-1:0] fnvalue;
+        int i;
+        fnvalue = 0;
+        for( i = 0; i <  SFRCNT ; i = i + 1) begin
+            fnvalue = fnvalue | fnsfrhrdatas[i];
+        end
+        fnsfrhrdata = fnvalue;
+    endfunction
+
+
+    endmodule
+

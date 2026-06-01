@@ -85,11 +85,16 @@ module cms (
     bit [2:0]       cmspadout;
     bit cmsatpg_reg;
 
-    `theregrn( cmspadregs ) <= { cmspadregs, cmspad };
+//#eco16b:
+//    `theregrn( cmspadregs ) <= { cmspadregs, cmspad };
+//    `theregrn( cmspadregs[0][2]   ) <= 1'b0;
+    `theregrn( cmspadregs[0] ) <= cmspad;
+    `theregrn( cmspadregs[1] ) <= { cmspadregs[0][0:1], 1'b0 };
+
     `theregrn( cmspadlock ) <= ( cmspadcnt == CMSPADCYC );
     `theregrn( cmspadcnt )  <= ( cmspadcnt == CMSPADCYC ) ? cmspadcnt : cmspadcnt+1;
 
-    `theregfull( clk, chipresetn, cmspaderror, '0 ) <= ( cmspadregs[1] != cmspadregs[0] ) & cmspadlock ? 1'b1 : cmspaderror;
+    `theregfull( clk, chipresetn, cmspaderror, '0 ) <= ( cmspadregs[1] != { cmspadregs[0][0:1], 1'b0 } ) & cmspadlock ? 1'b1 : cmspaderror;
 
 //    assign cmspadout = cmspadregs[1];
     `theregrn( cmspadout ) <= ~cmspadlock ? cmspadregs[1] : cmspadout;
