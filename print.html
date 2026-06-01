@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-4c561601.js";
+            window.path_to_searchindex_js = "searchindex-8b37090e.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-729a221c.js"></script>
+        <script src="toc-fa115614.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -4434,6 +4434,1504 @@ where
 <li><code>fd_to_ratio(fd: u32) -&gt; f32</code> given an <code>fd</code> setting, returns a floating point number that can be multiplied by an input frequency to determine the average output frequency</li>
 <li><code>divide_ratio_to_fd(ratio: f32, round_freq_up: bool) -&gt; u8</code> given a desired ratio (should be less than or equal to 1.0), returns the nearest <code>fd</code> value that tries to achieve that divider. The flag instructs the code to either round the frequency target up or down from the target ratio if the exact <code>fd</code> cannot be achieved.</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="power-management-unit---pmu"><a class="header" href="#power-management-unit---pmu">Power Management Unit - PMU</a></h1>
+<h2 id="io-connections"><a class="header" href="#io-connections">I/O Connections</a></h2>
+<p><img src="images/pmu-power-io-diagram.png" alt="Power I/O diagram showing VDD input and output supply connections"></p>
+<p><strong>VDD inputs:</strong></p>
+<ul>
+<li><strong>PMU</strong> (2.7 V – 3.6 V): VDD33</li>
+<li><strong>I/O</strong> (3.3 V / 1.8 V):
+<ul>
+<li>VDD33_BCPAD, VDD33_DPAD, VDD33_QFCPAD: tied to VDDIO in package</li>
+<li>VDD33_AOPAD, VDD33_TESTPAD, VDD33_EPAD, VDD33_APAD: tied to VDD33 in package.</li>
+</ul>
+</li>
+<li><strong>RRAM</strong> (2.7 V – 3.6 V): VDDRR0, VDDRR1: tied to VDD33R on stand-alone ball</li>
+<li><strong>USB</strong>:
+<ul>
+<li>USBVCC33 (2.7 V – 3.6 V) tied to VDD33 in package</li>
+<li>USBVCCCORE (0.80 V) - tied to VDD85 in package</li>
+</ul>
+</li>
+<li><strong>PLL</strong>:
+<ul>
+<li>PLL25VPAD (2.5 V) - Tied to VDD25 ball</li>
+<li>PLL09VPAD (0.80 V) - tied to VDD85 in package</li>
+</ul>
+</li>
+<li><strong>ADC</strong>: ADCAVDD (2.5 V) - Tied to VDD25 ball</li>
+</ul>
+<p><strong>VDD outputs:</strong></p>
+<ul>
+<li>VDD85D, VDD85A - ganged to VDD85 inside package</li>
+<li>VDDAO</li>
+<li>ANA_VDD25A tied to PLL25VPAD, ADCAVDD 2.5V</li>
+</ul>
+<p><strong>GND:</strong></p>
+<ul>
+<li>All grounds ganged together in package
+<ul>
+<li>VSS, DVSS, VSSA</li>
+<li>VSSPLL</li>
+<li>ADCAVSS</li>
+</ul>
+</li>
+</ul>
+<h3 id="power-pad-description"><a class="header" href="#power-pad-description">Power Pad Description</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>I/O Power Pad</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>VDD33_APAD</td><td>I/O power pad for GPIO_PA&lt;7:0&gt; (tied to VDD33)</td></tr>
+<tr><td>VDD33_BCPAD</td><td>I/O power pad for GPIO_PB&lt;15:0&gt; and GPIO_PC&lt;15:0&gt; (tied to VDDIO)</td></tr>
+<tr><td>VDD33_DPAD</td><td>I/O power pad for GPIO_PD&lt;15:0&gt; (tied to VDDIO)</td></tr>
+<tr><td>VDD33_EPAD</td><td>I/O power pad for GPIO_PE&lt;15:0&gt;, XTAL48M_IN, XTAL48M_OUT (tied to VDD33)</td></tr>
+<tr><td>VDD33_QFCPAD</td><td>I/O power pad for GPIO_QFCSIO&lt;7:0&gt;, QFC_RSTS0, QFC_RSTM0, QFC_INT, QFC_SS&lt;1:0&gt;, QFC_QDS, QFC_SCKN, QFC_SCK (tied to VDDIO)</td></tr>
+<tr><td>VDD33_AOPAD</td><td>I/O power pad for GPIO_PF&lt;9:0&gt;, PAD_AOXRSTn, XTAL32K_IN, XTAL32K_OUT (tied to VDD33)</td></tr>
+<tr><td>VDD33_TESTPAD</td><td>I/O power pad for test pads: WMS&lt;2:0&gt;, XRSTn, DUART, SWDIO, SWDCK, JTCK, JTMS, JTDI, JTDO, JTRST (tied to VDD33)</td></tr>
+<tr><td>VDDRR0</td><td>3.3 V power pad for RRAM0 (tied to VDD33R)</td></tr>
+<tr><td>VDDRR1</td><td>3.3 V power pad for RRAM1 (tied to VDD33R)</td></tr>
+<tr><td>VDD33</td><td>3.3 V power pad for PMU (tied to VDD33)</td></tr>
+<tr><td>USBVCC33</td><td>3.3 V power pad for USB PHY (3.3 V signalling) (tied to VDD33R)</td></tr>
+<tr><td>USBVCCCORE</td><td>0.8 V power pad for USB PHY (0.8 V core) (tied to VDD85)</td></tr>
+<tr><td>ADCAVDD</td><td>2.5 V analog power supply for temperature/voltage sensor (tied to VDD25)</td></tr>
+<tr><td>PLL25VPAD</td><td>2.5 V analog supply voltage for PLL (tied to VDD25)</td></tr>
+<tr><td>PLL09VPAD</td><td>0.8 V core supply voltage for PLL (tied to VDD85)</td></tr>
+<tr><td>ANA_VDD25</td><td>PMU regulator output at 2.5 V for ADC and PLL (tied to VDD25)</td></tr>
+<tr><td>VDD85D</td><td>PMU regulator output at 0.8 V / 0.95 V for I/O core power, SoC, and OSC32M (tied to VDD85)</td></tr>
+<tr><td>VDD85A</td><td>PMU regulator output at 0.8 V / 0.95 V for I/O core power, USB PHY, PLL, ADC, RNG cell (tied to VDD85)</td></tr>
+<tr><td>VDDAO</td><td>PMU regulator output at 0.8 V for I/O core power, AO domain, and OSC32K (tied to VDDAO)</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="ground-pad-description"><a class="header" href="#ground-pad-description">Ground Pad Description</a></h3>
+<p>All ground pads tied to common GND bus in package.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>I/O Ground Pad</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>VSS</td><td>Ground pad for the whole chip except PMU, RRAM0, RRAM1, ADC, PLL, USB PHY</td></tr>
+<tr><td>DVSS</td><td>Ground pad for I/O, PMU, RRAM0, and RRAM1</td></tr>
+<tr><td>VSSA</td><td>Ground pad for USB PHY</td></tr>
+<tr><td>VSSPLL</td><td>Ground pad for PLL</td></tr>
+<tr><td>ADCAVSS</td><td>Ground pad for ADC</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="io-power-domain-groups"><a class="header" href="#io-power-domain-groups">I/O Power Domain Groups</a></h3>
+<p>There are two I/O power domains. One is fixed at 3.3V (tied to VDD33 internally), and the other is tied to VDDIO.</p>
+<p>There are more I/Os on the die than are broken out in the CSP package due to ball count limitation on the package type. For higher-I/O count devices, please consult with Crossbar for an alternative, high-pin count BGA packaged device.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>#</th><th>Pad Group</th><th>I/O Power Pad</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>2</td><td>PB, PC</td><td>VDDIO</td><td>GPIO_PB&lt;15:0&gt; and GPIO_PC&lt;15:0&gt;</td></tr>
+<tr><td>3</td><td>PD</td><td>VDDIO</td><td>GPIO_PD&lt;15:0&gt;</td></tr>
+<tr><td>7</td><td>QFC</td><td>VDDIO</td><td>(unavailable)</td></tr>
+<tr><td>1</td><td>PA</td><td>VDD33</td><td>GPIO_PA&lt;7:0&gt; (some I/Os ganged to PF pins)</td></tr>
+<tr><td>4</td><td>PE, TEST</td><td>VDD33</td><td>XTAL48M_IN, XTAL48M_OUT. VDD33_TESTPAD: WMS&lt;2:0&gt;, XRSTn, DUART</td></tr>
+<tr><td>5</td><td>RRAM0</td><td>VDDRR0</td><td>VDD33R</td></tr>
+<tr><td>6</td><td>RRAM1</td><td>VDDRR1</td><td>VDD33R</td></tr>
+<tr><td>8</td><td>PF</td><td>VDD33</td><td>GPIO_PF&lt;9:0&gt; (some I/Os ganged to PA pins), PAD_AOXRSTn, XTAL32K_IN, XTAL32K_OUT</td></tr>
+<tr><td>9</td><td>TV / PLL / PHY / PMU</td><td>VDD33</td><td>3.0 V pad for PMU and USB PHY.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Below is the raw chip floorplan showing the location of the I/O power domains on-die. The power is further routed through an RDL (redistribution layer) and broken out to a limited number of CSP balls.</p>
+<p><img src="images/pmu-io-power-domain-groups.png" alt="Chip floorplan showing the location of each I/O power domain group"></p>
+<h3 id="power-timing-sequence"><a class="header" href="#power-timing-sequence">Power Timing Sequence</a></h3>
+<p>The following diagram shows the recommended power-on sequence for VDD33(I/O) and VDD33:</p>
+<ul>
+<li><strong>VDD33(I/O):</strong> VDD33_APAD, VDD33_BCPAD, VDD33_DPAD, VDD33_EPAD, VDD33_AOPAD, VDD33_QFCPAD, VDD33_TESTPAD</li>
+<li><strong>VDD33:</strong> VDD33, VDDRR0, VDDRR1, USBVCC33</li>
+</ul>
+<p><img src="images/pmu-power-timing-sequence.png" alt="Power timing sequence diagram showing recommended power-on ordering for VDD33(I/O) and VDD33"></p>
+<ul>
+<li>Stand-alone VDDIO may rise after VDD33 as the internal VDD33-bound I/O are tied to VDD33 and guaranteed to be valid on VDD33 rise.</li>
+<li>t2 should be &gt;0.</li>
+</ul>
+<h2 id="power-modes"><a class="header" href="#power-modes">Power Modes</a></h2>
+<p>Besides the regular active mode, the device provides three reduced power modes:</p>
+<ul>
+<li>Sleep mode</li>
+<li>Power-down mode</li>
+</ul>
+<p>The following modes are listed from maximum to minimum power consumption.</p>
+<h3 id="active-mode"><a class="header" href="#active-mode">Active Mode</a></h3>
+<p>In active mode, all clocks to the CPU cores, memories, and peripherals are enabled. The chip enters active mode after reset, with default power trimming determined by the ReRAM IFR power-on initialization. Power and clocks to selected peripherals and crypto engines can be optimized during runtime. All low-power modes can be entered from active mode.</p>
+<h3 id="sleep-mode"><a class="header" href="#sleep-mode">Sleep Mode</a></h3>
+<p>In sleep mode, all clocks to the CPU cores are stopped and instruction execution is suspended until a reset or interrupt occurs. Selected functional blocks (peripherals, crypto engines) can continue operating at normal or reduced frequency and may generate interrupts as wake-up sources. SRAM contents are retained in sleep mode.</p>
+<p><strong>Entering sleep mode:</strong></p>
+<p>Sleep mode is entered by executing a <code>WFI</code> instruction after optionally configuring lower-frequency clock settings. Crypto engines, peripherals, and memories remain operational.</p>
+<p><strong>Waking up from sleep mode:</strong></p>
+<p>Any interrupt or RESET wakes the device from sleep mode. GPIO interrupts and selected peripherals (SPI, I2C, etc.) can serve as wake-up sources. The chip resumes using the same power configuration it had before sleep.</p>
+<h4 id="power-down-mode"><a class="header" href="#power-down-mode">Power-Down Mode</a></h4>
+<p>In power-down mode, all clocks, the CPU core, and all functional blocks are powered down except the always-on (AO) domain. External power supplies remain on. Most SRAM and register contents are not retained — only AO SRAMs and AO backup registers are preserved.</p>
+<p><strong>Entering power-down mode:</strong></p>
+<p>Configure AO wake-up sources, then write <code>0x0000_005A</code> to the <code>PMU_PDAR</code> register. The SoC power domain shuts off; only the AO domain remains powered.</p>
+<p><strong>Waking up from power-down mode:</strong></p>
+<p>Wake-up from power-down is triggered by asserting RESET, or by asserting PF0 or PF1 pins. On wake-up, the PMU powers on the SoC domain, the ReRAM IFR is re-read, RAMs reset to zero, and the CPU restarts from the beginning. Backup-registers, RTC and AORAM in the AO domain are preserved if the wake-up source is from the PF pins; if external reset is used, then these registers are cleared.</p>
+<h3 id="low-power-mode-summary"><a class="header" href="#low-power-mode-summary">Low-Power Mode Summary</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th></th><th>Active</th><th>Sleep</th><th>Power-Down</th></tr>
+</thead>
+<tbody>
+<tr><td>CPU cores</td><td>Running</td><td>Suspended (clocks stopped)</td><td>Powered off</td></tr>
+<tr><td>Functional blocks (crypto, peripherals)</td><td>Running</td><td>Running / reduced frequency (configurable)</td><td>Powered off</td></tr>
+<tr><td>Analog blocks</td><td>Running</td><td>Run / sleep / disabled (configurable)</td><td>Powered off</td></tr>
+<tr><td>SRAM (except AO)</td><td>Running</td><td>Retained</td><td>Powered off</td></tr>
+<tr><td>AO domain</td><td>Running</td><td>Running</td><td>Running</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>These modes should be activated using the low-power mode library API from the SDK software package. Power usage is primarily controlled by CGU clock settings, PMU regulator settings, and the CPU operating mode.</p>
+</blockquote>
+<h2 id="low-power-control-api-reference-flow"><a class="header" href="#low-power-control-api-reference-flow">Low-Power Control API Reference Flow</a></h2>
+<h3 id="enter-sleep-mode"><a class="header" href="#enter-sleep-mode">Enter Sleep Mode</a></h3>
+<ol>
+<li><em>(Optional)</em> Configure <code>PMU_CRLP</code> and <code>PMU_TRMLP*</code> registers with reduced power settings and trimmings for sleep entry.</li>
+<li><em>(Optional)</em> Configure <code>CGUFD_*</code> registers (<code>0x4004_0014</code> – <code>0x4004_003C</code>) with reduced clock frequencies for sleep entry.</li>
+<li><em>(Optional)</em> Write <code>0x3</code> to <code>CGULP</code> (<code>0x4004_0004</code>) to enable low-power frequency division and disable OSC/PLL on sleep entry.</li>
+<li>Configure and enable wake-up sources.</li>
+<li>Execute <code>WFI</code> / <code>WFE</code> instruction — CPU core clocks stop.</li>
+<li>Device remains in sleep mode until a valid wake-up source triggers.</li>
+<li>On wake-up, the CPU resumes execution from the next instruction.</li>
+</ol>
+<p>As of Xous 0.10.1, the above sequence is already implemented and accessible via an API call to enter suspend via the Suspend/Resume manager:</p>
+<pre><code class="language-Rust">    let xns = xous_names::XousNames::new().unwrap();
+    let susres = susres::Susres::new_without_hook(&amp;xns).unwrap();
+    susres.initiate_suspend().unwrap();
+</code></pre>
+<p>To access the <code>xous_names</code> and <code>susres</code> APIs, you will need this in your <code>Cargo.toml</code>:</p>
+<pre><code class="language-toml">   susres = { package = "xous-api-susres", version = "0.9.68" }
+   xous-names = { package = "xous-api-names", version = "0.9.71" }
+</code></pre>
+<h3 id="enter-power-down-mode"><a class="header" href="#enter-power-down-mode">Enter Power-Down Mode</a></h3>
+<ol>
+<li><em>(Optional)</em> Configure <code>PMU_CRPD</code> register with power-down settings.</li>
+<li><em>(Optional)</em> Store any important data to AO backup registers or AORAM before entry.</li>
+<li>Configure and enable AO wake-up sources.</li>
+<li>Write <code>0x0000_005A</code> to <code>PMU_PDAR</code> — all SoC domain blocks shut off; only the AO domain remains powered.</li>
+<li>Device remains in power-down until a valid AO wake-up source triggers.</li>
+<li>On wake-up, the PMU powers on the SoC domain. The ReRAM IFR is re-read, RAMs reset to zero, and the CPU restarts from the beginning.</li>
+</ol>
+<p>As of Xous 0.10.1, the above sequence is already implemented via an API call to enter power-down mode that requires a PlatformSpecific call:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    use num_traits::ToPrimitive;
+
+    let xns = xous_names::XousNames::new().unwrap();
+    let susres_conn =
+        xns.request_connection_blocking(susres::api::SERVER_NAME_SUSRES).expect("Can't connect to SUSRES");
+    xous::send_message(
+        susres_conn,
+        xous::Message::new_scalar(
+            susres::api::Opcode::PlatformSpecific.to_usize().unwrap(),
+            bao1x_hal::ClockOp::DeepSleep.to_usize().unwrap(),
+            0,
+            0,
+            0,
+        ),
+    )
+    .ok();
+<span class="boring">}</span></code></pre>
+<p>You’ll need these crates to make the above call:</p>
+<pre><code class="language-toml">   xous = "0.9.70"
+   susres = { package = "xous-api-susres", version = "0.9.68" }
+   xous-names = { package = "xous-api-names", version = "0.9.71" }
+   bao1x-hal = { features = [
+       "std",
+   ], git = "https://github.com/betrusted-io/xous-core", branch = "dev" }
+   num-traits = { version = "0.2.14", default-features = false }
+</code></pre>
+<hr>
+<h2 id="pmu-regulator-and-trim-block"><a class="header" href="#pmu-regulator-and-trim-block">PMU Regulator and Trim Block</a></h2>
+<h3 id="pmu-introduction"><a class="header" href="#pmu-introduction">PMU Introduction</a></h3>
+<p><img src="images/pmu-block-diagram.png" alt="PMU block diagram showing regulators, bandgap, POR/PDR, and current source"></p>
+<ul>
+<li><strong>2.5 V Regulator (VR25):</strong> 2.55 V regulator powered from VDD. Supports power-down enable and ready status indication.</li>
+<li><strong>0.85 V Regulators for Analog/Digital (VRCOREA, VRCORED):</strong> 0.85 V regulators powered from VDD. Support power-down enable, ready status indication, and overshoot enable.</li>
+<li><strong>0.8 V Always-On Regulator (VRAO):</strong> 0.77 V regulator powered from VDD.</li>
+<li><strong>Current Source Output (IOUT):</strong> Provides several current sources, including a 10 µA output to a test pin for calibration against an external resistor (enabling absolute-value accuracy rather than tracking integrated resistors).</li>
+<li><strong>Power On/Down Reset (PORPDR):</strong> Provides power-on reset signal. Also triggers when power drops low enough to lose the always-on regulator.</li>
+<li><strong>Bandgap (BG):</strong> Ready status indication. The 1.5 V (VOUT1P5), 1.2 V (VOUT1P2), and 0.6 V (VOUTP60) references are individually trimmable. CTAT and PTAT currents are trimmable.</li>
+</ul>
+<h3 id="pmu-main-features"><a class="header" href="#pmu-main-features">PMU Main Features</a></h3>
+<ul>
+<li>Provides regulated supplies: VDD25, VDD85A, VDD85D, VDDAO.</li>
+<li>Generates power-on and power-down reset signals.</li>
+<li>Supports power-down mode.</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Cell</th><th>Power-Down Mode — On/Off</th><th>Power-Down Supply (µA)</th><th>Active Mode — On/Off</th><th>Active Supply (µA)</th></tr>
+</thead>
+<tbody>
+<tr><td>VR25</td><td>Off</td><td>0.01</td><td>On</td><td>10</td></tr>
+<tr><td>VR85_A/D</td><td>Off</td><td>0.01</td><td>On</td><td>10</td></tr>
+<tr><td>VR_AO</td><td>On</td><td>1</td><td>On</td><td>1</td></tr>
+<tr><td>BG</td><td>On</td><td>1.5</td><td>On</td><td>1 + current sources</td></tr>
+<tr><td>POR/PDR</td><td>On</td><td>1</td><td>On</td><td>1</td></tr>
+<tr><td>VD (four cells)</td><td>On (2 channels)</td><td>2</td><td>On (4 channels)</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="pmu--ao-control-registers"><a class="header" href="#pmu--ao-control-registers">PMU &amp; AO Control Registers</a></h2>
+<p>Base address: <code>0x4006_0000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register Name</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>AO_CLK32K_SEL</td><td>0x0000</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000006</td><td>AO 32 kHz clock source selection</td></tr>
+<tr><td>AO_CLK1HZ_FD</td><td>0x0004</td><td>32</td><td>Config</td><td>R/W</td><td>0x00003FFF</td><td>1 Hz clock frequency divider</td></tr>
+<tr><td>AO_WKUP_INTEN</td><td>0x0008</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Wakeup mask and interrupt enable</td></tr>
+<tr><td>AO_RSTCR_MASK</td><td>0x000C</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Reset mask control</td></tr>
+<tr><td>PMU_CR</td><td>0x0010</td><td>32</td><td>Config</td><td>R/W</td><td>0x000003F3</td><td>PMU block control (active mode)</td></tr>
+<tr><td>PMU_CRLP</td><td>0x0014</td><td>32</td><td>Config</td><td>R/W</td><td>0x00003FFF</td><td>PMU block control (sleep / deep-sleep)</td></tr>
+<tr><td>PMU_CRPD</td><td>0x0018</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>PMU block control (power-down)</td></tr>
+<tr><td>PMU_DFT</td><td>0x001C</td><td>32</td><td>Config</td><td>R/W</td><td>—</td><td>PMU default test</td></tr>
+<tr><td>PMU_TRM0</td><td>0x0020</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>PMU trimming low 32 bits (active)</td></tr>
+<tr><td>PMU_TRM1</td><td>0x0024</td><td>32</td><td>Config</td><td>R/W</td><td>0x00003FFF</td><td>PMU trimming high 32 bits (active)</td></tr>
+<tr><td>PMU_TRMLP0</td><td>0x0028</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>PMU trimming low 32 bits (low-power)</td></tr>
+<tr><td>PMU_TRMLP1</td><td>0x002C</td><td>32</td><td>Config</td><td>R/W</td><td>0x0000001F</td><td>PMU trimming high 32 bits (low-power)</td></tr>
+<tr><td>AO_OSC_CR</td><td>0x0034</td><td>32</td><td>Config</td><td>R/W</td><td>0x0001 2D2D</td><td>AO 32 kHz oscillator control</td></tr>
+<tr><td>PMU_SR</td><td>0x0038</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>PMU ready status register</td></tr>
+<tr><td>PMU_FR</td><td>0x003C</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>PMU error flag register</td></tr>
+<tr><td>AO_FR</td><td>0x0040</td><td>32</td><td>Config</td><td>R/W</td><td>—</td><td>AO domain interrupt flag register</td></tr>
+<tr><td>PMU_PDAR</td><td>0x0044</td><td>32</td><td>Config</td><td>R/W</td><td>—</td><td>Power-down activation register</td></tr>
+<tr><td>AO_PERI_CLR</td><td>0x0050</td><td>32</td><td>Config</td><td>R/W</td><td>—</td><td>Wakeup interrupt clear register</td></tr>
+<tr><td>AO_IOX</td><td>0x0060</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Port F alternate function selection</td></tr>
+<tr><td>AO_PADPU</td><td>0x0064</td><td>32</td><td>Config</td><td>R/W</td><td>0x000003FF</td><td>Port F pull-up configuration</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="register-descriptions-4"><a class="header" href="#register-descriptions-4">Register Descriptions</a></h3>
+<h4 id="ao_clk32k_sel--ao-32-khz-clock-source-selection"><a class="header" href="#ao_clk32k_sel--ao-32-khz-clock-source-selection">AO_CLK32K_SEL — AO 32 kHz Clock Source Selection</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0006</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>clk32k_sel</td><td>32 kHz clock source: <code>0</code> = internal OSC 32 kHz, <code>1</code> = external XTAL 32 kHz</td></tr>
+<tr><td>[1]</td><td>pdisoen</td><td>Isolation control on power-down entry: <code>0</code> = isolation disabled, <code>1</code> = isolation enabled</td></tr>
+<tr><td>[2]</td><td>pclkicg</td><td>PCLK gate on power-down entry: <code>0</code> = PCLK from SoC domain enabled, <code>1</code> = PCLK from SoC domain disabled</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ao_clk1hz_fd--1-hz-clock-frequency-divider"><a class="header" href="#ao_clk1hz_fd--1-hz-clock-frequency-divider">AO_CLK1HZ_FD — 1 Hz Clock Frequency Divider</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_3FFF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[13:0]</td><td>1Hz fd</td><td>Frequency divider based on clk32k (OSC32K or XTAL32K). Formula: f_1Hz = f_32kHz / (2 × (fd + 1)). Default produces ≈ 0.976 Hz. For accurate 1 Hz set to <code>0x3E80</code>.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ao_wkup_inten--wakeup-mask-and-interrupt-enable"><a class="header" href="#ao_wkup_inten--wakeup-mask-and-interrupt-enable">AO_WKUP_INTEN — Wakeup Mask and Interrupt Enable</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Interrupt enable bits (0 = disabled, 1 = enabled):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Source</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>WDT reset source interrupt</td></tr>
+<tr><td>[1]</td><td>RTC event interrupt</td></tr>
+<tr><td>[2]</td><td>ATIMER event interrupt</td></tr>
+<tr><td>[3]</td><td>WDT event interrupt</td></tr>
+<tr><td>[4]</td><td>KPC event interrupt</td></tr>
+<tr><td>[5]</td><td>KPC async source interrupt</td></tr>
+<tr><td>[7:6]</td><td>Reserved</td></tr>
+</tbody>
+</table>
+</div>
+<p>Wakeup mask bits (0 = source can wake system, 1 = source <strong>cannot</strong> wake system):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Source</th></tr>
+</thead>
+<tbody>
+<tr><td>[8]</td><td>WDT reset source wakeup mask</td></tr>
+<tr><td>[9]</td><td>RTC event wakeup mask</td></tr>
+<tr><td>[11]</td><td>WDT event wakeup mask</td></tr>
+<tr><td>[12]</td><td>KPC event wakeup mask</td></tr>
+<tr><td>[13]</td><td>KPC async source wakeup mask</td></tr>
+<tr><td>[15:14]</td><td>Reserved</td></tr>
+<tr><td>[16]</td><td>PF1 pull-down event wakeup mask</td></tr>
+<tr><td>[17]</td><td>PF0 pull-down event wakeup mask</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ao_rstcr_mask--reset-mask-control-register"><a class="header" href="#ao_rstcr_mask--reset-mask-control-register">AO_RSTCR_MASK — Reset Mask Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x000C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_001F</code></li>
+</ul>
+<p>Each bit masks a reset source (<code>0</code> = source can reset system, <code>1</code> = source <strong>cannot</strong> reset system):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Reset source</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>PMU POR ready</td></tr>
+<tr><td>[1]</td><td>PMU 0.8 V digital regulator ready</td></tr>
+<tr><td>[2]</td><td>PMU 0.8 V analog regulator ready</td></tr>
+<tr><td>[3]</td><td>PMU 2.5 V regulator ready</td></tr>
+<tr><td>[4]</td><td>PMU bandgap ready</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_cr--pmu-block-control-register-active-mode"><a class="header" href="#pmu_cr--pmu-block-control-register-active-mode">PMU_CR — PMU Block Control Register (Active Mode)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0010</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_007C</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>VR85D voltage</td><td>0.8 V digital regulator voltage: <code>0</code> = 0.8 V, <code>1</code> = 0.95 V (higher performance)</td></tr>
+<tr><td>[1]</td><td>VR85A voltage</td><td>0.8 V analog regulator voltage: <code>0</code> = 0.8 V, <code>1</code> = 0.95 V (higher performance)</td></tr>
+<tr><td>[2]</td><td>POC</td><td>Power-on control: <code>0</code> = disabled (forces POC_IO = 0), <code>1</code> = enabled</td></tr>
+<tr><td>[3]</td><td>iout</td><td>Reference current circuit (ibias / test_top): <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+<tr><td>[4]</td><td>VR85D enable</td><td>0.8 V digital regulator: <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+<tr><td>[5]</td><td>VR85A enable</td><td>0.8 V analog regulator: <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+<tr><td>[6]</td><td>VR25 enable</td><td>2.5 V regulator: <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_crlp--pmu-block-control-register-sleep--deep-sleep"><a class="header" href="#pmu_crlp--pmu-block-control-register-sleep--deep-sleep">PMU_CRLP — PMU Block Control Register (Sleep / Deep-Sleep)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0014</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_007C</code></li>
+</ul>
+<p>Same bit definition as <code>PMU_CR</code>. These are separate configuration values applied when entering sleep or deep-sleep mode.</p>
+<h4 id="pmu_crpd--pmu-block-control-register-power-down"><a class="header" href="#pmu_crpd--pmu-block-control-register-power-down">PMU_CRPD — PMU Block Control Register (Power-Down)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0018</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_007C</code></li>
+</ul>
+<p>Same bit definition as <code>PMU_CR</code>. These are separate configuration values applied when entering power-down mode.</p>
+<h4 id="pmu_dft--pmu-default-test-register"><a class="header" href="#pmu_dft--pmu-default-test-register">PMU_DFT — PMU Default Test Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x001C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0002</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[2:0]</td><td>test mode</td><td>Output selection on PMU_ANA_TEST pin: <code>010</code> = disabled (default), <code>000</code> = monitor VDD25, <code>001</code> = monitor SOURCE_10UA, <code>1xx</code> = monitor selection from PMU_TEST_SEL (bits [5:3])</td></tr>
+<tr><td>[5:3]</td><td>PMU_TEST_SEL</td><td>Reference bias selection when bits [2:0] = <code>1xx</code>: <code>000</code> = VSS, <code>001</code> = VP60V (0.6 V), <code>010</code> = VDD_AO (0.8 V), <code>011</code> = VP60A (0.6 V), <code>100</code> = VP60D (0.6 V), <code>101</code> = VOLT1 (1.0 V), <code>110</code> = VOUT1P2 (1.2 V), <code>111</code> = VDD2 (2.0 V)</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_trm0--pmu-trimming-low-32-bit-register-active-mode"><a class="header" href="#pmu_trm0--pmu-trimming-low-32-bit-register-active-mode">PMU_TRM0 — PMU Trimming Low 32-bit Register (Active Mode)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0020</code></li>
+<li><strong>Reset value:</strong> <code>0x0842_1080</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[2:0]</td><td>VDDAO trim</td><td>VDDAO voltage: <code>000</code> = 0.8 V, <code>001</code> = 0.75 V, <code>010</code> = 0.7 V, <code>011</code> = 0.65 V, <code>1xx</code> = 0.6 V</td></tr>
+<tr><td>[7:3]</td><td>VR85D bias trim</td><td>0.6 V reference for 0.8 V digital regulator. <code>10000</code> = 0.8 V (default). See <a href="#vdd85-trim-table">VDD85 Trim Table below</a>.</td></tr>
+<tr><td>[12:8]</td><td>VR85A bias trim</td><td>0.6 V reference for 0.8 V analog regulator. <code>10000</code> = 0.8 V (default).</td></tr>
+<tr><td>[17:13]</td><td>VR25 bias trim</td><td>0.6 V reference for 2.5 V regulator. <code>10000</code> = 0.8 V (default).</td></tr>
+<tr><td>[22:18]</td><td>BG CTAT trim</td><td>Bandgap CTAT parameter. <code>10000</code> = 0.8 V (default).</td></tr>
+<tr><td>[27:23]</td><td>BG PTAT trim</td><td>Bandgap PTAT parameter. <code>10000</code> = 0.8 V (default).</td></tr>
+<tr><td>[31:28]</td><td>IREF trim [3:0]</td><td>Bits [3:0] of reference current trim for SINK_1uA / SOURCE_10uA. Must be combined with <code>PMU_TRM1[1:0]</code> for the full 6-bit value.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_trm1--pmu-trimming-high-32-bit-register-active-mode"><a class="header" href="#pmu_trm1--pmu-trimming-high-32-bit-register-active-mode">PMU_TRM1 — PMU Trimming High 32-bit Register (Active Mode)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0024</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0002</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[1:0]</td><td>IREF trim [5:4]</td><td>Bits [5:4] of reference current trim. Full value = <code>{PMU_TRM1[1:0], PMU_TRM0[31:28]}</code>. <code>100000</code> = 10.002 µA (default). This value is set by chip test and should not be adjusted.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_trmlp0--pmu-trimming-low-32-bit-register-low-power"><a class="header" href="#pmu_trmlp0--pmu-trimming-low-32-bit-register-low-power">PMU_TRMLP0 — PMU Trimming Low 32-bit Register (Low-Power)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0028</code></li>
+<li><strong>Reset value:</strong> <code>0x0842_1080</code></li>
+</ul>
+<p>Same bit definition as <code>PMU_TRM0</code>. Applied during sleep and deep-sleep mode.</p>
+<h4 id="pmu_trmlp1--pmu-trimming-high-32-bit-register-low-power"><a class="header" href="#pmu_trmlp1--pmu-trimming-high-32-bit-register-low-power">PMU_TRMLP1 — PMU Trimming High 32-bit Register (Low-Power)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x002C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_001F</code></li>
+</ul>
+<p>Same bit definition as <code>PMU_TRM1</code>. Applied during sleep and deep-sleep mode.</p>
+<h4 id="ao_osc_cr--ao-32-khz-oscillator-control-register"><a class="header" href="#ao_osc_cr--ao-32-khz-oscillator-control-register">AO_OSC_CR — AO 32 kHz Oscillator Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0034</code></li>
+<li><strong>Reset value:</strong> <code>0x0001_2D2D</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>Active mode enable</td><td>OSC32K enable for active mode: <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+<tr><td>[7:1]</td><td>Active mode trim</td><td>OSC32K trimming for active mode. <code>0100110</code> = 33 kHz (default). This value is set by chip test and should not be adjusted.</td></tr>
+<tr><td>[8]</td><td>Sleep/deep-sleep enable</td><td>OSC32K enable for sleep and deep-sleep: <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+<tr><td>[15:9]</td><td>Sleep/deep-sleep trim</td><td>OSC32K trimming for sleep and deep-sleep. <code>0100110</code> = 33 kHz (default).</td></tr>
+<tr><td>[16]</td><td>Power-down enable</td><td>OSC32K enable for power-down mode: <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_sr--pmu-ready-status-register"><a class="header" href="#pmu_sr--pmu-ready-status-register">PMU_SR — PMU Ready Status Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0038</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_001F</code></li>
+<li><strong>Access:</strong> Read-only (real-time status)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>POR ready</td><td><code>0</code> = VDD below 1.3 V, <code>1</code> = VDD above 1.3 V</td></tr>
+<tr><td>[1]</td><td>VR85D ready</td><td><code>0</code> = VR85D below target, <code>1</code> = VR85D ready (≥ 0.8 V default)</td></tr>
+<tr><td>[2]</td><td>VR85A ready</td><td><code>0</code> = VR85A below target, <code>1</code> = VR85A ready (≥ 0.8 V default)</td></tr>
+<tr><td>[3]</td><td>VR25 ready</td><td><code>0</code> = VR25 below target, <code>1</code> = VR25 ready (≥ 2.5 V default)</td></tr>
+<tr><td>[4]</td><td>BG ready</td><td><code>0</code> = bandgap below target, <code>1</code> = bandgap ready</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_fr--pmu-error-flag-register"><a class="header" href="#pmu_fr--pmu-error-flag-register">PMU_FR — PMU Error Flag Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x003C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Bits are set if the corresponding supply was below its threshold after power-on. Write <code>1</code> to a bit to clear it.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>POR error</td><td><code>1</code> = VDD was below 1.3 V after power-on</td></tr>
+<tr><td>[1]</td><td>VR85D error</td><td><code>1</code> = VR85D was below 0.8 V target after power-on</td></tr>
+<tr><td>[2]</td><td>VR85A error</td><td><code>1</code> = VR85A was below 0.8 V target after power-on</td></tr>
+<tr><td>[3]</td><td>VR25 error</td><td><code>1</code> = VR25 was below 2.5 V target after power-on</td></tr>
+<tr><td>[4]</td><td>BG error</td><td><code>1</code> = bandgap was below 0.6 V target after power-on</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ao_fr--ao-domain-interrupt-flag-register"><a class="header" href="#ao_fr--ao-domain-interrupt-flag-register">AO_FR — AO Domain Interrupt Flag Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0040</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Write <code>1</code> to a bit to clear it.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>WDT reset flag</td><td><code>1</code> = WDT reset interrupt occurred</td></tr>
+<tr><td>[1]</td><td>RTC event flag</td><td><code>1</code> = RTC event interrupt occurred</td></tr>
+<tr><td>[2]</td><td>ATIMER event flag</td><td><code>1</code> = ATIMER event interrupt occurred</td></tr>
+<tr><td>[3]</td><td>WDT event flag</td><td><code>1</code> = WDT event interrupt occurred</td></tr>
+<tr><td>[4]</td><td>KPC event flag</td><td><code>1</code> = KPC event interrupt occurred</td></tr>
+<tr><td>[5]</td><td>KPC async flag</td><td><code>1</code> = KPC async source interrupt occurred</td></tr>
+<tr><td>[7:6]</td><td>Reserved</td><td>—</td></tr>
+<tr><td>[8]</td><td>PF1 pull-down flag</td><td><code>1</code> = PF1 pull-down event occurred</td></tr>
+<tr><td>[9]</td><td>PF0 pull-down flag</td><td><code>1</code> = PF0 pull-down event occurred</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_pdar--power-down-activation-register"><a class="header" href="#pmu_pdar--power-down-activation-register">PMU_PDAR — Power-Down Activation Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0044</code></li>
+<li><strong>Type:</strong> AR (action register)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code> (always reads zero)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write <code>0x0000_005A</code> to enter power-down mode</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ao_peri_clr--wakeup-interrupt-clear-register"><a class="header" href="#ao_peri_clr--wakeup-interrupt-clear-register">AO_PERI_CLR — Wakeup Interrupt Clear Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0050</code></li>
+<li><strong>Type:</strong> AR (action register, always reads zero)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write <code>0x0000_00AA</code> to clear all wakeup interrupt flags</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ao_iox--port-f-alternate-function-selection-register"><a class="header" href="#ao_iox--port-f-alternate-function-selection-register">AO_IOX — Port F Alternate Function Selection Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0060</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>AF select</td><td><code>0</code> = GPIO (AF0, default) for Port F, <code>1</code> = Keypad (AF1): PF[5:2] as KPI[3:0], PF[9:6] as KPO[3:0]</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> Use <code>AO_IOX</code> to configure Port F alternate function selection. The <code>AFSEL</code> registers for Port F (<code>0x5012_F028</code>, <code>0x5012_F02C</code>) are <strong>not</strong> used.</p>
+</blockquote>
+<h4 id="ao_padpu--port-f-pull-up-configuration-register"><a class="header" href="#ao_padpu--port-f-pull-up-configuration-register">AO_PADPU — Port F Pull-Up Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0064</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_03FF</code> (all pull-ups enabled by default)</li>
+</ul>
+<p>Each bit controls pull-up for the corresponding Port F pin (<code>0</code> = floating when undriven, <code>1</code> = weak pull-up when undriven):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Pin</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>PF0</td></tr>
+<tr><td>[1]</td><td>PF1</td></tr>
+<tr><td>[2]</td><td>PF2</td></tr>
+<tr><td>[3]</td><td>PF3</td></tr>
+<tr><td>[4]</td><td>PF4</td></tr>
+<tr><td>[5]</td><td>PF5</td></tr>
+<tr><td>[6]</td><td>PF6</td></tr>
+<tr><td>[7]</td><td>PF7</td></tr>
+<tr><td>[8]</td><td>PF8</td></tr>
+<tr><td>[9]</td><td>PF9</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> Use <code>AO_PADPU</code> to configure Port F pull-ups. The <code>GPIOPU</code> register for Port F (<code>0x5012_F174</code>) is <strong>not</strong> used.</p>
+</blockquote>
+<h3 id="vdd85-trim-table"><a class="header" href="#vdd85-trim-table">VDD85 Trim Table</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: center">pmu_TRM_DP60[4]</th><th style="text-align: center">pmu_TRM_DP60[3]</th><th style="text-align: center">pmu_TRM_DP60[2]</th><th style="text-align: center">pmu_TRM_DP60[1]</th><th style="text-align: center">pmu_TRM_DP60[0]</th><th style="text-align: right">VOUTP60 (mV)</th><th style="text-align: right">VDD85A (800 mV)</th><th style="text-align: right">VDD85A (950 mV)</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">520</td><td style="text-align: right">693</td><td style="text-align: right">823</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">525</td><td style="text-align: right">700</td><td style="text-align: right">831</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">530</td><td style="text-align: right">706</td><td style="text-align: right">839</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">535</td><td style="text-align: right">713</td><td style="text-align: right">847</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">540</td><td style="text-align: right">720</td><td style="text-align: right">855</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">545</td><td style="text-align: right">726</td><td style="text-align: right">862</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">550</td><td style="text-align: right">733</td><td style="text-align: right">870</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">555</td><td style="text-align: right">740</td><td style="text-align: right">878</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">560</td><td style="text-align: right">746</td><td style="text-align: right">886</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">565</td><td style="text-align: right">753</td><td style="text-align: right">894</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">570</td><td style="text-align: right">760</td><td style="text-align: right">902</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">575</td><td style="text-align: right">766</td><td style="text-align: right">910</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">580</td><td style="text-align: right">773</td><td style="text-align: right">918</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">585</td><td style="text-align: right">780</td><td style="text-align: right">926</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">590</td><td style="text-align: right">786</td><td style="text-align: right">934</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">595</td><td style="text-align: right">793</td><td style="text-align: right">942</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">600</td><td style="text-align: right">800</td><td style="text-align: right">950</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">605</td><td style="text-align: right">806</td><td style="text-align: right">957</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">610</td><td style="text-align: right">813</td><td style="text-align: right">965</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">615</td><td style="text-align: right">820</td><td style="text-align: right">973</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">620</td><td style="text-align: right">826</td><td style="text-align: right">981</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">625</td><td style="text-align: right">833</td><td style="text-align: right">989</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">630</td><td style="text-align: right">840</td><td style="text-align: right">997</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">635</td><td style="text-align: right">846</td><td style="text-align: right">1005</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">640</td><td style="text-align: right">853</td><td style="text-align: right">1013</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">645</td><td style="text-align: right">860</td><td style="text-align: right">1021</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">650</td><td style="text-align: right">866</td><td style="text-align: right">1029</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">655</td><td style="text-align: right">873</td><td style="text-align: right">1037</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">660</td><td style="text-align: right">880</td><td style="text-align: right">1045</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">665</td><td style="text-align: right">886</td><td style="text-align: right">1052</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">670</td><td style="text-align: right">893</td><td style="text-align: right">1060</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">675</td><td style="text-align: right">900</td><td style="text-align: right">1068</td></tr>
+</tbody>
+</table>
+</div>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="system-control-always-on"><a class="header" href="#system-control-always-on">System Control (Always-On)</a></h1>
+<h2 id="always-on-domain-overview"><a class="header" href="#always-on-domain-overview">Always-On Domain Overview</a></h2>
+<p>The Always-On (AO) power domain manages the power-on sequence and remains powered in all operating modes until the chip is completely shut down. It handles activity monitoring to wake up the SoC whenever needed, and manages power supply sequencing during initial power-on or any power mode transition.</p>
+<p><img src="images/system-control-ao-domain-overview.png" alt="AO domain block diagram showing PMU, RTC, WDT, ATimer, KPC, BUREG, RAM, and IO PAD blocks"></p>
+<p>The AO domain contains the following logic blocks:</p>
+<ul>
+<li><strong>PMU</strong> — Power management unit. Controls power domains of the SoC subsystem, manages wake-up triggers to recover from sleep mode, and supports separate trimmings and enables (power-on autoloaded from ReRAM IFR; SW-configurable for debug). See the <a href="#power-management-unit---pmu">PMU</a> chapter for full details.</li>
+<li><strong>KPC</strong> — Keypad controller. Supports keypad function and can wake the chip from low-power mode. Activating this overrides PF0 functions for the respective pins.</li>
+<li><strong>RTC</strong> — Real-time clock associated with a 32 kHz oscillator (external XTAL or internal RC).</li>
+<li><strong>WDT</strong> — Watchdog timer. Consistent with the SoC-domain WDT peripheral; see the <a href="#watchdog-timer-wdt">Watchdog Timer</a> section below.</li>
+<li><strong>ATimer</strong> — Always-on timer. Consistent with the SoC-domain ATimer peripheral; see the <a href="#atimer">ATimer</a> section below.</li>
+<li><strong>BUREG</strong> — Backup registers in AO domain. Contents are retained during SoC power-down. Size: 32 bytes. Located at <code>0x4006_5000</code>–<code>0x4006_501F</code>. Wake-up via interrupt will preserve the contents; wake-up by system reset will clear the contents.</li>
+<li><strong>RAM</strong> — AO domain RAM. Contents retained during SoC power-down. Split into 2 blocks. Size: 16 KBytes. Located at <code>0x5030_0000</code>–<code>0x5030_3FFF</code>.</li>
+<li><strong>IO PAD</strong> — Port F is the special I/O pad group used in the AO domain. PF[1:0] support GPIO and wakeup. PF[9:2] support GPIO and keypad function but do not support wakeup.</li>
+<li><strong>Interrupts:</strong>
+<ul>
+<li>IRQ 30: AO domain interrupt entry — keypad async input, keypad synced interrupt, watchdog interrupt, ATimer interrupt, RTC interrupt, watchdog reset (6 sources total).</li>
+<li>IRQ 31: AO wakeup interrupt entry — same 6 sources as IRQ 30, plus PF[1:0] pad inputs (8 sources total).</li>
+</ul>
+</li>
+</ul>
+<p><strong>AO domain address map:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Block</th><th>Base Address</th></tr>
+</thead>
+<tbody>
+<tr><td>PMU</td><td><code>0x4006_0000</code></td></tr>
+<tr><td>RTC</td><td><code>0x4006_1000</code></td></tr>
+<tr><td>KPC</td><td><code>0x4006_4000</code></td></tr>
+<tr><td>AOBUREG</td><td><code>0x4006_5000</code></td></tr>
+<tr><td>AORAM</td><td><code>0x5030_0000</code></td></tr>
+<tr><td>WDT</td><td><code>0x4004_1000</code></td></tr>
+<tr><td>ATimer</td><td><code>0x4004_3000</code></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="aoram-erratum"><a class="header" href="#aoram-erratum">AORAM Erratum</a></h3>
+<p>AORAM data at 0x50300000 and 0x50302000 have chance to be reset to 0 during/after VDD85D and VDD33 power cycle.</p>
+<p>Do not use the 32-bit words located at 0x50300000 or 0x50302000 for data storage that must be preserved across deep sleep modes.</p>
+<hr>
+<h2 id="pmu"><a class="header" href="#pmu">PMU</a></h2>
+<p>The PMU (Power Management Unit) is part of the AO domain and is responsible for managing all SoC power supplies and power-mode transitions.</p>
+<p>Full PMU documentation — including the block diagram, regulator descriptions, power mode control flow, and all AO control register descriptions — is covered in the <a href="#power-management-unit---pmu">PMU</a> chapter.</p>
+<hr>
+<h2 id="rtc"><a class="header" href="#rtc">RTC</a></h2>
+<h3 id="rtc-introduction"><a class="header" href="#rtc-introduction">RTC Introduction</a></h3>
+<p>The RTC uses a 1 Hz clock signal (CLK1HZ) to increment a counter in one-second intervals, supporting real-time clock and basic alarm functionality in software.</p>
+<p>After reset, values must be written to the Load Register (<code>RTC_LR</code>) and Match Register (<code>RTC_MR</code>). The counter increments by 1 on the rising edge of CLK1HZ. When the counter matches the match register and the interrupt is not masked, an interrupt is generated. The interrupt is cleared by writing 1 to <code>RTC_ICR</code>.</p>
+<h3 id="rtc-main-features"><a class="header" href="#rtc-main-features">RTC Main Features</a></h3>
+<ul>
+<li>32-bit free-running up counter.</li>
+<li>Programmable 32-bit match compare register.</li>
+<li>Software-maskable interrupt when counter and match registers are identical.</li>
+</ul>
+<h3 id="rtc-interrupt"><a class="header" href="#rtc-interrupt">RTC Interrupt</a></h3>
+<ul>
+<li>Single maskable interrupt <code>RTCINTR</code>, generated on counter/match equality.</li>
+<li>Enable or disable via bit [0] of <code>RTC_IMSC</code>.</li>
+<li>Read mask status from bit [0] of <code>RTC_MIS</code>.</li>
+<li>Clear by writing 1 to bit [0] of <code>RTC_ICR</code>.</li>
+<li>IRQn: 30</li>
+</ul>
+<h3 id="rtc-registers"><a class="header" href="#rtc-registers">RTC Registers</a></h3>
+<p>Base address: <code>0x4006_1000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>RTC_DR</td><td>0x0000</td><td>32</td><td>CR</td><td>R</td><td>0x00000000</td><td>RTC data register</td></tr>
+<tr><td>RTC_MR</td><td>0x0004</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>RTC match register</td></tr>
+<tr><td>RTC_LR</td><td>0x0008</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>RTC load register</td></tr>
+<tr><td>RTC_CR</td><td>0x000C</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>RTC control register</td></tr>
+<tr><td>RTC_IMSC</td><td>0x0010</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Interrupt mask set/clear</td></tr>
+<tr><td>RTC_RIS</td><td>0x0014</td><td>32</td><td>CR</td><td>R</td><td>0x00000000</td><td>Raw interrupt status</td></tr>
+<tr><td>RTC_MIS</td><td>0x0018</td><td>32</td><td>CR</td><td>R</td><td>0x00000000</td><td>Masked interrupt status</td></tr>
+<tr><td>RTC_ICR</td><td>0x001C</td><td>32</td><td>CR</td><td>W</td><td>0x00000000</td><td>Interrupt clear register</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="rtc_dr--rtc-data-register"><a class="header" href="#rtc_dr--rtc-data-register">RTC_DR — RTC Data Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Access:</strong> R</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>RTC_Data</td><td>Current RTC counter value. Reads return the current value of the running counter.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="rtc_mr--rtc-match-register"><a class="header" href="#rtc_mr--rtc-match-register">RTC_MR — RTC Match Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Access:</strong> R/W</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>RTC_Match</td><td>32-bit match register. An equivalent match value is derived and compared with the counter in the CLK1HZ domain to generate the interrupt. Reads return the last written value.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="rtc_lr--rtc-load-register"><a class="header" href="#rtc_lr--rtc-load-register">RTC_LR — RTC Load Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Access:</strong> R/W</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>RTC_Load</td><td>Writes load a new value into the RTC update logic, from which the new counter value is calculated. Reads return the last written value.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="rtc_cr--rtc-control-register"><a class="header" href="#rtc_cr--rtc-control-register">RTC_CR — RTC Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x000C</code></li>
+<li><strong>Access:</strong> R/W</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:1]</td><td>—</td><td>Reserved. Must be written as 0.</td></tr>
+<tr><td>[0]</td><td>RTC start</td><td><code>1</code> = RTC enabled. Do not write this bit again after enabling or the counter resets to zero. Read returns current RTC running status.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="rtc_imsc--interrupt-mask-setclear-register"><a class="header" href="#rtc_imsc--interrupt-mask-setclear-register">RTC_IMSC — Interrupt Mask Set/Clear Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0010</code></li>
+<li><strong>Access:</strong> R/W</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:1]</td><td>—</td><td>Reserved. Must be written as 0.</td></tr>
+<tr><td>[0]</td><td>Interrupt mask</td><td><code>0</code> = interrupt stopped, <code>1</code> = interrupt enabled. Read returns current mask value for RTCINTR.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="rtc_ris--raw-interrupt-status-register"><a class="header" href="#rtc_ris--raw-interrupt-status-register">RTC_RIS — Raw Interrupt Status Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0014</code></li>
+<li><strong>Access:</strong> R</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:1]</td><td>—</td><td>Reserved.</td></tr>
+<tr><td>[0]</td><td>Raw status</td><td>Raw interrupt state of RTCINTR before masking. Write has no effect.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="rtc_mis--masked-interrupt-status-register"><a class="header" href="#rtc_mis--masked-interrupt-status-register">RTC_MIS — Masked Interrupt Status Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0018</code></li>
+<li><strong>Access:</strong> R</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:1]</td><td>—</td><td>Reserved.</td></tr>
+<tr><td>[0]</td><td>Masked status</td><td>Masked interrupt state of RTCINTR after applying mask. Write has no effect.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="rtc_icr--interrupt-clear-register"><a class="header" href="#rtc_icr--interrupt-clear-register">RTC_ICR — Interrupt Clear Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x001C</code></li>
+<li><strong>Access:</strong> W (write-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:1]</td><td>—</td><td>Reserved.</td></tr>
+<tr><td>[0]</td><td>Clear</td><td>Write <code>1</code> to clear the RTCINTR interrupt flag. Write <code>0</code> has no effect.</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="kpc-keypad-controller"><a class="header" href="#kpc-keypad-controller">KPC (Keypad Controller)</a></h2>
+<h3 id="kpc-introduction"><a class="header" href="#kpc-introduction">KPC Introduction</a></h3>
+<p>The keypad controller supports a 4×4 keyboard matrix using 4 KPO (output) rows and 4 KPI (input) columns. It monitors the keypad array, detects node rise or fall events, and reports status in <code>KPC_SR</code>.</p>
+<p>Note that when the KPC mappings are activated, they will override any GPIO configuration for the PF bank. This also impacts the PA pins that are tied to the PF bank - it is important for the system designer &amp; programmer to ensure no conflicts on these pins, otherwise excessive power draw can result during sleep mode.</p>
+<p>For example, if PA0 is configured to drive high, the KPC will drive PF9 (regradless of whether KPO3 is used by the system or not), and this combination will effectively short the high-drive of PA0 onto the KPC’s low-pulse scan of the keyboard matrix.</p>
+<p><img src="images/system-control-kpc-matrix.png" alt="KPC 4x4 keypad matrix showing KPO rows and KPI columns with node IDs"></p>
+<p><strong>Node ID mapping:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th></th><th>KPI0</th><th>KPI1</th><th>KPI2</th><th>KPI3</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>KPO0</strong></td><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+<tr><td><strong>KPO1</strong></td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+<tr><td><strong>KPO2</strong></td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+<tr><td><strong>KPO3</strong></td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Port F (PF9–PF2) is dedicated to the keypad function. Use the <a href="#ao_iox--port-f-alternate-function-selection-register"><code>AO_IOX</code></a> and <a href="#ao_padpu--port-f-pull-up-configuration-register"><code>AO_PADPU</code></a> registers for function selection and pull-up configuration.</li>
+<li>Clock source is clk32k, divisible to 1 ms via <code>KPC_CFG1</code>.</li>
+<li>Keypad sampling timing is configured via <code>KPC_CFG2</code>:</li>
+</ul>
+<p><img src="images/system-control-kpc-timing.png" alt="KPC sampling timing diagram showing KPO drive and KPI sample relationships"></p>
+<h3 id="kpc-main-features"><a class="header" href="#kpc-main-features">KPC Main Features</a></h3>
+<ul>
+<li>Auto-sleep mode; sleep time configured via <code>KPC_CFG4</code>.</li>
+<li>Each node individually configurable for rise or fall event generation via <code>KPC_CFG3</code>.</li>
+<li>Multiple simultaneous node events supported via FIFO; indicated in <code>KPC_SR1</code>.</li>
+<li>Per-node status readable from <code>KPC_SR0</code>.</li>
+</ul>
+<h3 id="kpc-interrupt"><a class="header" href="#kpc-interrupt">KPC Interrupt</a></h3>
+<ul>
+<li>Configure node rise/fall event generation via <code>KPC_CFG3</code>.</li>
+<li>Enable AO interrupt via the <code>KPCINTR</code> bit in <code>AO_WKUP_INTEN</code> (see <a href="#ao_wkup_inten--wakeup-mask-and-interrupt-enable">PMU</a>).</li>
+<li>Event flags in <code>KPC_FF</code>.</li>
+<li>IRQn: 30</li>
+</ul>
+<h3 id="kpc-registers"><a class="header" href="#kpc-registers">KPC Registers</a></h3>
+<p>Base address: <code>0x4006_4000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>KPC_CFG0</td><td>0x0000</td><td>32</td><td>CR</td><td>R/W</td><td>0x0000000D</td><td>Enable configuration</td></tr>
+<tr><td>KPC_CFG1</td><td>0x0004</td><td>32</td><td>CR</td><td>R/W</td><td>0x001F1010</td><td>Time configuration</td></tr>
+<tr><td>KPC_CFG2</td><td>0x0008</td><td>32</td><td>CR</td><td>R/W</td><td>0xFF201810</td><td>Sample timing configuration</td></tr>
+<tr><td>KPC_CFG3</td><td>0x000C</td><td>32</td><td>CR</td><td>R/W</td><td>0xFFFFFFFF</td><td>Node event configuration</td></tr>
+<tr><td>KPC_SR0</td><td>0x0010</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Status register 0</td></tr>
+<tr><td>KPC_SR1</td><td>0x0014</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Status register 1</td></tr>
+<tr><td>KPC_FF</td><td>0x0020</td><td>32</td><td>CR</td><td>W</td><td>0x00000000</td><td>Event FIFO</td></tr>
+<tr><td>KPC_CFG4</td><td>0x0030</td><td>32</td><td>CR</td><td>R/W</td><td>0x000001F4</td><td>Sleep wait time configuration</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="kpc_cfg0--kpc-enable-configuration-register"><a class="header" href="#kpc_cfg0--kpc-enable-configuration-register">KPC_CFG0 — KPC Enable Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_000D</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[5]</td><td>autosleep enable</td><td>Auto-sleep enable</td></tr>
+<tr><td>[4]</td><td>kpc enable</td><td>KPC enable</td></tr>
+<tr><td>[3]</td><td>KPOOE1</td><td>KPO output enable</td></tr>
+<tr><td>[2]</td><td>KPOOE0</td><td>KPO output disable</td></tr>
+<tr><td>[1]</td><td>KPOPO1</td><td>KPO pull-up enable</td></tr>
+<tr><td>[0]</td><td>KPOPO0</td><td>KPO pull-up disable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="kpc_cfg1--kpc-time-configuration-register"><a class="header" href="#kpc_cfg1--kpc-time-configuration-register">KPC_CFG1 — KPC Time Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Reset value:</strong> <code>0x001F_1010</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[23:16]</td><td>Cfg_cnt1ms</td><td>Timer configuration for 1 ms @ clk32k</td></tr>
+<tr><td>[15:8]</td><td>Cfg_filter</td><td>Filter value, based on mfsm round</td></tr>
+<tr><td>[7:0]</td><td>Cfg_step</td><td>Basic time unit</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="kpc_cfg2--kpc-sample-timing-configuration-register"><a class="header" href="#kpc_cfg2--kpc-sample-timing-configuration-register">KPC_CFG2 — KPC Sample Timing Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0xFF20_1810</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:24]</td><td>cfg_cnt3</td><td>Time interval between each KPOx line</td></tr>
+<tr><td>[23:16]</td><td>cfg_cnt2</td><td>Time to stop driving KPOx</td></tr>
+<tr><td>[15:8]</td><td>cfg_cnt1</td><td>Time of KPIx sample point</td></tr>
+<tr><td>[7:0]</td><td>cfg_cnt0</td><td>Time to start driving KPOx</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="kpc_cfg3--kpc-node-configuration-register"><a class="header" href="#kpc_cfg3--kpc-node-configuration-register">KPC_CFG3 — KPC Node Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x000C</code></li>
+<li><strong>Reset value:</strong> <code>0xFFFF_FFFF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:16]</td><td>Fall event enable</td><td>Bit N enables fall event/interrupt for node N (nodes 0–15)</td></tr>
+<tr><td>[15:0]</td><td>Rise event enable</td><td>Bit N enables rise event/interrupt for node N (nodes 0–15)</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="kpc_sr0--kpc-status-register-0"><a class="header" href="#kpc_sr0--kpc-status-register-0">KPC_SR0 — KPC Status Register 0</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0010</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[19]</td><td>KPI[3].pi</td><td>KPI3 current input state</td></tr>
+<tr><td>[18]</td><td>KPI[2].pi</td><td>KPI2 current input state</td></tr>
+<tr><td>[17]</td><td>KPI[1].pi</td><td>KPI1 current input state</td></tr>
+<tr><td>[16]</td><td>KPI[0].pi</td><td>KPI0 current input state</td></tr>
+<tr><td>[15:0]</td><td>Node status</td><td>Current state of keypad nodes 0–15</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="kpc_sr1--kpc-status-register-1"><a class="header" href="#kpc_sr1--kpc-status-register-1">KPC_SR1 — KPC Status Register 1</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0014</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>FIFO valid</td><td><code>1</code> = event FIFO contains a valid entry</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="kpc_ff--kpc-event-fifo-register"><a class="header" href="#kpc_ff--kpc-event-fifo-register">KPC_FF — KPC Event FIFO Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0020</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> W</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:16]</td><td>evtiming</td><td>Event timing in 10 ms units, measured from last event</td></tr>
+<tr><td>[4:0]</td><td>event index</td><td><code>0</code>–<code>15</code> = node 0–15 rise event; <code>16</code>–<code>31</code> = node 0–15 fall event</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="kpc_cfg4--kpc-sleep-wait-time-configuration-register"><a class="header" href="#kpc_cfg4--kpc-sleep-wait-time-configuration-register">KPC_CFG4 — KPC Sleep Wait Time Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0030</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_01F4</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[15:0]</td><td>cfg_deep10ms</td><td>Timer configuration for 10 ms @ clk32k (auto-sleep wait time)</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="atimer"><a class="header" href="#atimer">ATimer</a></h2>
+<h3 id="atimer-main-features"><a class="header" href="#atimer-main-features">ATimer Main Features</a></h3>
+<ul>
+<li>2 general-purpose 32-bit upwards counters (Lo and Hi).</li>
+<li>Selectable clock source per counter:
+<ul>
+<li>PCLK</li>
+<li>32 kHz always-on clock</li>
+</ul>
+</li>
+<li>8-bit programmable prescaler (divides clock frequency).</li>
+<li>Counting modes:
+<ul>
+<li><strong>One-shot:</strong> timer stops after the first compare match.</li>
+<li><strong>Continuous:</strong> timer continues counting after a match.</li>
+<li><strong>64-bit cascaded:</strong> both 32-bit timers used as a single 64-bit timer.</li>
+</ul>
+</li>
+</ul>
+<h3 id="atimer-interrupts"><a class="header" href="#atimer-interrupts">ATimer Interrupts</a></h3>
+<ul>
+<li>ATimer0 (Lo) IRQn: 27</li>
+<li>ATimer1 (Hi) IRQn: 28</li>
+</ul>
+<h3 id="atimer-registers"><a class="header" href="#atimer-registers">ATimer Registers</a></h3>
+<p>Base address: <code>0x4004_3000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>TIMER_CFG_LO</td><td>0x0000</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Timer Low configuration</td></tr>
+<tr><td>TIMER_CFG_HO</td><td>0x0004</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Timer High configuration</td></tr>
+<tr><td>TIMER_CNT_LO</td><td>0x0008</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Timer Low counter value</td></tr>
+<tr><td>TIMER_CNT_HO</td><td>0x000C</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Timer High counter value</td></tr>
+<tr><td>TIMER_CMP_LO</td><td>0x0010</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Timer Low comparator value</td></tr>
+<tr><td>TIMER_CMP_HO</td><td>0x0014</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Timer High comparator value</td></tr>
+<tr><td>TIMER_START_LO</td><td>0x0018</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Start Timer Low</td></tr>
+<tr><td>TIMER_START_HO</td><td>0x001C</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Start Timer High</td></tr>
+<tr><td>TIMER_RESET_LO</td><td>0x0020</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Reset Timer Low counter</td></tr>
+<tr><td>TIMER_RESET_HO</td><td>0x0024</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Reset Timer High counter</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="timer_cfg_lo--timer-low-configuration-register"><a class="header" href="#timer_cfg_lo--timer-low-configuration-register">TIMER_CFG_LO — Timer Low Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31]</td><td>CASC</td><td>Cascaded 64-bit mode enable: combines Timer Lo and Timer Hi into a single 64-bit timer</td></tr>
+<tr><td>[15:8]</td><td>PVAL</td><td>Prescaler value. <code>ftimer = fclk / (1 + PVAL)</code></td></tr>
+<tr><td>[7]</td><td>CCFG</td><td>Clock source: <code>0</code> = PCLK, <code>1</code> = 32 kHz reference clock</td></tr>
+<tr><td>[6]</td><td>PEN</td><td>Prescaler enable</td></tr>
+<tr><td>[5]</td><td>ONES</td><td>One-shot mode: <code>0</code> = timer stays enabled after compare match, <code>1</code> = timer disabled after compare match</td></tr>
+<tr><td>[4]</td><td>MODE</td><td>Continuous mode: <code>0</code> = continue incrementing after match, <code>1</code> = reset counter after match</td></tr>
+<tr><td>[2]</td><td>IRQEN</td><td>Interrupt enable on compare match</td></tr>
+<tr><td>[1]</td><td>RST</td><td>Reset timer (self-clearing after reset completes)</td></tr>
+<tr><td>[0]</td><td>EN</td><td>Timer enable (starts counting)</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="timer_cfg_ho--timer-high-configuration-register"><a class="header" href="#timer_cfg_ho--timer-high-configuration-register">TIMER_CFG_HO — Timer High Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Same bit layout as <code>TIMER_CFG_LO</code>, except:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7]</td><td>CCFG</td><td>Clock source: <code>0</code> = FLL or FLL + prescaler, <code>1</code> = 32 kHz reference clock</td></tr>
+</tbody>
+</table>
+</div>
+<p>All other fields (PVAL, PEN, ONES, MODE, IRQEN, RST, EN) are the same as <code>TIMER_CFG_LO</code> but apply to Timer Hi. Note: CASC bit [31] is only present in <code>TIMER_CFG_LO</code>.</p>
+<h4 id="timer_cnt_lo--timer_cnt_ho--counter-value-registers"><a class="header" href="#timer_cnt_lo--timer_cnt_ho--counter-value-registers">TIMER_CNT_LO / TIMER_CNT_HO — Counter Value Registers</a></h4>
+<ul>
+<li><strong>Offsets:</strong> <code>0x0008</code> (Lo), <code>0x000C</code> (Hi)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>CNT</td><td>Current 32-bit counter value for the respective timer</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="timer_cmp_lo--timer_cmp_ho--comparator-value-registers"><a class="header" href="#timer_cmp_lo--timer_cmp_ho--comparator-value-registers">TIMER_CMP_LO / TIMER_CMP_HO — Comparator Value Registers</a></h4>
+<ul>
+<li><strong>Offsets:</strong> <code>0x0010</code> (Lo), <code>0x0014</code> (Hi)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>CMP</td><td>32-bit compare value. Interrupt is generated when the counter matches this value.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="timer_start_lo--timer_start_ho--timer-start-registers"><a class="header" href="#timer_start_lo--timer_start_ho--timer-start-registers">TIMER_START_LO / TIMER_START_HO — Timer Start Registers</a></h4>
+<ul>
+<li><strong>Offsets:</strong> <code>0x0018</code> (Lo), <code>0x001C</code> (Hi)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>S</td><td>Write <code>1</code> to start the timer (sets the EN bit in the corresponding <code>TIMER_CFG</code> register)</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="timer_reset_lo--timer_reset_ho--timer-reset-registers"><a class="header" href="#timer_reset_lo--timer_reset_ho--timer-reset-registers">TIMER_RESET_LO / TIMER_RESET_HO — Timer Reset Registers</a></h4>
+<ul>
+<li><strong>Offsets:</strong> <code>0x0020</code> (Lo), <code>0x0024</code> (Hi)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>R</td><td>Write <code>1</code> to reset the counter (sets the RST bit in the corresponding <code>TIMER_CFG</code> register)</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="rcu-reset-controller-unit"><a class="header" href="#rcu-reset-controller-unit">RCU (Reset Controller Unit)</a></h2>
+<h3 id="rcu-introduction"><a class="header" href="#rcu-introduction">RCU Introduction</a></h3>
+<p><img src="images/system-control-rcu-block-diagram.png" alt="RCU block diagram showing reset sources and distribution to system and core reset domains"></p>
+<h3 id="rcu-main-features"><a class="header" href="#rcu-main-features">RCU Main Features</a></h3>
+<p>Generates local and system resets from several sources:</p>
+<ul>
+<li>POR — Power-on reset</li>
+<li>Reset pad pin (XRSTn)</li>
+<li>Supply voltage failure on VDD</li>
+<li>Watchdog timeout</li>
+<li>Wake-up event</li>
+<li>Software command</li>
+</ul>
+<h3 id="rcu-registers"><a class="header" href="#rcu-registers">RCU Registers</a></h3>
+<p>Base address: <code>0x4004_0080</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>RCURST0</td><td>0x0000</td><td>32</td><td>AR</td><td>W</td><td>—</td><td>Write <code>0x000055AA</code> to reset chip system</td></tr>
+<tr><td>RCURST1</td><td>0x0004</td><td>32</td><td>AR</td><td>W</td><td>—</td><td>Write <code>0x000055AA</code> to reset core system</td></tr>
+<tr><td>RCUSRCFR</td><td>0x0008</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Reset source flags</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="rcurst0--chip-system-reset-register"><a class="header" href="#rcurst0--chip-system-reset-register">RCURST0 — Chip System Reset Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Type:</strong> AR (action register, write-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write <code>0x0000_55AA</code> to trigger a chip system reset</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="rcurst1--core-system-reset-register"><a class="header" href="#rcurst1--core-system-reset-register">RCURST1 — Core System Reset Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Type:</strong> AR (action register, write-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write <code>0x0000_55AA</code> to trigger a core system reset</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="rcusrcfr--reset-source-flag-register"><a class="header" href="#rcusrcfr--reset-source-flag-register">RCUSRCFR — Reset Source Flag Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R</li>
+</ul>
+<p>Only bits [8:0] are valid. A <code>1</code> in a bit indicates that reset source occurred. Bits [15:9] are reserved — ignore any <code>1</code> values read there.</p>
+<p>System reset sources:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[8]</td><td>chipresetn</td><td>Chip-level reset</td></tr>
+<tr><td>[7]</td><td>vdresetn</td><td>Voltage detector reset</td></tr>
+<tr><td>[6]</td><td>secresetn</td><td>Security warning reset</td></tr>
+<tr><td>[5]</td><td>sysreset_sw</td><td>Software reset via <code>RCURST0</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Core reset sources:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[4]</td><td>padresetn</td><td>XRST pad reset</td></tr>
+<tr><td>[3]</td><td>sysresetn</td><td>System reset</td></tr>
+<tr><td>[2]</td><td>cmsresetn</td><td>Chip mode reset</td></tr>
+<tr><td>[1]</td><td>wdtresetn</td><td>Watchdog reset</td></tr>
+<tr><td>[0]</td><td>corereset_sw</td><td>Software reset via <code>RCURST1</code></td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="watchdog-timer-wdt"><a class="header" href="#watchdog-timer-wdt">Watchdog Timer (WDT)</a></h2>
+<h3 id="wdt-introduction"><a class="header" href="#wdt-introduction">WDT Introduction</a></h3>
+<p>The Watchdog Timer (WDT) detects software faults by automatically generating a system reset or interrupt if the CPU fails to service the watchdog within a programmed interval.</p>
+<p><img src="images/system-control-wdt-block-diagram.png" alt="WDT block diagram showing counter, interrupt, and reset output logic"></p>
+<ul>
+<li><strong>Time-out mode:</strong> If the CPU does not restart the watchdog within the configured interval, the WDT asserts a reset signal to the ARM core.</li>
+<li><strong>Feeding the dog:</strong> Software must periodically write to <code>WDT_CLR</code> to restart the counter. Failure to do so within the interval causes a core reset.</li>
+</ul>
+<h3 id="wdt-interrupt"><a class="header" href="#wdt-interrupt">WDT Interrupt</a></h3>
+<ul>
+<li>IRQn: 29</li>
+</ul>
+<h3 id="wdt-registers"><a class="header" href="#wdt-registers">WDT Registers</a></h3>
+<p>Base address: <code>0x4004_1000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>WDT_VAL</td><td>0x0000</td><td>32</td><td>CR</td><td>R/W</td><td>0xFFFFFFFF</td><td>Counter load value</td></tr>
+<tr><td>WDT_CNT</td><td>0x0004</td><td>32</td><td>SR</td><td>R</td><td>0xFFFFFFFF</td><td>Current counter value</td></tr>
+<tr><td>WDT_CFG</td><td>0x0008</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Configuration</td></tr>
+<tr><td>WDT_CLR</td><td>0x000C</td><td>32</td><td>AR</td><td>W</td><td>—</td><td>Clear (feed) counter</td></tr>
+<tr><td>WDT_INTRAW</td><td>0x0010</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Raw interrupt status (unmasked)</td></tr>
+<tr><td>WDT_INT</td><td>0x0014</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Masked interrupt status</td></tr>
+<tr><td>WDT_LOCKCR</td><td>0x0C00</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Register lock control</td></tr>
+<tr><td>WDT_ITCR</td><td>0x0F00</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Internal test enable</td></tr>
+<tr><td>WDT_ITOP</td><td>0x0F04</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Internal test operate</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="wdt_val--counter-load-value-register"><a class="header" href="#wdt_val--counter-load-value-register">WDT_VAL — Counter Load Value Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0xFFFF_FFFF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>WDT_VAL</td><td>Value loaded into the counter. Write to set the timeout interval.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="wdt_cnt--counter-register"><a class="header" href="#wdt_cnt--counter-register">WDT_CNT — Counter Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Reset value:</strong> <code>0xFFFF_FFFF</code></li>
+<li><strong>Access:</strong> R</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>WDT_CNT</td><td>Current counter value (counts down)</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="wdt_cfg--configuration-register"><a class="header" href="#wdt_cfg--configuration-register">WDT_CFG — Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[1]</td><td>RST</td><td>Reset enable: <code>1</code> = assert reset on timeout</td></tr>
+<tr><td>[0]</td><td>IRQ</td><td>Interrupt enable: <code>1</code> = generate interrupt on timeout</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="wdt_clr--clear-counter-register"><a class="header" href="#wdt_clr--clear-counter-register">WDT_CLR — Clear Counter Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x000C</code></li>
+<li><strong>Type:</strong> AR (action register, write-only)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write any value to restart the watchdog counter (feed the dog)</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="wdt_intraw--raw-interrupt-status-register"><a class="header" href="#wdt_intraw--raw-interrupt-status-register">WDT_INTRAW — Raw Interrupt Status Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0010</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Raw (unmasked) interrupt status</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="wdt_int--masked-interrupt-status-register"><a class="header" href="#wdt_int--masked-interrupt-status-register">WDT_INT — Masked Interrupt Status Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0014</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+<li><strong>Access:</strong> R</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Masked interrupt status</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="wdt_lockcr--register-lock-control-register"><a class="header" href="#wdt_lockcr--register-lock-control-register">WDT_LOCKCR — Register Lock Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0C00</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>VAL</td><td>Write <code>0x1ACE_E551</code> to unlock all WDT registers. Write any other value to lock them (registers become read-only). Bit [0] reads <code>1</code> when locked.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="wdt_itcr--internal-test-configuration-register"><a class="header" href="#wdt_itcr--internal-test-configuration-register">WDT_ITCR — Internal Test Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0F00</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>en</td><td>Internal test mode enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="wdt_itop--internal-test-operate-register"><a class="header" href="#wdt_itop--internal-test-operate-register">WDT_ITOP — Internal Test Operate Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0F04</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[1]</td><td>irq</td><td>Generate watchdog IRQ (test mode)</td></tr>
+<tr><td>[0]</td><td>rst</td><td>Generate watchdog reset (test mode)</td></tr>
+</tbody>
+</table>
+</div>
 
                     </main>
 

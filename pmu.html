@@ -1,0 +1,914 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>PMU - Coder&#x27;s guide to the Baochip 1x</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="custom-616f5484.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-8b37090e.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-fa115614.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Coder&#x27;s guide to the Baochip 1x</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/baochip/baochip-1x" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="power-management-unit---pmu"><a class="header" href="#power-management-unit---pmu">Power Management Unit - PMU</a></h1>
+<h2 id="io-connections"><a class="header" href="#io-connections">I/O Connections</a></h2>
+<p><img src="images/pmu-power-io-diagram.png" alt="Power I/O diagram showing VDD input and output supply connections"></p>
+<p><strong>VDD inputs:</strong></p>
+<ul>
+<li><strong>PMU</strong> (2.7 V – 3.6 V): VDD33</li>
+<li><strong>I/O</strong> (3.3 V / 1.8 V):
+<ul>
+<li>VDD33_BCPAD, VDD33_DPAD, VDD33_QFCPAD: tied to VDDIO in package</li>
+<li>VDD33_AOPAD, VDD33_TESTPAD, VDD33_EPAD, VDD33_APAD: tied to VDD33 in package.</li>
+</ul>
+</li>
+<li><strong>RRAM</strong> (2.7 V – 3.6 V): VDDRR0, VDDRR1: tied to VDD33R on stand-alone ball</li>
+<li><strong>USB</strong>:
+<ul>
+<li>USBVCC33 (2.7 V – 3.6 V) tied to VDD33 in package</li>
+<li>USBVCCCORE (0.80 V) - tied to VDD85 in package</li>
+</ul>
+</li>
+<li><strong>PLL</strong>:
+<ul>
+<li>PLL25VPAD (2.5 V) - Tied to VDD25 ball</li>
+<li>PLL09VPAD (0.80 V) - tied to VDD85 in package</li>
+</ul>
+</li>
+<li><strong>ADC</strong>: ADCAVDD (2.5 V) - Tied to VDD25 ball</li>
+</ul>
+<p><strong>VDD outputs:</strong></p>
+<ul>
+<li>VDD85D, VDD85A - ganged to VDD85 inside package</li>
+<li>VDDAO</li>
+<li>ANA_VDD25A tied to PLL25VPAD, ADCAVDD 2.5V</li>
+</ul>
+<p><strong>GND:</strong></p>
+<ul>
+<li>All grounds ganged together in package
+<ul>
+<li>VSS, DVSS, VSSA</li>
+<li>VSSPLL</li>
+<li>ADCAVSS</li>
+</ul>
+</li>
+</ul>
+<h3 id="power-pad-description"><a class="header" href="#power-pad-description">Power Pad Description</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>I/O Power Pad</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>VDD33_APAD</td><td>I/O power pad for GPIO_PA&lt;7:0&gt; (tied to VDD33)</td></tr>
+<tr><td>VDD33_BCPAD</td><td>I/O power pad for GPIO_PB&lt;15:0&gt; and GPIO_PC&lt;15:0&gt; (tied to VDDIO)</td></tr>
+<tr><td>VDD33_DPAD</td><td>I/O power pad for GPIO_PD&lt;15:0&gt; (tied to VDDIO)</td></tr>
+<tr><td>VDD33_EPAD</td><td>I/O power pad for GPIO_PE&lt;15:0&gt;, XTAL48M_IN, XTAL48M_OUT (tied to VDD33)</td></tr>
+<tr><td>VDD33_QFCPAD</td><td>I/O power pad for GPIO_QFCSIO&lt;7:0&gt;, QFC_RSTS0, QFC_RSTM0, QFC_INT, QFC_SS&lt;1:0&gt;, QFC_QDS, QFC_SCKN, QFC_SCK (tied to VDDIO)</td></tr>
+<tr><td>VDD33_AOPAD</td><td>I/O power pad for GPIO_PF&lt;9:0&gt;, PAD_AOXRSTn, XTAL32K_IN, XTAL32K_OUT (tied to VDD33)</td></tr>
+<tr><td>VDD33_TESTPAD</td><td>I/O power pad for test pads: WMS&lt;2:0&gt;, XRSTn, DUART, SWDIO, SWDCK, JTCK, JTMS, JTDI, JTDO, JTRST (tied to VDD33)</td></tr>
+<tr><td>VDDRR0</td><td>3.3 V power pad for RRAM0 (tied to VDD33R)</td></tr>
+<tr><td>VDDRR1</td><td>3.3 V power pad for RRAM1 (tied to VDD33R)</td></tr>
+<tr><td>VDD33</td><td>3.3 V power pad for PMU (tied to VDD33)</td></tr>
+<tr><td>USBVCC33</td><td>3.3 V power pad for USB PHY (3.3 V signalling) (tied to VDD33R)</td></tr>
+<tr><td>USBVCCCORE</td><td>0.8 V power pad for USB PHY (0.8 V core) (tied to VDD85)</td></tr>
+<tr><td>ADCAVDD</td><td>2.5 V analog power supply for temperature/voltage sensor (tied to VDD25)</td></tr>
+<tr><td>PLL25VPAD</td><td>2.5 V analog supply voltage for PLL (tied to VDD25)</td></tr>
+<tr><td>PLL09VPAD</td><td>0.8 V core supply voltage for PLL (tied to VDD85)</td></tr>
+<tr><td>ANA_VDD25</td><td>PMU regulator output at 2.5 V for ADC and PLL (tied to VDD25)</td></tr>
+<tr><td>VDD85D</td><td>PMU regulator output at 0.8 V / 0.95 V for I/O core power, SoC, and OSC32M (tied to VDD85)</td></tr>
+<tr><td>VDD85A</td><td>PMU regulator output at 0.8 V / 0.95 V for I/O core power, USB PHY, PLL, ADC, RNG cell (tied to VDD85)</td></tr>
+<tr><td>VDDAO</td><td>PMU regulator output at 0.8 V for I/O core power, AO domain, and OSC32K (tied to VDDAO)</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="ground-pad-description"><a class="header" href="#ground-pad-description">Ground Pad Description</a></h3>
+<p>All ground pads tied to common GND bus in package.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>I/O Ground Pad</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>VSS</td><td>Ground pad for the whole chip except PMU, RRAM0, RRAM1, ADC, PLL, USB PHY</td></tr>
+<tr><td>DVSS</td><td>Ground pad for I/O, PMU, RRAM0, and RRAM1</td></tr>
+<tr><td>VSSA</td><td>Ground pad for USB PHY</td></tr>
+<tr><td>VSSPLL</td><td>Ground pad for PLL</td></tr>
+<tr><td>ADCAVSS</td><td>Ground pad for ADC</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="io-power-domain-groups"><a class="header" href="#io-power-domain-groups">I/O Power Domain Groups</a></h3>
+<p>There are two I/O power domains. One is fixed at 3.3V (tied to VDD33 internally), and the other is tied to VDDIO.</p>
+<p>There are more I/Os on the die than are broken out in the CSP package due to ball count limitation on the package type. For higher-I/O count devices, please consult with Crossbar for an alternative, high-pin count BGA packaged device.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>#</th><th>Pad Group</th><th>I/O Power Pad</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>2</td><td>PB, PC</td><td>VDDIO</td><td>GPIO_PB&lt;15:0&gt; and GPIO_PC&lt;15:0&gt;</td></tr>
+<tr><td>3</td><td>PD</td><td>VDDIO</td><td>GPIO_PD&lt;15:0&gt;</td></tr>
+<tr><td>7</td><td>QFC</td><td>VDDIO</td><td>(unavailable)</td></tr>
+<tr><td>1</td><td>PA</td><td>VDD33</td><td>GPIO_PA&lt;7:0&gt; (some I/Os ganged to PF pins)</td></tr>
+<tr><td>4</td><td>PE, TEST</td><td>VDD33</td><td>XTAL48M_IN, XTAL48M_OUT. VDD33_TESTPAD: WMS&lt;2:0&gt;, XRSTn, DUART</td></tr>
+<tr><td>5</td><td>RRAM0</td><td>VDDRR0</td><td>VDD33R</td></tr>
+<tr><td>6</td><td>RRAM1</td><td>VDDRR1</td><td>VDD33R</td></tr>
+<tr><td>8</td><td>PF</td><td>VDD33</td><td>GPIO_PF&lt;9:0&gt; (some I/Os ganged to PA pins), PAD_AOXRSTn, XTAL32K_IN, XTAL32K_OUT</td></tr>
+<tr><td>9</td><td>TV / PLL / PHY / PMU</td><td>VDD33</td><td>3.0 V pad for PMU and USB PHY.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Below is the raw chip floorplan showing the location of the I/O power domains on-die. The power is further routed through an RDL (redistribution layer) and broken out to a limited number of CSP balls.</p>
+<p><img src="images/pmu-io-power-domain-groups.png" alt="Chip floorplan showing the location of each I/O power domain group"></p>
+<h3 id="power-timing-sequence"><a class="header" href="#power-timing-sequence">Power Timing Sequence</a></h3>
+<p>The following diagram shows the recommended power-on sequence for VDD33(I/O) and VDD33:</p>
+<ul>
+<li><strong>VDD33(I/O):</strong> VDD33_APAD, VDD33_BCPAD, VDD33_DPAD, VDD33_EPAD, VDD33_AOPAD, VDD33_QFCPAD, VDD33_TESTPAD</li>
+<li><strong>VDD33:</strong> VDD33, VDDRR0, VDDRR1, USBVCC33</li>
+</ul>
+<p><img src="images/pmu-power-timing-sequence.png" alt="Power timing sequence diagram showing recommended power-on ordering for VDD33(I/O) and VDD33"></p>
+<ul>
+<li>Stand-alone VDDIO may rise after VDD33 as the internal VDD33-bound I/O are tied to VDD33 and guaranteed to be valid on VDD33 rise.</li>
+<li>t2 should be &gt;0.</li>
+</ul>
+<h2 id="power-modes"><a class="header" href="#power-modes">Power Modes</a></h2>
+<p>Besides the regular active mode, the device provides three reduced power modes:</p>
+<ul>
+<li>Sleep mode</li>
+<li>Power-down mode</li>
+</ul>
+<p>The following modes are listed from maximum to minimum power consumption.</p>
+<h3 id="active-mode"><a class="header" href="#active-mode">Active Mode</a></h3>
+<p>In active mode, all clocks to the CPU cores, memories, and peripherals are enabled. The chip enters active mode after reset, with default power trimming determined by the ReRAM IFR power-on initialization. Power and clocks to selected peripherals and crypto engines can be optimized during runtime. All low-power modes can be entered from active mode.</p>
+<h3 id="sleep-mode"><a class="header" href="#sleep-mode">Sleep Mode</a></h3>
+<p>In sleep mode, all clocks to the CPU cores are stopped and instruction execution is suspended until a reset or interrupt occurs. Selected functional blocks (peripherals, crypto engines) can continue operating at normal or reduced frequency and may generate interrupts as wake-up sources. SRAM contents are retained in sleep mode.</p>
+<p><strong>Entering sleep mode:</strong></p>
+<p>Sleep mode is entered by executing a <code>WFI</code> instruction after optionally configuring lower-frequency clock settings. Crypto engines, peripherals, and memories remain operational.</p>
+<p><strong>Waking up from sleep mode:</strong></p>
+<p>Any interrupt or RESET wakes the device from sleep mode. GPIO interrupts and selected peripherals (SPI, I2C, etc.) can serve as wake-up sources. The chip resumes using the same power configuration it had before sleep.</p>
+<h4 id="power-down-mode"><a class="header" href="#power-down-mode">Power-Down Mode</a></h4>
+<p>In power-down mode, all clocks, the CPU core, and all functional blocks are powered down except the always-on (AO) domain. External power supplies remain on. Most SRAM and register contents are not retained — only AO SRAMs and AO backup registers are preserved.</p>
+<p><strong>Entering power-down mode:</strong></p>
+<p>Configure AO wake-up sources, then write <code>0x0000_005A</code> to the <code>PMU_PDAR</code> register. The SoC power domain shuts off; only the AO domain remains powered.</p>
+<p><strong>Waking up from power-down mode:</strong></p>
+<p>Wake-up from power-down is triggered by asserting RESET, or by asserting PF0 or PF1 pins. On wake-up, the PMU powers on the SoC domain, the ReRAM IFR is re-read, RAMs reset to zero, and the CPU restarts from the beginning. Backup-registers, RTC and AORAM in the AO domain are preserved if the wake-up source is from the PF pins; if external reset is used, then these registers are cleared.</p>
+<h3 id="low-power-mode-summary"><a class="header" href="#low-power-mode-summary">Low-Power Mode Summary</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th></th><th>Active</th><th>Sleep</th><th>Power-Down</th></tr>
+</thead>
+<tbody>
+<tr><td>CPU cores</td><td>Running</td><td>Suspended (clocks stopped)</td><td>Powered off</td></tr>
+<tr><td>Functional blocks (crypto, peripherals)</td><td>Running</td><td>Running / reduced frequency (configurable)</td><td>Powered off</td></tr>
+<tr><td>Analog blocks</td><td>Running</td><td>Run / sleep / disabled (configurable)</td><td>Powered off</td></tr>
+<tr><td>SRAM (except AO)</td><td>Running</td><td>Retained</td><td>Powered off</td></tr>
+<tr><td>AO domain</td><td>Running</td><td>Running</td><td>Running</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>These modes should be activated using the low-power mode library API from the SDK software package. Power usage is primarily controlled by CGU clock settings, PMU regulator settings, and the CPU operating mode.</p>
+</blockquote>
+<h2 id="low-power-control-api-reference-flow"><a class="header" href="#low-power-control-api-reference-flow">Low-Power Control API Reference Flow</a></h2>
+<h3 id="enter-sleep-mode"><a class="header" href="#enter-sleep-mode">Enter Sleep Mode</a></h3>
+<ol>
+<li><em>(Optional)</em> Configure <code>PMU_CRLP</code> and <code>PMU_TRMLP*</code> registers with reduced power settings and trimmings for sleep entry.</li>
+<li><em>(Optional)</em> Configure <code>CGUFD_*</code> registers (<code>0x4004_0014</code> – <code>0x4004_003C</code>) with reduced clock frequencies for sleep entry.</li>
+<li><em>(Optional)</em> Write <code>0x3</code> to <code>CGULP</code> (<code>0x4004_0004</code>) to enable low-power frequency division and disable OSC/PLL on sleep entry.</li>
+<li>Configure and enable wake-up sources.</li>
+<li>Execute <code>WFI</code> / <code>WFE</code> instruction — CPU core clocks stop.</li>
+<li>Device remains in sleep mode until a valid wake-up source triggers.</li>
+<li>On wake-up, the CPU resumes execution from the next instruction.</li>
+</ol>
+<p>As of Xous 0.10.1, the above sequence is already implemented and accessible via an API call to enter suspend via the Suspend/Resume manager:</p>
+<pre><code class="language-Rust">    let xns = xous_names::XousNames::new().unwrap();
+    let susres = susres::Susres::new_without_hook(&amp;xns).unwrap();
+    susres.initiate_suspend().unwrap();
+</code></pre>
+<p>To access the <code>xous_names</code> and <code>susres</code> APIs, you will need this in your <code>Cargo.toml</code>:</p>
+<pre><code class="language-toml">   susres = { package = "xous-api-susres", version = "0.9.68" }
+   xous-names = { package = "xous-api-names", version = "0.9.71" }
+</code></pre>
+<h3 id="enter-power-down-mode"><a class="header" href="#enter-power-down-mode">Enter Power-Down Mode</a></h3>
+<ol>
+<li><em>(Optional)</em> Configure <code>PMU_CRPD</code> register with power-down settings.</li>
+<li><em>(Optional)</em> Store any important data to AO backup registers or AORAM before entry.</li>
+<li>Configure and enable AO wake-up sources.</li>
+<li>Write <code>0x0000_005A</code> to <code>PMU_PDAR</code> — all SoC domain blocks shut off; only the AO domain remains powered.</li>
+<li>Device remains in power-down until a valid AO wake-up source triggers.</li>
+<li>On wake-up, the PMU powers on the SoC domain. The ReRAM IFR is re-read, RAMs reset to zero, and the CPU restarts from the beginning.</li>
+</ol>
+<p>As of Xous 0.10.1, the above sequence is already implemented via an API call to enter power-down mode that requires a PlatformSpecific call:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    use num_traits::ToPrimitive;
+
+    let xns = xous_names::XousNames::new().unwrap();
+    let susres_conn =
+        xns.request_connection_blocking(susres::api::SERVER_NAME_SUSRES).expect("Can't connect to SUSRES");
+    xous::send_message(
+        susres_conn,
+        xous::Message::new_scalar(
+            susres::api::Opcode::PlatformSpecific.to_usize().unwrap(),
+            bao1x_hal::ClockOp::DeepSleep.to_usize().unwrap(),
+            0,
+            0,
+            0,
+        ),
+    )
+    .ok();
+<span class="boring">}</span></code></pre>
+<p>You’ll need these crates to make the above call:</p>
+<pre><code class="language-toml">   xous = "0.9.70"
+   susres = { package = "xous-api-susres", version = "0.9.68" }
+   xous-names = { package = "xous-api-names", version = "0.9.71" }
+   bao1x-hal = { features = [
+       "std",
+   ], git = "https://github.com/betrusted-io/xous-core", branch = "dev" }
+   num-traits = { version = "0.2.14", default-features = false }
+</code></pre>
+<hr>
+<h2 id="pmu-regulator-and-trim-block"><a class="header" href="#pmu-regulator-and-trim-block">PMU Regulator and Trim Block</a></h2>
+<h3 id="pmu-introduction"><a class="header" href="#pmu-introduction">PMU Introduction</a></h3>
+<p><img src="images/pmu-block-diagram.png" alt="PMU block diagram showing regulators, bandgap, POR/PDR, and current source"></p>
+<ul>
+<li><strong>2.5 V Regulator (VR25):</strong> 2.55 V regulator powered from VDD. Supports power-down enable and ready status indication.</li>
+<li><strong>0.85 V Regulators for Analog/Digital (VRCOREA, VRCORED):</strong> 0.85 V regulators powered from VDD. Support power-down enable, ready status indication, and overshoot enable.</li>
+<li><strong>0.8 V Always-On Regulator (VRAO):</strong> 0.77 V regulator powered from VDD.</li>
+<li><strong>Current Source Output (IOUT):</strong> Provides several current sources, including a 10 µA output to a test pin for calibration against an external resistor (enabling absolute-value accuracy rather than tracking integrated resistors).</li>
+<li><strong>Power On/Down Reset (PORPDR):</strong> Provides power-on reset signal. Also triggers when power drops low enough to lose the always-on regulator.</li>
+<li><strong>Bandgap (BG):</strong> Ready status indication. The 1.5 V (VOUT1P5), 1.2 V (VOUT1P2), and 0.6 V (VOUTP60) references are individually trimmable. CTAT and PTAT currents are trimmable.</li>
+</ul>
+<h3 id="pmu-main-features"><a class="header" href="#pmu-main-features">PMU Main Features</a></h3>
+<ul>
+<li>Provides regulated supplies: VDD25, VDD85A, VDD85D, VDDAO.</li>
+<li>Generates power-on and power-down reset signals.</li>
+<li>Supports power-down mode.</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Cell</th><th>Power-Down Mode — On/Off</th><th>Power-Down Supply (µA)</th><th>Active Mode — On/Off</th><th>Active Supply (µA)</th></tr>
+</thead>
+<tbody>
+<tr><td>VR25</td><td>Off</td><td>0.01</td><td>On</td><td>10</td></tr>
+<tr><td>VR85_A/D</td><td>Off</td><td>0.01</td><td>On</td><td>10</td></tr>
+<tr><td>VR_AO</td><td>On</td><td>1</td><td>On</td><td>1</td></tr>
+<tr><td>BG</td><td>On</td><td>1.5</td><td>On</td><td>1 + current sources</td></tr>
+<tr><td>POR/PDR</td><td>On</td><td>1</td><td>On</td><td>1</td></tr>
+<tr><td>VD (four cells)</td><td>On (2 channels)</td><td>2</td><td>On (4 channels)</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="pmu--ao-control-registers"><a class="header" href="#pmu--ao-control-registers">PMU &amp; AO Control Registers</a></h2>
+<p>Base address: <code>0x4006_0000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register Name</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>AO_CLK32K_SEL</td><td>0x0000</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000006</td><td>AO 32 kHz clock source selection</td></tr>
+<tr><td>AO_CLK1HZ_FD</td><td>0x0004</td><td>32</td><td>Config</td><td>R/W</td><td>0x00003FFF</td><td>1 Hz clock frequency divider</td></tr>
+<tr><td>AO_WKUP_INTEN</td><td>0x0008</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Wakeup mask and interrupt enable</td></tr>
+<tr><td>AO_RSTCR_MASK</td><td>0x000C</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Reset mask control</td></tr>
+<tr><td>PMU_CR</td><td>0x0010</td><td>32</td><td>Config</td><td>R/W</td><td>0x000003F3</td><td>PMU block control (active mode)</td></tr>
+<tr><td>PMU_CRLP</td><td>0x0014</td><td>32</td><td>Config</td><td>R/W</td><td>0x00003FFF</td><td>PMU block control (sleep / deep-sleep)</td></tr>
+<tr><td>PMU_CRPD</td><td>0x0018</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>PMU block control (power-down)</td></tr>
+<tr><td>PMU_DFT</td><td>0x001C</td><td>32</td><td>Config</td><td>R/W</td><td>—</td><td>PMU default test</td></tr>
+<tr><td>PMU_TRM0</td><td>0x0020</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>PMU trimming low 32 bits (active)</td></tr>
+<tr><td>PMU_TRM1</td><td>0x0024</td><td>32</td><td>Config</td><td>R/W</td><td>0x00003FFF</td><td>PMU trimming high 32 bits (active)</td></tr>
+<tr><td>PMU_TRMLP0</td><td>0x0028</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>PMU trimming low 32 bits (low-power)</td></tr>
+<tr><td>PMU_TRMLP1</td><td>0x002C</td><td>32</td><td>Config</td><td>R/W</td><td>0x0000001F</td><td>PMU trimming high 32 bits (low-power)</td></tr>
+<tr><td>AO_OSC_CR</td><td>0x0034</td><td>32</td><td>Config</td><td>R/W</td><td>0x0001 2D2D</td><td>AO 32 kHz oscillator control</td></tr>
+<tr><td>PMU_SR</td><td>0x0038</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>PMU ready status register</td></tr>
+<tr><td>PMU_FR</td><td>0x003C</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>PMU error flag register</td></tr>
+<tr><td>AO_FR</td><td>0x0040</td><td>32</td><td>Config</td><td>R/W</td><td>—</td><td>AO domain interrupt flag register</td></tr>
+<tr><td>PMU_PDAR</td><td>0x0044</td><td>32</td><td>Config</td><td>R/W</td><td>—</td><td>Power-down activation register</td></tr>
+<tr><td>AO_PERI_CLR</td><td>0x0050</td><td>32</td><td>Config</td><td>R/W</td><td>—</td><td>Wakeup interrupt clear register</td></tr>
+<tr><td>AO_IOX</td><td>0x0060</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Port F alternate function selection</td></tr>
+<tr><td>AO_PADPU</td><td>0x0064</td><td>32</td><td>Config</td><td>R/W</td><td>0x000003FF</td><td>Port F pull-up configuration</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="register-descriptions"><a class="header" href="#register-descriptions">Register Descriptions</a></h3>
+<h4 id="ao_clk32k_sel--ao-32-khz-clock-source-selection"><a class="header" href="#ao_clk32k_sel--ao-32-khz-clock-source-selection">AO_CLK32K_SEL — AO 32 kHz Clock Source Selection</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0006</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>clk32k_sel</td><td>32 kHz clock source: <code>0</code> = internal OSC 32 kHz, <code>1</code> = external XTAL 32 kHz</td></tr>
+<tr><td>[1]</td><td>pdisoen</td><td>Isolation control on power-down entry: <code>0</code> = isolation disabled, <code>1</code> = isolation enabled</td></tr>
+<tr><td>[2]</td><td>pclkicg</td><td>PCLK gate on power-down entry: <code>0</code> = PCLK from SoC domain enabled, <code>1</code> = PCLK from SoC domain disabled</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ao_clk1hz_fd--1-hz-clock-frequency-divider"><a class="header" href="#ao_clk1hz_fd--1-hz-clock-frequency-divider">AO_CLK1HZ_FD — 1 Hz Clock Frequency Divider</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_3FFF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[13:0]</td><td>1Hz fd</td><td>Frequency divider based on clk32k (OSC32K or XTAL32K). Formula: f_1Hz = f_32kHz / (2 × (fd + 1)). Default produces ≈ 0.976 Hz. For accurate 1 Hz set to <code>0x3E80</code>.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ao_wkup_inten--wakeup-mask-and-interrupt-enable"><a class="header" href="#ao_wkup_inten--wakeup-mask-and-interrupt-enable">AO_WKUP_INTEN — Wakeup Mask and Interrupt Enable</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Interrupt enable bits (0 = disabled, 1 = enabled):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Source</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>WDT reset source interrupt</td></tr>
+<tr><td>[1]</td><td>RTC event interrupt</td></tr>
+<tr><td>[2]</td><td>ATIMER event interrupt</td></tr>
+<tr><td>[3]</td><td>WDT event interrupt</td></tr>
+<tr><td>[4]</td><td>KPC event interrupt</td></tr>
+<tr><td>[5]</td><td>KPC async source interrupt</td></tr>
+<tr><td>[7:6]</td><td>Reserved</td></tr>
+</tbody>
+</table>
+</div>
+<p>Wakeup mask bits (0 = source can wake system, 1 = source <strong>cannot</strong> wake system):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Source</th></tr>
+</thead>
+<tbody>
+<tr><td>[8]</td><td>WDT reset source wakeup mask</td></tr>
+<tr><td>[9]</td><td>RTC event wakeup mask</td></tr>
+<tr><td>[11]</td><td>WDT event wakeup mask</td></tr>
+<tr><td>[12]</td><td>KPC event wakeup mask</td></tr>
+<tr><td>[13]</td><td>KPC async source wakeup mask</td></tr>
+<tr><td>[15:14]</td><td>Reserved</td></tr>
+<tr><td>[16]</td><td>PF1 pull-down event wakeup mask</td></tr>
+<tr><td>[17]</td><td>PF0 pull-down event wakeup mask</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ao_rstcr_mask--reset-mask-control-register"><a class="header" href="#ao_rstcr_mask--reset-mask-control-register">AO_RSTCR_MASK — Reset Mask Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x000C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_001F</code></li>
+</ul>
+<p>Each bit masks a reset source (<code>0</code> = source can reset system, <code>1</code> = source <strong>cannot</strong> reset system):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Reset source</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>PMU POR ready</td></tr>
+<tr><td>[1]</td><td>PMU 0.8 V digital regulator ready</td></tr>
+<tr><td>[2]</td><td>PMU 0.8 V analog regulator ready</td></tr>
+<tr><td>[3]</td><td>PMU 2.5 V regulator ready</td></tr>
+<tr><td>[4]</td><td>PMU bandgap ready</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_cr--pmu-block-control-register-active-mode"><a class="header" href="#pmu_cr--pmu-block-control-register-active-mode">PMU_CR — PMU Block Control Register (Active Mode)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0010</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_007C</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>VR85D voltage</td><td>0.8 V digital regulator voltage: <code>0</code> = 0.8 V, <code>1</code> = 0.95 V (higher performance)</td></tr>
+<tr><td>[1]</td><td>VR85A voltage</td><td>0.8 V analog regulator voltage: <code>0</code> = 0.8 V, <code>1</code> = 0.95 V (higher performance)</td></tr>
+<tr><td>[2]</td><td>POC</td><td>Power-on control: <code>0</code> = disabled (forces POC_IO = 0), <code>1</code> = enabled</td></tr>
+<tr><td>[3]</td><td>iout</td><td>Reference current circuit (ibias / test_top): <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+<tr><td>[4]</td><td>VR85D enable</td><td>0.8 V digital regulator: <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+<tr><td>[5]</td><td>VR85A enable</td><td>0.8 V analog regulator: <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+<tr><td>[6]</td><td>VR25 enable</td><td>2.5 V regulator: <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_crlp--pmu-block-control-register-sleep--deep-sleep"><a class="header" href="#pmu_crlp--pmu-block-control-register-sleep--deep-sleep">PMU_CRLP — PMU Block Control Register (Sleep / Deep-Sleep)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0014</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_007C</code></li>
+</ul>
+<p>Same bit definition as <code>PMU_CR</code>. These are separate configuration values applied when entering sleep or deep-sleep mode.</p>
+<h4 id="pmu_crpd--pmu-block-control-register-power-down"><a class="header" href="#pmu_crpd--pmu-block-control-register-power-down">PMU_CRPD — PMU Block Control Register (Power-Down)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0018</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_007C</code></li>
+</ul>
+<p>Same bit definition as <code>PMU_CR</code>. These are separate configuration values applied when entering power-down mode.</p>
+<h4 id="pmu_dft--pmu-default-test-register"><a class="header" href="#pmu_dft--pmu-default-test-register">PMU_DFT — PMU Default Test Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x001C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0002</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[2:0]</td><td>test mode</td><td>Output selection on PMU_ANA_TEST pin: <code>010</code> = disabled (default), <code>000</code> = monitor VDD25, <code>001</code> = monitor SOURCE_10UA, <code>1xx</code> = monitor selection from PMU_TEST_SEL (bits [5:3])</td></tr>
+<tr><td>[5:3]</td><td>PMU_TEST_SEL</td><td>Reference bias selection when bits [2:0] = <code>1xx</code>: <code>000</code> = VSS, <code>001</code> = VP60V (0.6 V), <code>010</code> = VDD_AO (0.8 V), <code>011</code> = VP60A (0.6 V), <code>100</code> = VP60D (0.6 V), <code>101</code> = VOLT1 (1.0 V), <code>110</code> = VOUT1P2 (1.2 V), <code>111</code> = VDD2 (2.0 V)</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_trm0--pmu-trimming-low-32-bit-register-active-mode"><a class="header" href="#pmu_trm0--pmu-trimming-low-32-bit-register-active-mode">PMU_TRM0 — PMU Trimming Low 32-bit Register (Active Mode)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0020</code></li>
+<li><strong>Reset value:</strong> <code>0x0842_1080</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[2:0]</td><td>VDDAO trim</td><td>VDDAO voltage: <code>000</code> = 0.8 V, <code>001</code> = 0.75 V, <code>010</code> = 0.7 V, <code>011</code> = 0.65 V, <code>1xx</code> = 0.6 V</td></tr>
+<tr><td>[7:3]</td><td>VR85D bias trim</td><td>0.6 V reference for 0.8 V digital regulator. <code>10000</code> = 0.8 V (default). See <a href="./pmu.html#vdd85-trim-table">VDD85 Trim Table below</a>.</td></tr>
+<tr><td>[12:8]</td><td>VR85A bias trim</td><td>0.6 V reference for 0.8 V analog regulator. <code>10000</code> = 0.8 V (default).</td></tr>
+<tr><td>[17:13]</td><td>VR25 bias trim</td><td>0.6 V reference for 2.5 V regulator. <code>10000</code> = 0.8 V (default).</td></tr>
+<tr><td>[22:18]</td><td>BG CTAT trim</td><td>Bandgap CTAT parameter. <code>10000</code> = 0.8 V (default).</td></tr>
+<tr><td>[27:23]</td><td>BG PTAT trim</td><td>Bandgap PTAT parameter. <code>10000</code> = 0.8 V (default).</td></tr>
+<tr><td>[31:28]</td><td>IREF trim [3:0]</td><td>Bits [3:0] of reference current trim for SINK_1uA / SOURCE_10uA. Must be combined with <code>PMU_TRM1[1:0]</code> for the full 6-bit value.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_trm1--pmu-trimming-high-32-bit-register-active-mode"><a class="header" href="#pmu_trm1--pmu-trimming-high-32-bit-register-active-mode">PMU_TRM1 — PMU Trimming High 32-bit Register (Active Mode)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0024</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0002</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[1:0]</td><td>IREF trim [5:4]</td><td>Bits [5:4] of reference current trim. Full value = <code>{PMU_TRM1[1:0], PMU_TRM0[31:28]}</code>. <code>100000</code> = 10.002 µA (default). This value is set by chip test and should not be adjusted.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_trmlp0--pmu-trimming-low-32-bit-register-low-power"><a class="header" href="#pmu_trmlp0--pmu-trimming-low-32-bit-register-low-power">PMU_TRMLP0 — PMU Trimming Low 32-bit Register (Low-Power)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0028</code></li>
+<li><strong>Reset value:</strong> <code>0x0842_1080</code></li>
+</ul>
+<p>Same bit definition as <code>PMU_TRM0</code>. Applied during sleep and deep-sleep mode.</p>
+<h4 id="pmu_trmlp1--pmu-trimming-high-32-bit-register-low-power"><a class="header" href="#pmu_trmlp1--pmu-trimming-high-32-bit-register-low-power">PMU_TRMLP1 — PMU Trimming High 32-bit Register (Low-Power)</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x002C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_001F</code></li>
+</ul>
+<p>Same bit definition as <code>PMU_TRM1</code>. Applied during sleep and deep-sleep mode.</p>
+<h4 id="ao_osc_cr--ao-32-khz-oscillator-control-register"><a class="header" href="#ao_osc_cr--ao-32-khz-oscillator-control-register">AO_OSC_CR — AO 32 kHz Oscillator Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0034</code></li>
+<li><strong>Reset value:</strong> <code>0x0001_2D2D</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>Active mode enable</td><td>OSC32K enable for active mode: <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+<tr><td>[7:1]</td><td>Active mode trim</td><td>OSC32K trimming for active mode. <code>0100110</code> = 33 kHz (default). This value is set by chip test and should not be adjusted.</td></tr>
+<tr><td>[8]</td><td>Sleep/deep-sleep enable</td><td>OSC32K enable for sleep and deep-sleep: <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+<tr><td>[15:9]</td><td>Sleep/deep-sleep trim</td><td>OSC32K trimming for sleep and deep-sleep. <code>0100110</code> = 33 kHz (default).</td></tr>
+<tr><td>[16]</td><td>Power-down enable</td><td>OSC32K enable for power-down mode: <code>0</code> = disabled, <code>1</code> = enabled</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_sr--pmu-ready-status-register"><a class="header" href="#pmu_sr--pmu-ready-status-register">PMU_SR — PMU Ready Status Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0038</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_001F</code></li>
+<li><strong>Access:</strong> Read-only (real-time status)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>POR ready</td><td><code>0</code> = VDD below 1.3 V, <code>1</code> = VDD above 1.3 V</td></tr>
+<tr><td>[1]</td><td>VR85D ready</td><td><code>0</code> = VR85D below target, <code>1</code> = VR85D ready (≥ 0.8 V default)</td></tr>
+<tr><td>[2]</td><td>VR85A ready</td><td><code>0</code> = VR85A below target, <code>1</code> = VR85A ready (≥ 0.8 V default)</td></tr>
+<tr><td>[3]</td><td>VR25 ready</td><td><code>0</code> = VR25 below target, <code>1</code> = VR25 ready (≥ 2.5 V default)</td></tr>
+<tr><td>[4]</td><td>BG ready</td><td><code>0</code> = bandgap below target, <code>1</code> = bandgap ready</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_fr--pmu-error-flag-register"><a class="header" href="#pmu_fr--pmu-error-flag-register">PMU_FR — PMU Error Flag Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x003C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Bits are set if the corresponding supply was below its threshold after power-on. Write <code>1</code> to a bit to clear it.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>POR error</td><td><code>1</code> = VDD was below 1.3 V after power-on</td></tr>
+<tr><td>[1]</td><td>VR85D error</td><td><code>1</code> = VR85D was below 0.8 V target after power-on</td></tr>
+<tr><td>[2]</td><td>VR85A error</td><td><code>1</code> = VR85A was below 0.8 V target after power-on</td></tr>
+<tr><td>[3]</td><td>VR25 error</td><td><code>1</code> = VR25 was below 2.5 V target after power-on</td></tr>
+<tr><td>[4]</td><td>BG error</td><td><code>1</code> = bandgap was below 0.6 V target after power-on</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ao_fr--ao-domain-interrupt-flag-register"><a class="header" href="#ao_fr--ao-domain-interrupt-flag-register">AO_FR — AO Domain Interrupt Flag Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0040</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Write <code>1</code> to a bit to clear it.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>WDT reset flag</td><td><code>1</code> = WDT reset interrupt occurred</td></tr>
+<tr><td>[1]</td><td>RTC event flag</td><td><code>1</code> = RTC event interrupt occurred</td></tr>
+<tr><td>[2]</td><td>ATIMER event flag</td><td><code>1</code> = ATIMER event interrupt occurred</td></tr>
+<tr><td>[3]</td><td>WDT event flag</td><td><code>1</code> = WDT event interrupt occurred</td></tr>
+<tr><td>[4]</td><td>KPC event flag</td><td><code>1</code> = KPC event interrupt occurred</td></tr>
+<tr><td>[5]</td><td>KPC async flag</td><td><code>1</code> = KPC async source interrupt occurred</td></tr>
+<tr><td>[7:6]</td><td>Reserved</td><td>—</td></tr>
+<tr><td>[8]</td><td>PF1 pull-down flag</td><td><code>1</code> = PF1 pull-down event occurred</td></tr>
+<tr><td>[9]</td><td>PF0 pull-down flag</td><td><code>1</code> = PF0 pull-down event occurred</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="pmu_pdar--power-down-activation-register"><a class="header" href="#pmu_pdar--power-down-activation-register">PMU_PDAR — Power-Down Activation Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0044</code></li>
+<li><strong>Type:</strong> AR (action register)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code> (always reads zero)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write <code>0x0000_005A</code> to enter power-down mode</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ao_peri_clr--wakeup-interrupt-clear-register"><a class="header" href="#ao_peri_clr--wakeup-interrupt-clear-register">AO_PERI_CLR — Wakeup Interrupt Clear Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0050</code></li>
+<li><strong>Type:</strong> AR (action register, always reads zero)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write <code>0x0000_00AA</code> to clear all wakeup interrupt flags</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="ao_iox--port-f-alternate-function-selection-register"><a class="header" href="#ao_iox--port-f-alternate-function-selection-register">AO_IOX — Port F Alternate Function Selection Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0060</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>AF select</td><td><code>0</code> = GPIO (AF0, default) for Port F, <code>1</code> = Keypad (AF1): PF[5:2] as KPI[3:0], PF[9:6] as KPO[3:0]</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> Use <code>AO_IOX</code> to configure Port F alternate function selection. The <code>AFSEL</code> registers for Port F (<code>0x5012_F028</code>, <code>0x5012_F02C</code>) are <strong>not</strong> used.</p>
+</blockquote>
+<h4 id="ao_padpu--port-f-pull-up-configuration-register"><a class="header" href="#ao_padpu--port-f-pull-up-configuration-register">AO_PADPU — Port F Pull-Up Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0064</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_03FF</code> (all pull-ups enabled by default)</li>
+</ul>
+<p>Each bit controls pull-up for the corresponding Port F pin (<code>0</code> = floating when undriven, <code>1</code> = weak pull-up when undriven):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Pin</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>PF0</td></tr>
+<tr><td>[1]</td><td>PF1</td></tr>
+<tr><td>[2]</td><td>PF2</td></tr>
+<tr><td>[3]</td><td>PF3</td></tr>
+<tr><td>[4]</td><td>PF4</td></tr>
+<tr><td>[5]</td><td>PF5</td></tr>
+<tr><td>[6]</td><td>PF6</td></tr>
+<tr><td>[7]</td><td>PF7</td></tr>
+<tr><td>[8]</td><td>PF8</td></tr>
+<tr><td>[9]</td><td>PF9</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> Use <code>AO_PADPU</code> to configure Port F pull-ups. The <code>GPIOPU</code> register for Port F (<code>0x5012_F174</code>) is <strong>not</strong> used.</p>
+</blockquote>
+<h3 id="vdd85-trim-table"><a class="header" href="#vdd85-trim-table">VDD85 Trim Table</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: center">pmu_TRM_DP60[4]</th><th style="text-align: center">pmu_TRM_DP60[3]</th><th style="text-align: center">pmu_TRM_DP60[2]</th><th style="text-align: center">pmu_TRM_DP60[1]</th><th style="text-align: center">pmu_TRM_DP60[0]</th><th style="text-align: right">VOUTP60 (mV)</th><th style="text-align: right">VDD85A (800 mV)</th><th style="text-align: right">VDD85A (950 mV)</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">520</td><td style="text-align: right">693</td><td style="text-align: right">823</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">525</td><td style="text-align: right">700</td><td style="text-align: right">831</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">530</td><td style="text-align: right">706</td><td style="text-align: right">839</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">535</td><td style="text-align: right">713</td><td style="text-align: right">847</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">540</td><td style="text-align: right">720</td><td style="text-align: right">855</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">545</td><td style="text-align: right">726</td><td style="text-align: right">862</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">550</td><td style="text-align: right">733</td><td style="text-align: right">870</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">555</td><td style="text-align: right">740</td><td style="text-align: right">878</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">560</td><td style="text-align: right">746</td><td style="text-align: right">886</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">565</td><td style="text-align: right">753</td><td style="text-align: right">894</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">570</td><td style="text-align: right">760</td><td style="text-align: right">902</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">575</td><td style="text-align: right">766</td><td style="text-align: right">910</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">580</td><td style="text-align: right">773</td><td style="text-align: right">918</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">585</td><td style="text-align: right">780</td><td style="text-align: right">926</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">590</td><td style="text-align: right">786</td><td style="text-align: right">934</td></tr>
+<tr><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">595</td><td style="text-align: right">793</td><td style="text-align: right">942</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">600</td><td style="text-align: right">800</td><td style="text-align: right">950</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">605</td><td style="text-align: right">806</td><td style="text-align: right">957</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">610</td><td style="text-align: right">813</td><td style="text-align: right">965</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">615</td><td style="text-align: right">820</td><td style="text-align: right">973</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">620</td><td style="text-align: right">826</td><td style="text-align: right">981</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">625</td><td style="text-align: right">833</td><td style="text-align: right">989</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">630</td><td style="text-align: right">840</td><td style="text-align: right">997</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">635</td><td style="text-align: right">846</td><td style="text-align: right">1005</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">640</td><td style="text-align: right">853</td><td style="text-align: right">1013</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">645</td><td style="text-align: right">860</td><td style="text-align: right">1021</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">650</td><td style="text-align: right">866</td><td style="text-align: right">1029</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">655</td><td style="text-align: right">873</td><td style="text-align: right">1037</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">0</td><td style="text-align: right">660</td><td style="text-align: right">880</td><td style="text-align: right">1045</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: center">1</td><td style="text-align: right">665</td><td style="text-align: right">886</td><td style="text-align: right">1052</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">0</td><td style="text-align: right">670</td><td style="text-align: right">893</td><td style="text-align: right">1060</td></tr>
+<tr><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: center">1</td><td style="text-align: right">675</td><td style="text-align: right">900</td><td style="text-align: right">1068</td></tr>
+</tbody>
+</table>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="clock-generation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="system-control.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="clock-generation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="system-control.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
