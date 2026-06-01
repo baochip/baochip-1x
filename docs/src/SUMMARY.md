@@ -21,3 +21,5 @@
 - [ADC](ch04-00-adc.md)
 - [USB](ch05-00-usb.md)
 - [Clocks](clock-generation.md)
+- [PMU](pmu.md)
+- [System Control](system-control.md)
