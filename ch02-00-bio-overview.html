@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-ac08f7ad.js";
+            window.path_to_searchindex_js = "searchindex-a5afb94a.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-fa115614.js"></script>
@@ -189,7 +189,7 @@
 <p>There is also a <a href="https://www.bunniestudios.com/blog/2026/bio-the-bao-i-o-coprocessor/">blog post</a> that discusses the trade-offs that went into designing the BIO, for those interested in peeking under the hood and understanding the thought process.</p>
 <p>For Japanese speakers, there’s an introduction that’s been <a href="https://medium.com/ecosystembymakers/bio-bao-i-o-70f0b157f8e0">translated into Japanese</a>.</p>
 <h2 id="design-of-the-bio"><a class="header" href="#design-of-the-bio">Design of the BIO</a></h2>
-<p>The BIO design starts with a PicoRV32 configured as an RV32E. In this mode, instead of having a full complement of 32 registers (including the zero register), you get 16: only r0 - r15 are officially part of the RV32E specification. I then abuse r16 – r31 to map in a set of “register queues” as well as GPIO access and synchronization primitives. Below is a diagram of the final register set exposed on each of the four RV32E cores.</p>
+<p>The BIO design starts with a PicoRV32 configured as an RV32E with compressed instructions and a hardware multiplier (<code>Zmmul</code>, e.g. no divider). In this mode, instead of having a full complement of 32 registers (including the zero register), you get 16: only r0 - r15 are officially part of the RV32E specification. I then abuse r16 – r31 to map in a set of “register queues” as well as GPIO access and synchronization primitives. Below is a diagram of the final register set exposed on each of the four RV32E cores.</p>
 <p><img src="images/bio-diagram.png" alt="block diagram of BIO"></p>
 <p>The buff-colored rectangles are registers with normal read/write semantics, while lavender-colored rectangles are registers that can block CPU execution based on various conditions. Here’s the description of the “high-bank” registers in text:</p>
 <pre><code class="language-text ignore">FIFO - 8-deep fifo head/tail access. Cores halt on overflow/underflow.
