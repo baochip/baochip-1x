@@ -13,7 +13,7 @@ For Japanese speakers, there's an introduction that's been [translated into Japa
 
 ## Design of the BIO
 
-The BIO design starts with a PicoRV32 configured as an RV32E. In this mode, instead of having a full complement of 32 registers (including the zero register), you get 16: only r0 - r15 are officially part of the RV32E specification. I then abuse r16 – r31 to map in a set of “register queues” as well as GPIO access and synchronization primitives. Below is a diagram of the final register set exposed on each of the four RV32E cores.
+The BIO design starts with a PicoRV32 configured as an RV32E with compressed instructions and a hardware multiplier (`Zmmul`, e.g. no divider). In this mode, instead of having a full complement of 32 registers (including the zero register), you get 16: only r0 - r15 are officially part of the RV32E specification. I then abuse r16 – r31 to map in a set of “register queues” as well as GPIO access and synchronization primitives. Below is a diagram of the final register set exposed on each of the four RV32E cores.
 
 ![block diagram of BIO](images/bio-diagram.png)
 
