@@ -4,6 +4,7 @@ This repo contains the open source elements of the Baochip 1x. This repo focuses
 
 Developers are referred to the official Rust SDK, located in the [Xous](https://github.com/betrusted-io/xous-core/) repo. There is a `vscode` extension named `baochip` which can automate build & flash for officially supported development boards.
 
+For bare-metal C development, the Dabao SDK provides headers, libraries, a build system, peripheral drivers, and examples for the Baochip-1x on the Dabao evaluation board. The SDK is still under development.
 ## Code Organization
 
 - `docs` contains source for the [Baochip 1x book](https://baochip.github.io/baochip-1x/).
