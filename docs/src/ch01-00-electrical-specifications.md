@@ -112,22 +112,22 @@ H9	PC2_S2DI
 |  |  | PB06 |  | Input/Output | 2/4/8/12mA | GPIO_PB06 | CAM_DATA[6] |  |  | 6 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PB07 |  | Input/Output | 2/4/8/12mA | GPIO_PB07 | CAM_DATA[7] |  |  | 7 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PB08 |  | Input/Output | 2/4/8/12mA | GPIO_PB08 | CAM_HSYNC | SPIM_CLK_A[2] |  | 8 |  | BIO, when active, overrides all GPIO/AF settings |
-|  |  | PB09 |  | Input/Output | 2/4/8/12mA | GPIO_PB09 | CAM_VSYNC | SPIM_SD0_A[2] |  | 9 |  | BIO, when active, overrides all GPIO/AF settings |
-|  |  | PB10 |  | Input/Output | 2/4/8/12mA | GPIO_PB10 | CAM_CLK | SPIM_SD1_A[2] |  | 10 |  | BIO, when active, overrides all GPIO/AF settings |
+|  |  | PB09 |  | Input/Output | 2/4/8/12mA | GPIO_PB09 | CAM_VSYNC | SPIM_SD0_A[2] (MOSI) |  | 9 |  | BIO, when active, overrides all GPIO/AF settings |
+|  |  | PB10 |  | Input/Output | 2/4/8/12mA | GPIO_PB10 | CAM_CLK | SPIM_SD1_A[2] (MISO) |  | 10 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PB11 |  | Input/Output | 2/4/8/12mA | GPIO_PB11 | I2C_SCL_B[0] | SPIM_CSN0_A[2] |  | 11 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PB12 |  | Input/Output | 2/4/8/12mA | GPIO_PB12 | I2C_SDA_B[0] | SPIM_CSN1_A[2] |  | 12 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PB13 |  | Input/Output | 2/4/8/12mA | GPIO_PB13 | UART_RX_B[2] | SCIF_SCK |  | 13 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PB14 |  | Input/Output | 2/4/8/12mA | GPIO_PB14 | UART_TX_B[2] | SCIF_DAT |  | 14 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PB15 |  | Input/Output | 2/4/8/12mA | GPIO_PB15 |  |  |  | 15 |  | BIO, when active, overrides all GPIO/AF settings |
 |  | PORT C | PC00 |  | Input/Output | 2/4/8/12mA | GPIO_PC00 | SDIO_CLK | SPIM_CLK_B[2] | PWM2[0] | 16 |  | BIO, when active, overrides all GPIO/AF settings |
-|  |  | PC01 |  | Input/Output | 2/4/8/12mA | GPIO_PC01 | SDIO_CMD | SPIM_SD0_B[2] | PWM2[1] | 17 |  | BIO, when active, overrides all GPIO/AF settings |
-|  |  | PC02 |  | Input/Output | 2/4/8/12mA | GPIO_PC02 | SDIO_DATA[0] | SPIM_SD1_B[2] | PWM2[2] | 18 |  | BIO, when active, overrides all GPIO/AF settings |
+|  |  | PC01 |  | Input/Output | 2/4/8/12mA | GPIO_PC01 | SDIO_CMD | SPIM_SD0_B[2] (MOSI) | PWM2[1] | 17 |  | BIO, when active, overrides all GPIO/AF settings |
+|  |  | PC02 |  | Input/Output | 2/4/8/12mA | GPIO_PC02 | SDIO_DATA[0] | SPIM_SD1_B[2] (MISO) | PWM2[2] | 18 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PC03 |  | Input/Output | 2/4/8/12mA | GPIO_PC03 | SDIO_DATA[1] | SPIM_CSN0_B[2] | PWM2[3] | 19 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PC04 |  | Input/Output | 2/4/8/12mA | GPIO_PC04 | SDIO_DATA[2] | SPIM_CSN1_B[2] |  | 20 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PC05 |  | Input/Output | 2/4/8/12mA | GPIO_PC05 | SDIO_DATA[3] | I2C_SCL_B[3] |  | 21 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PC06 |  | Input/Output | 2/4/8/12mA | GPIO_PC06 |  | I2C_SDA_B[3] |  | 22 |  | BIO, when active, overrides all GPIO/AF settings |
-|  |  | PC07 |  | Input/Output | 2/4/8/12mA | GPIO_PC07 | SPIM_SD0_A[1] | SDDC_DAT0 |  | 23 |  | BIO, when active, overrides all GPIO/AF settings |
-|  |  | PC08 |  | Input/Output | 2/4/8/12mA | GPIO_PC08 | SPIM_SD1_A[1] | SDDC_DAT1 |  | 24 |  | BIO, when active, overrides all GPIO/AF settings |
+|  |  | PC07 |  | Input/Output | 2/4/8/12mA | GPIO_PC07 | SPIM_SD0_A[1] (MOSI) | SDDC_DAT0 |  | 23 |  | BIO, when active, overrides all GPIO/AF settings |
+|  |  | PC08 |  | Input/Output | 2/4/8/12mA | GPIO_PC08 | SPIM_SD1_A[1] (MISO) | SDDC_DAT1 |  | 24 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PC09 |  | Input/Output | 2/4/8/12mA | GPIO_PC09 | SPIM_SD2_A[1] | SDDC_DAT2 |  | 25 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PC10 |  | Input/Output | 2/4/8/12mA | GPIO_PC10 | SPIM_SD3_A[1] | SDDC_DAT3 |  | 26 |  | BIO, when active, overrides all GPIO/AF settings |
 |  |  | PC11 |  | Input/Output | 2/4/8/12mA | GPIO_PC11 | SPIM_CLK_A[1] | SDDC_CLK |  | 27 |  | BIO, when active, overrides all GPIO/AF settings |
