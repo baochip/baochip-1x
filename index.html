@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-6f510966.js";
+            window.path_to_searchindex_js = "searchindex-9fe5bca4.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-6db7ae6c.js"></script>
@@ -187,7 +187,9 @@ memory analogous to FLASH.</p>
 or the “bao1x” interchangeably.</p>
 <p>This book is a work in progress.</p>
 <p>Please join the <a href="https://discord.gg/YTCTZBTPNa">Discord</a> to request sections, or open a pull request to make edits and contributions. See <a href="ch00-00-rtl-overview.html">RTL</a> for where to find the source code for the chip.</p>
-<p>The <a href="https://github.com/Cramiumlabs/daric-sdk">“Daric SDK”</a> published by Cramium may also be of interest. This is the sister chip of the Baochip-1x. It has the exact same peripherals, but uses an ARM CPU. Most of the drivers and concepts apply across the two chips. This SDK is C-based, on top of ThreadX.</p>
+<p>The <a href="https://github.com/crossbar-inc/daric-sdk">“Daric SDK”</a> may also be of interest. Daric is the sister chip of the Baochip-1x. It is the exact same silicon chip, but it has the ARM cores activated instead of the RISC-V ones.
+Most of the drivers and concepts apply across the two chips. This SDK is C-based, on top of ThreadX.</p>
+<p>A <a href="https://github.com/ArmstrongSubero/dabao-sdk">C SDK for Baochip-1x</a> is also available. It provides headers, libraries, a build system, peripheral drivers, and examples for bare-metal development on the Dabao evaluation board.</p>
 <p><img src="./images/soc-top-diagram.png" alt="SoC block diagram"></p>
 <h2 id="potential-topics"><a class="header" href="#potential-topics">Potential Topics</a></h2>
 <p>Below is a list of potential topics for supplemental documentation. Note that many of the sections already have sample code in <a href="https://github.com/betrusted-io/xous-core/">xous-core</a>, and all the sections already have automatically-extracted documentation (<a href="https://ci.betrusted.io/bao1x/">Peripherals</a>, <a href="https://ci.betrusted.io/bao1x-cpu/">CPU</a>) with embedded links to the chip source code.</p>
