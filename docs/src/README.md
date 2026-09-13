@@ -12,7 +12,10 @@ This book is a work in progress.
 
 Please join the [Discord](https://discord.gg/YTCTZBTPNa) to request sections, or open a pull request to make edits and contributions. See [RTL](ch00-00-rtl-overview.md) for where to find the source code for the chip.
 
-The ["Daric SDK"](https://github.com/Cramiumlabs/daric-sdk) published by Cramium may also be of interest. This is the sister chip of the Baochip-1x. It has the exact same peripherals, but uses an ARM CPU. Most of the drivers and concepts apply across the two chips. This SDK is C-based, on top of ThreadX.
+The ["Daric SDK"](https://github.com/crossbar-inc/daric-sdk) may also be of interest. Daric is the sister chip of the Baochip-1x. It is the exact same silicon chip, but it has the ARM cores activated instead of the RISC-V ones.
+Most of the drivers and concepts apply across the two chips. This SDK is C-based, on top of ThreadX.
+
+A [C SDK for Baochip-1x](https://github.com/ArmstrongSubero/dabao-sdk) is also available. It provides headers, libraries, a build system, peripheral drivers, and examples for bare-metal development on the Dabao evaluation board.
 
 ![SoC block diagram](./images/soc-top-diagram.png)
 
