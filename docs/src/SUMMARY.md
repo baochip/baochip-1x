@@ -23,3 +23,4 @@
 - [Clocks](clock-generation.md)
 - [PMU](pmu.md)
 - [System Control](system-control.md)
+- [RRAM](rram.md)
