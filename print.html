@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-854513fd.js";
+            window.path_to_searchindex_js = "searchindex-6f510966.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-fa115614.js"></script>
+        <script src="toc-6db7ae6c.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -188,9 +188,7 @@ memory analogous to FLASH.</p>
 or the “bao1x” interchangeably.</p>
 <p>This book is a work in progress.</p>
 <p>Please join the <a href="https://discord.gg/YTCTZBTPNa">Discord</a> to request sections, or open a pull request to make edits and contributions. See <a href="#chip-source-code-rtl">RTL</a> for where to find the source code for the chip.</p>
-<p>The <a href="https://github.com/crossbar-inc/daric-sdk">“Daric SDK”</a> may also be of interest. Daric is the sister chip of the Baochip-1x. It is the exact same silicon chip, but it has the ARM cores activated instead of the RISC-V ones.
-Most of the drivers and concepts apply across the two chips. This SDK is C-based, on top of ThreadX.</p>
-<p>A <a href="https://github.com/ArmstrongSubero/dabao-sdk">C SDK for Baochip-1x</a> is also available. It provides headers, libraries, a build system, peripheral drivers, and examples for bare-metal development on the Dabao evaluation board.</p>
+<p>The <a href="https://github.com/Cramiumlabs/daric-sdk">“Daric SDK”</a> published by Cramium may also be of interest. This is the sister chip of the Baochip-1x. It has the exact same peripherals, but uses an ARM CPU. Most of the drivers and concepts apply across the two chips. This SDK is C-based, on top of ThreadX.</p>
 <p><img src="images/soc-top-diagram.png" alt="SoC block diagram"></p>
 <h2 id="potential-topics"><a class="header" href="#potential-topics">Potential Topics</a></h2>
 <p>Below is a list of potential topics for supplemental documentation. Note that many of the sections already have sample code in <a href="https://github.com/betrusted-io/xous-core/">xous-core</a>, and all the sections already have automatically-extracted documentation (<a href="https://ci.betrusted.io/bao1x/">Peripherals</a>, <a href="https://ci.betrusted.io/bao1x-cpu/">CPU</a>) with embedded links to the chip source code.</p>
@@ -5931,6 +5929,656 @@ where
 </tbody>
 </table>
 </div>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="embedded-reram"><a class="header" href="#embedded-reram">Embedded ReRAM</a></h1>
+<h2 id="reram-introduction"><a class="header" href="#reram-introduction">ReRAM Introduction</a></h2>
+<p>The chip features up to 4 MByte of embedded ReRAM memory for storing programs and data. The ReRAM memory contains two blocks of 128-bit data width each, giving 256-bit data width in parallel. The ReRAM memory visible to software is divided into two regions: the main array and the IFR array.</p>
+<blockquote>
+<p><strong>Note:</strong> ReRAM reads back as zero if it was not initialized during the CP flow.</p>
+</blockquote>
+<p><img src="images/rram-memory-map.png" alt="ReRAM memory map showing code region, one-way counters, access control bank, data slots, key slots, and IFR"></p>
+<h3 id="reram-memory-map"><a class="header" href="#reram-memory-map">ReRAM Memory Map</a></h3>
+<p><strong>Code region</strong></p>
+<ul>
+<li>Located at <code>0x6000_0000</code> to <code>0x603D_9FFF</code> (maximum extent).</li>
+<li>Up to 4 regions: boot0, boot1, fw0, fw1.</li>
+<li>Minimum 1 user.</li>
+<li>Configurable address region.</li>
+<li>Supports single write (256-bit) and page write (32 sets of 256-bit).</li>
+</ul>
+<p><strong>One-way counters</strong></p>
+<ul>
+<li>Located at <code>0x603D_A000</code> to <code>0x603D_BFFF</code>.</li>
+<li>Only available in user mode.</li>
+<li>No user restrictions; write-only region.</li>
+<li>Software controls the number of writes — no more than 10 K writes per 256-bit word.</li>
+<li>Supports single write only.</li>
+</ul>
+<p><strong>Access Control Bank</strong></p>
+<ul>
+<li>Located at <code>0x603D_C000</code> to <code>0x603D_FFFF</code>.</li>
+<li>Only available in user mode.</li>
+<li>Contains the access control configuration for key slots and data slots.</li>
+<li>Supports single write only, used to update access control configuration.</li>
+</ul>
+<p><strong>Crypto Data Slots (2048 sets)</strong></p>
+<ul>
+<li>Located at <code>0x603E_0000</code> to <code>0x603E_FFFF</code>.</li>
+<li>Only available in user mode.</li>
+<li>Supports program-only or write operation.</li>
+<li>Provides user-writeable, set-only memory slots.</li>
+<li>Supports single and page write.</li>
+</ul>
+<p><strong>Crypto Key Slots (2048 sets) — DEPRECATED</strong></p>
+<ul>
+<li>Located at <code>0x603F_0000</code> to <code>0x603F_FFFF</code>.</li>
+<li>Only available in user mode.</li>
+<li>Supports single and page write.</li>
+<li><strong>Do not use.</strong> Deprecated due to a hardware bug.</li>
+</ul>
+<p><strong>IFR (information region)</strong></p>
+<ul>
+<li>Located at <code>0x6040_0000</code> to <code>0x6040_03FF</code>.</li>
+<li>Configurable in user mode for lab testing and debug, but frozen for mass production and downloadable only in test mode.</li>
+<li>Holds the life cycle pattern.</li>
+<li>Holds chip system data: trimming, user mapping assignment, serial number.</li>
+<li>Holds read/write disable configuration for each key slot, data slot, and code block.</li>
+<li>Supports single write only.</li>
+</ul>
+<h3 id="data-slot-region-map-64-kb"><a class="header" href="#data-slot-region-map-64-kb">Data Slot Region Map (64 KB)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Data slot</th><th>Size</th><th>Core address</th></tr>
+</thead>
+<tbody>
+<tr><td>Data slot 0</td><td>256 × 1</td><td><code>0x603E_0000</code> – <code>0x603E_001C</code></td></tr>
+<tr><td>Data slot 1</td><td>256 × 1</td><td><code>0x603E_0020</code> – <code>0x603E_003C</code></td></tr>
+<tr><td>…</td><td>…</td><td>…</td></tr>
+<tr><td>Data slot 2046</td><td>256 × 1</td><td><code>0x603E_FFC0</code> – <code>0x603E_FFDC</code></td></tr>
+<tr><td>Data slot 2047</td><td>256 × 1</td><td><code>0x603E_FFE0</code> – <code>0x603E_FFFC</code></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="key-slot-region-map-64-kb"><a class="header" href="#key-slot-region-map-64-kb">Key Slot Region Map (64 KB)</a></h3>
+<p>This section has been removed because the key slot region is deprecated.</p>
+<hr>
+<h2 id="reram-read-mechanism"><a class="header" href="#reram-read-mechanism">ReRAM Read Mechanism</a></h2>
+<p><img src="images/rram-read-flow.png" alt="ReRAM read flow diagram showing read buffer, hit and miss paths, and AXI bus interface"></p>
+<p>ReRAM supports 256-bit read data per transaction. The chip uses a single read buffer design to maximise instruction fetch performance. AXI bus transactions are 64-bit wide.</p>
+<p>If the target read data is already prefetched into <code>read_buf[255:0]</code>, the ReRAM controller reads directly from the buffer with no wait states.</p>
+<p>If the target read data is not in the read buffer, the ReRAM controller reads it from the ReRAM IP array and stores it into the read buffer, simultaneously returning the data on the AXI bus to the CPU cores.</p>
+<p>Assuming one ReRAM array transaction provides 4 sets of contiguous 64-bit instructions, the average read time is <code>(6 × Period_rramclk + 3 × Period_aclk)</code>. This covers one 256-bit ReRAM access for the first 64-bit miss, plus the three subsequent 64-bit AXI bus transactions that hit in the buffer.</p>
+<hr>
+<h2 id="reram-write-mechanism"><a class="header" href="#reram-write-mechanism">ReRAM Write Mechanism</a></h2>
+<p><img src="images/rram-write-flow.png" alt="ReRAM write flow diagram showing pre-load, load, and write stages with Buffer1 and Buffer2"></p>
+<p>ReRAM supports multi-word write operations. The process has three steps: pre-load, load, and write.</p>
+<p><strong>1. Pre-load step</strong></p>
+<p>The CPU cores access ReRAM over the 64-bit AXI bus. Pre-load means using CPU writes to fill <strong>one 256-bit write data Buffer1</strong> over several transactions — for example 8 × 32-bit CPU writes, or 4 × 64-bit CPU writes.</p>
+<p><strong>2. Load step</strong></p>
+<p>After pre-load, the ReRAM IP requires the <strong>Buffer1</strong> data to be loaded into the trbcx module’s <strong>internal Buffer2</strong>. Buffer2 can store N sets of 256-bit data, where N = 1 to 32.</p>
+<p><strong>3. Write step</strong></p>
+<p>After the load step, all write data is ready to be committed to the real ReRAM array. This step requires high voltage and a long process time.</p>
+<h3 id="write-timing"><a class="header" href="#write-timing">Write Timing</a></h3>
+<p>ReRAM write time depends on the difference between the originally stored data and the new write data. Average write times are:</p>
+<p><strong>All 0 to All 1</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th></th><th>1-word write</th><th>32-word write</th></tr>
+</thead>
+<tbody>
+<tr><td>Average</td><td>~50 µs</td><td>~800 µs</td></tr>
+<tr><td>Maximum</td><td>&lt;100 µs</td><td>&lt;1200 µs</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>All 1 to All 0 (worst-case pattern)</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th></th><th>1-word write</th><th>32-word write</th></tr>
+</thead>
+<tbody>
+<tr><td>Average</td><td>~120 µs</td><td>~1500 µs</td></tr>
+<tr><td>Maximum</td><td>&lt;200 µs</td><td>&lt;2560 µs</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="rrc-registers"><a class="header" href="#rrc-registers">RRC Registers</a></h2>
+<p>Base address: <code>0x4000_0000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register Name</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>RRCCR</td><td>0x0000</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>ReRAM control register</td></tr>
+<tr><td>RRCFD</td><td>0x0004</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000007</td><td>ReRAM clock configuration</td></tr>
+<tr><td>RRCSR</td><td>0x0008</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>ReRAM status probe (debug only)</td></tr>
+<tr><td>RRCFR</td><td>0x000C</td><td>32</td><td>FR</td><td>R</td><td>0x00000000</td><td>ReRAM access control error flag register</td></tr>
+<tr><td>RRCSRSET0</td><td>0x0014</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>SET failure probe, bits [31:0] (debug only)</td></tr>
+<tr><td>RRCSRSET1</td><td>0x0018</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>SET failure probe, bits [63:32] (debug only)</td></tr>
+<tr><td>RRCSRRST0</td><td>0x001C</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>RESET failure probe, bits [31:0] (debug only)</td></tr>
+<tr><td>RRCSRRST1</td><td>0x0020</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>RESET failure probe, bits [63:32] (debug only)</td></tr>
+<tr><td>RRCSRRD0</td><td>0x0024</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Read failure probe, bits [31:0] (debug only)</td></tr>
+<tr><td>RRCSRRD1</td><td>0x0028</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Read failure probe, bits [63:32] (debug only)</td></tr>
+<tr><td>RRCAR</td><td>0x00F0</td><td>32</td><td>AR</td><td>W</td><td>0x00000000</td><td>ReRAM suicide AR — limited use only</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="rrccr--reram-control-register"><a class="header" href="#rrccr--reram-control-register">RRCCR — ReRAM Control Register</a></h3>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>low power mode</td><td>ReRAM IP low-power mode: <code>0</code> = nap, <code>1</code> = power down</td></tr>
+<tr><td>[1]</td><td>access mode</td><td>ReRAM IP write access mode: <code>0</code> = data mode, <code>1</code> = command mode</td></tr>
+<tr><td>[9:2]</td><td>—</td><td>Reserved</td></tr>
+<tr><td>[10]</td><td>key_access_control</td><td>Key slot access control enable (disabled in A1 and later): <code>0</code> = disable, <code>1</code> = enable</td></tr>
+<tr><td>[11]</td><td>data_access_control</td><td>Data slot access control enable (disabled in A1 and later): <code>0</code> = disable, <code>1</code> = enable</td></tr>
+<tr><td>[12]</td><td>code_access_control</td><td>Code region access control enable (disabled in A1 and later): <code>0</code> = disable, <code>1</code> = enable</td></tr>
+<tr><td>[13]</td><td>accfg_access_control</td><td>Access control cfg region access control enable (disabled in A1 and later): <code>0</code> = disable, <code>1</code> = enable</td></tr>
+<tr><td>[14]</td><td>ifr_access_control</td><td>IFR region access control enable (disabled in A1 and later): <code>0</code> = disable, <code>1</code> = enable</td></tr>
+<tr><td>[15]</td><td>rrc nmi enable</td><td><code>0</code> = disable ReRAM controller access error NMI to system, <code>1</code> = enable</td></tr>
+<tr><td>[31:16]</td><td>one-way counter event trigger enable</td><td>One bit per one-way counter: bit [16] enables <code>axi_one_way_counter 240</code> at <code>0x603D_BFC0</code>, through bit [31] enabling <code>axi_one_way_counter 255</code> at <code>0x603D_BFFC</code>. <code>0</code> = disable, <code>1</code> = enable.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="rrcfd--reram-clock-configuration-register"><a class="header" href="#rrcfd--reram-clock-configuration-register">RRCFD — ReRAM Clock Configuration Register</a></h3>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0007</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[4:0]</td><td>fd</td><td>ReRAM IP working frequency (rramclk) divider</td></tr>
+<tr><td>[31:5]</td><td>—</td><td>Reserved</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>rramclk should be typically 50 MHz, maximum 100 MHz.</li>
+<li>Software can adjust this value for different clktop frequencies to run ReRAM at the fastest supported speed.</li>
+<li><code>frequency_rramclk = frequency_clktop / (fd + 1)</code></li>
+</ul>
+<p>Examples:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Condition</th><th>clktop</th><th>rramclk</th></tr>
+</thead>
+<tbody>
+<tr><td>PLL disabled</td><td>32 MHz (OSC)</td><td>4 MHz</td></tr>
+<tr><td>PLL enabled</td><td>400 MHz (PLL)</td><td>50 MHz</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="rrcsr--reram-status-probe-register-debug-only"><a class="header" href="#rrcsr--reram-status-probe-register-debug-only">RRCSR — ReRAM Status Probe Register (Debug Only)</a></h3>
+<ul>
+<li><strong>Description:</strong> Internal trbcx IP status probe register</li>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>trc_busy</td><td><code>0</code> = idle, <code>1</code> = busy</td></tr>
+<tr><td>[4:1]</td><td>trc_ip_cmd[3:0]</td><td><code>4'h0</code> = idle, <code>4'h1</code> = read, <code>4'h2</code> = load, <code>4'h3</code> = write (HV operation), other = reserved</td></tr>
+<tr><td>[5]</td><td>trc_info_lock_err</td><td><code>0</code> = no info region lock error, <code>1</code> = error occurred</td></tr>
+<tr><td>[6]</td><td>trc_err</td><td><code>0</code> = no trc function error, <code>1</code> = error occurred</td></tr>
+<tr><td>[9:7]</td><td>ecc_err</td><td>ECC error count (2C2D ECC supported): <code>3'b000</code> = error free, <code>3'b001</code> = 1-bit error, <code>3'b010</code> = 2-bit error, <code>3'b100</code> = reserved</td></tr>
+<tr><td>[31:10]</td><td>—</td><td>Reserved</td></tr>
+</tbody>
+</table>
+</div>
+<p>If no exception occurs, these bits stay at 0.</p>
+<h3 id="rrcfr--reram-access-control-error-flag-register"><a class="header" href="#rrcfr--reram-access-control-error-flag-register">RRCFR — ReRAM Access Control Error Flag Register</a></h3>
+<ul>
+<li><strong>Address offset:</strong> <code>0x000C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Write <code>1</code> to a bit to clear it.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>key_access_err</td><td><code>1</code> = invalid key slot access occurred, error interrupt raised</td></tr>
+<tr><td>[1]</td><td>data_access_err</td><td><code>1</code> = invalid data slot access occurred, error interrupt raised</td></tr>
+<tr><td>[2]</td><td>code_access_err</td><td><code>1</code> = invalid code region access occurred, error interrupt raised</td></tr>
+<tr><td>[3]</td><td>cfg_access_err</td><td><code>1</code> = invalid access control cfg region access occurred, error interrupt raised</td></tr>
+<tr><td>[4]</td><td>ifr_access_err</td><td><code>1</code> = invalid IFR region access occurred, error interrupt raised</td></tr>
+<tr><td>[31:5]</td><td>—</td><td>Reserved</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="rrcsrset0--rrcsrset1--set-failure-probe-registers-debug-only"><a class="header" href="#rrcsrset0--rrcsrset1--set-failure-probe-registers-debug-only">RRCSRSET0 / RRCSRSET1 — SET Failure Probe Registers (Debug Only)</a></h3>
+<ul>
+<li><strong>Address offsets:</strong> <code>0x0014</code> (bits [31:0]), <code>0x0018</code> (bits [63:32])</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Probes <code>trc_set_failure[63:0]</code> — the count of “program 1” failure bits for a page operation. If no exception occurs, these bits stay at 0.</p>
+<h3 id="rrcsrrst0--rrcsrrst1--reset-failure-probe-registers-debug-only"><a class="header" href="#rrcsrrst0--rrcsrrst1--reset-failure-probe-registers-debug-only">RRCSRRST0 / RRCSRRST1 — RESET Failure Probe Registers (Debug Only)</a></h3>
+<ul>
+<li><strong>Address offsets:</strong> <code>0x001C</code> (bits [31:0]), <code>0x0020</code> (bits [63:32])</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Probes <code>trc_reset_failure[63:0]</code> — the count of “erase 0” failure bits for a page operation. If no exception occurs, these bits stay at 0.</p>
+<h3 id="rrcsrrd0--rrcsrrd1--read-failure-probe-registers-debug-only"><a class="header" href="#rrcsrrd0--rrcsrrd1--read-failure-probe-registers-debug-only">RRCSRRD0 / RRCSRRD1 — Read Failure Probe Registers (Debug Only)</a></h3>
+<ul>
+<li><strong>Address offsets:</strong> <code>0x0024</code> (bits [31:0]), <code>0x0028</code> (bits [63:32])</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Probes <code>trc_fourth_read_failure[63:0]</code> — the count of “write 0/1” failure bits for a page operation. If no exception occurs, these bits stay at 0.</p>
+<h3 id="rrcar--reram-action-register"><a class="header" href="#rrcar--reram-action-register">RRCAR — ReRAM Action Register</a></h3>
+<ul>
+<li><strong>Address offset:</strong> <code>0x00F0</code></li>
+<li><strong>Type:</strong> AR (action register, write-only)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code> (always reads zero)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write <code>PM_RRAM_SUICIDE</code> (<code>0x0000_2468</code>) to initiate a suicide flow, erasing all ReRAM</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> This register is for limited use only and is not required in every product application. Whether this function is exposed to external users is determined by the product’s security level.</p>
+</blockquote>
+<hr>
+<h2 id="reram-access-control-mechanism"><a class="header" href="#reram-access-control-mechanism">ReRAM Access Control Mechanism</a></h2>
+<p><img src="images/rram-access-control-diagram.png" alt="ReRAM access control diagram showing CPU core and SCE DMA access paths with coreuser and sce_user ID checking"></p>
+<p>The chip provides two paths to access ReRAM memory: the CPU core can access ReRAM directly, and the SCE DMA master can access ReRAM through the AXI bus.</p>
+<p>When the CPU accesses ReRAM, it also supplies the coreuser ID to the ReRAM controller, identifying the “user” performing the access (note that this only applies to loads/stores; code accesses can bypass this due to a bug in the implementation, and this is patched through the MMU). The ReRAM controller matches this user against its access configuration to determine whether the user may access the target ReRAM address region.</p>
+<p>ReRAM has four effective “users”: boot0, boot1, fw0, and fw1. These users appear in two contexts:</p>
+<ol>
+<li>As one of four possible owners encoded in an ACL for a data slot. Here the region is determined strictly by the coding in the data slot’s ACL.</li>
+<li>As regions determined by the address of the access. Here the region is coded in the IFR, a hard-coded value set at manufacturing time into the ReRAM array.</li>
+</ol>
+<p>For the Baochip-1x, the region mapping uses the following offsets from the base of ReRAM:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>User</th><th>Offset range</th></tr>
+</thead>
+<tbody>
+<tr><td>boot0</td><td><code>0x0000_0000</code> – <code>0x0002_0000</code></td></tr>
+<tr><td>boot1</td><td><code>0x0002_0000</code> – <code>0x0006_0000</code></td></tr>
+<tr><td>fw0 &amp; fw1</td><td><code>0x0006_0000</code> – <code>0x0040_0000</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>The partition LUT matters because a separate IFR setting (<code>cfg_rrsub_rw_boot0</code>, at offset <code>0x280</code>) prevents boot0 from being written, effectively making boot0 indelible outside of boot0 itself.</p>
+<p>The actual mapping of the coreuser LUT is set up by the bootloader and sealed with a one-way lock after exiting the boot stage. The default configuration can be found in the Xous code base. In short, all <code>M||ASID</code> mappings are set to a “least trusted” user mapping, except for the combination of fw1 + user mode. (User mode as opposed to machine/supervisor mode — in other words, only a particular user-mode process can access the key slots; even the kernel, in machine/supervisor mode, cannot see them.) That combination maps to PID 3, where the keystore process is mapped on boot in Xous. Because the one-way door is sealed on exit from the bootloader, modifying this table requires a custom bootloader.</p>
+<p>The SDMA master uses a similar method, supplying the <code>sce_user</code> ID to the ReRAM controller to identify the user performing the access through SDMA.</p>
+<p>Access control covers code execution, data read, and data write operations, with different restrictions depending on the target operation.</p>
+<p>All access control functions can be enabled independently via the <code>RRCCR</code> register. If an error occurs, an interrupt is generated and the corresponding flag bit is set in <code>RRCFR</code>. If the NMI function is enabled (<code>RRCCR[15]</code>), the error flag generates both an NMI and a normal interrupt. See <a href="#rrc-registers">RRC Registers</a> for details.</p>
+<h3 id="memory-size-configuration"><a class="header" href="#memory-size-configuration">Memory Size Configuration</a></h3>
+<p>The ReRAM memory region configuration is located in IFR at <code>0x6040_00C0</code>. The bit definitions are as follows.</p>
+<p><strong>ReRAM array size settings</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th></tr>
+</thead>
+<tbody>
+<tr><td>[127:120]</td><td>ReRAM start</td></tr>
+<tr><td>[119:112]</td><td>ReRAM end</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Default value: <code>0x00FF</code>, meaning the whole ReRAM is used.</li>
+<li>ReRAM start address = <code>{10'b0110_0000_00, bit[127:120], 14'h0}</code></li>
+<li>ReRAM last address = <code>{10'b0110_0000_00, bit[119:112], 14'h3FFF}</code></li>
+</ul>
+<p><strong>CM7 user region settings</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th></tr>
+</thead>
+<tbody>
+<tr><td>[111:104]</td><td>CM7 init (IV)</td></tr>
+<tr><td>[103:96]</td><td>boot0 start</td></tr>
+<tr><td>[95:88]</td><td>boot1 start</td></tr>
+<tr><td>[87:80]</td><td>fw0 start</td></tr>
+<tr><td>[79:72]</td><td>fw1 start</td></tr>
+<tr><td>[71:64]</td><td>fw1 end</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Default value: <code>0x0000_FFFF_FFFF</code>, meaning only boot0 is used.</li>
+<li>boot0 start address = <code>{10'b0110_0000_00, bit[103:96], 14'h0}</code></li>
+<li>boot0 last address = <code>{10'b0110_0000_00, bit[95:88], 14'h3FFF}</code></li>
+<li>The CM7 init address should match the software power-on start address — usually the boot0 or boot1 start address.</li>
+</ul>
+<p><strong>RISC-V user region settings</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th></tr>
+</thead>
+<tbody>
+<tr><td>[63:56]</td><td>rv init</td></tr>
+<tr><td>[55:48]</td><td>boot0 start</td></tr>
+<tr><td>[47:40]</td><td>boot1 start</td></tr>
+<tr><td>[39:32]</td><td>fw0 start</td></tr>
+<tr><td>[31:24]</td><td>fw1 start</td></tr>
+<tr><td>[23:16]</td><td>fw1 end</td></tr>
+</tbody>
+</table>
+</div>
+<p>Bit definitions mirror the CM7 fields above.</p>
+<p>Usage guidance:</p>
+<ul>
+<li><strong>Single core (RISC-V only):</strong> this value can be set freely according to application requirements.</li>
+<li><strong>Multiple cores</strong> (not supported by Baochip; available on Crossbar SKUs):
+<ol>
+<li>The CM7 settings are used instead of these settings — set bits [63:16] the same as bits [111:64].</li>
+<li>The software design should treat the RISC-V core as its own user, and that user cannot also be used by the CM7 core, since the two cores’ instruction sets are not compatible. The RISC-V default user (bits [1:0]) should be set to match the software design.</li>
+<li>If both CM7 and RISC-V use the same user, the ReRAM controller cannot distinguish between them and treats them as the same user. In that case only one core can access ReRAM at any given time.</li>
+</ol>
+</li>
+</ul>
+<p><strong>SRAM array size settings</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th></tr>
+</thead>
+<tbody>
+<tr><td>[15:12]</td><td>SRAM1 size reduction settings</td></tr>
+<tr><td>[11:8]</td><td>SRAM0 size reduction settings</td></tr>
+</tbody>
+</table>
+</div>
+<p>SRAM1 (bits [15:12]):</p>
+<ul>
+<li>bit [7]: size cut enable</li>
+<li>bits [6:4]: size range</li>
+<li>Default <code>0x0</code>: disabled, no size reduction.</li>
+<li>If enabled, the valid SRAM1 address range is <code>&lt; {bit[6:4], 15'h0}</code>.</li>
+</ul>
+<p>SRAM0 (bits [11:8]):</p>
+<ul>
+<li>bit [3]: size cut enable</li>
+<li>bits [2:0]: size range</li>
+<li>Default <code>0x0</code>: disabled, no size reduction.</li>
+<li>If enabled, the valid SRAM0 address range is <code>&lt; {bit[2:0], 15'h0}</code>.</li>
+</ul>
+<p><strong>Other user-related settings</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:5]</td><td>user_trustkey_enable</td><td>bit [5] = boot1 user, bit [6] = fw0 user, bit [7] = fw1 user. Default <code>0x0</code>: high-level security code certificate disabled.</td></tr>
+<tr><td>[2]</td><td>RISC-V default mm</td><td>RISC-V core default machine mode setting</td></tr>
+<tr><td>[1:0]</td><td>RISC-V default user</td><td><code>0</code> = boot0, <code>1</code> = boot1, <code>2</code> = fw0, <code>3</code> = fw1</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Reserved bits</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Note</th></tr>
+</thead>
+<tbody>
+<tr><td>[255:128]</td><td>Reserved for CP testing use only. Always write 0.</td></tr>
+<tr><td>[15:8]</td><td>Reserved. Always write 0.</td></tr>
+<tr><td>[4:3]</td><td>Reserved. Always write 0.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="data-access-to-code-region"><a class="header" href="#data-access-to-code-region">Data Access to Code Region</a></h3>
+<p>The ReRAM data access control for the code region is configured in the IFR. Each user has its own configuration settings.</p>
+<p>In all tables below, the default value is <code>0</code>, meaning access is always allowed. Setting a bit to <code>1</code> disables that access. <code>Y</code> indicates access is always permitted (a user always has access to its own region).</p>
+<p><strong>boot0 configuration</strong> — IFR <code>0x6040_0280</code>, bits [111:104] (<code>user_code_cfg_boot0</code>)</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Operation</th><th>boot0</th><th>boot1</th><th>fw0</th><th>fw1</th></tr>
+</thead>
+<tbody>
+<tr><td>Read boot0</td><td>Y</td><td>bit [106]</td><td>bit [108]</td><td>bit [110]</td></tr>
+<tr><td>Write boot0</td><td>Y</td><td>bit [107]</td><td>bit [109]</td><td>bit [111]</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>boot1 configuration</strong> — IFR <code>0x6040_02A0</code>, bits [111:104] (<code>user_code_cfg_boot1</code>)</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Operation</th><th>boot0</th><th>boot1</th><th>fw0</th><th>fw1</th></tr>
+</thead>
+<tbody>
+<tr><td>Read boot1</td><td>bit [104]</td><td>Y</td><td>bit [108]</td><td>bit [110]</td></tr>
+<tr><td>Write boot1</td><td>bit [105]</td><td>Y</td><td>bit [109]</td><td>bit [111]</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>fw0 configuration</strong> — IFR <code>0x6040_02C0</code>, bits [111:104] (<code>user_code_cfg_fw0</code>)</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Operation</th><th>boot0</th><th>boot1</th><th>fw0</th><th>fw1</th></tr>
+</thead>
+<tbody>
+<tr><td>Read fw0</td><td>bit [104]</td><td>bit [106]</td><td>Y</td><td>bit [110]</td></tr>
+<tr><td>Write fw0</td><td>bit [105]</td><td>bit [107]</td><td>Y</td><td>bit [111]</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>fw1 configuration</strong> — IFR <code>0x6040_02E0</code>, bits [111:104] (<code>user_code_cfg_fw1</code>)</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Operation</th><th>boot0</th><th>boot1</th><th>fw0</th><th>fw1</th></tr>
+</thead>
+<tbody>
+<tr><td>Read fw1</td><td>bit [104]</td><td>bit [106]</td><td>bit [108]</td><td>Y</td></tr>
+<tr><td>Write fw1</td><td>bit [105]</td><td>bit [107]</td><td>bit [109]</td><td>Y</td></tr>
+</tbody>
+</table>
+</div>
+<p>In each case, all other bits are reserved for CP testing only and should always be written as 0.</p>
+<h3 id="data-access-to-one-way-counter-region"><a class="header" href="#data-access-to-one-way-counter-region">Data Access to One-Way Counter Region</a></h3>
+<p>As with a general MCU, there is no access restriction on the one-way counter region for any user. Each one-way counter should be written fewer than 10 K times.</p>
+<h3 id="data-access-to-access-control-region"><a class="header" href="#data-access-to-access-control-region">Data Access to Access Control Region</a></h3>
+<p>This region can only be accessed by privileged users (boot0 and boot1). It stores the access control configuration for all data slots and key slots. Each data slot or key slot has its own 32-bit access control configuration.</p>
+<p><img src="images/rram-access-control-region-map.png" alt="Access control region map showing data slot control region and key slot control region layout"></p>
+<p><strong>Data slot control region</strong></p>
+<ul>
+<li>Each item controls access to the corresponding slot in the Data Slots region. See <a href="#data-slot-access-control-configuration-word-32-bit">Data slot access control configuration word</a>.</li>
+<li>Size: 2048 × 4 = 8 KB</li>
+<li>Address: <code>0x603D_C000</code> – <code>0x603D_DFFF</code></li>
+</ul>
+<p><strong>Key slot control region</strong></p>
+<ul>
+<li>Each item controls access to the corresponding slot in the Key Slots region.</li>
+<li>Size: 2048 × 4 = 8 KB</li>
+<li>Address: <code>0x603D_E000</code> – <code>0x603D_FFFF</code></li>
+<li>Akey: authentication link root key, which controls Gkey access.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> The key slot region is deprecated. See <a href="#data-access-control-to-key-slot-region">Data access control to key slot region</a>.</p>
+</blockquote>
+<h4 id="data_cfg-slot-256-bit"><a class="header" href="#data_cfg-slot-256-bit">data_cfg Slot (256-bit)</a></h4>
+<p>Each <code>data_cfg</code> slot holds access control configuration for <strong>8 data slots</strong>. Each data slot has its own 32 bits of configuration.</p>
+<p>For <code>data_cfg</code> slot N, the bit assignment is:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Controls</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>data slot (0 + N×8)</td></tr>
+<tr><td>[63:32]</td><td>data slot (1 + N×8)</td></tr>
+<tr><td>[95:64]</td><td>data slot (2 + N×8)</td></tr>
+<tr><td>[127:96]</td><td>data slot (3 + N×8)</td></tr>
+<tr><td>[159:128]</td><td>data slot (4 + N×8)</td></tr>
+<tr><td>[191:160]</td><td>data slot (5 + N×8)</td></tr>
+<tr><td>[223:192]</td><td>data slot (6 + N×8)</td></tr>
+<tr><td>[255:224]</td><td>data slot (7 + N×8)</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Read access control bits for the cfg slots</strong> — located at IFR <code>0x6040_0300</code> and <code>0x6040_0320</code>:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>IFR address</th><th>Bit</th><th>Controls</th></tr>
+</thead>
+<tbody>
+<tr><td><code>0x6040_0300</code></td><td>[0]</td><td>read control, data_cfg0 slot</td></tr>
+<tr><td><code>0x6040_0300</code></td><td>…</td><td>…</td></tr>
+<tr><td><code>0x6040_0300</code></td><td>[127]</td><td>read control, data_cfg127 slot</td></tr>
+<tr><td><code>0x6040_0320</code></td><td>[0]</td><td>read control, data_cfg128 slot</td></tr>
+<tr><td><code>0x6040_0320</code></td><td>…</td><td>…</td></tr>
+<tr><td><code>0x6040_0320</code></td><td>[127]</td><td>read control, data_cfg255 slot</td></tr>
+</tbody>
+</table>
+</div>
+<p>Default <code>0</code> means read is always allowed. Setting the bit to <code>1</code> disables read access.</p>
+<p><strong>Write access control bits for the cfg slots</strong> — located at IFR <code>0x6040_0340</code> and <code>0x6040_0360</code>:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>IFR address</th><th>Bit</th><th>Controls</th></tr>
+</thead>
+<tbody>
+<tr><td><code>0x6040_0340</code></td><td>[0]</td><td>write control, data_cfg0 slot</td></tr>
+<tr><td><code>0x6040_0340</code></td><td>…</td><td>…</td></tr>
+<tr><td><code>0x6040_0340</code></td><td>[127]</td><td>write control, data_cfg127 slot</td></tr>
+<tr><td><code>0x6040_0360</code></td><td>[0]</td><td>write control, data_cfg128 slot</td></tr>
+<tr><td><code>0x6040_0360</code></td><td>…</td><td>…</td></tr>
+<tr><td><code>0x6040_0360</code></td><td>[127]</td><td>write control, data_cfg255 slot</td></tr>
+</tbody>
+</table>
+</div>
+<p>Default <code>0</code> means write is always allowed. Setting the bit to <code>1</code> disables write access.</p>
+<h4 id="key_cfg-slot-256-bit"><a class="header" href="#key_cfg-slot-256-bit">key_cfg Slot (256-bit)</a></h4>
+<p>These slots are deprecated and should not be used, as they are not fully functional.</p>
+<h4 id="data-slot-access-control-configuration-word-32-bit"><a class="header" href="#data-slot-access-control-configuration-word-32-bit">Data Slot Access Control Configuration Word (32-bit)</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>core_rd_dis</td><td>Core read disable. Default <code>0</code> = read enabled.</td></tr>
+<tr><td>[1]</td><td>core_wr_dis</td><td>Core write disable. Default <code>0</code> = write enabled.</td></tr>
+<tr><td>[2]</td><td>sce_rd_dis</td><td>SCE read disable. Default <code>0</code> = read enabled.</td></tr>
+<tr><td>[3]</td><td>sce_wr_dis</td><td>SCE write disable. Default <code>0</code> = write enabled.</td></tr>
+<tr><td>[7:4]</td><td>—</td><td>Reserved</td></tr>
+<tr><td>[15:8]</td><td>seg_id[7:0]</td><td>SCE algorithm ID; must match the software design. For an HMAC certificate, set to <code>8'h1F</code>. Otherwise set to match the SCE register definitions: SCE GDMA <code>XCHCR_SEGID</code> at <code>0x4002_901C</code>, SCE SDMA <code>SCHCR_SEGID</code> at <code>0x4002_903C</code>. These registers are defined by software.</td></tr>
+<tr><td>[23:16]</td><td>slot_owner[7:0]</td><td>bit [7] = fw1, bit [6] = fw0, bit [5] = boot1, bit [4] = boot0. Bits [3:0] reserved.</td></tr>
+<tr><td>[24]</td><td>write mode</td><td><code>0</code> = write (0→1, 1→0, both), <code>1</code> = program-only (0→1 only). This bit is configuration only; for how to invoke the operation on the data slot region see <a href="#reram-operation-reference-flow">ReRAM operation reference flow</a>.</td></tr>
+<tr><td>[31:25]</td><td>—</td><td>Reserved</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="data-access-control-to-data-slot-region"><a class="header" href="#data-access-control-to-data-slot-region">Data Access Control to Data Slot Region</a></h3>
+<p>The data slot region can be accessed by different masters. Crypto applications normally require a higher-privilege user mode to access a data slot.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Master</th><th>User mode</th><th>Slot owner</th><th>segid</th><th>rd_dis</th><th>wr_dis</th><th>Access</th></tr>
+</thead>
+<tbody>
+<tr><td>x.Read</td><td>x</td><td>NO_OWNER, SHARED</td><td>x</td><td>0</td><td>x</td><td>allow</td></tr>
+<tr><td>x.Write</td><td>x</td><td>NO_OWNER, SHARED</td><td>x</td><td>x</td><td>0</td><td>allow</td></tr>
+<tr><td>CM7.CORE.Read</td><td>privilege</td><td>= cm7_coreuser</td><td>x</td><td>0</td><td>x</td><td>allow</td></tr>
+<tr><td>CM7.CORE.Write</td><td>privilege</td><td>= cm7_coreuser</td><td>x</td><td>x</td><td>0</td><td>allow</td></tr>
+<tr><td>RV.CORE.Read</td><td>machine</td><td>= rv_coreuser</td><td>x</td><td>0</td><td>x</td><td>allow</td></tr>
+<tr><td>RV.CORE.Write</td><td>machine</td><td>= rv_coreuser</td><td>x</td><td>x</td><td>0</td><td>allow</td></tr>
+<tr><td>SCE.Read</td><td>exclusive/secure</td><td>= sce_user</td><td>match</td><td>0</td><td>x</td><td>allow</td></tr>
+<tr><td>SCE.Write</td><td>exclusive/secure</td><td>= sce_user</td><td>match</td><td>x</td><td>0</td><td>allow</td></tr>
+</tbody>
+</table>
+</div>
+<p>Any other operation is denied.</p>
+<h3 id="data-access-control-to-key-slot-region"><a class="header" href="#data-access-control-to-key-slot-region">Data Access Control to Key Slot Region</a></h3>
+<p>This mode of operation is deprecated, as it has hardware bugs.</p>
+<h3 id="data-access-control-to-ifr-region"><a class="header" href="#data-access-control-to-ifr-region">Data Access Control to IFR Region</a></h3>
+<p>The IFR region stores system-level configuration.</p>
+<p>Before mass production, skipping the “disable write access” step allows software to access the IFR region during lab testing or sample testing. <strong>This region can be accessed by privileged users (boot0 and boot1) for debug and development purposes only.</strong></p>
+<p>Software does not need to perform its own access control. The final settings should be downloaded and the write access datapath then disabled, <strong>under test mode or OEM mode</strong>, during the CP or FT process. Users cannot modify IFR settings in mass production.</p>
+<p>Detailed CP and FT testing steps are described in the <em>Daric NTO Test Mode User Guide</em>.</p>
+<hr>
+<h2 id="reram-operation-reference-flow"><a class="header" href="#reram-operation-reference-flow">ReRAM Operation Reference Flow</a></h2>
+<h3 id="regular-reram-write-operation-flow"><a class="header" href="#regular-reram-write-operation-flow">Regular ReRAM Write Operation Flow</a></h3>
+<ol>
+<li>Set <code>RRCCR[1] = 0</code> (power-on default) to select data mode for the input write data.</li>
+<li>Write 256 bits into internal write Buffer1 — either 8 × 32-bit writes or 4 × 64-bit writes to the ReRAM address.</li>
+<li>Set <code>RRCCR[1] = 1</code> to select command mode for the LOAD or WRITE command.</li>
+<li>Write the LOAD command (<code>0x5200</code>) to the ReRAM address.</li>
+<li>Single write or page write is supported: 1 to 32 loads of 256 bits to the same ReRAM page.</li>
+<li>For multiple 256-bit loads, repeat steps 2–4 for each target data value and address.</li>
+<li>Write the WRITE command (<code>0x9528</code>) to the ReRAM address.</li>
+<li>Read back the ReRAM address to confirm the write succeeded.</li>
+</ol>
+<h3 id="special-reram-one-way-counter-operation-flow"><a class="header" href="#special-reram-one-way-counter-operation-flow">Special ReRAM One-Way Counter Operation Flow</a></h3>
+<ol>
+<li>Valid only for the one-way counter address region.</li>
+<li>Write any value (the data is ignored) directly to the target one-way counter address, like a single SRAM write.</li>
+<li>Read back the one-way counter address to obtain the counter value.</li>
+</ol>
+<h3 id="special-reram-program-only-operation-flow"><a class="header" href="#special-reram-program-only-operation-flow">Special ReRAM Program-Only Operation Flow</a></h3>
+<ol>
+<li>Valid only for the data slots region, 256-bit, with program-only configuration enabled.</li>
+<li>Only single write operations are supported, one at a time.</li>
+<li>Set <code>RRCCR[1] = 0</code> (power-on default) to select data mode for the input write data.</li>
+<li>Write 256 bits into the internal write buffer — either 8 × 32-bit writes or 4 × 64-bit writes to the ReRAM program-only address.</li>
+<li>Set <code>RRCCR[1] = 1</code> to select command mode and start the PROG operation. <strong>Only bits written as <code>1</code> in the 256-bit value are programmed into the ReRAM.</strong></li>
+<li>Write any value (the data is ignored) directly to the target program-only address, like a single SRAM write.</li>
+<li>Read back the ReRAM address to confirm the program succeeded.</li>
+</ol>
+<p>Example:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Stage</th><th>Value</th></tr>
+</thead>
+<tbody>
+<tr><td>Before the program-only operation</td><td><code>0x5555_5555_…_5555</code> (all <code>0x5</code> nibbles)</td></tr>
+<tr><td>Write data</td><td><code>0xAAAA_AAAA_…_AAAA</code> (all <code>0xA</code> nibbles)</td></tr>
+<tr><td>After the program-only operation</td><td><code>0xFFFF_FFFF_…_FFFF</code> (all <code>0xF</code> nibbles)</td></tr>
+</tbody>
+</table>
+</div>
+<p>Because program-only sets bits but never clears them, the result is the bitwise OR of the original contents and the write data.</p>
+<h3 id="special-reram-access-control-region-update-flow"><a class="header" href="#special-reram-access-control-region-update-flow">Special ReRAM Access Control Region Update Flow</a></h3>
+<ol>
+<li>Read the original value of the target access control slot.</li>
+<li>Modify the specific bits to change the access control settings.</li>
+<li>Use the regular ReRAM single write operation flow to write the new configuration into the target access control slot. The internal logic also updates the internal access control SRAM buffer, so the new setting takes effect immediately.</li>
+<li>Read back the target ReRAM address to confirm the update succeeded.</li>
+</ol>
 
                     </main>
 

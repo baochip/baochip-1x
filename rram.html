@@ -1,0 +1,881 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>RRAM - Coder&#x27;s guide to the Baochip 1x</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="custom-616f5484.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-6f510966.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-6db7ae6c.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Coder&#x27;s guide to the Baochip 1x</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/baochip/baochip-1x" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="embedded-reram"><a class="header" href="#embedded-reram">Embedded ReRAM</a></h1>
+<h2 id="reram-introduction"><a class="header" href="#reram-introduction">ReRAM Introduction</a></h2>
+<p>The chip features up to 4 MByte of embedded ReRAM memory for storing programs and data. The ReRAM memory contains two blocks of 128-bit data width each, giving 256-bit data width in parallel. The ReRAM memory visible to software is divided into two regions: the main array and the IFR array.</p>
+<blockquote>
+<p><strong>Note:</strong> ReRAM reads back as zero if it was not initialized during the CP flow.</p>
+</blockquote>
+<p><img src="images/rram-memory-map.png" alt="ReRAM memory map showing code region, one-way counters, access control bank, data slots, key slots, and IFR"></p>
+<h3 id="reram-memory-map"><a class="header" href="#reram-memory-map">ReRAM Memory Map</a></h3>
+<p><strong>Code region</strong></p>
+<ul>
+<li>Located at <code>0x6000_0000</code> to <code>0x603D_9FFF</code> (maximum extent).</li>
+<li>Up to 4 regions: boot0, boot1, fw0, fw1.</li>
+<li>Minimum 1 user.</li>
+<li>Configurable address region.</li>
+<li>Supports single write (256-bit) and page write (32 sets of 256-bit).</li>
+</ul>
+<p><strong>One-way counters</strong></p>
+<ul>
+<li>Located at <code>0x603D_A000</code> to <code>0x603D_BFFF</code>.</li>
+<li>Only available in user mode.</li>
+<li>No user restrictions; write-only region.</li>
+<li>Software controls the number of writes — no more than 10 K writes per 256-bit word.</li>
+<li>Supports single write only.</li>
+</ul>
+<p><strong>Access Control Bank</strong></p>
+<ul>
+<li>Located at <code>0x603D_C000</code> to <code>0x603D_FFFF</code>.</li>
+<li>Only available in user mode.</li>
+<li>Contains the access control configuration for key slots and data slots.</li>
+<li>Supports single write only, used to update access control configuration.</li>
+</ul>
+<p><strong>Crypto Data Slots (2048 sets)</strong></p>
+<ul>
+<li>Located at <code>0x603E_0000</code> to <code>0x603E_FFFF</code>.</li>
+<li>Only available in user mode.</li>
+<li>Supports program-only or write operation.</li>
+<li>Provides user-writeable, set-only memory slots.</li>
+<li>Supports single and page write.</li>
+</ul>
+<p><strong>Crypto Key Slots (2048 sets) — DEPRECATED</strong></p>
+<ul>
+<li>Located at <code>0x603F_0000</code> to <code>0x603F_FFFF</code>.</li>
+<li>Only available in user mode.</li>
+<li>Supports single and page write.</li>
+<li><strong>Do not use.</strong> Deprecated due to a hardware bug.</li>
+</ul>
+<p><strong>IFR (information region)</strong></p>
+<ul>
+<li>Located at <code>0x6040_0000</code> to <code>0x6040_03FF</code>.</li>
+<li>Configurable in user mode for lab testing and debug, but frozen for mass production and downloadable only in test mode.</li>
+<li>Holds the life cycle pattern.</li>
+<li>Holds chip system data: trimming, user mapping assignment, serial number.</li>
+<li>Holds read/write disable configuration for each key slot, data slot, and code block.</li>
+<li>Supports single write only.</li>
+</ul>
+<h3 id="data-slot-region-map-64-kb"><a class="header" href="#data-slot-region-map-64-kb">Data Slot Region Map (64 KB)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Data slot</th><th>Size</th><th>Core address</th></tr>
+</thead>
+<tbody>
+<tr><td>Data slot 0</td><td>256 × 1</td><td><code>0x603E_0000</code> – <code>0x603E_001C</code></td></tr>
+<tr><td>Data slot 1</td><td>256 × 1</td><td><code>0x603E_0020</code> – <code>0x603E_003C</code></td></tr>
+<tr><td>…</td><td>…</td><td>…</td></tr>
+<tr><td>Data slot 2046</td><td>256 × 1</td><td><code>0x603E_FFC0</code> – <code>0x603E_FFDC</code></td></tr>
+<tr><td>Data slot 2047</td><td>256 × 1</td><td><code>0x603E_FFE0</code> – <code>0x603E_FFFC</code></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="key-slot-region-map-64-kb"><a class="header" href="#key-slot-region-map-64-kb">Key Slot Region Map (64 KB)</a></h3>
+<p>This section has been removed because the key slot region is deprecated.</p>
+<hr>
+<h2 id="reram-read-mechanism"><a class="header" href="#reram-read-mechanism">ReRAM Read Mechanism</a></h2>
+<p><img src="images/rram-read-flow.png" alt="ReRAM read flow diagram showing read buffer, hit and miss paths, and AXI bus interface"></p>
+<p>ReRAM supports 256-bit read data per transaction. The chip uses a single read buffer design to maximise instruction fetch performance. AXI bus transactions are 64-bit wide.</p>
+<p>If the target read data is already prefetched into <code>read_buf[255:0]</code>, the ReRAM controller reads directly from the buffer with no wait states.</p>
+<p>If the target read data is not in the read buffer, the ReRAM controller reads it from the ReRAM IP array and stores it into the read buffer, simultaneously returning the data on the AXI bus to the CPU cores.</p>
+<p>Assuming one ReRAM array transaction provides 4 sets of contiguous 64-bit instructions, the average read time is <code>(6 × Period_rramclk + 3 × Period_aclk)</code>. This covers one 256-bit ReRAM access for the first 64-bit miss, plus the three subsequent 64-bit AXI bus transactions that hit in the buffer.</p>
+<hr>
+<h2 id="reram-write-mechanism"><a class="header" href="#reram-write-mechanism">ReRAM Write Mechanism</a></h2>
+<p><img src="images/rram-write-flow.png" alt="ReRAM write flow diagram showing pre-load, load, and write stages with Buffer1 and Buffer2"></p>
+<p>ReRAM supports multi-word write operations. The process has three steps: pre-load, load, and write.</p>
+<p><strong>1. Pre-load step</strong></p>
+<p>The CPU cores access ReRAM over the 64-bit AXI bus. Pre-load means using CPU writes to fill <strong>one 256-bit write data Buffer1</strong> over several transactions — for example 8 × 32-bit CPU writes, or 4 × 64-bit CPU writes.</p>
+<p><strong>2. Load step</strong></p>
+<p>After pre-load, the ReRAM IP requires the <strong>Buffer1</strong> data to be loaded into the trbcx module’s <strong>internal Buffer2</strong>. Buffer2 can store N sets of 256-bit data, where N = 1 to 32.</p>
+<p><strong>3. Write step</strong></p>
+<p>After the load step, all write data is ready to be committed to the real ReRAM array. This step requires high voltage and a long process time.</p>
+<h3 id="write-timing"><a class="header" href="#write-timing">Write Timing</a></h3>
+<p>ReRAM write time depends on the difference between the originally stored data and the new write data. Average write times are:</p>
+<p><strong>All 0 to All 1</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th></th><th>1-word write</th><th>32-word write</th></tr>
+</thead>
+<tbody>
+<tr><td>Average</td><td>~50 µs</td><td>~800 µs</td></tr>
+<tr><td>Maximum</td><td>&lt;100 µs</td><td>&lt;1200 µs</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>All 1 to All 0 (worst-case pattern)</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th></th><th>1-word write</th><th>32-word write</th></tr>
+</thead>
+<tbody>
+<tr><td>Average</td><td>~120 µs</td><td>~1500 µs</td></tr>
+<tr><td>Maximum</td><td>&lt;200 µs</td><td>&lt;2560 µs</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="rrc-registers"><a class="header" href="#rrc-registers">RRC Registers</a></h2>
+<p>Base address: <code>0x4000_0000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register Name</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>RRCCR</td><td>0x0000</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>ReRAM control register</td></tr>
+<tr><td>RRCFD</td><td>0x0004</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000007</td><td>ReRAM clock configuration</td></tr>
+<tr><td>RRCSR</td><td>0x0008</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>ReRAM status probe (debug only)</td></tr>
+<tr><td>RRCFR</td><td>0x000C</td><td>32</td><td>FR</td><td>R</td><td>0x00000000</td><td>ReRAM access control error flag register</td></tr>
+<tr><td>RRCSRSET0</td><td>0x0014</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>SET failure probe, bits [31:0] (debug only)</td></tr>
+<tr><td>RRCSRSET1</td><td>0x0018</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>SET failure probe, bits [63:32] (debug only)</td></tr>
+<tr><td>RRCSRRST0</td><td>0x001C</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>RESET failure probe, bits [31:0] (debug only)</td></tr>
+<tr><td>RRCSRRST1</td><td>0x0020</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>RESET failure probe, bits [63:32] (debug only)</td></tr>
+<tr><td>RRCSRRD0</td><td>0x0024</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Read failure probe, bits [31:0] (debug only)</td></tr>
+<tr><td>RRCSRRD1</td><td>0x0028</td><td>32</td><td>SR</td><td>R</td><td>0x00000000</td><td>Read failure probe, bits [63:32] (debug only)</td></tr>
+<tr><td>RRCAR</td><td>0x00F0</td><td>32</td><td>AR</td><td>W</td><td>0x00000000</td><td>ReRAM suicide AR — limited use only</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="rrccr--reram-control-register"><a class="header" href="#rrccr--reram-control-register">RRCCR — ReRAM Control Register</a></h3>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>low power mode</td><td>ReRAM IP low-power mode: <code>0</code> = nap, <code>1</code> = power down</td></tr>
+<tr><td>[1]</td><td>access mode</td><td>ReRAM IP write access mode: <code>0</code> = data mode, <code>1</code> = command mode</td></tr>
+<tr><td>[9:2]</td><td>—</td><td>Reserved</td></tr>
+<tr><td>[10]</td><td>key_access_control</td><td>Key slot access control enable (disabled in A1 and later): <code>0</code> = disable, <code>1</code> = enable</td></tr>
+<tr><td>[11]</td><td>data_access_control</td><td>Data slot access control enable (disabled in A1 and later): <code>0</code> = disable, <code>1</code> = enable</td></tr>
+<tr><td>[12]</td><td>code_access_control</td><td>Code region access control enable (disabled in A1 and later): <code>0</code> = disable, <code>1</code> = enable</td></tr>
+<tr><td>[13]</td><td>accfg_access_control</td><td>Access control cfg region access control enable (disabled in A1 and later): <code>0</code> = disable, <code>1</code> = enable</td></tr>
+<tr><td>[14]</td><td>ifr_access_control</td><td>IFR region access control enable (disabled in A1 and later): <code>0</code> = disable, <code>1</code> = enable</td></tr>
+<tr><td>[15]</td><td>rrc nmi enable</td><td><code>0</code> = disable ReRAM controller access error NMI to system, <code>1</code> = enable</td></tr>
+<tr><td>[31:16]</td><td>one-way counter event trigger enable</td><td>One bit per one-way counter: bit [16] enables <code>axi_one_way_counter 240</code> at <code>0x603D_BFC0</code>, through bit [31] enabling <code>axi_one_way_counter 255</code> at <code>0x603D_BFFC</code>. <code>0</code> = disable, <code>1</code> = enable.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="rrcfd--reram-clock-configuration-register"><a class="header" href="#rrcfd--reram-clock-configuration-register">RRCFD — ReRAM Clock Configuration Register</a></h3>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0007</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[4:0]</td><td>fd</td><td>ReRAM IP working frequency (rramclk) divider</td></tr>
+<tr><td>[31:5]</td><td>—</td><td>Reserved</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>rramclk should be typically 50 MHz, maximum 100 MHz.</li>
+<li>Software can adjust this value for different clktop frequencies to run ReRAM at the fastest supported speed.</li>
+<li><code>frequency_rramclk = frequency_clktop / (fd + 1)</code></li>
+</ul>
+<p>Examples:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Condition</th><th>clktop</th><th>rramclk</th></tr>
+</thead>
+<tbody>
+<tr><td>PLL disabled</td><td>32 MHz (OSC)</td><td>4 MHz</td></tr>
+<tr><td>PLL enabled</td><td>400 MHz (PLL)</td><td>50 MHz</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="rrcsr--reram-status-probe-register-debug-only"><a class="header" href="#rrcsr--reram-status-probe-register-debug-only">RRCSR — ReRAM Status Probe Register (Debug Only)</a></h3>
+<ul>
+<li><strong>Description:</strong> Internal trbcx IP status probe register</li>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>trc_busy</td><td><code>0</code> = idle, <code>1</code> = busy</td></tr>
+<tr><td>[4:1]</td><td>trc_ip_cmd[3:0]</td><td><code>4'h0</code> = idle, <code>4'h1</code> = read, <code>4'h2</code> = load, <code>4'h3</code> = write (HV operation), other = reserved</td></tr>
+<tr><td>[5]</td><td>trc_info_lock_err</td><td><code>0</code> = no info region lock error, <code>1</code> = error occurred</td></tr>
+<tr><td>[6]</td><td>trc_err</td><td><code>0</code> = no trc function error, <code>1</code> = error occurred</td></tr>
+<tr><td>[9:7]</td><td>ecc_err</td><td>ECC error count (2C2D ECC supported): <code>3'b000</code> = error free, <code>3'b001</code> = 1-bit error, <code>3'b010</code> = 2-bit error, <code>3'b100</code> = reserved</td></tr>
+<tr><td>[31:10]</td><td>—</td><td>Reserved</td></tr>
+</tbody>
+</table>
+</div>
+<p>If no exception occurs, these bits stay at 0.</p>
+<h3 id="rrcfr--reram-access-control-error-flag-register"><a class="header" href="#rrcfr--reram-access-control-error-flag-register">RRCFR — ReRAM Access Control Error Flag Register</a></h3>
+<ul>
+<li><strong>Address offset:</strong> <code>0x000C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Write <code>1</code> to a bit to clear it.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>key_access_err</td><td><code>1</code> = invalid key slot access occurred, error interrupt raised</td></tr>
+<tr><td>[1]</td><td>data_access_err</td><td><code>1</code> = invalid data slot access occurred, error interrupt raised</td></tr>
+<tr><td>[2]</td><td>code_access_err</td><td><code>1</code> = invalid code region access occurred, error interrupt raised</td></tr>
+<tr><td>[3]</td><td>cfg_access_err</td><td><code>1</code> = invalid access control cfg region access occurred, error interrupt raised</td></tr>
+<tr><td>[4]</td><td>ifr_access_err</td><td><code>1</code> = invalid IFR region access occurred, error interrupt raised</td></tr>
+<tr><td>[31:5]</td><td>—</td><td>Reserved</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="rrcsrset0--rrcsrset1--set-failure-probe-registers-debug-only"><a class="header" href="#rrcsrset0--rrcsrset1--set-failure-probe-registers-debug-only">RRCSRSET0 / RRCSRSET1 — SET Failure Probe Registers (Debug Only)</a></h3>
+<ul>
+<li><strong>Address offsets:</strong> <code>0x0014</code> (bits [31:0]), <code>0x0018</code> (bits [63:32])</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Probes <code>trc_set_failure[63:0]</code> — the count of “program 1” failure bits for a page operation. If no exception occurs, these bits stay at 0.</p>
+<h3 id="rrcsrrst0--rrcsrrst1--reset-failure-probe-registers-debug-only"><a class="header" href="#rrcsrrst0--rrcsrrst1--reset-failure-probe-registers-debug-only">RRCSRRST0 / RRCSRRST1 — RESET Failure Probe Registers (Debug Only)</a></h3>
+<ul>
+<li><strong>Address offsets:</strong> <code>0x001C</code> (bits [31:0]), <code>0x0020</code> (bits [63:32])</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Probes <code>trc_reset_failure[63:0]</code> — the count of “erase 0” failure bits for a page operation. If no exception occurs, these bits stay at 0.</p>
+<h3 id="rrcsrrd0--rrcsrrd1--read-failure-probe-registers-debug-only"><a class="header" href="#rrcsrrd0--rrcsrrd1--read-failure-probe-registers-debug-only">RRCSRRD0 / RRCSRRD1 — Read Failure Probe Registers (Debug Only)</a></h3>
+<ul>
+<li><strong>Address offsets:</strong> <code>0x0024</code> (bits [31:0]), <code>0x0028</code> (bits [63:32])</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<p>Probes <code>trc_fourth_read_failure[63:0]</code> — the count of “write 0/1” failure bits for a page operation. If no exception occurs, these bits stay at 0.</p>
+<h3 id="rrcar--reram-action-register"><a class="header" href="#rrcar--reram-action-register">RRCAR — ReRAM Action Register</a></h3>
+<ul>
+<li><strong>Address offset:</strong> <code>0x00F0</code></li>
+<li><strong>Type:</strong> AR (action register, write-only)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code> (always reads zero)</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>—</td><td>Write <code>PM_RRAM_SUICIDE</code> (<code>0x0000_2468</code>) to initiate a suicide flow, erasing all ReRAM</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> This register is for limited use only and is not required in every product application. Whether this function is exposed to external users is determined by the product’s security level.</p>
+</blockquote>
+<hr>
+<h2 id="reram-access-control-mechanism"><a class="header" href="#reram-access-control-mechanism">ReRAM Access Control Mechanism</a></h2>
+<p><img src="images/rram-access-control-diagram.png" alt="ReRAM access control diagram showing CPU core and SCE DMA access paths with coreuser and sce_user ID checking"></p>
+<p>The chip provides two paths to access ReRAM memory: the CPU core can access ReRAM directly, and the SCE DMA master can access ReRAM through the AXI bus.</p>
+<p>When the CPU accesses ReRAM, it also supplies the coreuser ID to the ReRAM controller, identifying the “user” performing the access (note that this only applies to loads/stores; code accesses can bypass this due to a bug in the implementation, and this is patched through the MMU). The ReRAM controller matches this user against its access configuration to determine whether the user may access the target ReRAM address region.</p>
+<p>ReRAM has four effective “users”: boot0, boot1, fw0, and fw1. These users appear in two contexts:</p>
+<ol>
+<li>As one of four possible owners encoded in an ACL for a data slot. Here the region is determined strictly by the coding in the data slot’s ACL.</li>
+<li>As regions determined by the address of the access. Here the region is coded in the IFR, a hard-coded value set at manufacturing time into the ReRAM array.</li>
+</ol>
+<p>For the Baochip-1x, the region mapping uses the following offsets from the base of ReRAM:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>User</th><th>Offset range</th></tr>
+</thead>
+<tbody>
+<tr><td>boot0</td><td><code>0x0000_0000</code> – <code>0x0002_0000</code></td></tr>
+<tr><td>boot1</td><td><code>0x0002_0000</code> – <code>0x0006_0000</code></td></tr>
+<tr><td>fw0 &amp; fw1</td><td><code>0x0006_0000</code> – <code>0x0040_0000</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>The partition LUT matters because a separate IFR setting (<code>cfg_rrsub_rw_boot0</code>, at offset <code>0x280</code>) prevents boot0 from being written, effectively making boot0 indelible outside of boot0 itself.</p>
+<p>The actual mapping of the coreuser LUT is set up by the bootloader and sealed with a one-way lock after exiting the boot stage. The default configuration can be found in the Xous code base. In short, all <code>M||ASID</code> mappings are set to a “least trusted” user mapping, except for the combination of fw1 + user mode. (User mode as opposed to machine/supervisor mode — in other words, only a particular user-mode process can access the key slots; even the kernel, in machine/supervisor mode, cannot see them.) That combination maps to PID 3, where the keystore process is mapped on boot in Xous. Because the one-way door is sealed on exit from the bootloader, modifying this table requires a custom bootloader.</p>
+<p>The SDMA master uses a similar method, supplying the <code>sce_user</code> ID to the ReRAM controller to identify the user performing the access through SDMA.</p>
+<p>Access control covers code execution, data read, and data write operations, with different restrictions depending on the target operation.</p>
+<p>All access control functions can be enabled independently via the <code>RRCCR</code> register. If an error occurs, an interrupt is generated and the corresponding flag bit is set in <code>RRCFR</code>. If the NMI function is enabled (<code>RRCCR[15]</code>), the error flag generates both an NMI and a normal interrupt. See <a href="#rrc-registers">RRC Registers</a> for details.</p>
+<h3 id="memory-size-configuration"><a class="header" href="#memory-size-configuration">Memory Size Configuration</a></h3>
+<p>The ReRAM memory region configuration is located in IFR at <code>0x6040_00C0</code>. The bit definitions are as follows.</p>
+<p><strong>ReRAM array size settings</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th></tr>
+</thead>
+<tbody>
+<tr><td>[127:120]</td><td>ReRAM start</td></tr>
+<tr><td>[119:112]</td><td>ReRAM end</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Default value: <code>0x00FF</code>, meaning the whole ReRAM is used.</li>
+<li>ReRAM start address = <code>{10'b0110_0000_00, bit[127:120], 14'h0}</code></li>
+<li>ReRAM last address = <code>{10'b0110_0000_00, bit[119:112], 14'h3FFF}</code></li>
+</ul>
+<p><strong>CM7 user region settings</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th></tr>
+</thead>
+<tbody>
+<tr><td>[111:104]</td><td>CM7 init (IV)</td></tr>
+<tr><td>[103:96]</td><td>boot0 start</td></tr>
+<tr><td>[95:88]</td><td>boot1 start</td></tr>
+<tr><td>[87:80]</td><td>fw0 start</td></tr>
+<tr><td>[79:72]</td><td>fw1 start</td></tr>
+<tr><td>[71:64]</td><td>fw1 end</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Default value: <code>0x0000_FFFF_FFFF</code>, meaning only boot0 is used.</li>
+<li>boot0 start address = <code>{10'b0110_0000_00, bit[103:96], 14'h0}</code></li>
+<li>boot0 last address = <code>{10'b0110_0000_00, bit[95:88], 14'h3FFF}</code></li>
+<li>The CM7 init address should match the software power-on start address — usually the boot0 or boot1 start address.</li>
+</ul>
+<p><strong>RISC-V user region settings</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th></tr>
+</thead>
+<tbody>
+<tr><td>[63:56]</td><td>rv init</td></tr>
+<tr><td>[55:48]</td><td>boot0 start</td></tr>
+<tr><td>[47:40]</td><td>boot1 start</td></tr>
+<tr><td>[39:32]</td><td>fw0 start</td></tr>
+<tr><td>[31:24]</td><td>fw1 start</td></tr>
+<tr><td>[23:16]</td><td>fw1 end</td></tr>
+</tbody>
+</table>
+</div>
+<p>Bit definitions mirror the CM7 fields above.</p>
+<p>Usage guidance:</p>
+<ul>
+<li><strong>Single core (RISC-V only):</strong> this value can be set freely according to application requirements.</li>
+<li><strong>Multiple cores</strong> (not supported by Baochip; available on Crossbar SKUs):
+<ol>
+<li>The CM7 settings are used instead of these settings — set bits [63:16] the same as bits [111:64].</li>
+<li>The software design should treat the RISC-V core as its own user, and that user cannot also be used by the CM7 core, since the two cores’ instruction sets are not compatible. The RISC-V default user (bits [1:0]) should be set to match the software design.</li>
+<li>If both CM7 and RISC-V use the same user, the ReRAM controller cannot distinguish between them and treats them as the same user. In that case only one core can access ReRAM at any given time.</li>
+</ol>
+</li>
+</ul>
+<p><strong>SRAM array size settings</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th></tr>
+</thead>
+<tbody>
+<tr><td>[15:12]</td><td>SRAM1 size reduction settings</td></tr>
+<tr><td>[11:8]</td><td>SRAM0 size reduction settings</td></tr>
+</tbody>
+</table>
+</div>
+<p>SRAM1 (bits [15:12]):</p>
+<ul>
+<li>bit [7]: size cut enable</li>
+<li>bits [6:4]: size range</li>
+<li>Default <code>0x0</code>: disabled, no size reduction.</li>
+<li>If enabled, the valid SRAM1 address range is <code>&lt; {bit[6:4], 15'h0}</code>.</li>
+</ul>
+<p>SRAM0 (bits [11:8]):</p>
+<ul>
+<li>bit [3]: size cut enable</li>
+<li>bits [2:0]: size range</li>
+<li>Default <code>0x0</code>: disabled, no size reduction.</li>
+<li>If enabled, the valid SRAM0 address range is <code>&lt; {bit[2:0], 15'h0}</code>.</li>
+</ul>
+<p><strong>Other user-related settings</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[7:5]</td><td>user_trustkey_enable</td><td>bit [5] = boot1 user, bit [6] = fw0 user, bit [7] = fw1 user. Default <code>0x0</code>: high-level security code certificate disabled.</td></tr>
+<tr><td>[2]</td><td>RISC-V default mm</td><td>RISC-V core default machine mode setting</td></tr>
+<tr><td>[1:0]</td><td>RISC-V default user</td><td><code>0</code> = boot0, <code>1</code> = boot1, <code>2</code> = fw0, <code>3</code> = fw1</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Reserved bits</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Note</th></tr>
+</thead>
+<tbody>
+<tr><td>[255:128]</td><td>Reserved for CP testing use only. Always write 0.</td></tr>
+<tr><td>[15:8]</td><td>Reserved. Always write 0.</td></tr>
+<tr><td>[4:3]</td><td>Reserved. Always write 0.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="data-access-to-code-region"><a class="header" href="#data-access-to-code-region">Data Access to Code Region</a></h3>
+<p>The ReRAM data access control for the code region is configured in the IFR. Each user has its own configuration settings.</p>
+<p>In all tables below, the default value is <code>0</code>, meaning access is always allowed. Setting a bit to <code>1</code> disables that access. <code>Y</code> indicates access is always permitted (a user always has access to its own region).</p>
+<p><strong>boot0 configuration</strong> — IFR <code>0x6040_0280</code>, bits [111:104] (<code>user_code_cfg_boot0</code>)</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Operation</th><th>boot0</th><th>boot1</th><th>fw0</th><th>fw1</th></tr>
+</thead>
+<tbody>
+<tr><td>Read boot0</td><td>Y</td><td>bit [106]</td><td>bit [108]</td><td>bit [110]</td></tr>
+<tr><td>Write boot0</td><td>Y</td><td>bit [107]</td><td>bit [109]</td><td>bit [111]</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>boot1 configuration</strong> — IFR <code>0x6040_02A0</code>, bits [111:104] (<code>user_code_cfg_boot1</code>)</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Operation</th><th>boot0</th><th>boot1</th><th>fw0</th><th>fw1</th></tr>
+</thead>
+<tbody>
+<tr><td>Read boot1</td><td>bit [104]</td><td>Y</td><td>bit [108]</td><td>bit [110]</td></tr>
+<tr><td>Write boot1</td><td>bit [105]</td><td>Y</td><td>bit [109]</td><td>bit [111]</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>fw0 configuration</strong> — IFR <code>0x6040_02C0</code>, bits [111:104] (<code>user_code_cfg_fw0</code>)</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Operation</th><th>boot0</th><th>boot1</th><th>fw0</th><th>fw1</th></tr>
+</thead>
+<tbody>
+<tr><td>Read fw0</td><td>bit [104]</td><td>bit [106]</td><td>Y</td><td>bit [110]</td></tr>
+<tr><td>Write fw0</td><td>bit [105]</td><td>bit [107]</td><td>Y</td><td>bit [111]</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>fw1 configuration</strong> — IFR <code>0x6040_02E0</code>, bits [111:104] (<code>user_code_cfg_fw1</code>)</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Operation</th><th>boot0</th><th>boot1</th><th>fw0</th><th>fw1</th></tr>
+</thead>
+<tbody>
+<tr><td>Read fw1</td><td>bit [104]</td><td>bit [106]</td><td>bit [108]</td><td>Y</td></tr>
+<tr><td>Write fw1</td><td>bit [105]</td><td>bit [107]</td><td>bit [109]</td><td>Y</td></tr>
+</tbody>
+</table>
+</div>
+<p>In each case, all other bits are reserved for CP testing only and should always be written as 0.</p>
+<h3 id="data-access-to-one-way-counter-region"><a class="header" href="#data-access-to-one-way-counter-region">Data Access to One-Way Counter Region</a></h3>
+<p>As with a general MCU, there is no access restriction on the one-way counter region for any user. Each one-way counter should be written fewer than 10 K times.</p>
+<h3 id="data-access-to-access-control-region"><a class="header" href="#data-access-to-access-control-region">Data Access to Access Control Region</a></h3>
+<p>This region can only be accessed by privileged users (boot0 and boot1). It stores the access control configuration for all data slots and key slots. Each data slot or key slot has its own 32-bit access control configuration.</p>
+<p><img src="images/rram-access-control-region-map.png" alt="Access control region map showing data slot control region and key slot control region layout"></p>
+<p><strong>Data slot control region</strong></p>
+<ul>
+<li>Each item controls access to the corresponding slot in the Data Slots region. See <a href="#data-slot-access-control-configuration-word-32-bit">Data slot access control configuration word</a>.</li>
+<li>Size: 2048 × 4 = 8 KB</li>
+<li>Address: <code>0x603D_C000</code> – <code>0x603D_DFFF</code></li>
+</ul>
+<p><strong>Key slot control region</strong></p>
+<ul>
+<li>Each item controls access to the corresponding slot in the Key Slots region.</li>
+<li>Size: 2048 × 4 = 8 KB</li>
+<li>Address: <code>0x603D_E000</code> – <code>0x603D_FFFF</code></li>
+<li>Akey: authentication link root key, which controls Gkey access.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> The key slot region is deprecated. See <a href="#data-access-control-to-key-slot-region">Data access control to key slot region</a>.</p>
+</blockquote>
+<h4 id="data_cfg-slot-256-bit"><a class="header" href="#data_cfg-slot-256-bit">data_cfg Slot (256-bit)</a></h4>
+<p>Each <code>data_cfg</code> slot holds access control configuration for <strong>8 data slots</strong>. Each data slot has its own 32 bits of configuration.</p>
+<p>For <code>data_cfg</code> slot N, the bit assignment is:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Controls</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>data slot (0 + N×8)</td></tr>
+<tr><td>[63:32]</td><td>data slot (1 + N×8)</td></tr>
+<tr><td>[95:64]</td><td>data slot (2 + N×8)</td></tr>
+<tr><td>[127:96]</td><td>data slot (3 + N×8)</td></tr>
+<tr><td>[159:128]</td><td>data slot (4 + N×8)</td></tr>
+<tr><td>[191:160]</td><td>data slot (5 + N×8)</td></tr>
+<tr><td>[223:192]</td><td>data slot (6 + N×8)</td></tr>
+<tr><td>[255:224]</td><td>data slot (7 + N×8)</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Read access control bits for the cfg slots</strong> — located at IFR <code>0x6040_0300</code> and <code>0x6040_0320</code>:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>IFR address</th><th>Bit</th><th>Controls</th></tr>
+</thead>
+<tbody>
+<tr><td><code>0x6040_0300</code></td><td>[0]</td><td>read control, data_cfg0 slot</td></tr>
+<tr><td><code>0x6040_0300</code></td><td>…</td><td>…</td></tr>
+<tr><td><code>0x6040_0300</code></td><td>[127]</td><td>read control, data_cfg127 slot</td></tr>
+<tr><td><code>0x6040_0320</code></td><td>[0]</td><td>read control, data_cfg128 slot</td></tr>
+<tr><td><code>0x6040_0320</code></td><td>…</td><td>…</td></tr>
+<tr><td><code>0x6040_0320</code></td><td>[127]</td><td>read control, data_cfg255 slot</td></tr>
+</tbody>
+</table>
+</div>
+<p>Default <code>0</code> means read is always allowed. Setting the bit to <code>1</code> disables read access.</p>
+<p><strong>Write access control bits for the cfg slots</strong> — located at IFR <code>0x6040_0340</code> and <code>0x6040_0360</code>:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>IFR address</th><th>Bit</th><th>Controls</th></tr>
+</thead>
+<tbody>
+<tr><td><code>0x6040_0340</code></td><td>[0]</td><td>write control, data_cfg0 slot</td></tr>
+<tr><td><code>0x6040_0340</code></td><td>…</td><td>…</td></tr>
+<tr><td><code>0x6040_0340</code></td><td>[127]</td><td>write control, data_cfg127 slot</td></tr>
+<tr><td><code>0x6040_0360</code></td><td>[0]</td><td>write control, data_cfg128 slot</td></tr>
+<tr><td><code>0x6040_0360</code></td><td>…</td><td>…</td></tr>
+<tr><td><code>0x6040_0360</code></td><td>[127]</td><td>write control, data_cfg255 slot</td></tr>
+</tbody>
+</table>
+</div>
+<p>Default <code>0</code> means write is always allowed. Setting the bit to <code>1</code> disables write access.</p>
+<h4 id="key_cfg-slot-256-bit"><a class="header" href="#key_cfg-slot-256-bit">key_cfg Slot (256-bit)</a></h4>
+<p>These slots are deprecated and should not be used, as they are not fully functional.</p>
+<h4 id="data-slot-access-control-configuration-word-32-bit"><a class="header" href="#data-slot-access-control-configuration-word-32-bit">Data Slot Access Control Configuration Word (32-bit)</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[0]</td><td>core_rd_dis</td><td>Core read disable. Default <code>0</code> = read enabled.</td></tr>
+<tr><td>[1]</td><td>core_wr_dis</td><td>Core write disable. Default <code>0</code> = write enabled.</td></tr>
+<tr><td>[2]</td><td>sce_rd_dis</td><td>SCE read disable. Default <code>0</code> = read enabled.</td></tr>
+<tr><td>[3]</td><td>sce_wr_dis</td><td>SCE write disable. Default <code>0</code> = write enabled.</td></tr>
+<tr><td>[7:4]</td><td>—</td><td>Reserved</td></tr>
+<tr><td>[15:8]</td><td>seg_id[7:0]</td><td>SCE algorithm ID; must match the software design. For an HMAC certificate, set to <code>8'h1F</code>. Otherwise set to match the SCE register definitions: SCE GDMA <code>XCHCR_SEGID</code> at <code>0x4002_901C</code>, SCE SDMA <code>SCHCR_SEGID</code> at <code>0x4002_903C</code>. These registers are defined by software.</td></tr>
+<tr><td>[23:16]</td><td>slot_owner[7:0]</td><td>bit [7] = fw1, bit [6] = fw0, bit [5] = boot1, bit [4] = boot0. Bits [3:0] reserved.</td></tr>
+<tr><td>[24]</td><td>write mode</td><td><code>0</code> = write (0→1, 1→0, both), <code>1</code> = program-only (0→1 only). This bit is configuration only; for how to invoke the operation on the data slot region see <a href="./rram.html#reram-operation-reference-flow">ReRAM operation reference flow</a>.</td></tr>
+<tr><td>[31:25]</td><td>—</td><td>Reserved</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="data-access-control-to-data-slot-region"><a class="header" href="#data-access-control-to-data-slot-region">Data Access Control to Data Slot Region</a></h3>
+<p>The data slot region can be accessed by different masters. Crypto applications normally require a higher-privilege user mode to access a data slot.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Master</th><th>User mode</th><th>Slot owner</th><th>segid</th><th>rd_dis</th><th>wr_dis</th><th>Access</th></tr>
+</thead>
+<tbody>
+<tr><td>x.Read</td><td>x</td><td>NO_OWNER, SHARED</td><td>x</td><td>0</td><td>x</td><td>allow</td></tr>
+<tr><td>x.Write</td><td>x</td><td>NO_OWNER, SHARED</td><td>x</td><td>x</td><td>0</td><td>allow</td></tr>
+<tr><td>CM7.CORE.Read</td><td>privilege</td><td>= cm7_coreuser</td><td>x</td><td>0</td><td>x</td><td>allow</td></tr>
+<tr><td>CM7.CORE.Write</td><td>privilege</td><td>= cm7_coreuser</td><td>x</td><td>x</td><td>0</td><td>allow</td></tr>
+<tr><td>RV.CORE.Read</td><td>machine</td><td>= rv_coreuser</td><td>x</td><td>0</td><td>x</td><td>allow</td></tr>
+<tr><td>RV.CORE.Write</td><td>machine</td><td>= rv_coreuser</td><td>x</td><td>x</td><td>0</td><td>allow</td></tr>
+<tr><td>SCE.Read</td><td>exclusive/secure</td><td>= sce_user</td><td>match</td><td>0</td><td>x</td><td>allow</td></tr>
+<tr><td>SCE.Write</td><td>exclusive/secure</td><td>= sce_user</td><td>match</td><td>x</td><td>0</td><td>allow</td></tr>
+</tbody>
+</table>
+</div>
+<p>Any other operation is denied.</p>
+<h3 id="data-access-control-to-key-slot-region"><a class="header" href="#data-access-control-to-key-slot-region">Data Access Control to Key Slot Region</a></h3>
+<p>This mode of operation is deprecated, as it has hardware bugs.</p>
+<h3 id="data-access-control-to-ifr-region"><a class="header" href="#data-access-control-to-ifr-region">Data Access Control to IFR Region</a></h3>
+<p>The IFR region stores system-level configuration.</p>
+<p>Before mass production, skipping the “disable write access” step allows software to access the IFR region during lab testing or sample testing. <strong>This region can be accessed by privileged users (boot0 and boot1) for debug and development purposes only.</strong></p>
+<p>Software does not need to perform its own access control. The final settings should be downloaded and the write access datapath then disabled, <strong>under test mode or OEM mode</strong>, during the CP or FT process. Users cannot modify IFR settings in mass production.</p>
+<p>Detailed CP and FT testing steps are described in the <em>Daric NTO Test Mode User Guide</em>.</p>
+<hr>
+<h2 id="reram-operation-reference-flow"><a class="header" href="#reram-operation-reference-flow">ReRAM Operation Reference Flow</a></h2>
+<h3 id="regular-reram-write-operation-flow"><a class="header" href="#regular-reram-write-operation-flow">Regular ReRAM Write Operation Flow</a></h3>
+<ol>
+<li>Set <code>RRCCR[1] = 0</code> (power-on default) to select data mode for the input write data.</li>
+<li>Write 256 bits into internal write Buffer1 — either 8 × 32-bit writes or 4 × 64-bit writes to the ReRAM address.</li>
+<li>Set <code>RRCCR[1] = 1</code> to select command mode for the LOAD or WRITE command.</li>
+<li>Write the LOAD command (<code>0x5200</code>) to the ReRAM address.</li>
+<li>Single write or page write is supported: 1 to 32 loads of 256 bits to the same ReRAM page.</li>
+<li>For multiple 256-bit loads, repeat steps 2–4 for each target data value and address.</li>
+<li>Write the WRITE command (<code>0x9528</code>) to the ReRAM address.</li>
+<li>Read back the ReRAM address to confirm the write succeeded.</li>
+</ol>
+<h3 id="special-reram-one-way-counter-operation-flow"><a class="header" href="#special-reram-one-way-counter-operation-flow">Special ReRAM One-Way Counter Operation Flow</a></h3>
+<ol>
+<li>Valid only for the one-way counter address region.</li>
+<li>Write any value (the data is ignored) directly to the target one-way counter address, like a single SRAM write.</li>
+<li>Read back the one-way counter address to obtain the counter value.</li>
+</ol>
+<h3 id="special-reram-program-only-operation-flow"><a class="header" href="#special-reram-program-only-operation-flow">Special ReRAM Program-Only Operation Flow</a></h3>
+<ol>
+<li>Valid only for the data slots region, 256-bit, with program-only configuration enabled.</li>
+<li>Only single write operations are supported, one at a time.</li>
+<li>Set <code>RRCCR[1] = 0</code> (power-on default) to select data mode for the input write data.</li>
+<li>Write 256 bits into the internal write buffer — either 8 × 32-bit writes or 4 × 64-bit writes to the ReRAM program-only address.</li>
+<li>Set <code>RRCCR[1] = 1</code> to select command mode and start the PROG operation. <strong>Only bits written as <code>1</code> in the 256-bit value are programmed into the ReRAM.</strong></li>
+<li>Write any value (the data is ignored) directly to the target program-only address, like a single SRAM write.</li>
+<li>Read back the ReRAM address to confirm the program succeeded.</li>
+</ol>
+<p>Example:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Stage</th><th>Value</th></tr>
+</thead>
+<tbody>
+<tr><td>Before the program-only operation</td><td><code>0x5555_5555_…_5555</code> (all <code>0x5</code> nibbles)</td></tr>
+<tr><td>Write data</td><td><code>0xAAAA_AAAA_…_AAAA</code> (all <code>0xA</code> nibbles)</td></tr>
+<tr><td>After the program-only operation</td><td><code>0xFFFF_FFFF_…_FFFF</code> (all <code>0xF</code> nibbles)</td></tr>
+</tbody>
+</table>
+</div>
+<p>Because program-only sets bits but never clears them, the result is the bitwise OR of the original contents and the write data.</p>
+<h3 id="special-reram-access-control-region-update-flow"><a class="header" href="#special-reram-access-control-region-update-flow">Special ReRAM Access Control Region Update Flow</a></h3>
+<ol>
+<li>Read the original value of the target access control slot.</li>
+<li>Modify the specific bits to change the access control settings.</li>
+<li>Use the regular ReRAM single write operation flow to write the new configuration into the target access control slot. The internal logic also updates the internal access control SRAM buffer, so the new setting takes effect immediately.</li>
+<li>Read back the target ReRAM address to confirm the update succeeded.</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="system-control.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="system-control.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
