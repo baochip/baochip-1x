@@ -489,7 +489,7 @@ These slots are deprecated and should not be used, as they are not fully functio
 | \[7:4\] | — | Reserved |
 | \[15:8\] | seg_id\[7:0\] | SCE algorithm ID; must match the software design. For an HMAC certificate, set to `8'h1F`. Otherwise set to match the SCE register definitions: SCE GDMA `XCHCR_SEGID` at `0x4002_901C`, SCE SDMA `SCHCR_SEGID` at `0x4002_903C`. These registers are defined by software. |
 | \[23:16\] | slot_owner\[7:0\] | bit \[7\] = fw1, bit \[6\] = fw0, bit \[5\] = boot1, bit \[4\] = boot0. Bits \[3:0\] reserved. |
-| \[24\] | write mode | `0` = write (0→1, 1→0, both), `1` = program-only (0→1 only). This bit is configuration only; for how to invoke the operation on the data slot region see [ReRAM operation reference flow](#rram-operation-reference-flow). |
+| \[24\] | write mode | `0` = write (0→1, 1→0, both), `1` = program-only (0→1 only). This bit is configuration only; for how to invoke the operation on the data slot region see [ReRAM operation reference flow](./rram.md#reram-operation-reference-flow). |
 | \[31:25\] | — | Reserved |
 
 ### Data Access Control to Data Slot Region
