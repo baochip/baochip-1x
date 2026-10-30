@@ -194,7 +194,14 @@ module ahb_mux3 #(
     assign ahbmaster.haddr = ahbm_haddr32;
     logic [1:0] msel;
 
-cmsdk_ahb_master_mux u
+`ifdef USE_OSS_BRIDGE
+    // Open-source re-implementation of the ARM CMSDK 3-port AHB master
+    // multiplexer; cycle-exact against cmsdk_ahb_master_mux as verified by
+    // tb/oss_equiv/tb_ahb_master_mux_equiv.sv. Port list is drop-in.
+oss_ahb_master_mux u
+`else
+ cmsdk_ahb_master_mux u
+`endif
  (
   // --------------------------------------------------------------------------------
   // I/O declaration
@@ -816,7 +823,53 @@ endmodule
          .BWERR           (bwerr)
        );
         end
-    	else begin: gen_nosyncdown
+	else begin: gen_nosyncdown
+`ifdef USE_OSS_BRIDGE
+    // Open-source re-implementation of the ARM CMSDK synchronous AHB
+    // bridge; cycle-exact against cmsdk_ahb_to_ahb_sync as verified by
+    // tb/oss_equiv/tb_ahb_to_ahb_sync_equiv.sv
+    oss_ahb_to_ahb_sync
+    #(
+      .AW(AW),
+      .DW(DW),
+      .MW(MW),
+      .BURST(1)
+    )uahbcore(
+         .HCLK            (hclk),
+         .HRESETn         (resetn),
+          //bridge slave interface (fast AHB)
+         .HSELS           (ahbslave.hsel),
+         .HADDRS          (ahbslave.haddr|32'h0),
+         .HTRANSS         (ahbslave.htrans),
+         .HSIZES          (ahbslave.hsize),
+         .HWRITES         (ahbslave.hwrite),
+         .HREADYS         (ahbslave.hreadym),
+         .HPROTS          (ahbslave.hprot),
+         .HMASTERS        (ahbslave.hmaster),
+         .HMASTLOCKS      (ahbslave.hmasterlock),
+         .HWDATAS         (ahbslave.hwdata),
+         .HBURSTS         (ahbslave.hburst),
+
+         .HREADYOUTS      (ahbslave.hready),
+         .HRESPS          (ahbslave.hresp),
+         .HRDATAS         (ahbslave.hrdata),
+
+          // bridge master interface (slow AHB)
+         .HADDRM          (uahbcore_HADDRM),
+         .HTRANSM         (ahbmaster.htrans),
+         .HSIZEM          (ahbmaster.hsize),
+         .HWRITEM         (ahbmaster.hwrite),
+         .HPROTM          (ahbmaster.hprot),
+         .HMASTLOCKM      (ahbmaster.hmasterlock),
+         .HWDATAM         (ahbmaster.hwdata),
+         .HMASTERM        (ahbmaster.hmaster),
+         .HBURSTM         (ahbmaster.hburst),
+
+         .HREADYM         (ahbmaster.hready),
+         .HRESPM          (ahbmaster.hresp),
+         .HRDATAM         (ahbmaster.hrdata)
+       );
+`else
     cmsdk_ahb_to_ahb_sync
     #(
       .AW(AW),
@@ -859,6 +912,7 @@ endmodule
          .HRESPM          (ahbmaster.hresp),
          .HRDATAM         (ahbmaster.hrdata)
        );
+`endif
     	end
     endgenerate
 `endif // AMBCOMP_SMALL
@@ -945,6 +999,44 @@ endmodule
     );
 
 `ifndef AMBCOMP_SMALL
+`ifdef USE_OSS_BRIDGE
+    // Open-source re-implementation of the ARM CMSDK AHB-to-APB bridge;
+    // cycle-exact against cmsdk_ahb_to_apb as verified by
+    // tb/oss_equiv/tb_ahb_to_apb_equiv.sv
+    oss_ahb_to_apb #( .ADDRWIDTH(PAW)
+    )uapbbdg(
+       .HCLK          ( hclk                    ),
+       .HRESETn       ( resetn                  ),
+       .PCLKEN        ( pclken                  ),
+
+       .HSEL          ( ahbslave.hsel           ),
+       .HADDR         ( ahbslave.haddr[PAW-1:0] ),
+       .HTRANS        ( ahbslave.htrans         ),
+       .HSIZE         ( ahbslave.hsize          ),
+       .HPROT         ( ahbslave.hprot          ),
+       .HWRITE        ( ahbslave.hwrite         ),
+       .HREADY        ( ahbslave.hready         ),
+       .HWDATA        ( ahbslave.hwdata         ),
+
+       .HREADYOUT     ( ahbslave.hready         ),
+       .HRDATA        ( ahbslave.hrdata         ),
+       .HRESP         ( ahbslave.hresp          ),
+                   // APB Output
+       .PADDR         ( apbmaster.paddr         ),
+       .PENABLE       ( apbmaster.penable       ),
+       .PWRITE        ( apbmaster.pwrite        ),
+       .PSTRB         ( apbmaster.pstrb         ),
+       .PPROT         ( apbmaster.pprot         ),
+       .PWDATA        ( apbmaster.pwdata        ),
+       .PSEL          ( apbmaster.psel          ),
+
+       .APBACTIVE     ( apbmaster.apbactive     ),
+                   // APB Input
+       .PRDATA        ( apbmaster.prdata        ),
+       .PREADY        ( apbmaster.pready        ),
+       .PSLVERR       ( apbmaster.pslverr       )
+       );
+`else
     cmsdk_ahb_to_apb #( .ADDRWIDTH(PAW)
     )uapbbdg(
        .HCLK          ( hclk                    ),      // Clock
@@ -980,6 +1072,7 @@ endmodule
        .PREADY        ( apbmaster.pready        ),    // Ready for each APB slave
        .PSLVERR       ( apbmaster.pslverr       )
        );  // Error state for each APB slave
+`endif // USE_OSS_BRIDGE
 `endif // AMBCOMP_SMALL
 
     endmodule
