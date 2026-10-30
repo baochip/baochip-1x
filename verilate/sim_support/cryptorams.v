@@ -37,8 +37,11 @@ module sce_aesram_1k (q, clk, cen, wen, a, d, ema, emaw, emas, ret1n, wabl, wabl
 always @(posedge clk) begin
     if (!cen) begin
         q <= mem[a];
+        // wen is a scalar active-low strobe on this cell (no per-bit
+        // write mask); indexing it only elaborates now that the ARAM
+        // branch is live in the sce tree (FULL_CHIP).
         for (i = 0; i < WORD_WIDTH; i = i + 1) begin: writes
-            if (!((wen[i]))) begin
+            if (!((wen))) begin
                 mem[a][WORD_SIZE*i +: WORD_SIZE] <= d[WORD_SIZE*i +: WORD_SIZE];
             end
         end
