@@ -172,13 +172,19 @@ class SceAdapter(Module):
         platform.add_source(os.path.join(rtl_dir, "rr_arb_tree.sv"))
         platform.add_source(os.path.join(rtl_dir, "lzc.sv"))
 
-        # TODO: fix these "cheats" in bus converters
-        rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "..", "cram-nto", "ips", "ambabuilder", "logical", "cmsdk_ahb_to_apb", "verilog")
-        platform.add_source(os.path.join(rtl_dir, "cmsdk_ahb_to_apb.v"))
-        rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "..", "cram-nto", "ips", "ambabuilder", "logical", "cmsdk_ahb_to_ahb_sync", "verilog")
-        platform.add_source(os.path.join(rtl_dir, "cmsdk_ahb_to_ahb_sync.v"))
-        rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "..", "cram-nto", "ips", "ambabuilder", "logical", "cmsdk_ahb_to_ahb_sync_down", "verilog")
-        platform.add_source(os.path.join(rtl_dir, "cmsdk_ahb_to_ahb_sync_error_canc.v"))
+        # Open-source re-implementations of the ARM CMSDK bus bridges,
+        # replacing the closed cmsdk_* models in this sim flow. The
+        # define steers amba_components.sv to the oss_* instances; ASIC
+        # flows leave it undefined and keep the cmsdk models. Equivalence
+        # is verified by tb/oss_equiv/run_equiv.sh.
+        rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "verilate", "sim_support")
+        platform.add_source(os.path.join(rtl_dir, "oss_bridges_def.sv"))
+        rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "rtl", "modules", "amba", "rtl")
+        platform.add_source(os.path.join(rtl_dir, "oss_ahb_to_ahb_sync_err_canc.sv"))
+        platform.add_source(os.path.join(rtl_dir, "oss_ahb_to_ahb_sync.sv"))
+        platform.add_source(os.path.join(rtl_dir, "oss_ahb_to_apb.sv"))
+        platform.add_source(os.path.join(rtl_dir, "oss_ahb_to_sram.sv"))
+        platform.add_source(os.path.join(rtl_dir, "oss_ahb_master_mux.sv"))
 
         rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "rtl", "modules", "common", "rtl")
         platform.add_source(os.path.join(rtl_dir, "ram_interface_def.sv"))
@@ -201,6 +207,19 @@ class SceAdapter(Module):
         rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "verilate", "sim_support")
         platform.add_source(os.path.join(rtl_dir, "cryptorams.v"))
 
+        # Full-chip SCE blocks (pke, aes, alu, trng, combohash) are gated
+        # behind `ifdef FULL_CHIP` inside sce.sv; the sim historically
+        # left them out. Define it before sce.sv is compiled, and supply
+        # behavioral stand-ins for the ASIC MIMM dpram glue (sce_mimmdpram,
+        # rbdpmux, `rf_2p_hdc_inst) that mimm_dpram.sv closes against.
+        # ASIC flows omit both files and keep the library cells.
+        platform.add_source(os.path.join(rtl_dir, "fullchip_def.sv"))
+        platform.add_source(os.path.join(rtl_dir, "sce_mimmdpram_sim.sv"))
+
+        # crypto_top first: scedma_pkg.sv / hash_pkg.sv carry `unit-scope
+        # typedefs (chnlreq_t, dat_t, ...) that alu.sv and the PKE closure
+        # reference, and Verilator requires the declaration to be compiled
+        # before any referencing module.
         rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "rtl", "modules", "crypto_top", "rtl")
         soc_sources = [
             "scedma_pkg.sv",
@@ -227,6 +246,49 @@ class SceAdapter(Module):
 
         rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "rtl", "modules", "crypto_hash", "rtl")
         platform.add_source(os.path.join(rtl_dir, "hashcore_sha3.sv"))
+
+        # PKE engine closure (instantiated now that FULL_CHIP is on).
+        rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "rtl", "modules", "crypto_pke", "rtl")
+        pke_sources = [
+            "mimm_dpram.sv",
+            "mimm.sv",
+            "mac_cell.sv",
+            "mac_ref.sv",
+            "com_alg.v",
+            "mgmr_mul.v",
+            "PkeRamMux.v",
+            "QRegCal.sv",
+            "PkeCtrl.sv",
+            "PkeCore.sv",
+        ]
+        for src in pke_sources:
+            platform.add_source(os.path.join(rtl_dir, src))
+
+        # AES core closure (aes.sv parses without them, but never
+        # elaborated before FULL_CHIP).
+        rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "rtl", "modules", "crypto_aes", "rtl")
+        for src in ["AesCore.v", "AesCtrl.v", "AesDataPath.v", "AesSbox.v", "AesMixCol.v", "GfFunctions.v"]:
+            platform.add_source(os.path.join(rtl_dir, src))
+
+        # ALU closure.
+        rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "rtl", "modules", "crypto_alu", "rtl")
+        for src in ["alucomm.sv", "aludiv.sv", "alu.sv"]:
+            platform.add_source(os.path.join(rtl_dir, src))
+
+        # TRNG digital closure (trng.sv is in soc_sources below).
+        rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "rtl", "modules", "crypto_trng", "rtl")
+        for src in ["aes_cipher_top.v", "aes_key_expand_128.v", "aes_rcon.v", "aes_sbox.v", "aes_update.v",
+                    "ctr_aes.v", "data_buf.v", "digitalization.v", "healthtest.v", "lfsr129.v",
+                    "postprocess.v", "rng_top.v"]:
+            platform.add_source(os.path.join(rtl_dir, src))
+        rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "rtl", "modules", "model", "rtl")
+        platform.add_source(os.path.join(rtl_dir, "rng_cell.sv"))
+        platform.add_source(os.path.join(rtl_dir, "osc_sim.sv"))
+
+        # drng_lfsr / sync_pulse helpers.
+        rtl_dir = os.path.join(os.path.dirname(__file__), "..", "..", "rtl", "modules", "common", "rtl")
+        platform.add_source(os.path.join(rtl_dir, "insauth.v"))
+        platform.add_source(os.path.join(rtl_dir, "gnrl_sync.sv"))
 
         rtl_dir = os.path.join(os.path.dirname(__file__), ".")
         platform.add_source(os.path.join(rtl_dir, "sce_adapter.sv"))

@@ -117,7 +117,7 @@ module soc_sce #(
 );
 // security crypto engine
 
-    ahbif  #(.AW(AHW),.DW(DW),.IDW(IDW),.UW(UW)) ahbs;
+    ahbif  #(.AW(AHW),.DW(DW),.IDW(IDW),.UW(UW)) ahbs();
     ahb_wire2ifm ahb_wire2ifm (
         .ahbmaster(ahbs),
         .hsel(hsel),
