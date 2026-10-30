@@ -168,6 +168,11 @@ module rng_osc #(
 	logic [31:0] cyccnt = 0;
 	logic cyccnt0 = 0;
 	real rndfactorint = 0;
+`ifdef VERILATOR
+	// See osc_sim.sv: no timing controls under Verilator, so the jittered
+	// oscillator loop below would freeze the model at t=0. Tie static.
+	initial CKO = 0;
+`else
 	initial begin
 		CKO = 0;
 		theperiod = 0;
@@ -189,6 +194,7 @@ module rng_osc #(
 			cyccnt0 =  ( cyccnt == LTCYCCNT ) ^ cyccnt0;
 		end
 	end
+`endif
 
 
 endmodule
