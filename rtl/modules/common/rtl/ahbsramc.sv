@@ -63,9 +63,18 @@ module ahbsramc32 #(
     assign ahbslave.hresp        = ahbmaster_hresp      ;
     assign ahbslave.hruser       = ahbmaster_hruser     ;
 
+`ifdef USE_OSS_BRIDGE
+    // Open-source re-implementation of the ARM CMSDK AHB-to-SRAM bridge;
+    // cycle-exact against cmsdk_ahb_to_sram as verified by
+    // tb/oss_equiv/tb_ahb_to_sram_equiv.sv. Port list is drop-in.
+oss_ahb_to_sram #(
+   .AW       ( RAW+2))
+ u(
+`else
 cmsdk_ahb_to_sram #(
    .AW       ( RAW+2))
  u(
+`endif
    .HCLK      (clk     ),
    .HRESETn   (resetn  ),
    .HSEL      (ahbmaster_hsel     ),
