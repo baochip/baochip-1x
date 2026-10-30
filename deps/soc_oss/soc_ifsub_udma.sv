@@ -56,7 +56,11 @@ module soc_ifsub_udma #(
     // unconnected internal
     padcfg_arm_t  iocfg[0:IOC-1];
 
-    ahbif  #(.AW(AHW),.DW(DW),.IDW(IDW),.UW(UW)) ahbs;
+    ahbif  #(.AW(AHW),.DW(DW),.IDW(IDW),.UW(UW)) ahbs();
+    // NOTE: was `ahbs;` (parenless interface-typed variable). Verilator's V3Const
+    // merges the pass-through ahb_thru onto that variable and misreports
+    // "Wire inputs its own output, creating circular logic (wire x=x)". Same fix
+    // as deps/soc_oss/sce_adapter.sv: declare it as an instance `ahbs()`.
     ahb_wire2ifm ahb_wire2ifm (
         .ahbmaster(ahbs),
         .hsel(hsel),
