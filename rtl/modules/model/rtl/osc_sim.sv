@@ -61,7 +61,16 @@ module OSC_SIM #(parameter shortreal PERIOD=1, parameter CW=7)(
     output bit CKO
 );
 
+`ifdef VERILATOR
+    // Compiled without timing controls (VM_TIMING=0): `#(...)` never
+    // advances simulation time, so the forever loop below spins forever at
+    // t=0 and freezes the whole model. This is an async entropy
+    // ring-oscillator for the TRNG; nothing synchronous depends on it in the
+    // digital sim, so tie it static.
+    initial CKO = 0;
+`else
     initial forever begin CKO = ~CKO & EN ; #(PERIOD/2) ; end
     initial CKO = 0;
+`endif
 endmodule
 `endif
