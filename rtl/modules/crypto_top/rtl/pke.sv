@@ -1386,7 +1386,14 @@ endgenerate
     logic    [3:0] hramwen;
     logic          hramcs;
 
+`ifdef USE_OSS_BRIDGE
+    // Open-source re-implementation of the ARM CMSDK AHB-to-SRAM bridge;
+    // cycle-exact against cmsdk_ahb_to_sram as verified by
+    // tb/oss_equiv/tb_ahb_to_sram_equiv.sv. Port list is drop-in.
+oss_ahb_to_sram #( .AW (13) )u0(
+`else
 cmsdk_ahb_to_sram #( .AW (13) )u0(
+`endif
   .HCLK           (clk),
   .HRESETn        (resetn),
   .HSEL           (ahbs.hsel),
