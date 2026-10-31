@@ -36,8 +36,34 @@ from soc_oss.ahb_axi_adapter import AHB2AxiAdapter
 from soc_oss.axi_axil_adapter import AXI2AXILiteAdapter
 
 from math import ceil, log2
+import os
 
 VEX_VERILOG_PATH = "../VexRiscv/VexRiscv_CramSoC.v"
+
+def netlist_core():
+    """True: simulate the redacted gate-level netlist core (module
+    `cram_axi` from lib/netlist) instead of the RTL core complex.
+    Enabled by ./container-run --netlist (VEXSIM_NETLIST=1)."""
+    return os.environ.get("VEXSIM_NETLIST", "") not in ("", "0")
+
+def add_netlist_sources(platform):
+    """Compile the redacted gate-level core instead of the RTL sources
+    (container: /opt/vexsim-lib/netlist, mounted by container-run
+    --netlist; override with VEXSIM_NETLIST_DIR). The wrapper module is
+    named cram_axi with exactly the golden RTL core's 156 scalar ports,
+    so sim.v stays identical between core views."""
+    nl_dir = os.environ.get("VEXSIM_NETLIST_DIR") or os.path.normpath(
+        os.path.join(os.path.dirname(__file__), "..", "..", "lib", "netlist"))
+    for nl_f in ("vex-redacted-clean.v", "stdcells_rtl.v", "mbdff.v",
+                 "rdram1kx32.v", "rdram128x22.v", "rdram512x64.v",
+                 "cram_axi_netlist_wrapper.v"):
+        nl_p = os.path.join(nl_dir, nl_f)
+        if not os.path.exists(nl_p):
+            raise FileNotFoundError(
+                "VEXSIM_NETLIST=1 but staged netlist file is missing: "
+                f"{nl_p} (expected the vex-sim lib/netlist staging)")
+        platform.add_source(nl_p)
+
 # CramSoC testing wrapper -----------------------------------------------------------------------
 
 class CramSoC(SoCCore):
@@ -122,6 +148,8 @@ class CramSoC(SoCCore):
         # Add standalone SoC sources.
         if vextype == 'vexii':
             platform.add_source("build/gateware/cram_vexii.v")
+        elif netlist_core():
+            add_netlist_sources(platform)
         else:
             platform.add_source("build/gateware/cram_axi.v")
             platform.add_source(VEX_VERILOG_PATH)

@@ -23,6 +23,7 @@ from litex.soc.cores import uart
 from litex.soc.integration.doc import AutoDoc, ModuleDoc
 
 from soc_oss.axi_crossbar import AXICrossbar
+from bao_common import netlist_core, add_netlist_sources
 from soc_oss.axi_adapter import AXIAdapter
 from soc_oss.axi_ram import AXIRAM
 from soc_oss.axil_ram import AXILiteRAM
@@ -119,8 +120,11 @@ class CramSoCUdma(SoCCore):
         }}
 
         # Add standalone SoC sources.
-        platform.add_source("build/gateware/cram_axi.v")
-        platform.add_source(VEX_VERILOG_PATH)
+        if netlist_core():
+            add_netlist_sources(platform)
+        else:
+            platform.add_source("build/gateware/cram_axi.v")
+            platform.add_source(VEX_VERILOG_PATH)
         platform.add_source("sim_support/ram_1w_1ra.v")
         # platform.add_source("sim_support/prims.v")
         platform.add_source("sim_support/fdre_cosim.v")
