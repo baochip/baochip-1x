@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-9fe5bca4.js";
+            window.path_to_searchindex_js = "searchindex-0b7bcabc.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-6db7ae6c.js"></script>
+        <script src="toc-a442e338.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -195,8 +195,6 @@ Most of the drivers and concepts apply across the two chips. This SDK is C-based
 <h2 id="potential-topics"><a class="header" href="#potential-topics">Potential Topics</a></h2>
 <p>Below is a list of potential topics for supplemental documentation. Note that many of the sections already have sample code in <a href="https://github.com/betrusted-io/xous-core/">xous-core</a>, and all the sections already have automatically-extracted documentation (<a href="https://ci.betrusted.io/bao1x/">Peripherals</a>, <a href="https://ci.betrusted.io/bao1x-cpu/">CPU</a>) with embedded links to the chip source code.</p>
 <ul>
-<li>clock generator</li>
-<li>PLL</li>
 <li>UDMA
 <ul>
 <li>UART</li>
@@ -216,21 +214,11 @@ Most of the drivers and concepts apply across the two chips. This SDK is C-based
 <li>AES</li>
 <li>RNG</li>
 <li>ALU</li>
-<li>Sensors &amp; countermeasures</li>
 </ul>
 </li>
-<li>ATimer</li>
-<li>Always-on domain</li>
-<li>Power management &amp; control</li>
-<li>RTC</li>
-<li>Keypad controller</li>
-<li>PWM</li>
-<li>Reset controller</li>
 <li>Interrupts/events</li>
 <li>CPU</li>
 <li>SRAM</li>
-<li>ReRAM</li>
-<li>watchdog timer</li>
 <li>DUART</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -6581,6 +6569,845 @@ where
 <li>Use the regular ReRAM single write operation flow to write the new configuration into the target access control slot. The internal logic also updates the internal access control SRAM buffer, so the new setting takes effect immediately.</li>
 <li>Read back the target ReRAM address to confirm the update succeeded.</li>
 </ol>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="pulse-width-modulation-pwm"><a class="header" href="#pulse-width-modulation-pwm">Pulse Width Modulation (PWM)</a></h1>
+<h2 id="pwm-introduction"><a class="header" href="#pwm-introduction">PWM Introduction</a></h2>
+<p>Pulse-width modulation (PWM) is a method for using pulse width to encode or modulate a signal. The width of each pulse is a function of the amplitude of the signal.</p>
+<h3 id="duty-cycle"><a class="header" href="#duty-cycle">Duty Cycle</a></h3>
+<p>The duty cycle is measured in percentage. The percentage duty cycle specifically describes the percentage of time a digital signal is on over an interval or period of time. This period is the inverse of the frequency of the waveform.</p>
+<p><img src="images/pwm-image-01-duty-cycle.png" alt="PWM waveform showing the period T and the pulse width T1 of a square signal"></p>
+<ul>
+<li><strong>T:</strong> <code>Tx_THRESHOLD</code> register configuration</li>
+<li><strong>T1:</strong> <code>Tx_TH_CHANNELx</code> register configuration</li>
+</ul>
+<h3 id="clock-source"><a class="header" href="#clock-source">Clock Source</a></h3>
+<p>The PWM supports 2 different input sources, configured by the <code>Tx_CONFIG</code> registers. The clock gates are controlled by the <code>CG</code> register.</p>
+<p><img src="images/pwm-image-02-clock-source.png" alt="PWM clock path: clksys through the PREFD divider (clksel 1, ls_clk) or pclk above 2 MHz (clksel 0) into the sync block, then the pre-scale stage (ls_clk_pres) and the threshold stage, producing pwm_clk"></p>
+<p><strong>Example:</strong> how to generate a clock frequency of 5 Hz from the PWM output pin:</p>
+<pre><code class="language-ignore">T2_CONFIG    = (1 &lt;&lt; 11) | (1 &lt;&lt; 12) | (0x30 &lt;&lt; 16);  // prescale 48, T2_CONFIG[11] = 0x1 (is_clk)
+T2_PREFD     = 0x03E8 (1000)
+T2_THRESHOLD = 0x64 (100)
+</code></pre>
+<ul>
+<li><code>ls_clk = 48 MHz / (2 × T2_PREFD) = 48 MHz / 2000 = 24 kHz</code></li>
+<li><code>ls_clk_pres = 24 kHz / 48 = 500 Hz</code></li>
+<li><code>pwm_clk = 500 Hz / 100 = 5 Hz</code></li>
+</ul>
+<h2 id="pwm-main-features"><a class="header" href="#pwm-main-features">PWM Main Features</a></h2>
+<ul>
+<li>16-bit resolution</li>
+<li>Multiple pulse width output modes</li>
+<li>4 timers for PWM</li>
+<li>4 channels for every timer</li>
+<li>Each channel is independently configured with a duty cycle</li>
+<li>GPIO trigger mode:
+<ul>
+<li>Trigger event on input source rising edge</li>
+<li>Trigger event on input source falling edge</li>
+<li>Trigger event on input source falling or rising edge</li>
+</ul>
+</li>
+</ul>
+<h2 id="pwm-interrupts"><a class="header" href="#pwm-interrupts">PWM Interrupts</a></h2>
+<p>The PWM module generates 4 events or interrupts:</p>
+<ul>
+<li>Event: the event signal is asserted when the counter reaches the threshold (TH) of the channel.</li>
+<li>Each timer independently generates an event.</li>
+</ul>
+<p>PWM interrupts IRQn table:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>PWM</th><th>NVIC IRQn</th></tr>
+</thead>
+<tbody>
+<tr><td>T0</td><td>140</td></tr>
+<tr><td>T1</td><td>141</td></tr>
+<tr><td>T2</td><td>142</td></tr>
+<tr><td>T3</td><td>143</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="pwm-registers"><a class="header" href="#pwm-registers">PWM Registers</a></h2>
+<p>Base address: <code>0x5012_0000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register Name</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>T0_CMD</td><td>0x0000</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Command</td></tr>
+<tr><td>T0_CONFIG</td><td>0x0004</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Configuration</td></tr>
+<tr><td>T0_THRESHOLD</td><td>0x0008</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Threshold configuration</td></tr>
+<tr><td>T0_TH_CHANNEL0</td><td>0x000C</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 0 threshold configuration</td></tr>
+<tr><td>T0_TH_CHANNEL1</td><td>0x0010</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 1 threshold configuration</td></tr>
+<tr><td>T0_TH_CHANNEL2</td><td>0x0014</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 2 threshold configuration</td></tr>
+<tr><td>T0_TH_CHANNEL3</td><td>0x0018</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 3 threshold configuration</td></tr>
+<tr><td>T0_COUNTER</td><td>0x002C</td><td>32</td><td>Status</td><td>R</td><td>0x00000000</td><td>Counter</td></tr>
+<tr><td>T1_CMD</td><td>0x0040</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Command</td></tr>
+<tr><td>T1_CONFIG</td><td>0x0044</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Configuration</td></tr>
+<tr><td>T1_THRESHOLD</td><td>0x0048</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Threshold configuration</td></tr>
+<tr><td>T1_TH_CHANNEL0</td><td>0x004C</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 0 threshold configuration</td></tr>
+<tr><td>T1_TH_CHANNEL1</td><td>0x0050</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 1 threshold configuration</td></tr>
+<tr><td>T1_TH_CHANNEL2</td><td>0x0054</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 2 threshold configuration</td></tr>
+<tr><td>T1_TH_CHANNEL3</td><td>0x0058</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 3 threshold configuration</td></tr>
+<tr><td>T1_COUNTER</td><td>0x006C</td><td>32</td><td>Status</td><td>R</td><td>0x00000000</td><td>Counter</td></tr>
+<tr><td>T2_CMD</td><td>0x0080</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Command</td></tr>
+<tr><td>T2_CONFIG</td><td>0x0084</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Configuration</td></tr>
+<tr><td>T2_THRESHOLD</td><td>0x0088</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Threshold configuration</td></tr>
+<tr><td>T2_TH_CHANNEL0</td><td>0x008C</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 0 threshold configuration</td></tr>
+<tr><td>T2_TH_CHANNEL1</td><td>0x0090</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 1 threshold configuration</td></tr>
+<tr><td>T2_TH_CHANNEL2</td><td>0x0094</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 2 threshold configuration</td></tr>
+<tr><td>T2_TH_CHANNEL3</td><td>0x0098</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 3 threshold configuration</td></tr>
+<tr><td>T2_COUNTER</td><td>0x00AC</td><td>32</td><td>Status</td><td>R</td><td>0x00000000</td><td>Counter</td></tr>
+<tr><td>T3_CMD</td><td>0x00C0</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Command</td></tr>
+<tr><td>T3_CONFIG</td><td>0x00C4</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Configuration</td></tr>
+<tr><td>T3_THRESHOLD</td><td>0x00C8</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Threshold configuration</td></tr>
+<tr><td>T3_TH_CHANNEL0</td><td>0x00CC</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 0 threshold configuration</td></tr>
+<tr><td>T3_TH_CHANNEL1</td><td>0x00D0</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 1 threshold configuration</td></tr>
+<tr><td>T3_TH_CHANNEL2</td><td>0x00D4</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 2 threshold configuration</td></tr>
+<tr><td>T3_TH_CHANNEL3</td><td>0x00D8</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channel 3 threshold configuration</td></tr>
+<tr><td>T3_COUNTER</td><td>0x00EC</td><td>32</td><td>Status</td><td>R</td><td>0x00000000</td><td>Counter</td></tr>
+<tr><td>EVENT_CFG</td><td>0x0100</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Events configuration</td></tr>
+<tr><td>CG</td><td>0x0104</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>Channels clock gating configuration</td></tr>
+<tr><td>T0_PREFD</td><td>0x0140</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>32M clock frequency division for timer 0</td></tr>
+<tr><td>T1_PREFD</td><td>0x0144</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>32M clock frequency division for timer 1</td></tr>
+<tr><td>T2_PREFD</td><td>0x0148</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>32M clock frequency division for timer 2</td></tr>
+<tr><td>T3_PREFD</td><td>0x014C</td><td>32</td><td>Config</td><td>R/W</td><td>0x00000000</td><td>32M clock frequency division for timer 3</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="register-descriptions-5"><a class="header" href="#register-descriptions-5">Register Descriptions</a></h3>
+<h4 id="tx_cmd--command-register"><a class="header" href="#tx_cmd--command-register">Tx_CMD — Command Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x00X0</code> (T0 X=0; T1 X=4; T2 X=8; T3 X=C)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[1]</td><td>STOP</td><td>Stop command bitfield</td></tr>
+<tr><td>[0]</td><td>START</td><td>Start command bitfield</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="tx_config--configuration-register"><a class="header" href="#tx_config--configuration-register">Tx_CONFIG — Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x00X4</code> (T0 X=0; T1 X=4; T2 X=8; T3 X=C)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[23:16]</td><td>PRESC</td><td>Prescaler value configuration. Value = actual value − 1</td></tr>
+<tr><td>[12]</td><td>UPDOWNSEL</td><td>Center-aligned mode configuration: <code>0</code> = the counter counts up and down alternately; <code>1</code> = the counter counts up and resets to 0 when reaching the threshold</td></tr>
+<tr><td>[11]</td><td>CLKSEL</td><td>Clock source configuration: <code>0</code> = pclk, <code>1</code> = is_clk</td></tr>
+<tr><td>[10:8]</td><td>MODE</td><td>Trigger mode configuration bitfield: <code>000</code> = trigger event at each clock cycle; <code>001</code> = trigger event if input source is 0; <code>010</code> = trigger event if input source is 1</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="tx_threshold--threshold-configuration-register"><a class="header" href="#tx_threshold--threshold-configuration-register">Tx_THRESHOLD — Threshold Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x00X8</code> (T0 X=0; T1 X=4; T2 X=8; T3 X=C)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:16]</td><td>TH_HI</td><td>Threshold high part configuration bitfield. It defines the end counter value.</td></tr>
+<tr><td>[15:0]</td><td>TH_LO</td><td>Threshold low part configuration bitfield. It defines the start counter value.</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Note:</strong> Value = actual value − 1</p>
+</blockquote>
+<h4 id="tx_th_channel0--channel-0-threshold-configuration-register"><a class="header" href="#tx_th_channel0--channel-0-threshold-configuration-register">Tx_TH_CHANNEL0 — Channel 0 Threshold Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x00XC</code> (T0 X=0; T1 X=4; T2 X=8; T3 X=C)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[18:16]</td><td>MODE</td><td>Channel 0 threshold match action on channel output signal configuration bitfield: <code>000</code> = set; <code>001</code> = toggle, then next threshold match action is clear; <code>010</code> = set, then next threshold match action is clear; <code>011</code> = toggle; <code>100</code> = clear; <code>101</code> = toggle, then next threshold match action is set; <code>110</code> = clear, then next threshold match action is set</td></tr>
+<tr><td>[15:0]</td><td>TH</td><td>Channel 0 threshold configuration bitfield. Value = actual value − 1</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="tx_th_channel1--channel-1-threshold-configuration-register"><a class="header" href="#tx_th_channel1--channel-1-threshold-configuration-register">Tx_TH_CHANNEL1 — Channel 1 Threshold Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x00X0</code> (T0 X=1; T1 X=5; T2 X=9; T3 X=D)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[18:16]</td><td>MODE</td><td>Channel 1 threshold match action on channel output signal configuration bitfield: <code>000</code> = set; <code>001</code> = toggle, then next threshold match action is clear; <code>010</code> = set, then next threshold match action is clear; <code>011</code> = toggle; <code>100</code> = clear; <code>101</code> = toggle, then next threshold match action is set; <code>110</code> = clear, then next threshold match action is set</td></tr>
+<tr><td>[15:0]</td><td>TH</td><td>Channel 1 threshold configuration bitfield. Value = actual value − 1</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="tx_th_channel2--channel-2-threshold-configuration-register"><a class="header" href="#tx_th_channel2--channel-2-threshold-configuration-register">Tx_TH_CHANNEL2 — Channel 2 Threshold Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x00X4</code> (T0 X=1; T1 X=5; T2 X=9; T3 X=D)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[18:16]</td><td>MODE</td><td>Channel 2 threshold match action on channel output signal configuration bitfield: <code>000</code> = set; <code>001</code> = toggle, then next threshold match action is clear; <code>010</code> = set, then next threshold match action is clear; <code>011</code> = toggle; <code>100</code> = clear; <code>101</code> = toggle, then next threshold match action is set; <code>110</code> = clear, then next threshold match action is set</td></tr>
+<tr><td>[15:0]</td><td>TH</td><td>Channel 2 threshold configuration bitfield. Value = actual value − 1</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="tx_th_channel3--channel-3-threshold-configuration-register"><a class="header" href="#tx_th_channel3--channel-3-threshold-configuration-register">Tx_TH_CHANNEL3 — Channel 3 Threshold Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x00X8</code> (T0 X=1; T1 X=5; T2 X=9; T3 X=D)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[18:16]</td><td>MODE</td><td>Channel 3 threshold match action on channel output signal configuration bitfield: <code>000</code> = set; <code>001</code> = toggle, then next threshold match action is clear; <code>010</code> = set, then next threshold match action is clear; <code>011</code> = toggle; <code>100</code> = clear; <code>101</code> = toggle, then next threshold match action is set; <code>110</code> = clear, then next threshold match action is set</td></tr>
+<tr><td>[15:0]</td><td>TH</td><td>Channel 3 threshold configuration bitfield. Value = actual value − 1</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="tx_counter--counter-register"><a class="header" href="#tx_counter--counter-register">Tx_COUNTER — Counter Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x00XC</code> (T0 X=2; T1 X=6; T2 X=A; T3 X=E)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>Counter</td><td>Read: value of the T0/1/2/3 counter</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="event_cfg--events-configuration-register"><a class="header" href="#event_cfg--events-configuration-register">EVENT_CFG — Events Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0100</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[19]</td><td>EN3</td><td>Enable T3 event generation</td></tr>
+<tr><td>[18]</td><td>EN2</td><td>Enable T2 event generation</td></tr>
+<tr><td>[17]</td><td>EN1</td><td>Enable T1 event generation</td></tr>
+<tr><td>[16]</td><td>EN0</td><td>Enable T0 event generation</td></tr>
+<tr><td>[15:12]</td><td>T3chsel</td><td>T3 event source selection configuration bitfield: <code>0xC</code> = T3 channel 0; <code>0xD</code> = T3 channel 1; <code>0xE</code> = T3 channel 2; <code>0xF</code> = T3 channel 3</td></tr>
+<tr><td>[11:8]</td><td>T2chsel</td><td>T2 event source selection configuration bitfield: <code>0x8</code> = T2 channel 0; <code>0x9</code> = T2 channel 1; <code>0xA</code> = T2 channel 2; <code>0xB</code> = T2 channel 3</td></tr>
+<tr><td>[7:4]</td><td>T1chsel</td><td>T1 event source selection configuration bitfield: <code>0x4</code> = T1 channel 0; <code>0x5</code> = T1 channel 1; <code>0x6</code> = T1 channel 2; <code>0x7</code> = T1 channel 3</td></tr>
+<tr><td>[3:0]</td><td>T0chsel</td><td>T0 event source selection configuration bitfield: <code>0x0</code> = T0 channel 0; <code>0x1</code> = T0 channel 1; <code>0x2</code> = T0 channel 2; <code>0x3</code> = T0 channel 3</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cg--channels-clock-gating-configuration-register"><a class="header" href="#cg--channels-clock-gating-configuration-register">CG — Channels Clock Gating Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0104</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[3:0]</td><td>en</td><td>Clock gating configuration bitfield: <code>0</code> = clock gated, <code>1</code> = enabled. Bit[0] = T0 configuration; Bit[1] = T1 configuration; Bit[2] = T2 configuration; Bit[3] = T3 configuration</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="tx_prefd--clock-frequency-division-configuration-register"><a class="header" href="#tx_prefd--clock-frequency-division-configuration-register">Tx_PREFD — Clock Frequency Division Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x014X</code> (T0 X=0; T1 X=4; T2 X=8; T3 X=C)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[9:0]</td><td>CLK_FD</td><td>32 MHz clock frequency division: <code>0</code>, <code>1</code> = no division. Value = actual value − 1</td></tr>
+</tbody>
+</table>
+</div>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="safety-function"><a class="header" href="#safety-function">Safety Function</a></h1>
+<h2 id="active-protection-module-mesh"><a class="header" href="#active-protection-module-mesh">Active Protection Module (MESH)</a></h2>
+<h3 id="mesh-introduction"><a class="header" href="#mesh-introduction">MESH Introduction</a></h3>
+<p>To enhance the chip’s resistance to attacks, particularly invasive attacks (such as decapsulation), the chip incorporates an active protective layer detection functionality known as MESH. The MESH module features a metal protective grid positioned on the top layer of the chip, designed to prevent modifications to the chip’s logic and counteract invasive attacks. When the MESH module detects external physical tampering, it can trigger protective measures such as interrupt alerts or system resets, thereby ensuring robust protection for the chip.</p>
+<h3 id="mesh-main-features"><a class="header" href="#mesh-main-features">MESH Main Features</a></h3>
+<ul>
+<li>Attack detection:
+<ul>
+<li>Real-time monitoring of Mesh sensor integrity under attack</li>
+<li>Parity bit configuration in critical registers to detect laser fault injection attacks</li>
+</ul>
+</li>
+<li>64 mesh lines</li>
+<li>64 active points input enables for each line</li>
+<li>CPU-controlled interface for adjusting Mesh line voltage levels</li>
+<li>Status registers enabling the CPU to query Mesh line attack status</li>
+<li>Hardware-based Mesh detection: in hardware detection mode, Mesh integrity checks are immediately triggered upon wakeup from DeepSleep state.</li>
+</ul>
+<h3 id="meshc-registers"><a class="header" href="#meshc-registers">MESHC Registers</a></h3>
+<p>Base address: <code>0x4005_2000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register Name</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>CR_MLDRV</td><td>0x0000</td><td>64</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Mesh line control</td></tr>
+<tr><td>CR_MLIE</td><td>0x0010</td><td>64</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Mesh line - active point input enable</td></tr>
+<tr><td>SR_MLSR</td><td>0x0020</td><td>32×8</td><td>SR</td><td>R/W</td><td>0x00000000</td><td>Mesh line error</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_mldrv--mesh-line-control-register"><a class="header" href="#cr_mldrv--mesh-line-control-register">CR_MLDRV — Mesh Line Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[61:0]</td><td>Mesh line control</td><td>Mesh line control</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_mlie--mesh-line-input-enable-control-register"><a class="header" href="#cr_mlie--mesh-line-input-enable-control-register">CR_MLIE — Mesh Line Input Enable Control Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0010</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[61:0]</td><td>Mesh line ie</td><td>Mesh line - active point input enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="sr_mlsr--mesh-line-error-register"><a class="header" href="#sr_mlsr--mesh-line-error-register">SR_MLSR — Mesh Line Error Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0020</code>–<code>0x003C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[31:0]</td><td>Mesh line error</td><td>Mesh line error</td></tr>
+</tbody>
+</table>
+</div>
+<p>Each register covers a group of 8 active points (8 ap/group).</p>
+<h2 id="safety-environment-control-unit-sec"><a class="header" href="#safety-environment-control-unit-sec">Safety Environment Control Unit (SEC)</a></h2>
+<h3 id="sec-introduction"><a class="header" href="#sec-introduction">SEC Introduction</a></h3>
+<p>The SEC module is primarily responsible for:</p>
+<ul>
+<li>External crystal oscillator frequency monitoring</li>
+<li>High/low voltage detection</li>
+<li>Optical sensing attack detection (e.g., laser fault injection)</li>
+<li>Temperature monitoring</li>
+<li>Voltage Regulator (VR) integrity checks</li>
+<li>Power-On Reset (POR) validation</li>
+<li>Light detection</li>
+<li>Glue logic validation</li>
+</ul>
+<p>These functions counteract tampering attempts, notify the CPU of the system’s real-time status, and initiate protective resets or interrupt signals when threats are detected.</p>
+<h3 id="sensorc-registers"><a class="header" href="#sensorc-registers">SENSORC Registers</a></h3>
+<p>Base address: <code>0x4005_3000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register Name</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>CR_VDMASK0</td><td>0x0000</td><td>32</td><td>CR</td><td>R/W</td><td>0x0000003F</td><td>Voltage detection</td></tr>
+<tr><td>CR_VDMASK1</td><td>0x0004</td><td>32</td><td>CR</td><td>R/W</td><td>0x0000003F</td><td></td></tr>
+<tr><td>CR_VDSR</td><td>0x0008</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td></td></tr>
+<tr><td>CR_LDMASK</td><td>0x0010</td><td>32</td><td>SR</td><td>R/W</td><td>0x00000000</td><td>Light detection</td></tr>
+<tr><td>CR_LDSR</td><td>0x0014</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td></td></tr>
+<tr><td>CR_LDCFG</td><td>0x0018</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td></td></tr>
+<tr><td>CR_VDCFGx</td><td>0x0020–0x003C</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td></td></tr>
+<tr><td>CR_VDENA</td><td>0x0040</td><td>32</td><td>CR</td><td>R/W</td><td>0x0000000F</td><td></td></tr>
+<tr><td>CR_VDTST</td><td>0x0044</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td></td></tr>
+<tr><td>CR_LDTST</td><td>0x0048</td><td>32</td><td>CR</td><td>R/W</td><td>0x00000000</td><td></td></tr>
+<tr><td>CR_LDFD</td><td>0x004C</td><td>32</td><td>CR</td><td>R/W</td><td>0x000001FF</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_vdmask0--voltage-detection-mask-register-0"><a class="header" href="#cr_vdmask0--voltage-detection-mask-register-0">CR_VDMASK0 — Voltage Detection Mask Register 0</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_003F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[5:0]</td><td>cr_vdmask0</td><td>Voltage detect mask 0</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_vdmask1--voltage-detection-mask-register-1"><a class="header" href="#cr_vdmask1--voltage-detection-mask-register-1">CR_VDMASK1 — Voltage Detection Mask Register 1</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0004</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_003F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[5:0]</td><td>cr_vdmask1</td><td>Voltage detect mask 1</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_vdsr--voltage-detection-status-register"><a class="header" href="#cr_vdsr--voltage-detection-status-register">CR_VDSR — Voltage Detection Status Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[5:0]</td><td>cr_vdsr</td><td>Voltage detect status</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_ldmask--light-detection-mask-register"><a class="header" href="#cr_ldmask--light-detection-mask-register">CR_LDMASK — Light Detection Mask Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0010</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[1:0]</td><td>cr_ldmask</td><td>Light detection mask: <code>0</code> = enable, <code>1</code> = masked/disable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_ldsr--light-detection-status-register"><a class="header" href="#cr_ldsr--light-detection-status-register">CR_LDSR — Light Detection Status Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0014</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[1:0]</td><td>cr_ldsr</td><td>Light detection status</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_ldcfg--light-detection-configuration-register"><a class="header" href="#cr_ldcfg--light-detection-configuration-register">CR_LDCFG — Light Detection Configuration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0018</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[1:0]</td><td>cr_ldcfg</td><td>Light detection configuration</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_vdcfgx--voltage-detection-configuration-registers"><a class="header" href="#cr_vdcfgx--voltage-detection-configuration-registers">CR_VDCFGx — Voltage Detection Configuration Registers</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0020 + X×4</code> (x = 0–7)</li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[5:0]</td><td>cr_vdcfg</td><td>Voltage detection configuration</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_vdena--voltage-detection-enable-register"><a class="header" href="#cr_vdena--voltage-detection-enable-register">CR_VDENA — Voltage Detection Enable Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0040</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_000F</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[4:0]</td><td>cr_vdena</td><td>Voltage detection enable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_vdtst--voltage-detection-test-register"><a class="header" href="#cr_vdtst--voltage-detection-test-register">CR_VDTST — Voltage Detection Test Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0044</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[4:0]</td><td>cr_vdtst</td><td>Voltage detection test</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_ldtst--light-detection-test-register"><a class="header" href="#cr_ldtst--light-detection-test-register">CR_LDTST — Light Detection Test Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0048</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[4:0]</td><td>cr_ldtst</td><td>Light detection test</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_ldfd--light-detection-filter-duration-register"><a class="header" href="#cr_ldfd--light-detection-filter-duration-register">CR_LDFD — Light Detection Filter Duration Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x004C</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_01FF</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[15:0]</td><td>ldfd</td><td>Light detection filter duration</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="glu-registers"><a class="header" href="#glu-registers">GLU Registers</a></h3>
+<p>Base address: <code>0x4005_4000</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Register Name</th><th>Offset</th><th>Size</th><th>Type</th><th>Access</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>CR_GCMASK</td><td>0x0000</td><td>64</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Gluecell mask</td></tr>
+<tr><td>GLUE_REG</td><td>0x0008</td><td>64</td><td>SR</td><td>R/W</td><td>0x00000000</td><td>Gluecell register</td></tr>
+<tr><td>GLUE_RST</td><td>0x0010</td><td>64</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Gluecell reset</td></tr>
+<tr><td>GLUE_TEST</td><td>0x0018</td><td>64</td><td>CR</td><td>R/W</td><td>0x00000000</td><td>Gluecell test</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="cr_gcmask--gluecell-mask-register"><a class="header" href="#cr_gcmask--gluecell-mask-register">CR_GCMASK — Gluecell Mask Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0000</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[63:0]</td><td>cr_gcmask</td><td>Gluecell mask</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="glue_reg--gluecell-register"><a class="header" href="#glue_reg--gluecell-register">GLUE_REG — Gluecell Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0008</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[63:0]</td><td>glue_reg</td><td>Gluecell register status</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="glue_rst--gluecell-reset-register"><a class="header" href="#glue_rst--gluecell-reset-register">GLUE_RST — Gluecell Reset Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0010</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[63:0]</td><td>glue_rst</td><td>Gluecell reset</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="glue_test--gluecell-test-register"><a class="header" href="#glue_test--gluecell-test-register">GLUE_TEST — Gluecell Test Register</a></h4>
+<ul>
+<li><strong>Address offset:</strong> <code>0x0018</code></li>
+<li><strong>Reset value:</strong> <code>0x0000_0000</code></li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bits</th><th>Field</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>[63:0]</td><td>glue_test</td><td>Gluecell test</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="usage-notes"><a class="header" href="#usage-notes">Usage Notes</a></h2>
+<h3 id="baochip-1x-sensor-features"><a class="header" href="#baochip-1x-sensor-features">Baochip-1x Sensor Features</a></h3>
+<h4 id="voltage-detector"><a class="header" href="#voltage-detector">Voltage Detector</a></h4>
+<p>Baochip-1x is equipped with 6 Voltage Detectors (VDs), as listed below:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>VD</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>VDD09L</td><td>Monitors whether the voltage of internal power supply VDD85 is below the threshold; triggers an alarm if yes.</td></tr>
+<tr><td>VDD09H</td><td>Monitors whether the voltage of internal power supply VDD85 is above the threshold; triggers an alarm if yes.</td></tr>
+<tr><td>VDD25L</td><td>Monitors whether the voltage of internal power supply VDD25 is below the threshold; triggers an alarm if yes.</td></tr>
+<tr><td>VDD25H</td><td>Monitors whether the voltage of internal power supply VDD25 is above the threshold; triggers an alarm if yes.</td></tr>
+<tr><td>VDD33L</td><td>Monitors whether the voltage of external power supply VDD33 is below the threshold; triggers an alarm if yes.</td></tr>
+<tr><td>VDD33H</td><td>Monitors whether the voltage of external power supply VDD33 is above the threshold; triggers an alarm if yes.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Key features of Baochip-1x’s built-in voltage detectors (VDs):</p>
+<ul>
+<li>6 independent voltage sensors</li>
+<li>Monitors both internal and external power supplies, covering core voltages that ensure system functionality</li>
+<li>Independent on/off control for each VD IP to reduce power consumption</li>
+<li>Independent and configurable filtering for each VD to avoid false alarms caused by glitches</li>
+<li>Configurable interrupt output when each VD triggers an alarm</li>
+<li>Configurable reset trigger when each VD triggers an alarm</li>
+<li>Independent self-test function for each VD</li>
+<li>Independent real-time status bit for each VD</li>
+<li>Independent alarm flag bit for each VD</li>
+</ul>
+<p>Summary table:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Power</th><th>Internal / External</th><th>VD</th><th>Threshold</th><th>On/Off</th><th>Filter Count</th><th>Int/Rst</th></tr>
+</thead>
+<tbody>
+<tr><td>VDD85</td><td>Int.</td><td>VDD09L</td><td>0.66V</td><td>Cfg.</td><td>Cfg.</td><td>Cfg.</td></tr>
+<tr><td>VDD85</td><td>Int.</td><td>VDD09H</td><td>1.08V</td><td>Cfg.</td><td>Cfg.</td><td>Cfg.</td></tr>
+<tr><td>VDD25</td><td>Int.</td><td>VDD25L</td><td>2.2V</td><td>Cfg.</td><td>Cfg.</td><td>Cfg.</td></tr>
+<tr><td>VDD25</td><td>Int.</td><td>VDD25H</td><td>2.82V</td><td>Cfg.</td><td>Cfg.</td><td>Cfg.</td></tr>
+<tr><td>VDD33</td><td>Ext.</td><td>VDD33L</td><td>2.5V</td><td>Cfg.</td><td>Cfg.</td><td>Cfg.</td></tr>
+<tr><td>VDD33</td><td>Ext.</td><td>VDD33H</td><td>4V</td><td>Cfg.</td><td>Cfg.</td><td>Cfg.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="light-detector"><a class="header" href="#light-detector">Light Detector</a></h4>
+<p>Baochip-1x’s internal visible light sensors have the following features:</p>
+<ol>
+<li>Two visible light sensors for redundant backup</li>
+<li>Distributed at the chip corners for better sensitivity to light changes</li>
+<li>Independent on/off control for each LD to reduce power consumption</li>
+<li>Independent and configurable filtering for each LD to avoid false alarms caused by glitches</li>
+<li>The light detection duration is configurable</li>
+<li>Independent self-test function for each LD</li>
+<li>Independent real-time status bit for each LD</li>
+</ol>
+<h4 id="mesh"><a class="header" href="#mesh">Mesh</a></h4>
+<p>Baochip-1x’s Mesh has the following features:</p>
+<ol>
+<li>64 mesh lines</li>
+<li>32 active point basic units on each mesh line</li>
+<li>Configurable input enable for each mesh line</li>
+<li>Every 8 active points form a group, with alarm status bits for a total of 256 groups</li>
+</ol>
+<h4 id="glue-chain"><a class="header" href="#glue-chain">Glue Chain</a></h4>
+<p>Baochip-1x’s glue chain has the following features:</p>
+<ol>
+<li>64 glue chains</li>
+<li>Independent on/off control for each glue chain</li>
+<li>Independent status bit for each glue chain</li>
+<li>Independent reset capability for each glue chain</li>
+<li>Independent test value setting for each glue chain</li>
+</ol>
+<h3 id="baochip-1x-sensor-configuration-registers"><a class="header" href="#baochip-1x-sensor-configuration-registers">Baochip-1x Sensor Configuration Registers</a></h3>
+<p>Base address: <code>0x4005_0000</code> (security control). Register offsets below are relative to the block base address listed in each group row.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>SFR Name</th><th>Offset Addr</th><th>Reset Value</th><th>Type</th><th>Bitwidth</th><th>Function Description</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>meshc</strong></td><td><strong>0x2000</strong></td><td></td><td></td><td></td><td>Mesh is 64 lines × 32 active points</td></tr>
+<tr><td>cr_mldrv</td><td>0x000~0x004</td><td>0x00000000</td><td>CR</td><td>[31:0] ×2</td><td>Mesh line drive value</td></tr>
+<tr><td>cr_mlie</td><td>0x010~0x014</td><td>0x00000000</td><td>CR</td><td>[31:0] ×2</td><td>Mesh line - active point input enable</td></tr>
+<tr><td>sr_mlsr</td><td>0x020~0x03C</td><td>0x00000000</td><td>SR</td><td>[31:0] ×8</td><td>Mesh line real-time error status</td></tr>
+<tr><td><strong>sensorc</strong></td><td><strong>0x3000</strong></td><td></td><td></td><td></td><td>6 VDs: VD09L, VD09H, VD25L, VD25H, VD33L, VD33H</td></tr>
+<tr><td>cr_vdmask0</td><td>0x000</td><td>0x0000003F</td><td>CR</td><td>[5:0]</td><td>VD IRQ mask: <code>=0</code> enable; <code>=1</code> masked/disable</td></tr>
+<tr><td>cr_vdmask1</td><td>0x004</td><td>0x0000003F</td><td>CR</td><td>[5:0]</td><td>VD reset mask: <code>=0</code> enable; <code>=1</code> masked/disable</td></tr>
+<tr><td>sr_vdsr</td><td>0x008</td><td>0x00000000</td><td>SR</td><td>[5:0]</td><td>VD real-time error status</td></tr>
+<tr><td>sfr_vdfr</td><td>0x00C</td><td>0x00000000</td><td>FR</td><td>[5:0]</td><td>VD error flag, write <code>1</code> to clear</td></tr>
+<tr><td>cr_vdcfg</td><td>0x020~0x03C</td><td>0x00000000</td><td>CR</td><td>[5:0]</td><td>VD filter counter</td></tr>
+<tr><td>vdena</td><td>0x040</td><td>0x0000000F</td><td>CR</td><td>[4:0]</td><td>VD enable</td></tr>
+<tr><td>vdtst</td><td>0x044</td><td>0x00000000</td><td>CR</td><td>[5:0]</td><td>VD self-test</td></tr>
+<tr><td><strong>sensorc</strong></td><td><strong>0x3000</strong></td><td></td><td></td><td></td><td>2 LDs</td></tr>
+<tr><td>cr_ldmask</td><td>0x010</td><td>0x00000000</td><td>CR</td><td>[1:0]</td><td>LD mask: <code>=0</code> enable; <code>=1</code> masked/disable</td></tr>
+<tr><td>sr_ldsr</td><td>0x014</td><td>0x00000000</td><td>SR</td><td>[1:0]</td><td>LD real-time error status</td></tr>
+<tr><td>cr_ldcfg</td><td>0x018</td><td>0x00000000</td><td>CR</td><td>[3:0]</td><td>LD filter counter</td></tr>
+<tr><td>ldtst</td><td>0x048</td><td>0x00000000</td><td>CR</td><td>[1:0]</td><td>LD self-test</td></tr>
+<tr><td>ldfd</td><td>0x04C</td><td>0x000001FF</td><td>CR</td><td>[15:0]</td><td>Light detection duration</td></tr>
+<tr><td><strong>glc</strong></td><td><strong>0x4000</strong></td><td></td><td></td><td></td><td>64 glue chains</td></tr>
+<tr><td>cr_gcmask</td><td>0x000</td><td>0x00000000</td><td>CR</td><td>[63:0]</td><td>Glue chain mask: <code>=0</code> enable; <code>=1</code> masked/disable</td></tr>
+<tr><td>gluereg</td><td>0x008</td><td>0x00000000</td><td>SR</td><td>[63:0]</td><td>Glue chain value</td></tr>
+<tr><td>gluerst</td><td>0x010</td><td>0x00000000</td><td>CR</td><td>[63:0]</td><td>Glue chain reset</td></tr>
+<tr><td>gluetest</td><td>0x018</td><td>0x00000000</td><td>CR</td><td>[63:0]</td><td>Glue chain self-test</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="baochip-1x-sensor-programming-guide"><a class="header" href="#baochip-1x-sensor-programming-guide">Baochip-1x Sensor Programming Guide</a></h3>
+<h4 id="voltage-detector--self-test"><a class="header" href="#voltage-detector--self-test">Voltage Detector — Self-test</a></h4>
+<p>Perform a self-test on the VD when powering on to check if the function is intact. The software process is as follows:</p>
+<ol>
+<li>Configure the VD.</li>
+<li>Enable the VD self-test.</li>
+<li>Enable the VD.</li>
+<li>Check whether the flag bits meet the expectations.</li>
+</ol>
+<p>The corresponding pseudo-code is as follows:</p>
+<pre><code class="language-text">cr_vdcfg  = 0xc;      // vd filter counter
+cr_vdmask0 = 0x3f;    // irq disable
+cr_vdmask1 = 0x0;     // reset disable
+vdtst     = 0x3f;     // enable self-test
+vdena     = 0x1f;     // enable vd
+if (sr_vdsr == 0x3f)  // check status result
+    sfr_vdfr == 0x3f; // clear flag
+else
+    return error;
+</code></pre>
+<h4 id="light-detector--self-test"><a class="header" href="#light-detector--self-test">Light Detector — Self-test</a></h4>
+<p>Perform a self-test on the LD when powering on to check if the function is intact. The software process is as follows:</p>
+<ol>
+<li>Configure the LD.</li>
+<li>Enable the LD self-test.</li>
+<li>Enable the LD.</li>
+<li>Check whether the flag bits meet the expectations.</li>
+</ol>
+<p>The corresponding pseudo-code is as follows:</p>
+<pre><code class="language-text">cr_ldcfg  = 0xc;      // ld filter counter
+ldfd      = 0x55aa;
+ldtst     = 0x3;      // enable self-test
+cr_ldmask = 0x0;      // enable ld
+if (sr_ldsr == 0x3)   // check status result
+    return ok;
+else
+    return error;
+</code></pre>
+<h4 id="mesh-1"><a class="header" href="#mesh-1">Mesh</a></h4>
+<ol>
+<li>Set the mesh active point input enable to 0.</li>
+<li>Set the mesh line value.</li>
+<li>Delay for 100 ms.</li>
+<li>Set the mesh active point input enable to 1.</li>
+<li>In case of alarm interruption, handle accordingly based on the alarm event level.</li>
+</ol>
+<p>The pseudo-code is as follows:</p>
+<pre><code class="language-text">cr_mlie  = 0x0;       // disable mesh line - active point input enable
+cr_mldrv = 0x55aa;    // mesh line value
+delay 100ms;
+cr_mlie  = 0xffff;    // mesh line - active point input enable
+
+if (| sr_mlsr == 1)   // if error status
+    suspend and record log in NVM
+
+if ((+sr_mlsr &gt; 1) || (| sr_mlsr == 1 and sustain 50ms in 100ms))  // error or sustain
+{
+    clear sensitive data in reg/ram or reset;
+
+    if ((+ mlsr &gt; 3) &amp; (| sr_mlsr == 1 &gt; 6 in 100ms))
+        enter lock state or erase sensitive data in nvm or erase all data in memory;
+}
+else
+    return;
+</code></pre>
+<h4 id="glue-chain--self-test"><a class="header" href="#glue-chain--self-test">Glue Chain — Self-test</a></h4>
+<p>Perform a self-test on the glue chain when powering on to check if the function is intact. The software process is as follows:</p>
+<ol>
+<li>Reset the glue chain.</li>
+<li>Configure the glue chain self-test.</li>
+<li>Enable the glue chain.</li>
+<li>Check whether the flag bits meet the expectations.</li>
+</ol>
+<p>The corresponding pseudo-code is as follows:</p>
+<pre><code class="language-text">gluerst   = 0xffff;   // reset glue chain
+gluetest  = 0xffff;   // enable self-test
+cr_gcmask = 0x0;      // enable
+if (gluereg == 0xffff) // check status result
+    return ok;
+else
+    return error;
+</code></pre>
 
                     </main>
 
