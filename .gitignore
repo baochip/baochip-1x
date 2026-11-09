@@ -17,6 +17,7 @@ target/
 /venv/*
 /test/
 /env/
+temp/
 
 # Spinal build directories
 VexRiscv/project/

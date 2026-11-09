@@ -23,8 +23,6 @@ A [C SDK for Baochip-1x](https://github.com/ArmstrongSubero/dabao-sdk) is also a
 
 Below is a list of potential topics for supplemental documentation. Note that many of the sections already have sample code in [xous-core](https://github.com/betrusted-io/xous-core/), and all the sections already have automatically-extracted documentation ([Peripherals](https://ci.betrusted.io/bao1x/), [CPU](https://ci.betrusted.io/bao1x-cpu/)) with embedded links to the chip source code.
 
-- clock generator
-- PLL
 - UDMA
   - UART
   - SPIM
@@ -40,17 +38,7 @@ Below is a list of potential topics for supplemental documentation. Note that ma
   - AES
   - RNG
   - ALU
-  - Sensors & countermeasures
-- ATimer
-- Always-on domain
-- Power management & control
-- RTC
-- Keypad controller
-- PWM
-- Reset controller
 - Interrupts/events
 - CPU
 - SRAM
-- ReRAM
-- watchdog timer
 - DUART
