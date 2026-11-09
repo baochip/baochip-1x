@@ -24,3 +24,5 @@
 - [PMU](pmu.md)
 - [System Control](system-control.md)
 - [RRAM](rram.md)
+- [PWM](pwm.md)
+- [Safety Sensors](safety.md)
